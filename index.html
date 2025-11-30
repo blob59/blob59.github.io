@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Maestro Franco – Home Magica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+
+    /* VIDEO DI SFONDO */
+    .video-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -3;
+    }
+
+    /* OSCURAMENTO LEGGERO SOPRA IL VIDEO */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.1), rgba(0,0,0,0.8));
+      z-index: -2;
+    }
+
+    .app {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      padding: 24px;
+    }
+
+    /* TESTO CENTRALE "MAESTRO FRANCO" */
+    .title {
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-shadow: 0 0 10px rgba(0,0,0,0.8);
+    }
+
+    .title .colored {
+      display: inline-block;
+    }
+
+    .title .colored span:nth-child(1) { color: #ffcc00; }
+    .title .colored span:nth-child(2) { color: #ff5a8a; }
+    .title .colored span:nth-child(3) { color: #5ad1ff; }
+    .title .colored span:nth-child(4) { color: #7bff7b; }
+    .title .colored span:nth-child(5) { color: #ff914d; }
+    .title .colored span:nth-child(6) { color: #9b7bff; }
+
+    .subtitle {
+      margin-top: 10px;
+      font-size: clamp(16px, 2.3vw, 22px);
+      opacity: 0.92;
+      text-shadow: 0 0 8px rgba(0,0,0,0.9);
+    }
+
+    /* STRISCIA CON FRANCO, LUMA, SORA IN BASSO */
+    .characters-strip {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: flex-end;
+      gap: 20px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.8);
+    }
+
+    .character {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .character img {
+      max-height: 110px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.9));
+    }
+
+    .character-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-shadow: 0 0 6px rgba(0,0,0,0.9);
+    }
+
+    .character.maestro .character-label { color: #ffdf6b; }
+    .character.luma .character-label    { color: #ff9ad9; }
+    .character.sora .character-label    { color: #7fd8ff; }
+
+    /* LUMA FLOTTANTE */
+    .character.luma img {
+      animation: float 2.2s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-8px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      .characters-strip {
+        gap: 10px;
+        padding: 6px 12px;
+      }
+      .character img {
+        max-height: 80px;
+      }
+    }
+
+    @media (max-height: 560px) {
+      .app {
+        justify-content: flex-start;
+        padding-top: 40px;
+      }
+      .characters-strip {
+        position: static;
+        margin-top: 20px;
+        transform: none;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- VIDEO DI SFONDO -->
+  <video class="video-bg" src="sfondo0.mp4" autoplay muted loop playsinline></video>
+  <div class="overlay"></div>
+
+  <div class="app">
+    <!-- TITOLO CENTRALE -->
+    <div class="title">
+      <span class="colored">
+        <span>M</span><span>a</span><span>e</span><span>s</span><span>t</span><span>r</span><span>o</span>
+      </span>
+      &nbsp;Franco
+    </div>
+    <div class="subtitle">
+      Il maestro alla guida, con Luma e Sora a fare da copiloti magici.
+    </div>
+
+    <!-- STRISCIA CON I PERSONAGGI -->
+    <div class="characters-strip">
+      <div class="character maestro">
+        <img src="franco.png" alt="Maestro Franco" />
+        <div class="character-label">Maestro Franco</div>
+      </div>
+
+      <div class="character luma">
+        <img src="luma.gif" alt="Luma" />
+        <div class="character-label">Luma</div>
+      </div>
+
+      <div class="character sora">
+        <img src="sora.png" alt="Sora Pixar 3D" />
+        <div class="character-label">Sora</div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
