@@ -2,36 +2,65 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <title>Maestro Franco – Home Magica</title>
+  <title>Maestro Franco Official</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    :root {
+      --accent: #ffcc66;
+      --accent2: #5ad1ff;
+      --bg-overlay: radial-gradient(circle at center, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.82));
+    }
+
+    /* Tema SCUOLA */
+    body.theme-scuola {
+      --accent: #4ade80;
+      --accent2: #22c55e;
+      --bg-overlay: radial-gradient(circle at center, rgba(0, 40, 0, 0.2), rgba(0, 15, 0, 0.9));
+    }
+
+    /* Tema NATALE */
+    body.theme-natale {
+      --accent: #f97373;
+      --accent2: #22c55e;
+      --bg-overlay: radial-gradient(circle at center, rgba(80, 0, 0, 0.3), rgba(5, 0, 0, 0.9));
+    }
+
+    /* Tema ESTATE */
+    body.theme-estate {
+      --accent: #facc15;
+      --accent2: #38bdf8;
+      --bg-overlay: radial-gradient(circle at center, rgba(15, 118, 110, 0.3), rgba(3, 7, 18, 0.9));
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    html, body {
+    html,
+    body {
       height: 100%;
       font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       overflow: hidden;
+      color: #ffffff;
     }
 
-    /* VIDEO DI SFONDO */
-    .video-bg {
+    /* SFONDO VIDEO */
+    .bg-video {
       position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       z-index: -3;
+      filter: brightness(0.6);
     }
 
-    /* OSCURAMENTO LEGGERO SOPRA IL VIDEO */
     .overlay {
       position: fixed;
       inset: 0;
-      background: radial-gradient(circle at center, rgba(0,0,0,0.1), rgba(0,0,0,0.8));
+      background: var(--bg-overlay);
       z-index: -2;
     }
 
@@ -40,55 +69,279 @@
       height: 100%;
       display: flex;
       flex-direction: column;
+      padding: 18px 18px 22px;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .avatar-small {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar-small img {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .avatar-small span {
+      font-size: 14px;
+      font-weight: 600;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.9);
+    }
+
+    /* OROLOGIO PIXAR STYLE */
+    .clock {
+      text-align: right;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .clock-time {
+      font-size: clamp(18px, 3vw, 22px);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
+    }
+
+    .clock-date {
+      font-size: 12px;
+      opacity: 0.95;
+    }
+
+    /* HERO CENTRALE */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: #ffffff;
-      padding: 24px;
+      padding: 0 12px;
     }
 
-    /* TESTO CENTRALE "MAESTRO FRANCO" */
     .title {
-      font-size: clamp(48px, 7vw, 80px);
+      font-size: clamp(46px, 7vw, 80px);
       font-weight: 900;
       letter-spacing: 1px;
-      text-shadow: 0 0 10px rgba(0,0,0,0.8);
+      text-shadow: 0 0 18px rgba(0, 0, 0, 0.9);
+      margin-bottom: 8px;
     }
 
-    .title .colored {
-      display: inline-block;
+    .title .colored span:nth-child(1) {
+      color: #ff5959;
     }
 
-    .title .colored span:nth-child(1) { color: #ffcc00; }
-    .title .colored span:nth-child(2) { color: #ff5a8a; }
-    .title .colored span:nth-child(3) { color: #5ad1ff; }
-    .title .colored span:nth-child(4) { color: #7bff7b; }
-    .title .colored span:nth-child(5) { color: #ff914d; }
-    .title .colored span:nth-child(6) { color: #9b7bff; }
+    .title .colored span:nth-child(2) {
+      color: #ffca3a;
+    }
+
+    .title .colored span:nth-child(3) {
+      color: #8ac926;
+    }
+
+    .title .colored span:nth-child(4) {
+      color: #1982c4;
+    }
+
+    .title .colored span:nth-child(5) {
+      color: #6a4c93;
+    }
 
     .subtitle {
-      margin-top: 10px;
-      font-size: clamp(16px, 2.3vw, 22px);
-      opacity: 0.92;
-      text-shadow: 0 0 8px rgba(0,0,0,0.9);
+      font-size: clamp(15px, 2.2vw, 20px);
+      opacity: 0.96;
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+      margin-bottom: 18px;
     }
 
-    /* STRISCIA CON FRANCO, LUMA, SORA IN BASSO */
-    .characters-strip {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+    /* SEARCH BOX */
+    .search-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      margin-bottom: 18px;
+    }
+
+    .search-input {
+      width: min(320px, 64vw);
+      height: 42px;
+      border-radius: 999px;
+      border: none;
+      padding: 0 16px;
+      font-size: 15px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.98);
+      color: #111827;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: none;
+      padding: 10px 18px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #111827;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.85);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.95);
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      background: rgba(0, 0, 0, 0.6);
+      color: #e5e7eb;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    /* PULSANTI LINK PERSONALI */
+    .links-panel {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .link-pill {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      font-size: 13px;
+      text-decoration: none;
+      color: #f9fafb;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.85);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .link-pill:hover {
+      transform: translateY(-1px);
+      background: rgba(0, 0, 0, 0.85);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.95);
+    }
+
+    .link-pill span.icon {
+      font-size: 16px;
+    }
+
+    /* SELETTORE TEMI */
+    .themes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .themes button {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: rgba(0, 0, 0, 0.55);
+      color: #f9fafb;
+      font-size: 11px;
+      padding: 4px 10px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .themes button:hover {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    .themes button.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #111827;
+    }
+
+    /* BOTTOM AREA */
+    .bottom-row {
       display: flex;
       align-items: flex-end;
-      gap: 20px;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    /* METEO LIVE */
+    .weather-card {
+      min-width: 210px;
+      max-width: 260px;
+      padding: 10px 14px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.85);
+      font-size: 13px;
+      text-align: left;
+    }
+
+    .weather-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .weather-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .weather-label {
+      font-weight: 600;
+    }
+
+    /* PERSONAGGI */
+    .characters-strip {
+      display: flex;
+      align-items: flex-end;
+      gap: 16px;
       padding: 8px 18px;
       border-radius: 999px;
-      background: rgba(0,0,0,0.55);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.18);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.8);
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .character {
@@ -99,94 +352,374 @@
     }
 
     .character img {
-      max-height: 110px;
+      max-height: 90px;
       width: auto;
       display: block;
-      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.9));
+      border-radius: 24px;
+      object-fit: cover;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.95);
     }
 
     .character-label {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
-      text-shadow: 0 0 6px rgba(0,0,0,0.9);
+      text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
     }
 
-    .character.maestro .character-label { color: #ffdf6b; }
-    .character.luma .character-label    { color: #ff9ad9; }
-    .character.sora .character-label    { color: #7fd8ff; }
-
-    /* LUMA FLOTTANTE */
-    .character.luma img {
-      animation: float 2.2s ease-in-out infinite;
+    .character.maestro .character-label {
+      color: #fde68a;
     }
 
-    @keyframes float {
-      0%   { transform: translateY(0); }
-      50%  { transform: translateY(-8px); }
-      100% { transform: translateY(0); }
+    .character.luma .character-label {
+      color: #f9a8d4;
+    }
+
+    .character.sora .character-label {
+      color: #7dd3fc;
+    }
+
+    /* MUSICA */
+    .music-toggle {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .music-status {
+      font-size: 11px;
+      opacity: 0.9;
+      text-align: right;
     }
 
     /* RESPONSIVE */
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
+      .bottom-row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .weather-card {
+        width: 100%;
+        max-width: 320px;
+      }
+
+      .characters-strip {
+        order: -1;
+      }
+
+      .top-bar {
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .app {
+        padding: 10px 8px 14px;
+      }
+
       .characters-strip {
         gap: 10px;
         padding: 6px 12px;
       }
+
       .character img {
-        max-height: 80px;
+        max-height: 70px;
+      }
+
+      .links-panel {
+        gap: 6px;
+      }
+
+      .link-pill {
+        font-size: 11px;
+        padding: 6px 10px;
+      }
+
+      .weather-card {
+        font-size: 12px;
       }
     }
-
-    @media (max-height: 560px) {
-      .app {
-        justify-content: flex-start;
-        padding-top: 40px;
-      }
-      .characters-strip {
-        position: static;
-        margin-top: 20px;
-        transform: none;
-      }
-    }
-
   </style>
 </head>
-<body>
-
-  <!-- VIDEO DI SFONDO -->
-  <video class="video-bg" src="sfondo0.mp4" autoplay muted loop playsinline></video>
+<body class="theme-standard">
+  <!-- SFONDO VIDEO -->
+  <video class="bg-video" src="sfondo0.mp4" autoplay muted loop playsinline></video>
   <div class="overlay"></div>
 
+  <!-- MUSICA DI SOTTOFONDO (opzionale: carica musica.mp3) -->
+  <audio id="bg-music" src="musica.mp3" loop></audio>
+
   <div class="app">
-    <!-- TITOLO CENTRALE -->
-    <div class="title">
-      <span class="colored">
-        <span>M</span><span>a</span><span>e</span><span>s</span><span>t</span><span>r</span><span>o</span>
-      </span>
-      &nbsp;Franco
-    </div>
-    <div class="subtitle">
-      Il maestro alla guida, con Luma e Sora a fare da copiloti magici.
-    </div>
-
-    <!-- STRISCIA CON I PERSONAGGI -->
-    <div class="characters-strip">
-      <div class="character maestro">
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <div class="avatar-small">
         <img src="franco.png" alt="Maestro Franco" />
-        <div class="character-label">Maestro Franco</div>
+        <span>@blob59 • Maestro Franco</span>
+      </div>
+      <div class="clock">
+        <div id="clock-time" class="clock-time">--:--</div>
+        <div id="clock-date" class="clock-date">Caricamento…</div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="title">
+        <span class="colored">
+          <span>M</span><span>a</span><span>e</span><span>s</span><span>t</span><span>r</span><span>o</span>
+        </span>
+        &nbsp;Franco
+      </div>
+      <div class="subtitle">
+        Il maestro alla guida, con Luma e Sora come copiloti magici.
       </div>
 
-      <div class="character luma">
-        <img src="luma.gif" alt="Luma" />
-        <div class="character-label">Luma</div>
+      <div class="search-box">
+        <input
+          id="google-search"
+          class="search-input"
+          type="text"
+          placeholder="Cerca su Google..."
+        />
+        <button class="btn" type="button" onclick="doGoogleSearch()">Cerca</button>
       </div>
 
-      <div class="character sora">
-        <img src="sora.png" alt="Sora Pixar 3D" />
-        <div class="character-label">Sora</div>
+      <!-- LINKS RAPIDI -->
+      <div class="links-panel">
+        <a class="link-pill" href="https://www.google.com" target="_blank">
+          <span class="icon">🔎</span> Google
+        </a>
+        <a class="link-pill" href="https://www.youtube.com" target="_blank">
+          <span class="icon">📺</span> YouTube
+        </a>
+        <a class="link-pill" href="https://drive.google.com" target="_blank">
+          <span class="icon">📁</span> Drive
+        </a>
+        <a class="link-pill" href="https://suno.com" target="_blank">
+          <span class="icon">🎵</span> Suno
+        </a>
+        <a class="link-pill" href="https://dream-machine.lumalabs.ai/" target="_blank">
+          <span class="icon">✨</span> LumaLabs
+        </a>
+        <a class="link-pill" href="https://sora.com" target="_blank">
+          <span class="icon">🎬</span> Sora
+        </a>
+      </div>
+
+      <!-- TEMI -->
+      <div class="themes">
+        <button data-theme="standard" class="active">STANDARD</button>
+        <button data-theme="scuola">SCUOLA</button>
+        <button data-theme="natale">NATALE</button>
+        <button data-theme="estate">ESTATE</button>
+      </div>
+    </div>
+
+    <!-- BOTTOM AREA -->
+    <div class="bottom-row">
+      <!-- METEO -->
+      <div class="weather-card">
+        <div class="weather-title">METEO LIVE</div>
+        <div class="weather-row" id="meteo-galbiate">
+          <span class="weather-label">Galbiate:</span>
+          <span>caricamento…</span>
+        </div>
+        <div class="weather-row" id="meteo-brancaleone">
+          <span class="weather-label">Brancaleone:</span>
+          <span>caricamento…</span>
+        </div>
+      </div>
+
+      <!-- PERSONAGGI -->
+      <div class="characters-strip">
+        <div class="character maestro">
+          <img src="franco.png" alt="Maestro Franco" />
+          <div class="character-label">Maestro Franco</div>
+        </div>
+
+        <div class="character luma">
+          <img src="luma.gif" alt="Luma" />
+          <div class="character-label">Luma</div>
+        </div>
+
+        <div class="character sora">
+          <img src="sora.png" alt="Sora" />
+          <div class="character-label">Sora</div>
+        </div>
+      </div>
+
+      <!-- MUSICA -->
+      <div class="music-toggle">
+        <button id="music-btn" class="btn btn-secondary" type="button">
+          🎵 Musica: OFF
+        </button>
+        <div id="music-status" class="music-status">
+          Carica un file <strong>musica.mp3</strong> nel repository per il sottofondo.
+        </div>
       </div>
     </div>
   </div>
 
+  <script>
+    // OROLOGIO
+    function updateClock() {
+      const now = new Date();
+      const timeEl = document.getElementById("clock-time");
+      const dateEl = document.getElementById("clock-date");
+
+      const optionsTime = { hour: "2-digit", minute: "2-digit" };
+      const optionsDate = {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      };
+
+      timeEl.textContent = now.toLocaleTimeString("it-IT", optionsTime);
+      let dateStr = now.toLocaleDateString("it-IT", optionsDate);
+      dateStr = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
+      dateEl.textContent = dateStr;
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // RICERCA GOOGLE
+    function doGoogleSearch() {
+      const input = document.getElementById("google-search");
+      const query = input.value.trim();
+      if (!query) {
+        input.focus();
+        return;
+      }
+      const url =
+        "https://www.google.com/search?q=" + encodeURIComponent(query);
+      window.open(url, "_self");
+    }
+    document
+      .getElementById("google-search")
+      .addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          doGoogleSearch();
+        }
+      });
+
+    // METEO LIVE con Open-Meteo (senza chiave API)
+    function descriviMeteo(code) {
+      const map = {
+        0: "sereno",
+        1: "perlopiù sereno",
+        2: "parzialmente nuvoloso",
+        3: "nuvoloso",
+        45: "foschia",
+        48: "nebbia",
+        51: "pioggerella leggera",
+        53: "pioggerella",
+        55: "pioggerella intensa",
+        61: "pioggia leggera",
+        63: "pioggia",
+        65: "pioggia intensa",
+        71: "neve leggera",
+        73: "neve",
+        75: "neve intensa",
+        95: "temporale",
+        96: "temporale con grandine",
+      };
+      return map[code] || "condizioni variabili";
+    }
+
+    function caricaMeteo(lat, lon, elementId) {
+      const url =
+        "https://api.open-meteo.com/v1/forecast?latitude=" +
+        lat +
+        "&longitude=" +
+        lon +
+        "&current_weather=true&timezone=auto";
+
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => {
+          const el = document.getElementById(elementId);
+          if (!el || !data.current_weather) return;
+          const t = Math.round(data.current_weather.temperature);
+          const desc = descriviMeteo(data.current_weather.weathercode);
+          const spanVal = el.querySelector("span:last-child");
+          if (spanVal) {
+            spanVal.textContent = t + "°C – " + desc;
+          }
+        })
+        .catch(() => {
+          const el = document.getElementById(elementId);
+          if (!el) return;
+          const spanVal = el.querySelector("span:last-child");
+          if (spanVal) {
+            spanVal.textContent = "non disponibile";
+          }
+        });
+    }
+
+    // Galbiate (LC)
+    caricaMeteo(45.82, 9.372, "meteo-galbiate");
+    // Brancaleone (RC)
+    caricaMeteo(38.083, 16.167, "meteo-brancaleone");
+
+    // MUSICA
+    const music = document.getElementById("bg-music");
+    const musicBtn = document.getElementById("music-btn");
+    const musicStatus = document.getElementById("music-status");
+    let musicOn = false;
+
+    function aggiornaStatoMusica() {
+      musicBtn.textContent = musicOn ? "🎵 Musica: ON" : "🎵 Musica: OFF";
+      musicStatus.textContent = musicOn
+        ? "Musica attiva. Clicca di nuovo per silenziare."
+        : "Musica disattivata. Clicca per attivare (se musica.mp3 è presente).";
+    }
+
+    musicBtn.addEventListener("click", () => {
+      if (!music.getAttribute("src")) return;
+      if (musicOn) {
+        music.pause();
+        musicOn = false;
+      } else {
+        music
+          .play()
+          .then(() => {
+            musicOn = true;
+          })
+          .catch(() => {
+            musicStatus.textContent =
+              "Impossibile riprodurre. Controlla musica.mp3 o le impostazioni audio.";
+          });
+      }
+      aggiornaStatoMusica();
+    });
+    aggiornaStatoMusica();
+
+    // TEMI (solo colori / atmosfera)
+    const themeButtons = document.querySelectorAll(".themes button");
+    function setTheme(theme) {
+      document.body.classList.remove(
+        "theme-standard",
+        "theme-scuola",
+        "theme-natale",
+        "theme-estate"
+      );
+      if (theme === "scuola") document.body.classList.add("theme-scuola");
+      else if (theme === "natale") document.body.classList.add("theme-natale");
+      else if (theme === "estate") document.body.classList.add("theme-estate");
+      else document.body.classList.add("theme-standard");
+
+      themeButtons.forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.theme === theme);
+      });
+    }
+
+    themeButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        setTheme(btn.dataset.theme);
+      });
+    });
+  </script>
 </body>
 </html>
