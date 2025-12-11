@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<title>Maestro Franco Official</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-image: url("franco.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: white;
+    }
+
+    /* leggera sfumatura per far leggere meglio il testo */
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(2px);
+        z-index: -1;
+    }
+
+    .logo {
+        font-size: 72px;
+        font-weight: 800;
+        color: #11a4ff;
+        text-shadow: 2px 2px 8px black;
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+
+    /* OROLOGIO IN ALTO A DESTRA */
+    .clock {
+        position: fixed;
+        top: 15px;
+        right: 20px;
+        padding: 6px 12px;
+        background: rgba(0,0,0,0.6);
+        border-radius: 10px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        border: 1px solid rgba(255,255,255,0.4);
+    }
+
+    /* BARRA DI RICERCA GOOGLE */
+    .search-container {
+        margin-top: 10px;
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .search-container form {
+        display: flex;
+        gap: 8px;
+        background: rgba(0,0,0,0.55);
+        padding: 8px 12px;
+        border-radius: 30px;
+        border: 1px solid rgba(255,255,255,0.3);
+        backdrop-filter: blur(6px);
+    }
+
+    .search-input {
+        border: none;
+        outline: none;
+        padding: 8px 12px;
+        border-radius: 20px;
+        min-width: 260px;
+        font-size: 16px;
+    }
+
+    .search-btn {
+        border: none;
+        outline: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        background: #11a4ff;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .search-btn:hover {
+        background: #0c7ccd;
+    }
+
+    /* CONTENITORE BOTTONI */
+    .button-container {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    /* STILE BOTTONI (effetto vetro) */
+    .mf-btn {
+        padding: 14px 28px;
+        background: rgba(255,255,255,0.12);
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+        border-radius: 14px;
+        text-decoration: none;
+        backdrop-filter: blur(10px);
+        transition: 0.2s;
+        border: 1px solid rgba(255,255,255,0.4);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .mf-btn:hover {
+        background: rgba(255,255,255,0.85);
+        color: black;
+        transform: translateY(-3px);
+    }
+
+    /* FOOTER */
+    footer {
+        position: fixed;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        font-size: 14px;
+        color: #eee;
+        text-shadow: 1px 1px 4px black;
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- Orologio in alto a destra -->
+    <div id="clock" class="clock"></div>
+
+    <div class="logo">Maestro Franco Official</div>
+
+    <!-- Barra di ricerca Google -->
+    <div class="search-container">
+        <form action="https://www.google.com/search" method="GET" target="_blank">
+            <input class="search-input" type="text" name="q" placeholder="Cerca su Google...">
+            <button class="search-btn" type="submit">Cerca</button>
+        </form>
+    </div>
+
+    <!-- ===== BOTTONI PRINCIPALI ===== -->
+    <div class="button-container">
+
+        <a class="mf-btn" href="https://google.com" target="_blank">Google</a>
+        <a class="mf-btn" href="https://youtube.com" target="_blank">YouTube</a>
+        <a class="mf-btn" href="https://chat.openai.com" target="_blank">ChatGPT</a>
+        <a class="mf-btn" href="https://www.instagram.com" target="_blank">Instagram</a>
+        <a class="mf-btn" href="https://www.canva.com" target="_blank">Canva</a>
+        <a class="mf-btn" href="https://123apps.com/it/" target="_blank">Modifica file online</a>
+
+    </div>
+
+    <footer>
+        © 2025 Franco Ficara – Tutti i diritti riservati
+    </footer>
+
+    <!-- SCRIPT OROLOGIO -->
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = h + ":" + m + ":" + s;
+        }
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+
+</body>
+</html>
+
