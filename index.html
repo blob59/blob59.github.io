@@ -73,6 +73,7 @@
       transition: .12s;
       letter-spacing: .05em;
       text-transform: uppercase;
+      display: inline-block;
     }
     .btn-3d:hover { transform: translateY(-2px); filter: brightness(1.1); }
     .btn-3d:active { transform: translateY(3px); box-shadow: 0 2px 0 #0b305e; }
@@ -92,7 +93,6 @@
       grid-template-columns: 1.2fr 1.8fr;
       gap: 20px;
     }
-
     @media (max-width: 850px) {
       .grid { grid-template-columns: 1fr; }
     }
@@ -113,6 +113,7 @@
       margin-bottom: 8px;
     }
 
+    /* Orologio */
     #clock {
       font-family: monospace;
       font-size: 2.6rem;
@@ -121,9 +122,10 @@
     }
     #date { text-align: center; opacity: .8; }
 
+    /* Meteo box */
     .meteo-box {
       margin-top: 12px;
-      padding: 12px;
+      padding: 14px;
       background: rgba(0,0,0,0.5);
       border-radius: 16px;
     }
@@ -137,13 +139,31 @@
       margin-bottom: 8px;
     }
 
-    /* link del widget meteo */
-    .weatherwidget-io {
+    .meteo-text {
+      font-size: .85rem;
+      opacity: .85;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .btn-meteo {
       display: block;
       width: 100%;
-      border-radius: 12px;
-      overflow: hidden;
+      text-align: center;
+      padding: 10px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: 600;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg,#00bcd4,#1a73e8);
+      box-shadow: 0 5px 0 #064d74;
+      transition: .12s;
     }
+    .btn-meteo:hover { transform: translateY(-2px); filter: brightness(1.08); }
+    .btn-meteo:active { transform: translateY(3px); box-shadow: 0 2px 0 #064d74; }
   </style>
 </head>
 
@@ -151,7 +171,7 @@
   <div class="wrapper">
 
     <h1>MAESTRO FRANCO OFFICIAL</h1>
-    <p class="subtitle">Dashboard con sfondo mare, pulsanti 3D, orologio e meteo in tempo reale.</p>
+    <p class="subtitle">Dashboard con sfondo mare, pulsanti 3D, orologio e link rapidi al meteo.</p>
 
     <!-- Pulsanti -->
     <h2 class="section-title">Pulsanti 3D</h2>
@@ -172,68 +192,10 @@
         <div id="date">--</div>
       </div>
 
-      <!-- Meteo -->
+      <!-- Meteo (link esterni affidabili) -->
       <div class="card">
-        <div class="card-title">Meteo Brancaleone &amp; Galbiate</div>
+        <di
 
-        <div class="meteo-box">
-          <div class="meteo-title">Brancaleone</div>
-          <a class="weatherwidget-io"
-             href="https://forecast7.com/it/38d08n16d13/brancaleone/"
-             data-label_1="BRANCALEONE"
-             data-label_2="METEO"
-             data-theme="dark">
-             Brancaleone Meteo
-          </a>
-        </div>
-
-        <div class="meteo-box">
-          <div class="meteo-title">Galbiate</div>
-          <a class="weatherwidget-io"
-             href="https://forecast7.com/it/45d80n9d40/galbiate/"
-             data-label_1="GALBIATE"
-             data-label_2="METEO"
-             data-theme="dark">
-             Galbiate Meteo
-          </a>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Orologio -->
-  <script>
-    function aggiornaOrologio() {
-      const now = new Date();
-      const ore = String(now.getHours()).padStart(2,"0");
-      const min = String(now.getMinutes()).padStart(2,"0");
-      const sec = String(now.getSeconds()).padStart(2,"0");
-      document.getElementById("clock").textContent = `${ore}:${min}:${sec}`;
-
-      const giorni = ["Domenica","Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato"];
-      const mesi = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
-      document.getElementById("date").textContent =
-        `${giorni[now.getDay()]} ${now.getDate()} ${mesi[now.getMonth()]} ${now.getFullYear()}`;
-    }
-    aggiornaOrologio();
-    setInterval(aggiornaOrologio,1000);
-  </script>
-
-  <!-- Meteo -->
-  <script>
-  !function(d,s,id){
-    var js,fjs=d.getElementsByTagName(s)[0];
-    if(!d.getElementById(id)){
-      js=d.createElement(s);
-      js.id=id;
-      js.src='https://weatherwidget.io/js/widget.min.js';
-      fjs.parentNode.insertBefore(js,fjs);
-    }
-  }(document,'script','weatherwidget-io-js');
-  </script>
-</body>
-</html>
 
 
 
