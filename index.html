@@ -1,200 +1,29 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <title>Maestro Franco Official</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<!-- METEO -->
+<div class="card">
+  <div class="card-title">Meteo Brancaleone &amp; Galbiate</div>
 
-    body {
-      font-family: system-ui, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-        url("brancaleone-mare.jpg") no-repeat center center fixed;
-      background-size: cover;
-      padding: 20px;
-      color: #fff;
-    }
+  <div class="meteo-box">
+    <div class="meteo-title">Brancaleone</div>
+    <p class="meteo-text">Apri il meteo aggiornato in una nuova scheda.</p>
+    <a class="btn-meteo"
+       href="https://www.3bmeteo.com/meteo/brancaleone"
+       target="_blank" rel="noopener noreferrer">
+      🔵 Apri Meteo Brancaleone
+    </a>
+  </div>
 
-    .wrapper {
-      width: 100%;
-      max-width: 1150px;
-      padding: 26px;
-      border-radius: 26px;
-      background: rgba(0,0,0,0.55);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-      backdrop-filter: blur(8px);
-    }
+  <div class="meteo-box">
+    <div class="meteo-title">Galbiate</div>
+    <p class="meteo-text">Apri il meteo aggiornato in una nuova scheda.</p>
+    <a class="btn-meteo"
+       href="https://www.3bmeteo.com/meteo/galbiate"
+       target="_blank" rel="noopener noreferrer">
+      🟢 Apri Meteo Galbiate
+    </a>
+  </div>
 
-    h1 {
-      text-align: center;
-      font-size: 2.4rem;
-      letter-spacing: .18em;
-      margin-bottom: 8px;
-      text-transform: uppercase;
-    }
+</div>
 
-    .subtitle {
-      text-align: center;
-      opacity: 0.85;
-      margin-bottom: 25px;
-    }
-
-    .section-title {
-      margin: 18px 0 12px;
-      text-transform: uppercase;
-      letter-spacing: .15em;
-      opacity: 0.85;
-    }
-
-    /* Pulsanti 3D */
-    .buttons-3d {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .btn-3d {
-      padding: 12px 22px;
-      border-radius: 999px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 700;
-      font-size: .9rem;
-      background: linear-gradient(135deg,#1a73e8,#34c759);
-      box-shadow: 0 6px 0 #0b305e;
-      transition: .12s;
-      letter-spacing: .05em;
-      text-transform: uppercase;
-      display: inline-block;
-    }
-    .btn-3d:hover { transform: translateY(-2px); filter: brightness(1.1); }
-    .btn-3d:active { transform: translateY(3px); box-shadow: 0 2px 0 #0b305e; }
-
-    .btn-yt {
-      background: linear-gradient(135deg,#ff4b4b,#ff9800);
-      box-shadow: 0 6px 0 #7a1717;
-    }
-    .btn-sora {
-      background: linear-gradient(135deg,#7b61ff,#00eaff);
-      box-shadow: 0 6px 0 #2a1c6d;
-    }
-
-    /* Layout */
-    .grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1.8fr;
-      gap: 20px;
-    }
-    @media (max-width: 850px) {
-      .grid { grid-template-columns: 1fr; }
-    }
-
-    .card {
-      padding: 18px;
-      border-radius: 20px;
-      background: rgba(0,0,0,0.6);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
-      backdrop-filter: blur(6px);
-    }
-
-    .card-title {
-      text-transform: uppercase;
-      letter-spacing: .15em;
-      font-size: .9rem;
-      opacity: .85;
-      margin-bottom: 8px;
-    }
-
-    /* Orologio */
-    #clock {
-      font-family: monospace;
-      font-size: 2.6rem;
-      text-align: center;
-      margin-bottom: 6px;
-    }
-    #date { text-align: center; opacity: .8; }
-
-    /* Meteo box */
-    .meteo-box {
-      margin-top: 12px;
-      padding: 14px;
-      background: rgba(0,0,0,0.5);
-      border-radius: 16px;
-    }
-
-    .meteo-title {
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      font-size: .8rem;
-      opacity: .9;
-      margin-bottom: 8px;
-    }
-
-    .meteo-text {
-      font-size: .85rem;
-      opacity: .85;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .btn-meteo {
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 10px 16px;
-      border-radius: 999px;
-      text-decoration: none;
-      color: #fff;
-      font-weight: 600;
-      font-size: .85rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      background: linear-gradient(135deg,#00bcd4,#1a73e8);
-      box-shadow: 0 5px 0 #064d74;
-      transition: .12s;
-    }
-    .btn-meteo:hover { transform: translateY(-2px); filter: brightness(1.08); }
-    .btn-meteo:active { transform: translateY(3px); box-shadow: 0 2px 0 #064d74; }
-  </style>
-</head>
-
-<body>
-  <div class="wrapper">
-
-    <h1>MAESTRO FRANCO OFFICIAL</h1>
-    <p class="subtitle">Dashboard con sfondo mare, pulsanti 3D, orologio e link rapidi al meteo.</p>
-
-    <!-- Pulsanti -->
-    <h2 class="section-title">Pulsanti 3D</h2>
-    <div class="buttons-3d">
-      <a class="btn-3d" href="https://www.google.com" target="_blank">Ricerca Google</a>
-      <a class="btn-3d btn-yt" href="https://www.youtube.com" target="_blank">YouTube</a>
-      <a class="btn-3d" href="#">Materiale Classe Quinta</a>
-      <a class="btn-3d btn-sora" href="#">Sora / Filmora</a>
-    </div>
-
-    <!-- Orologio + Meteo -->
-    <div class="grid">
-
-      <!-- Orologio -->
-      <div class="card">
-        <div class="card-title">Ora attuale</div>
-        <div id="clock">--:--:--</div>
-        <div id="date">--</div>
-      </div>
-
-      <!-- Meteo (link esterni affidabili) -->
-      <div class="card">
-        <di
 
 
 
