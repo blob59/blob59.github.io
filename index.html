@@ -12,11 +12,11 @@ body{
   min-height:100vh;
   font-family: system-ui, Arial, sans-serif;
   color:#fff;
-  background:url("sfondo.jpg") no-repeat center center fixed;
+  background:url("sfondo-brancaleone.jpg") no-repeat center center fixed;
   background-size:cover;
 }
 
-/* overlay scuro */
+/* overlay */
 body::before{
   content:"";
   position:fixed;
@@ -69,10 +69,11 @@ h1{
   transition:.2s;
 }
 .btn:hover{transform:translateY(-2px)}
+
 .blue{background:linear-gradient(90deg,#1c6df2,#20c7ff)}
 .orange{background:linear-gradient(90deg,#ff7a18,#ffb347)}
-.green{background:linear-gradient(90deg,#00c97b,#34eb9b)}
 .purple{background:linear-gradient(90deg,#6a5cff,#9d5cff)}
+.green{background:linear-gradient(90deg,#00c97b,#34eb9b)}
 
 /* griglia */
 .grid{
@@ -80,7 +81,7 @@ h1{
   grid-template-columns:1fr 1fr;
   gap:20px;
 }
-@media(max-width:800px){
+@media(max-width:900px){
   .grid{grid-template-columns:1fr}
 }
 
@@ -100,7 +101,15 @@ h1{
 }
 #date{opacity:.8}
 
-/* meteo iframe */
+/* meteo */
+.meteo-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+@media(max-width:700px){
+  .meteo-grid{grid-template-columns:1fr}
+}
 iframe{
   width:100%;
   height:260px;
@@ -108,10 +117,11 @@ iframe{
   border-radius:18px;
 }
 
-/* player */
+/* audio */
 audio{width:100%;margin-top:10px}
+
 .section-title{
-  margin:30px 0 10px;
+  margin:30px 0 12px;
   letter-spacing:4px;
   font-weight:900;
 }
@@ -121,58 +131,19 @@ audio{width:100%;margin-top:10px}
 <body>
 
 <div class="wrap">
-  <h1>MAESTRO FRANCO OFFICIAL</h1>
-  <div class="subtitle">Sfondo fisso, pulsanti 3D, orologio, meteo e Maestro Franco Sound</div>
 
+  <h1>MAESTRO FRANCO OFFICIAL</h1>
+  <div class="subtitle">
+    Sfondo fisso, pulsanti 3D, orologio, meteo e Maestro Franco Sound
+  </div>
+
+  <!-- PULSANTI -->
   <div class="buttons">
     <a class="btn blue" href="https://www.google.com" target="_blank">RICERCA GOOGLE</a>
     <a class="btn orange" href="https://www.youtube.com" target="_blank">YOUTUBE</a>
-    <a class="btn green" href="#" target="_blank">MATERIALE CLASSE QUINTA</a>
-    <a class="btn purple" href="#" target="_blank">SORA / FILMORA</a>
+    <a class="btn purple" href="https://sora.openai.com" target="_blank">SORA</a>
+    <a class="btn green" href="https://chat.openai.com" target="_blank">CHATGPT</a>
   </div>
 
-  <div class="grid">
-    <!-- ORA -->
-    <div class="card">
-      <div class="section-title">ORA ATTUALE</div>
-      <div id="clock">--:--:--</div>
-      <div id="date">---</div>
-    </div>
-
-    <!-- METEO -->
-    <div class="card">
-      <div class="section-title">METEO</div>
-      <iframe
-        src="https://www.meteoblue.com/it/tempo/widget/daily/brancaleone_italia_2525606?geoloc=fixed&days=5&tempunit=C&windunit=kmh">
-      </iframe>
-    </div>
-  </div>
-
-  <div class="section-title">MAESTRO FRANCO SOUND</div>
-  <div class="card">
-    <audio controls>
-      <source src="brano1.mp3" type="audio/mpeg">
-      Il tuo browser non supporta l’audio.
-    </audio>
-  </div>
-</div>
-
-<script>
-function pad(n){return String(n).padStart(2,"0")}
-function updateClock(){
-  const d=new Date();
-  document.getElementById("clock").textContent=
-    pad(d.getHours())+":"+pad(d.getMinutes())+":"+pad(d.getSeconds());
-
-  const giorni=["Domenica","Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato"];
-  const mesi=["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
-
-  document.getElementById("date").textContent=
-    giorni[d.getDay()]+" "+d.getDate()+" "+mesi[d.getMonth()]+" "+d.getFullYear();
-}
-updateClock();
-setInterval(updateClock,1000);
-</script>
-
-</body>
-</html>
+  <!-- ORA + METEO -->
+  <div class="gr
