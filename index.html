@@ -132,4 +132,73 @@ iframe{
 
 @keyframes float{
   0%,100%{transform:translateY(0)}
-  50%{tr
+  50%{transform:translateY(-10px)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+<div class="wrap">
+
+  <h1>MAESTRO FRANCO OFFICIAL</h1>
+  <div class="subtitle">
+    Sfondo fisso · Orologio · Meteo · AI Tools
+  </div>
+
+  <!-- PULSANTI -->
+  <div class="buttons">
+    <a class="btn blue" href="https://www.google.com" target="_blank">GOOGLE</a>
+    <a class="btn orange" href="https://www.youtube.com" target="_blank">YOUTUBE</a>
+    <a class="btn purple" href="https://sora.openai.com" target="_blank">SORA</a>
+    <a class="btn green" href="https://chat.openai.com" target="_blank">CHATGPT</a>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard">
+
+    <div class="card">
+      <h3>ORA ATTUALE</h3>
+      <div id="clock">--:--:--</div>
+      <div id="date">---</div>
+    </div>
+
+    <div class="card">
+      <h3>METEO</h3>
+      <div class="meteo">
+        <iframe src="https://www.meteoblue.com/it/tempo/widget/daily/brancaleone_italia_2525606"></iframe>
+        <iframe src="https://www.meteoblue.com/it/tempo/widget/daily/galbiate_italia_3174265"></iframe>
+      </div>
+    </div>
+
+    <div class="card characters">
+      <img src="luma.gif" class="luma">
+      <img src="franco.png" class="me">
+      <img src="sora.png">
+    </div>
+
+  </div>
+
+</div>
+</div>
+
+<script>
+function pad(n){return String(n).padStart(2,"0")}
+function tick(){
+  const d=new Date();
+  document.getElementById("clock").textContent=
+    pad(d.getHours())+":"+pad(d.getMinutes())+":"+pad(d.getSeconds());
+
+  const g=["Domenica","Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato"];
+  const m=["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno",
+           "Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
+
+  document.getElementById("date").textContent=
+    g[d.getDay()]+" "+d.getDate()+" "+m[d.getMonth()]+" "+d.getFullYear();
+}
+tick(); setInterval(tick,1000);
+</script>
+
+</body>
+</html>
