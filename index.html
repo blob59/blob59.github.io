@@ -16,7 +16,6 @@ body{
   background-size:cover;
 }
 
-/* CONTENITORE PRINCIPALE */
 .overlay{
   min-height:100vh;
   background:rgba(0,0,0,.65);
@@ -25,7 +24,6 @@ body{
   padding:30px;
 }
 
-/* CARD CENTRALE */
 .wrap{
   max-width:1400px;
   width:100%;
@@ -36,7 +34,6 @@ body{
   box-shadow:0 25px 70px rgba(0,0,0,.7);
 }
 
-/* HEADER */
 h1{
   text-align:center;
   letter-spacing:6px;
@@ -48,7 +45,6 @@ h1{
   margin:12px 0 30px;
 }
 
-/* PULSANTI */
 .buttons{
   display:flex;
   gap:20px;
@@ -69,7 +65,6 @@ h1{
 .purple{background:#6a5cff}
 .green{background:#00c97b}
 
-/* DASHBOARD */
 .dashboard{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -79,14 +74,12 @@ h1{
   .dashboard{grid-template-columns:1fr}
 }
 
-/* CARD */
 .card{
   background:rgba(0,0,0,.65);
   border-radius:28px;
   padding:24px;
 }
 
-/* OROLOGIO */
 #clock{
   font-size:64px;
   font-weight:900;
@@ -96,7 +89,6 @@ h1{
   font-size:18px;
 }
 
-/* METEO */
 .meteo{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -105,6 +97,13 @@ h1{
 @media(max-width:900px){
   .meteo{grid-template-columns:1fr}
 }
+
+.meteo-box h4{
+  text-align:center;
+  margin-bottom:10px;
+  letter-spacing:2px;
+}
+
 iframe{
   width:100%;
   height:260px;
@@ -112,7 +111,6 @@ iframe{
   border-radius:20px;
 }
 
-/* PERSONAGGI */
 .characters{
   grid-column:span 2;
   display:flex;
@@ -147,58 +145,6 @@ iframe{
     Sfondo fisso · Orologio · Meteo · AI Tools
   </div>
 
-  <!-- PULSANTI -->
   <div class="buttons">
     <a class="btn blue" href="https://www.google.com" target="_blank">GOOGLE</a>
-    <a class="btn orange" href="https://www.youtube.com" target="_blank">YOUTUBE</a>
-    <a class="btn purple" href="https://sora.openai.com" target="_blank">SORA</a>
-    <a class="btn green" href="https://chat.openai.com" target="_blank">CHATGPT</a>
-  </div>
-
-  <!-- DASHBOARD -->
-  <div class="dashboard">
-
-    <div class="card">
-      <h3>ORA ATTUALE</h3>
-      <div id="clock">--:--:--</div>
-      <div id="date">---</div>
-    </div>
-
-    <div class="card">
-      <h3>METEO</h3>
-      <div class="meteo">
-        <iframe src="https://www.meteoblue.com/it/tempo/widget/daily/brancaleone_italia_2525606"></iframe>
-        <iframe src="https://www.meteoblue.com/it/tempo/widget/daily/galbiate_italia_3174265"></iframe>
-      </div>
-    </div>
-
-    <div class="card characters">
-      <img src="luma.gif" class="luma">
-      <img src="franco.png" class="me">
-      <img src="sora.png">
-    </div>
-
-  </div>
-
-</div>
-</div>
-
-<script>
-function pad(n){return String(n).padStart(2,"0")}
-function tick(){
-  const d=new Date();
-  document.getElementById("clock").textContent=
-    pad(d.getHours())+":"+pad(d.getMinutes())+":"+pad(d.getSeconds());
-
-  const g=["Domenica","Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato"];
-  const m=["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno",
-           "Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
-
-  document.getElementById("date").textContent=
-    g[d.getDay()]+" "+d.getDate()+" "+m[d.getMonth()]+" "+d.getFullYear();
-}
-tick(); setInterval(tick,1000);
-</script>
-
-</body>
-</html>
+    <a class="btn orange" href="https://www.youtube.com" target="_blank">YO_
