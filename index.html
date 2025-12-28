@@ -88,5 +88,90 @@ body::before{
 .meteoGrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .city{
   background: var(--glass2);
+  border:1px solid var(--stroke);
+  border-radius:18px;
+  padding:18px;
+  text-align:center;
+}
+.city h3{
+  margin:0 0 16px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.open{
+  width:100%;
+  padding:14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.12);
+  color:#fff;
+  font-weight:950;
+  cursor:pointer;
+}
+.open:hover{background:rgba(255,255,255,.18)}
 
+/* SCORCIATOIE */
+.shortcuts{grid-column:1/-1}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sitem{
+  display:flex;align-items:center;gap:14px;
+  padding:16px;border-radius:20px;
+  border:1px solid var(--stroke);
+  background: var(--glass2);
+  cursor:pointer;
+  user-select:none;
+}
+.sitem:hover{transform:translateY(-1px);transition:.12s ease}
+.sitem img{
+  width:58px;height:58px;border-radius:16px;object-fit:cover;
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.20)
+}
+.t{font-weight:950;font-size:18px}
+.s{opacity:.82}
 
+/* ====== MUSICA: banner piccolo + bottone grande se autoplay bloccato ====== */
+.musicBar{
+  display:flex;align-items:center;gap:10px;
+  background: rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;
+  padding:10px 12px;
+  backdrop-filter: blur(10px);
+}
+.musicBtn{
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.14);
+  color:#fff;
+  font-weight:950;
+  padding:10px 14px;
+  border-radius:999px;
+  cursor:pointer;
+}
+.musicBtn:hover{background:rgba(255,255,255,.20)}
+.musicHint{opacity:.85;font-size:14px}
+
+.bigPlay{
+  position:fixed; inset:0;
+  display:none;
+  align-items:center; justify-content:center;
+  background: rgba(0,0,0,.55);
+  z-index:50;
+}
+.bigPlayBox{
+  width:min(520px, 92vw);
+  background: rgba(10,14,24,.78);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:22px;
+  padding:18px;
+  backdrop-filter: blur(14px);
+  text-align:center;
+}
+.bigPlayBox h2{margin:6px 0 6px;font-size:22px}
+.bigPlayBox p{margin:0 0 12px;opacity:.85}
+.bigPlayStart{
+  width:100%;
+  padding:14px;
+  border-radius:16px;
+ 
+::contentReference[oaicite:0]{index=0}
