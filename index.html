@@ -1,157 +1,317 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coniglio • Dashboard</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    :root{
-      --bg1:#0b0f17;
-      --bg2:#06080d;
-      --card: rgba(255,255,255,.06);
-      --border: rgba(255,255,255,.10);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.62);
+<title>Coniglio • Dashboard</title>
 
-      --blue:#2f7bff;
-      --orange:#ff8a2a;
-      --purple:#7a5cff;
-      --green:#16c784;
+<style>
+:root{
+  --bg1:#0b0f17;
+  --bg2:#06080d;
+  --card: rgba(255,255,255,.08);
+  --border: rgba(255,255,255,.14);
+  --text: #ffffff;
+  --muted: rgba(255,255,255,.70);
+  --radius: 24px;
+  --shadow: 0 20px 60px rgba(0,0,0,.55);
+}
 
-      --radius: 22px;
-      --shadow: 0 18px 50px rgba(0,0,0,.55);
-    }
+*{box-sizing:border-box}
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(60,100,255,.25), transparent 60%),
+    radial-gradient(900px 600px at 80% 20%, rgba(160,100,255,.25), transparent 60%),
+    linear-gradient(180deg,var(--bg1),var(--bg2));
+}
 
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color:var(--text);
-      background:
-        radial-gradient(1200px 600px at 20% 10%, rgba(47,123,255,.20), transparent 60%),
-        radial-gradient(900px 500px at 80% 20%, rgba(122,92,255,.18), transparent 60%),
-        radial-gradient(900px 600px at 60% 85%, rgba(22,199,132,.10), transparent 60%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
-      overflow-x:hidden;
-    }
+.wrapper{
+  max-width:1200px;
+  margin:auto;
+  padding:28px 20px 40px;
+}
 
-    .wrap{
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 22px 18px 30px;
-    }
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:22px;
+}
 
-    /* Top */
-    .top{
-      display:flex;
-      gap:14px;
-      align-items:center;
-      justify-content:space-between;
-      padding: 8px 4px 16px;
-    }
+.titleBox h1{
+  margin:0;
+  font-size:26px;
+  font-weight:900;
+}
 
-    .brand{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      min-width: 260px;
-    }
-    .brand .title{
-      font-weight: 900;
-      letter-spacing:.2px;
-      font-size: 22px;   /* più grande */
-    }
-    .brand .subtitle{
-      font-size: 15px;   /* più grande */
-      color: var(--muted);
-    }
+.titleBox p{
+  margin:6px 0 0;
+  font-size:16px;
+  color:var(--muted);
+}
 
-    .pillbar{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .pill{
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      padding: 12px 16px;      /* più grande */
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 14px;         /* più grande */
-      cursor:pointer;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      user-select:none;
-    }
-    .pill:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.18); }
-    .pill:active{ transform: translateY(0px) scale(.98); }
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
 
-    .pill.google{ border-color: rgba(47,123,255,.35); }
-    .pill.youtube{ border-color: rgba(255,138,42,.35); }
-    .pill.sora{ border-color: rgba(122,92,255,.35); }
-    .pill.chatgpt{ border-color: rgba(22,199,132,.35); }
+.action{
+  padding:14px 20px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.08);
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+}
 
-    /* Layout */
-    .grid{
-      display:grid;
-      grid-template-columns: 1.05fr 1fr;
-      gap: 16px;
-    }
+.action:hover{background:rgba(255,255,255,.14)}
 
-    .card{
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, var(--card), rgba(255,255,255,.04));
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:18px;
+}
 
-    .cardHeader{
-      padding: 18px 20px 0;  /* più grande */
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap:12px;
-    }
-    .cardHeader h2{
-      margin:0;
-      font-size: 15px;       /* più grande */
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color: rgba(255,255,255,.78);
-    }
-    .cardHeader .hint{
-      font-size: 13px;       /* più grande */
-      color: var(--muted);
-    }
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:22px;
+}
 
-    .cardBody{
-      padding: 12px 20px 20px; /* più grande */
-    }
+/* CLOCK */
+.clockTitle{
+  font-size:15px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
 
-    /* Clock */
-    .clock{
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      padding-top: 10px;
-    }
-    .time{
-      font-size: clamp(54px, 7vw, 92px);
-      font-weight: 950;
-      letter-spacing: .02em;
-      line-height: 1;
-    }
-    .date{
-      color: var(--muted);
-      font-size: 16px; /* più grande */
-    }
+.time{
+  font-size:90px;
+  font-weight:900;
+  margin:16px 0 6px;
+}
 
-    /* Meteo */
-    .weatherGrid{
-      display:grid;
-      grid-temp
+.date{
+  font-size:18px;
+  color:var(--muted);
+}
+
+/* METEO */
+.meteoGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  margin-top:18px;
+}
+
+.meteoBox{
+  border-radius:18px;
+  border:1px solid var(--border);
+  padding:18px;
+  background:rgba(0,0,0,.25);
+}
+
+.meteoBox h3{
+  margin:0 0 14px;
+  font-size:16px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+
+.meteoLink{
+  height:160px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:10px;
+  cursor:pointer;
+  background:rgba(255,255,255,.08);
+  font-size:18px;
+  font-weight:800;
+}
+
+.meteoLink small{
+  font-size:14px;
+  font-weight:400;
+  color:var(--muted);
+}
+
+.meteoLink:hover{background:rgba(255,255,255,.14)}
+
+/* SHORTCUTS */
+.shortcuts{
+  margin-top:22px;
+}
+
+.shortcutRow{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
+
+.shortcut{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:16px 18px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.08);
+  min-width:260px;
+  cursor:pointer;
+}
+
+.shortcut img{
+  width:56px;
+  height:56px;
+  border-radius:18px;
+}
+
+.shortcut b{
+  font-size:18px;
+}
+
+.shortcut span{
+  font-size:15px;
+  color:var(--muted);
+}
+
+.shortcut:hover{background:rgba(255,255,255,.14)}
+
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .time{font-size:70px}
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="titleBox">
+      <h1>Coniglio • Dashboard</h1>
+      <p>Strumenti rapidi • orologio • meteo • scorciatoie</p>
+    </div>
+
+    <div class="actions">
+      <div class="action" onclick="go('https://www.google.com')">GOOGLE</div>
+      <div class="action" onclick="go('https://www.youtube.com')">YOUTUBE</div>
+      <div class="action" onclick="go('https://sora.com')">SORA</div>
+      <div class="action" onclick="go('https://chat.openai.com')">CHATGPT</div>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <!-- CLOCK -->
+    <div class="card">
+      <div class="clockTitle">Ora attuale</div>
+      <div id="time" class="time">--:--:--</div>
+      <div id="date" class="date">---</div>
+    </div>
+
+    <!-- METEO -->
+    <div class="card">
+      <div class="clockTitle">Meteo</div>
+
+      <div class="meteoGrid">
+
+        <div class="meteoBox">
+          <h3>Brancaleone</h3>
+          <div class="meteoLink" onclick="go('https://www.ilmeteo.it/meteo/brancaleone')">
+            Apri meteo
+            <small>previsioni complete</small>
+          </div>
+        </div>
+
+        <div class="meteoBox">
+          <h3>Galbiate</h3>
+          <div class="meteoLink" onclick="go('https://www.ilmeteo.it/meteo/galbiate')">
+            Apri meteo
+            <small>previsioni complete</small>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SHORTCUTS -->
+  <div class="card shortcuts">
+    <div class="clockTitle">Scorciatoie</div>
+
+    <div class="shortcutRow">
+
+      <div class="shortcut" onclick="go('#')">
+        <img src="luma.png">
+        <div>
+          <b>Luma</b><br>
+          <span>assets / idee</span>
+        </div>
+      </div>
+
+      <div class="shortcut" onclick="go('#')">
+        <img src="franco.png">
+        <div>
+          <b>Maestro Franco</b><br>
+          <span>hub personale</span>
+        </div>
+      </div>
+
+      <div class="shortcut" onclick="go('#')">
+        <img src="sora.png">
+        <div>
+          <b>AI Tools</b><br>
+          <span>toolbox</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+function go(url){
+  if(url==='#') return;
+  window.open(url,'_blank');
+}
+
+function pad(n){return String(n).padStart(2,'0');}
+
+function tick(){
+  const d=new Date();
+  document.getElementById('time').textContent=
+    pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
+
+  const giorni=['Domenica','Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato'];
+  const mesi=['Gennaio','Febbraio','Marzo','Aprile','Maggio','Giugno','Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'];
+
+  document.getElementById('date').textContent=
+    giorni[d.getDay()]+' '+d.getDate()+' '+mesi[d.getMonth()]+' '+d.getFullYear();
+}
+
+tick();
+setInterval(tick,1000);
+</script>
+
+</body>
+</html>
