@@ -44,6 +44,7 @@
       padding: 22px 18px 30px;
     }
 
+    /* Top */
     .top{
       display:flex;
       gap:14px;
@@ -55,16 +56,16 @@
     .brand{
       display:flex;
       flex-direction:column;
-      gap:4px;
-      min-width: 220px;
+      gap:6px;
+      min-width: 260px;
     }
     .brand .title{
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing:.2px;
-      font-size: 18px;
+      font-size: 22px;   /* più grande */
     }
     .brand .subtitle{
-      font-size: 13px;
+      font-size: 15px;   /* più grande */
       color: var(--muted);
     }
 
@@ -78,10 +79,10 @@
       border: 1px solid var(--border);
       background: rgba(255,255,255,.06);
       color: var(--text);
-      padding: 10px 14px;
+      padding: 12px 16px;      /* più grande */
       border-radius: 999px;
-      font-weight: 700;
-      font-size: 13px;
+      font-weight: 800;
+      font-size: 14px;         /* più grande */
       cursor:pointer;
       transition: transform .15s ease, background .15s ease, border-color .15s ease;
       user-select:none;
@@ -94,6 +95,7 @@
     .pill.sora{ border-color: rgba(122,92,255,.35); }
     .pill.chatgpt{ border-color: rgba(22,199,132,.35); }
 
+    /* Layout */
     .grid{
       display:grid;
       grid-template-columns: 1.05fr 1fr;
@@ -109,7 +111,7 @@
     }
 
     .cardHeader{
-      padding: 16px 18px 0;
+      padding: 18px 20px 0;  /* più grande */
       display:flex;
       align-items:flex-end;
       justify-content:space-between;
@@ -117,275 +119,39 @@
     }
     .cardHeader h2{
       margin:0;
-      font-size: 14px;
+      font-size: 15px;       /* più grande */
       letter-spacing:.14em;
       text-transform:uppercase;
       color: rgba(255,255,255,.78);
     }
     .cardHeader .hint{
-      font-size: 12px;
+      font-size: 13px;       /* più grande */
       color: var(--muted);
     }
 
     .cardBody{
-      padding: 12px 18px 18px;
+      padding: 12px 20px 20px; /* più grande */
     }
 
     /* Clock */
     .clock{
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap:12px;
       padding-top: 10px;
     }
     .time{
-      font-size: clamp(44px, 6vw, 78px);
-      font-weight: 900;
+      font-size: clamp(54px, 7vw, 92px);
+      font-weight: 950;
       letter-spacing: .02em;
       line-height: 1;
     }
     .date{
       color: var(--muted);
-      font-size: 14px;
+      font-size: 16px; /* più grande */
     }
 
-    /* Weather */
+    /* Meteo */
     .weatherGrid{
       display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 10px;
-    }
-    .mini{
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.20);
-      border-radius: 18px;
-      padding: 12px;
-      overflow:hidden;
-      min-height: 210px;
-    }
-    .miniTitle{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom: 10px;
-    }
-    .miniTitle b{
-      font-size: 12px;
-      letter-spacing:.10em;
-      text-transform:uppercase;
-      color: rgba(255,255,255,.80);
-    }
-    .miniTitle span{
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .openBox{
-      height: 160px;
-      border-radius: 14px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:6px;
-      cursor:pointer;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      text-align:center;
-      padding: 10px;
-    }
-    .openBox:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.09);
-      border-color: rgba(255,255,255,.18);
-    }
-    .openTitle{
-      font-weight: 900;
-      letter-spacing:.2px;
-    }
-    .openSub{
-      font-size: 12px;
-      color: rgba(255,255,255,.65);
-    }
-
-    /* Bottom shortcuts */
-    .bottom{
-      margin-top: 16px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-
-    .shortcutRow{
-      display:flex;
-      gap: 12px;
-      flex-wrap:wrap;
-      padding-top: 6px;
-    }
-    .chip{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      border-radius: 18px;
-      padding: 10px 12px;
-      cursor:pointer;
-      transition: transform .15s ease, background .15s ease;
-    }
-    .chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); }
-    .chip img{
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,.14);
-    }
-    .chip .meta{
-      display:flex;
-      flex-direction:column;
-      line-height:1.1;
-    }
-    .chip .meta b{ font-size: 13px; }
-    .chip .meta small{ color: var(--muted); font-size: 12px; }
-
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
-      .brand{ min-width: unset; }
-      .weatherGrid{ grid-template-columns: 1fr; }
-      .mini{ min-height: 240px; }
-      .openBox{ height: 190px; }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="wrap">
-
-    <div class="top">
-      <div class="brand">
-        <div class="title">Coniglio • Dashboard</div>
-        <div class="subtitle">Strumenti rapidi • orologio • meteo • scorciatoie</div>
-      </div>
-
-      <div class="pillbar">
-        <div class="pill google"  onclick="go('https://www.google.com')">GOOGLE</div>
-        <div class="pill youtube" onclick="go('https://www.youtube.com')">YOUTUBE</div>
-        <div class="pill sora"    onclick="go('https://sora.com')">SORA</div>
-        <div class="pill chatgpt" onclick="go('https://chat.openai.com')">CHATGPT</div>
-      </div>
-    </div>
-
-    <div class="grid">
-
-      <div class="card">
-        <div class="cardHeader">
-          <h2>Ora attuale</h2>
-          <div class="hint">auto-aggiornamento</div>
-        </div>
-        <div class="cardBody">
-          <div class="clock">
-            <div id="time" class="time">--:--:--</div>
-            <div id="date" class="date">---</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="cardHeader">
-          <h2>Meteo</h2>
-          <div class="hint">Brancaleone • Galbiate</div>
-        </div>
-        <div class="cardBody">
-          <div class="weatherGrid">
-
-            <div class="mini">
-              <div class="miniTitle">
-                <b>Brancaleone</b>
-                <span>ilMeteo.it</span>
-              </div>
-              <div class="openBox" onclick="go('https://www.ilmeteo.it/meteo/brancaleone')">
-                <div class="openTitle">Apri meteo Brancaleone</div>
-                <div class="openSub">Clicca per vedere previsioni complete</div>
-              </div>
-            </div>
-
-            <div class="mini">
-              <div class="miniTitle">
-                <b>Galbiate</b>
-                <span>ilMeteo.it</span>
-              </div>
-              <div class="openBox" onclick="go('https://www.ilmeteo.it/meteo/galbiate')">
-                <div class="openTitle">Apri meteo Galbiate</div>
-                <div class="openSub">Clicca per vedere previsioni complete</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="bottom">
-      <div class="card">
-        <div class="shortcutRow">
-
-  <div class="chip" onclick="go('#')">
-    <img src="assets/icons/luma.png" alt="Luma">
-    <div class="meta">
-      <b>Luma</b>
-      <small>assets / idee</small>
-    </div>
-  </div>
-
-  <div class="chip" onclick="go('#')">
-    <img src="assets/icons/franco.png" alt="Maestro Franco">
-    <div class="meta">
-      <b>Maestro Franco</b>
-      <small>hub personale</small>
-    </div>
-  </div>
-
-  <div class="chip" onclick="go('#')">
-    <img src="assets/icons/ai.png" alt="AI Tools">
-    <div class="meta">
-      <b>AI Tools</b>
-      <small>toolbox</small>
-    </div>
-  </div>
-
-</div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-    function go(url){ window.open(url, "_blank", "noopener,noreferrer"); }
-    function pad(n){ return String(n).padStart(2,'0'); }
-
-    function tick(){
-      const now = new Date();
-      const hh = pad(now.getHours());
-      const mm = pad(now.getMinutes());
-      const ss = pad(now.getSeconds());
-      document.getElementById("time").textContent = `${hh}:${mm}:${ss}`;
-
-      const giorni = ["Domenica","Lunedì","Martedì","Mercoledì","Giovedì","Venerdì","Sabato"];
-      const mesi = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
-      document.getElementById("date").textContent =
-        `${giorni[now.getDay()]} ${now.getDate()} ${mesi[now.getMonth()]} ${now.getFullYear()}`;
-    }
-
-    tick();
-    setInterval(tick, 1000);
-  </script>
-</body>
-</html>
-
+      grid-temp
