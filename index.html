@@ -1,213 +1,107 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Coniglio • Dashboard</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
-}
+  :root{
+    --bg1:#0b1736;
+    --bg2:#05070d;
 
-body {
-  margin: 0;
-  background: radial-gradient(circle at top left, #1b2b55, #05070d);
-  color: #fff;
-}
+    --card: rgba(255,255,255,0.07);
+    --card2: rgba(255,255,255,0.05);
+    --border: rgba(255,255,255,0.12);
 
-header {
-  padding: 30px 40px;
-}
+    --text:#fff;
+    --muted: rgba(255,255,255,0.70);
 
-h1 {
-  margin: 0;
-  font-size: 34px;
-}
+    --r: 26px;
+    --shadow: 0 18px 60px rgba(0,0,0,0.55);
+  }
 
-.subtitle {
-  opacity: 0.7;
-  margin-top: 6px;
-}
+  *{ box-sizing:border-box; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; }
 
-.container {
-  padding: 0 40px 40px;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 30px;
-}
+  body{
+    margin:0;
+    color:var(--text);
+    min-height:100vh;
+    background:
+      radial-gradient(1200px 700px at 18% 10%, rgba(70,115,255,.35), transparent 60%),
+      radial-gradient(900px 650px at 82% 20%, rgba(170,110,255,.30), transparent 60%),
+      radial-gradient(900px 800px at 50% 95%, rgba(10,180,255,.10), transparent 60%),
+      linear-gradient(180deg, var(--bg1), var(--bg2));
+    overflow:hidden; /* dashboard = niente scroll di default */
+  }
 
-.card {
-  background: rgba(255,255,255,0.06);
-  border-radius: 22px;
-  padding: 30px;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
-}
+  /* ===== FULLSCREEN LAYOUT ===== */
+  .page{
+    height:100vh;
+    width:100vw;
+    padding: 28px 30px 30px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
 
-.time {
-  font-size: 86px;
-  font-weight: 800;
-}
+  header{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:18px;
+  }
 
-.date {
-  margin-top: 10px;
-  opacity: 0.75;
-  font-size: 18px;
-}
+  .brand h1{
+    margin:0;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing:.2px;
+  }
+  .brand p{
+    margin:8px 0 0;
+    font-size: 18px;
+    color: var(--muted);
+  }
 
-.meteo-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 20px;
-}
+  .topBtns{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+  .btn{
+    border:1px solid var(--border);
+    background: rgba(255,255,255,.08);
+    border-radius:999px;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 900;
+    cursor:pointer;
+    user-select:none;
+    transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.18); }
+  .btn:active{ transform: translateY(0) scale(.98); }
 
-.meteo-box {
-  background: rgba(255,255,255,0.05);
-  border-radius: 18px;
-  padding: 20px;
-  text-align: center;
-}
+  /* ===== MAIN GRID grows to fill screen ===== */
+  .main{
+    flex:1;                 /* prende tutto lo spazio rimasto */
+    display:grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap:18px;
+    min-height:0;           /* importantissimo per evitare overflow strani */
+  }
 
-.meteo-box h3 {
-  margin-top: 0;
-  letter-spacing: 2px;
-}
+  .card{
+    background: linear-gradient(180deg, var(--card), var(--card2));
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    box-shadow: var(--shadow);
+    padding: 26px;
+    min-height:0;
+  }
 
-.meteo-box a {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 14px 22px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.1);
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.shortcuts {
-  grid-column: 1 / -1;
-}
-
-.shortcuts-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.shortcut {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 18px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 18px;
-}
-
-.shortcut img {
-  width: 64px;
-  height: 64px;
-  object-fit: contain;
-}
-
-.shortcut-title {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.shortcut-sub {
-  opacity: 0.7;
-  font-size: 14px;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <h1>Coniglio • Dashboard</h1>
-  <div class="subtitle">Strumenti rapidi · orologio · meteo · scorciatoie</div>
-</header>
-
-<section class="container">
-
-  <!-- ORA -->
-  <div class="card">
-    <div class="time" id="time">--:--:--</div>
-    <div class="date" id="date"></div>
-  </div>
-
-  <!-- METEO -->
-  <div class="card">
-    <h2>Meteo</h2>
-    <div class="meteo-grid">
-      <div class="meteo-box">
-        <h3>BRANCALEONE</h3>
-        <a href="https://www.ilmeteo.it/meteo/brancaleone" target="_blank">
-          Apri meteo
-        </a>
-      </div>
-      <div class="meteo-box">
-        <h3>GALBIATE</h3>
-        <a href="https://www.ilmeteo.it/meteo/galbiate" target="_blank">
-          Apri meteo
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- SCORCIATOIE -->
-  <div class="card shortcuts">
-    <h2>Scorciatoie</h2>
-
-    <div class="shortcuts-grid">
-      <div class="shortcut">
-        <img src="luma.png" alt="Luma">
-        <div>
-          <div class="shortcut-title">Luma</div>
-          <div class="shortcut-sub">assets / idee</div>
-        </div>
-      </div>
-
-      <div class="shortcut">
-        <img src="franco.png" alt="Maestro Franco">
-        <div>
-          <div class="shortcut-title">Maestro Franco</div>
-          <div class="shortcut-sub">hub personale</div>
-        </div>
-      </div>
-
-      <div class="shortcut">
-        <img src="sora.png" alt="AI Tools">
-        <div>
-          <div class="shortcut-title">AI Tools</div>
-          <div class="shortcut-sub">toolbox</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</section>
-
-<script>
-function aggiornaOra() {
-  const now = new Date();
-  document.getElementById("time").textContent =
-    now.toLocaleTimeString("it-IT");
-
-  document.getElementById("date").textContent =
-    now.toLocaleDateString("it-IT", {
-      weekday: "long",
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    });
-}
-
-aggiornaOra();
-setInterval(aggiornaOra, 1000);
-</script>
-
-</body>
-</html>
+  .label{
+    font-size: 15px;
+    letter-spacing: .22em;
