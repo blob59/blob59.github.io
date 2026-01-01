@@ -1,498 +1,745 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Franco Ficara</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>Franco Ficara — Digitale • Scuola • Musica</title>
+  <meta name="description" content="Franco Ficara — didattica, progetti digitali e musica. Maestro Franco + Luma." />
 
-<style>
-:root{
-  --bg:#070a0f;
-  --glass:rgba(15,20,30,.72);
-  --glass2:rgba(255,255,255,.06);
-  --text:#eaf0f7;
-  --muted:#b8c2d0;
-  --muted2:#93a0b2;
-  --line:rgba(255,255,255,.10);
-  --brand:#2563eb;
-  --pill:#162131;
-  --shadow:0 30px 80px rgba(0,0,0,.6);
-  --radius:20px;
-}
+  <style>
+    :root{
+      --bg:#070b14;
+      --panel:rgba(12,18,32,.72);
+      --panel2:rgba(12,18,32,.55);
+      --stroke:rgba(255,255,255,.08);
+      --text:#eaf0ff;
+      --muted:rgba(234,240,255,.72);
+      --muted2:rgba(234,240,255,.52);
+      --accent:#2d6bff;
+      --ok:#22c55e;
+      --warn:#f59e0b;
+      --radius:24px;
+      --shadow: 0 22px 60px rgba(0,0,0,.55);
+      --blur: blur(18px);
+      --max: 1100px;
+    }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;
-  background:var(--bg);
-  color:var(--text);
-}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background: var(--bg);
+      overflow-x:hidden;
+    }
 
-/* Background */
-.bg{
-  position:fixed; inset:0;
-  background:
-    radial-gradient(900px 400px at 30% 10%, rgba(37,99,235,.25), transparent 60%),
-    radial-gradient(900px 500px at 80% 40%, rgba(16,185,129,.12), transparent 55%),
-    url("sfondo.jpg") center/cover no-repeat;
-  filter:saturate(1.05) contrast(1.02);
-  transform:scale(1.03);
-  z-index:-2;
-}
-.bg::after{
-  content:"";
-  position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(7,10,15,.90), rgba(7,10,15,.70) 35%, rgba(7,10,15,.92));
-  z-index:-1;
-}
+    .bg{
+      position:fixed; inset:0;
+      background:
+        radial-gradient(1000px 600px at 20% 10%, rgba(45,107,255,.28), transparent 60%),
+        radial-gradient(900px 500px at 90% 20%, rgba(34,197,94,.14), transparent 60%),
+        radial-gradient(900px 600px at 60% 100%, rgba(245,158,11,.10), transparent 65%),
+        linear-gradient(180deg, rgba(7,11,20,.55), rgba(7,11,20,.88)),
+        url("sfondo-brancaleone.jpg");
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.1) contrast(1.05);
+      transform: scale(1.02);
+      z-index:-2;
+    }
+    .vignette{
+      position:fixed; inset:0;
+      background: radial-gradient(circle at 50% 35%, rgba(0,0,0,.00), rgba(0,0,0,.55) 75%, rgba(0,0,0,.75) 100%);
+      z-index:-1;
+    }
 
-/* Layout */
-.wrap{max-width:1100px; margin:0 auto; padding:24px 18px 80px}
-.topbar{
-  position:sticky; top:0; z-index:50;
-  padding:14px 18px;
-  backdrop-filter:blur(12px);
-  background:rgba(7,10,15,.55);
-  border-bottom:1px solid rgba(255,255,255,.06);
-}
-.topbar .row{
-  max-width:1100px; margin:0 auto;
-  display:flex; align-items:center; justify-content:space-between;
-  gap:14px;
-}
+    .wrap{
+      width:min(var(--max), 92vw);
+      margin: 26px auto 70px;
+    }
 
-.brand{
-  display:flex; align-items:center; gap:12px;
-  min-width:240px;
-}
-.brand .logo{
-  width:44px;height:44px;border-radius:50%;
-  background:linear-gradient(135deg, rgba(255,255,255,.15), rgba(255,255,255,.05));
-  border:1px solid rgba(255,255,255,.10);
-  overflow:hidden;
-}
-.brand .logo img{width:100%;height:100%;object-fit:cover;display:block}
-.brand .t1{font-weight:700; letter-spacing:.2px}
-.brand .t2{color:var(--muted2); font-size:13px; margin-top:2px}
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 14px;
+      border:1px solid var(--stroke);
+      border-radius: 999px;
+      background: rgba(9,13,23,.55);
+      backdrop-filter: var(--blur);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      position: sticky;
+      top: 14px;
+      z-index: 10;
+    }
 
-.nav{
-  display:flex; flex-wrap:wrap; gap:10px;
-  justify-content:flex-end;
-}
-.nav a{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:10px 14px;
-  border-radius:999px;
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.09);
-  color:var(--text);
-  font-size:14px;
-}
-.nav a:hover{background:rgba(255,255,255,.10)}
-.nav a.primary{background:rgba(37,99,235,.22); border-color:rgba(37,99,235,.35)}
-.nav a.primary:hover{background:rgba(37,99,235,.28)}
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      min-width: 240px;
+    }
+    .avatar{
+      width:44px; height:44px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      overflow:hidden;
+      box-shadow: 0 8px 18px rgba(0,0,0,.35);
+      flex: 0 0 auto;
+    }
+    .avatar img{
+      width:100%; height:100%; object-fit:cover;
+      display:block;
+    }
+    .brand h1{
+      margin:0;
+      font-size: 15px;
+      letter-spacing:.2px;
+      line-height: 1.1;
+    }
+    .brand .sub{
+      margin-top:2px;
+      font-size: 12px;
+      color: var(--muted);
+    }
 
-.hero{
-  margin-top:22px;
-  background:var(--glass);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  backdrop-filter:blur(14px);
-  padding:28px;
-}
-.hero h1{font-size:44px; letter-spacing:-.6px}
-.hero p{margin-top:10px; color:var(--muted); line-height:1.65; font-size:16px}
-.badges{margin-top:14px; display:flex; flex-wrap:wrap; gap:8px}
-.badges span{
-  font-size:13px; color:#dbe6f5;
-  padding:7px 12px;
-  background:rgba(22,33,49,.75);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:999px;
-}
+    nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .pill{
+      appearance:none;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding:10px 14px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-size: 13px;
+      line-height: 1;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .pill:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.14); background: rgba(255,255,255,.08); }
+    .pill.primary{
+      background: rgba(45,107,255,.18);
+      border-color: rgba(45,107,255,.32);
+    }
+    .pill.primary:hover{ background: rgba(45,107,255,.26); }
 
-.grid{
-  margin-top:20px;
-  display:grid;
-  grid-template-columns:1.3fr .9fr;
-  gap:18px;
-}
-.card{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:18px;
-  padding:18px;
-}
-.card h3{font-size:18px; margin-bottom:8px}
-.card p{color:var(--muted); line-height:1.6; font-size:15px}
+    .hero{
+      margin-top: 18px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: var(--panel);
+      backdrop-filter: var(--blur);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-inner{ padding: 26px 22px; }
+    .title{
+      margin:0;
+      font-size: clamp(34px, 4.2vw, 54px);
+      letter-spacing: -0.6px;
+    }
+    .lead{
+      margin: 10px 0 0;
+      color: var(--muted);
+      max-width: 68ch;
+      font-size: 15px;
+      line-height: 1.55;
+    }
 
-.cta{
-  margin-top:14px;
-  display:flex; flex-wrap:wrap; gap:10px;
-}
-.btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  padding:12px 16px;
-  border-radius:14px;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.11);
-  color:var(--text);
-  font-weight:650;
-}
-.btn:hover{background:rgba(255,255,255,.10)}
-.btn.blue{
-  background:rgba(37,99,235,.95);
-  border-color:rgba(37,99,235,.95);
-}
-.btn.blue:hover{filter:brightness(1.03)}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 16px;
+      margin-top: 18px;
+      padding: 0 22px 22px;
+    }
+    @media (max-width: 920px){
+      header{ position: static; border-radius: 18px; }
+      .brand{ min-width: unset; }
+      .grid{ grid-template-columns: 1fr; padding: 0 16px 16px; }
+      .hero-inner{ padding: 22px 16px; }
+      nav{ justify-content:flex-start; }
+    }
 
-.avatars{
-  display:flex; align-items:center; gap:10px;
-  margin-top:12px;
-}
-.avatar{
-  width:46px;height:46px;border-radius:14px;
-  background:linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.06));
-  border:1px solid rgba(255,255,255,.10);
-  overflow:hidden;
-  display:grid; place-items:center;
-  color:rgba(255,255,255,.65);
-  font-size:12px;
-}
-.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+    .card{
+      border:1px solid var(--stroke);
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+      box-shadow: 0 10px 26px rgba(0,0,0,.28);
+      overflow:hidden;
+    }
+    .card .in{ padding:16px; }
+    .card h3{ margin:0 0 10px; font-size: 18px; letter-spacing: -.2px; }
+    .muted{ color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .muted2{ color: var(--muted2); font-size: 12px; line-height: 1.4; }
 
-/* Sections */
-.section{
-  margin-top:26px;
-  padding-top:22px;
-  border-top:1px solid rgba(255,255,255,.08);
-}
-.section .title{
-  display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
-}
-.section h2{font-size:26px; letter-spacing:-.3px}
-.section .sub{color:var(--muted2); font-size:14px}
+    .btnrow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px; }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding: 11px 14px;
+      border-radius: 14px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      text-decoration:none;
+      font-size: 13px;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.14); background: rgba(255,255,255,.09); }
+    .btn.primary{
+      background: rgba(45,107,255,.22);
+      border-color: rgba(45,107,255,.38);
+    }
+    .btn.primary:hover{ background: rgba(45,107,255,.30); }
 
-.projects{
-  margin-top:14px;
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:14px;
-}
-.pcard{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:18px;
-  padding:16px;
-}
-.pcard .k{color:var(--muted2); font-size:12px; margin-bottom:6px}
-.pcard .t{font-weight:750; margin-bottom:6px}
-.pcard .d{color:var(--muted); font-size:14px; line-height:1.55}
-.pcard a{
-  margin-top:12px;
-  display:inline-flex;
-  padding:10px 12px;
-  border-radius:12px;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.11);
-}
-.pcard a:hover{background:rgba(255,255,255,.10)}
+    .idline{ display:flex; align-items:center; gap:10px; margin-top: 10px; }
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .mini-avatars{ display:flex; gap:8px; margin-left:auto; }
+    .mini-avatars img{
+      width:40px; height:40px; border-radius: 12px;
+      border:1px solid var(--stroke);
+      object-fit:cover;
+      background: rgba(255,255,255,.06);
+    }
 
-.musicBox{
-  margin-top:14px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-.player{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:18px;
-  padding:16px;
-}
-.player label{display:block; color:var(--muted2); font-size:13px; margin-bottom:8px}
-.player select, .player input[type="range"]{
-  width:100%;
-}
-.controls{
-  display:flex; flex-wrap:wrap; gap:10px;
-  margin-top:10px;
-}
-.controls button{
-  cursor:pointer;
-  padding:10px 12px;
-  border-radius:12px;
-  background:rgba(255,255,255,.07);
-  border:1px solid rgba(255,255,255,.11);
-  color:var(--text);
-  font-weight:650;
-}
-.controls button:hover{background:rgba(255,255,255,.10)}
-.note{color:var(--muted2); font-size:13px; margin-top:10px; line-height:1.45}
+    section{
+      margin-top: 18px;
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: var(--panel2);
+      backdrop-filter: var(--blur);
+      box-shadow: 0 18px 50px rgba(0,0,0,.42);
+      overflow:hidden;
+    }
+    section .head{
+      padding: 18px 18px 0;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    section .head h2{ margin:0; font-size: 22px; letter-spacing:-.2px; }
+    section .body{ padding: 14px 18px 18px; }
 
-.contact{
-  margin-top:14px;
-  display:grid;
-  grid-template-columns:1.2fr .8fr;
-  gap:14px;
-}
-.mail{
-  display:flex; gap:10px; flex-wrap:wrap;
-  margin-top:12px;
-}
-.small{
-  color:var(--muted2);
-  font-size:13px;
-  line-height:1.5;
-}
-.footer{
-  margin-top:32px;
-  color:#98a3b3;
-  text-align:center;
-  font-size:14px;
-  padding:20px 0 10px;
-}
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 920px){ .cards{ grid-template-columns: 1fr; } }
 
-/* Responsive */
-@media (max-width:950px){
-  .grid{grid-template-columns:1fr}
-  .projects{grid-template-columns:1fr}
-  .musicBox{grid-template-columns:1fr}
-  .contact{grid-template-columns:1fr}
-  .hero h1{font-size:34px}
-}
-</style>
+    .proj{
+      border:1px solid var(--stroke);
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height: 150px;
+    }
+    .proj .top{
+      padding: 14px 14px 8px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .proj .tag{
+      font-size: 12px;
+      color: var(--muted2);
+      border:1px solid var(--stroke);
+      padding:6px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+    }
+    .proj h4{ margin: 8px 14px 0; font-size: 16px; letter-spacing:-.2px; }
+    .proj p{ margin: 8px 14px 12px; color: var(--muted); font-size: 13px; line-height: 1.45; }
+    .proj .foot{ margin-top:auto; padding: 12px 14px 14px; display:flex; justify-content:flex-end; }
+    .proj .open{ width:100%; }
+
+    .music-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 12px;
+    }
+    @media (max-width: 920px){ .music-grid{ grid-template-columns: 1fr; } }
+
+    .controls{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+      margin-top: 10px;
+    }
+    .select{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 13px;
+      outline:none;
+      min-width: 180px;
+    }
+    .range{ width: min(420px, 100%); }
+
+    .kpis{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
+    .kpi{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: 14px;
+      padding: 9px 11px;
+      font-size: 12px;
+      color: var(--muted);
+      display:inline-flex; align-items:center; gap:8px;
+    }
+    .dot{
+      width:8px; height:8px; border-radius: 99px;
+      background: rgba(255,255,255,.18);
+      box-shadow: 0 0 0 3px rgba(255,255,255,.06);
+    }
+    .dot.ok{ background: var(--ok); box-shadow: 0 0 0 3px rgba(34,197,94,.15); }
+    .dot.warn{ background: var(--warn); box-shadow: 0 0 0 3px rgba(245,158,11,.16); }
+
+    .mini{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top: 10px; }
+    .pill2{
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--muted);
+      display:inline-flex; gap:8px; align-items:center;
+      min-width: 160px;
+      justify-content:center;
+    }
+
+    footer{
+      margin-top: 18px;
+      text-align:center;
+      color: rgba(234,240,255,.55);
+      font-size: 12px;
+    }
+
+    html{ scroll-behavior:smooth; }
+  </style>
 </head>
 
 <body>
-<div class="bg" aria-hidden="true"></div>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
 
-<div class="topbar">
-  <div class="row">
-    <div class="brand">
-      <div class="logo">
-        <img src="franco.jpg" alt="Franco Ficara" onerror="this.style.display='none'">
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="avatar" title="Franco">
+          <img src="franco.png" alt="Foto di Franco" />
+        </div>
+        <div>
+          <h1>Franco Ficara</h1>
+          <div class="sub">Digitale • Scuola • Musica</div>
+        </div>
       </div>
-      <div>
-        <div class="t1">Franco Ficara</div>
-        <div class="t2">Digitale · Scuola · Musica</div>
-      </div>
-    </div>
 
-    <nav class="nav">
-      <a href="#home">Home</a>
-      <a href="#progetti">Progetti</a>
-      <a href="#musica">Musica</a>
-      <a href="#contatti">Contatti</a>
-      <a class="primary" href="https://www.youtube.com/@MaestroFrancoOfficial" target="_blank" rel="noopener">YouTube</a>
-    </nav>
+      <nav aria-label="Navigazione">
+        <a class="pill" href="#home">Home</a>
+        <a class="pill" href="#progetti">Progetti</a>
+        <a class="pill" href="#musica">Musica</a>
+        <a class="pill" href="#contatti">Contatti</a>
+        <a class="pill primary" id="ytNav" href="#" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero" id="home">
+        <div class="hero-inner">
+          <h2 class="title">Benvenuto</h2>
+          <p class="lead">
+            Qui raccolgo ciò che costruisco: didattica, progetti digitali e musica. Un piede nella scuola, uno nel futuro. Il resto arriva da sé.
+          </p>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <div class="in">
+              <h3>Chi sono</h3>
+              <div class="muted">
+                Sono Franco Ficara. Insegno, sperimento e creo strumenti digitali che funzionano davvero.
+                Poca scena, molta sostanza.
+              </div>
+              <div class="btnrow">
+                <a class="btn primary" id="ytBtn1" href="#" target="_blank" rel="noopener noreferrer">Vai al canale</a>
+                <a class="btn" href="#progetti">Vedi i progetti</a>
+                <a class="btn" href="#musica">Ascolta musica</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="in">
+              <h3>Identità</h3>
+              <div class="muted">
+                Tradizione davanti, futuro dietro le quinte. Tecnologia usata con criterio, ironia quanto basta.
+              </div>
+
+              <div class="idline">
+                <span class="chip">Franco</span>
+                <span class="chip">Luma</span>
+                <div class="mini-avatars" aria-label="Franco e Luma">
+                  <img src="franco.png" alt="Franco" />
+                  <img src="luma.png" alt="Luma" />
+                </div>
+              </div>
+
+              <div class="muted2" style="margin-top:10px;">
+                Sito ufficiale: aggiornamenti, materiali e cose utili (non fumo).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section id="progetti">
+        <div class="head">
+          <h2>Progetti</h2>
+          <div class="muted2">Link rapidi — pochi, buoni, veri</div>
+        </div>
+        <div class="body">
+          <div class="cards">
+            <div class="proj">
+              <div class="top"><span class="tag">Canale</span></div>
+              <h4>Maestro Franco Official</h4>
+              <p>Video, didattica, esperimenti e pubblicazioni.</p>
+              <div class="foot">
+                <a class="btn open primary" id="ytBtn2" href="#" target="_blank" rel="noopener noreferrer">Apri canale</a>
+              </div>
+            </div>
+
+            <div class="proj">
+              <div class="top"><span class="tag">Franco &amp; Luma</span></div>
+              <h4>Universo creativo</h4>
+              <p>Una coppola, un coniglio, e un sacco di idee.</p>
+              <div class="foot">
+                <a class="btn open" href="#contatti">Contattami</a>
+              </div>
+            </div>
+
+            <div class="proj">
+              <div class="top"><span class="tag">Home</span></div>
+              <h4>Questo sito</h4>
+              <p>La base stabile: qui mettiamo ordine nel caos.</p>
+              <div class="foot">
+                <a class="btn open" href="#musica">Vai alla musica</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- VIDEO IN EVIDENZA -->
+          <div style="margin-top:14px;"></div>
+          <div class="head" style="padding: 0; margin-top: 18px;">
+            <h2 style="font-size:18px; margin:0;">Video in evidenza</h2>
+            <div class="muted2">Tre cose vere. Click e si va.</div>
+          </div>
+
+          <div class="cards" style="margin-top:12px;">
+            <div class="proj">
+              <div class="top"><span class="tag">Video</span></div>
+              <h4>Video 1</h4>
+              <p>Apri su YouTube.</p>
+              <div class="foot">
+                <a class="btn open primary" href="https://www.youtube.com/watch?v=4rgxf7v5GRA" target="_blank" rel="noopener noreferrer">Guarda</a>
+              </div>
+            </div>
+
+            <div class="proj">
+              <div class="top"><span class="tag">Video</span></div>
+              <h4>Video 2</h4>
+              <p>Apri su YouTube.</p>
+              <div class="foot">
+                <a class="btn open primary" href="https://www.youtube.com/watch?v=yiXu8UqvsgE&t=1062s" target="_blank" rel="noopener noreferrer">Guarda</a>
+              </div>
+            </div>
+
+            <div class="proj">
+              <div class="top"><span class="tag">Video</span></div>
+              <h4>Video 3</h4>
+              <p>Apri su YouTube.</p>
+              <div class="foot">
+                <a class="btn open primary" href="https://www.youtube.com/watch?v=zN8BEUcsq1M" target="_blank" rel="noopener noreferrer">Guarda</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="musica">
+        <div class="head">
+          <h2>Musica</h2>
+          <div class="muted2">Su telefono parte dopo un tocco: è una regola del browser.</div>
+        </div>
+
+        <div class="body">
+          <div class="music-grid">
+            <div class="card">
+              <div class="in">
+                <h3>Player</h3>
+
+                <div class="controls">
+                  <button class="btn primary" id="btnPlay">▶ Avvia</button>
+                  <button class="btn" id="btnPause">⏸ Pausa</button>
+                  <button class="btn" id="btnNext">⏭ Prossimo</button>
+
+                  <label class="muted2" for="trackSel" style="margin-left:auto;">Brano</label>
+                  <select class="select" id="trackSel" aria-label="Seleziona brano">
+                    <option value="brano1_v2.mp3">Brano 1</option>
+                    <option value="brano2.mp3">Brano 2</option>
+                    <option value="brano3.mp3">Brano 3</option>
+                  </select>
+                </div>
+
+                <div class="controls" style="margin-top:12px;">
+                  <label class="muted2" for="volRange">Volume</label>
+                  <input class="range" id="volRange" type="range" min="0" max="1" step="0.01" value="0.7" />
+                  <span class="muted2" id="nowPlaying" style="margin-left:auto;">Pronto.</span>
+                </div>
+
+                <div class="kpis">
+                  <div class="kpi"><span class="dot ok"></span><span>Salva impostazioni</span></div>
+                  <div class="kpi"><span class="dot ok"></span><span>Anti-cache</span></div>
+                  <div class="kpi"><span class="dot warn"></span><span>Autoplay: serve un click</span></div>
+                </div>
+
+                <audio id="audio" preload="metadata"></audio>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="in">
+                <h3>Orologio &amp; Meteo</h3>
+                <div class="mini">
+                  <div class="pill2" title="Ora locale"><span>🕒</span><span id="clock">--:--:--</span></div>
+                  <div class="pill2" title="Città selezionata"><span>📍</span><span id="cityName">Brancaleone</span></div>
+                  <div class="pill2" title="Temperatura"><span>🌡️</span><span id="temp">--°C</span></div>
+                </div>
+
+                <div class="btnrow" style="margin-top:12px;">
+                  <button class="btn" id="btnBranca">Brancaleone</button>
+                  <button class="btn" id="btnGalb">Galbiate</button>
+                </div>
+
+                <div class="muted2" style="margin-top:10px;">
+                  Meteo live (Open-Meteo). Nessuna chiave, nessun account.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contatti">
+        <div class="head">
+          <h2>Contatti</h2>
+          <div class="muted2">Semplice, senza moduli che impazziscono</div>
+        </div>
+        <div class="body">
+          <div class="cards">
+            <div class="proj">
+              <div class="top"><span class="tag">Email</span></div>
+              <h4>Scrivimi</h4>
+              <p>Una mail e via.</p>
+              <div class="foot">
+                <a class="btn open primary" href="mailto:francoficara1@gmail.com">Apri Email</a>
+              </div>
+            </div>
+
+            <div class="proj">
+              <div class="top"><span class="tag">GitHub</span></div>
+              <h4>Versione GitHub Pages</h4>
+              <p>Se vuoi vedere il repo che lo ospita.</p>
+              <div class="foot">
+                <a class="btn open" href="https://blob59.github.io/" target="_blank" rel="noopener noreferrer">Apri</a>
+              </div>
+            </div>
+
+            <div class="proj">
+              <div class="top"><span class="tag">YouTube</span></div>
+              <h4>Canale</h4>
+              <p>Video e contenuti di Maestro Franco.</p>
+              <div class="foot">
+                <a class="btn open" id="ytBtn3" href="#" target="_blank" rel="noopener noreferrer">Vai al canale</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> Franco Ficara — Tutti i diritti riservati
+      </footer>
+    </main>
   </div>
-</div>
 
-<div class="wrap">
+  <script>
+    // ====== CONFIG ======
+    const BUILD = "2026-01-01-02"; // cambia SOLO se vuoi forzare cache bust
+    const YT_CHANNEL = "https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ";
 
-  <!-- HOME -->
-  <section id="home" class="hero">
-    <h1>Benvenuto</h1>
-    <p>
-      Qui raccolgo ciò che costruisco: didattica, musica e progetti digitali.
-      Un piede nella scuola, uno nel futuro. Il resto arriva da sé.
-    </p>
+    const TRACKS = [
+      { label: "Brano 1", file: "brano1_v2.mp3" },
+      { label: "Brano 2", file: "brano2.mp3" },
+      { label: "Brano 3", file: "brano3.mp3" }
+    ];
 
-    <div class="badges">
-      <span>Maestro Franco</span>
-      <span>Luma</span>
-      <span>Progetti reali</span>
-    </div>
+    const CITIES = {
+      brancaleone: { name: "Brancaleone", lat: 38.125, lon: 16.086 },
+      galbiate:    { name: "Galbiate",    lat: 45.813, lon: 9.378 }
+    };
 
-    <div class="grid">
-      <div class="card">
-        <h3>Chi sono</h3>
-        <p>
-          Sono Franco Ficara. Insegno, sperimento e creo strumenti digitali che funzionano davvero.
-          Poca scena, molta sostanza.
-        </p>
-        <div class="cta">
-          <a class="btn blue" href="https://www.youtube.com/@MaestroFrancoOfficial" target="_blank" rel="noopener">Vai al canale</a>
-          <a class="btn" href="#progetti">Vedi i progetti</a>
-          <a class="btn" href="#musica">Ascolta musica</a>
-        </div>
-      </div>
+    // ====== HELPERS ======
+    const $ = (id) => document.getElementById(id);
 
-      <div class="card">
-        <h3>Identità</h3>
-        <p>
-          Tradizione davanti, futuro dietro le quinte. Tecnologia usata con criterio, ironia quanto basta.
-        </p>
-        <div class="avatars">
-          <div class="avatar"><img src="franco.jpg" alt="Franco" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar',textContent:'Franco'}))"></div>
-          <div class="avatar"><img src="luma.png" alt="Luma" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar',textContent:'Luma'}))"></div>
-        </div>
-        <p class="small" style="margin-top:10px">
-          Sito ufficiale: aggiornamenti, materiali e cose utili (non fumo).
-        </p>
-      </div>
-    </div>
+    function cacheBust(url){
+      const sep = url.includes("?") ? "&" : "?";
+      return `${url}${sep}v=${encodeURIComponent(BUILD)}`;
+    }
 
-    <!-- PROGETTI -->
-    <div id="progetti" class="section">
-      <div class="title">
-        <h2>Progetti</h2>
-        <div class="sub">Link rapidi — pochi, buoni, veri</div>
-      </div>
+    // ====== FIX YOUTUBE LINKS (menu + bottoni) ======
+    ["ytNav","ytBtn1","ytBtn2","ytBtn3"].forEach(id => {
+      const el = $(id);
+      if (el) el.href = YT_CHANNEL;
+    });
 
-      <div class="projects">
-        <div class="pcard">
-          <div class="k">Canale</div>
-          <div class="t">Maestro Franco Official</div>
-          <div class="d">Video, didattica, esperimenti e pubblicazioni.</div>
-          <a href="https://www.youtube.com/@MaestroFrancoOfficial" target="_blank" rel="noopener">Apri</a>
-        </div>
+    // ====== YEAR ======
+    $("year").textContent = new Date().getFullYear();
 
-        <div class="pcard">
-          <div class="k">Franco & Luma</div>
-          <div class="t">Universo creativo</div>
-          <div class="d">Una coppola, un coniglio, e un sacco di idee.</div>
-          <a href="https://www.youtube.com/@MaestroFrancoOfficial" target="_blank" rel="noopener">Apri</a>
-        </div>
+    // ====== CLOCK ======
+    function tickClock(){
+      const d = new Date();
+      const hh = String(d.getHours()).padStart(2,"0");
+      const mm = String(d.getMinutes()).padStart(2,"0");
+      const ss = String(d.getSeconds()).padStart(2,"0");
+      $("clock").textContent = `${hh}:${mm}:${ss}`;
+    }
+    tickClock();
+    setInterval(tickClock, 1000);
 
-        <div class="pcard">
-          <div class="k">Home</div>
-          <div class="t">Questo sito</div>
-          <div class="d">La base stabile: qui mettiamo ordine nel caos.</div>
-          <a href="#home">Torna su</a>
-        </div>
-      </div>
-    </div>
+    // ====== MUSIC PLAYER ======
+    const audio = $("audio");
+    const trackSel = $("trackSel");
+    const volRange = $("volRange");
+    const nowPlaying = $("nowPlaying");
 
-    <!-- MUSICA -->
-    <div id="musica" class="section">
-      <div class="title">
-        <h2>Musica</h2>
-        <div class="sub">Se sei da telefono: l’audio parte dopo un tocco (regola del browser)</div>
-      </div>
+    const LS_KEY = "franco_site_player_v1";
 
-      <div class="musicBox">
-        <div class="player">
-          <label for="track">Seleziona brano</label>
-          <select id="track">
-            <option value="brano1_v2.mp3">Brano 1</option>
-            <option value="brano2.mp3">Brano 2</option>
-            <option value="brano3.mp3">Brano 3</option>
-          </select>
+    function loadState(){
+      try{
+        const s = JSON.parse(localStorage.getItem(LS_KEY) || "{}");
+        if (s.track) trackSel.value = s.track;
+        if (typeof s.volume === "number") volRange.value = String(s.volume);
+      }catch(e){}
+    }
 
-          <div class="controls">
-            <button id="playBtn">▶ Avvia</button>
-            <button id="pauseBtn">⏸ Pausa</button>
-            <button id="nextBtn">⏭ Prossimo</button>
-          </div>
+    function saveState(){
+      try{
+        localStorage.setItem(LS_KEY, JSON.stringify({
+          track: trackSel.value,
+          volume: Number(volRange.value)
+        }));
+      }catch(e){}
+    }
 
-          <div style="margin-top:12px">
-            <label for="vol">Volume</label>
-            <input id="vol" type="range" min="0" max="1" step="0.01" value="0.7">
-          </div>
+    function setTrack(file){
+      audio.src = cacheBust(file);
+      nowPlaying.textContent = `Selezionato: ${file}`;
+      saveState();
+    }
 
-          <div class="note">Se un brano cambia e senti ancora quello vecchio: aggiorna la pagina (Ctrl+F5).</div>
+    function currentIndex(){
+      const i = TRACKS.findIndex(t => t.file === trackSel.value);
+      return i >= 0 ? i : 0;
+    }
 
-          <audio id="audio" preload="metadata"></audio>
-        </div>
+    function nextTrack(){
+      const i = currentIndex();
+      const n = (i + 1) % TRACKS.length;
+      trackSel.value = TRACKS[n].file;
+      setTrack(trackSel.value);
+      playSafe();
+    }
 
-        <div class="player">
-          <h3 style="margin-bottom:8px">YouTube</h3>
-          <p class="small">
-            Se preferisci, ascolta e guarda direttamente dal canale: è sempre la fonte più stabile.
-          </p>
-          <div class="cta" style="margin-top:12px">
-            <a class="btn blue" href="https://www.youtube.com/@MaestroFrancoOfficial" target="_blank" rel="noopener">Apri YouTube</a>
-            <a class="btn" href="#contatti">Contatti</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    async function playSafe(){
+      audio.volume = Number(volRange.value);
+      try{
+        await audio.play();
+        nowPlaying.textContent = `In riproduzione: ${trackSel.options[trackSel.selectedIndex].text}`;
+      }catch(err){
+        nowPlaying.textContent = "Tocca ▶ Avvia per partire (blocco autoplay).";
+      }
+    }
 
-    <!-- CONTATTI -->
-    <div id="contatti" class="section">
-      <div class="title">
-        <h2>Contatti</h2>
-        <div class="sub">Semplice: una mail e via</div>
-      </div>
+    function pause(){
+      audio.pause();
+      nowPlaying.textContent = "In pausa.";
+    }
 
-      <div class="contact">
-        <div class="card">
-          <h3>Scrivimi</h3>
-          <p class="small">
-            Per collaborazioni, scuola, progetti o idee: scrivimi e ti rispondo appena posso.
-          </p>
-          <div class="mail">
-            <a class="btn blue" href="mailto:francoficara1@gmail.com">✉ Email</a>
-            <a class="btn" href="https://www.youtube.com/@MaestroFrancoOfficial" target="_blank" rel="noopener">YouTube</a>
-          </div>
-        </div>
+    loadState();
+    setTrack(trackSel.value);
+    audio.volume = Number(volRange.value);
 
-        <div class="card">
-          <h3>Franco & Luma</h3>
-          <p class="small">
-            Questo è il punto di partenza. Poi si cresce: pagine dedicate, progetti, portfolio, musica.
-          </p>
-          <div class="avatars">
-            <div class="avatar"><img src="franco.jpg" alt="Franco" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar',textContent:'Franco'}))"></div>
-            <div class="avatar"><img src="luma.png" alt="Luma" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar',textContent:'Luma'}))"></div>
-          </div>
-        </div>
-      </div>
+    trackSel.addEventListener("change", () => setTrack(trackSel.value));
+    volRange.addEventListener("input", () => { audio.volume = Number(volRange.value); saveState(); });
 
-      <div class="footer">© Franco Ficara — Tutti i diritti riservati</div>
-    </div>
+    $("btnPlay").addEventListener("click", playSafe);
+    $("btnPause").addEventListener("click", pause);
+    $("btnNext").addEventListener("click", nextTrack);
 
-  </section>
+    // ====== WEATHER (Open-Meteo) ======
+    let activeCity = "brancaleone";
 
-</div>
+    function setCity(key){
+      activeCity = key;
+      $("cityName").textContent = CITIES[key].name;
+      fetchWeather();
+    }
 
-<script>
-(function(){
-  const audio = document.getElementById("audio");
-  const track = document.getElementById("track");
-  const vol = document.getElementById("vol");
+    async function fetchWeather(){
+      const c = CITIES[activeCity];
+      $("temp").textContent = "--°C";
+      try{
+        const url =
+          `https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lon}` +
+          `&current=temperature_2m,weather_code&timezone=auto`;
+        const res = await fetch(url, { cache: "no-store" });
+        const data = await res.json();
+        const t = data?.current?.temperature_2m;
+        $("temp").textContent = (typeof t === "number") ? `${Math.round(t)}°C` : "--°C";
+      }catch(e){
+        $("temp").textContent = "--°C";
+      }
+    }
 
-  const tracks = Array.from(track.options).map(o => o.value);
-  let idx = 0;
-
-  function setSrc(file){
-    // cache-buster semplice (per evitare "sento quello vecchio")
-    audio.src = file + "?v=" + Date.now();
-  }
-
-  function playCurrent(){
-    setSrc(tracks[idx]);
-    audio.volume = parseFloat(vol.value);
-    audio.play().catch(()=>{});
-  }
-
-  track.addEventListener("change", () => {
-    idx = tracks.indexOf(track.value);
-    playCurrent();
-  });
-
-  vol.addEventListener("input", () => {
-    audio.volume = parseFloat(vol.value);
-  });
-
-  document.getElementById("playBtn").addEventListener("click", () => {
-    if (!audio.src) setSrc(tracks[idx]);
-    audio.volume = parseFloat(vol.value);
-    audio.play().catch(()=>{});
-  });
-
-  document.getElementById("pauseBtn").addEventListener("click", () => audio.pause());
-
-  document.getElementById("nextBtn").addEventListener("click", () => {
-    idx = (idx + 1) % tracks.length;
-    track.value = tracks[idx];
-    playCurrent();
-  });
-})();
-</script>
-
+    $("btnBranca").addEventListener("click", () => setCity("brancaleone"));
+    $("btnGalb").addEventListener("click", () => setCity("galbiate"));
+    setCity("brancaleone");
+  </script>
 </body>
 </html>
