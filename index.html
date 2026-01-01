@@ -1,222 +1,611 @@
 <!doctype html>
 <html lang="it">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Franco Ficara</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0f14" />
+  <title>Franco Ficara — Digital</title>
+  <meta name="description" content="Franco Ficara — progetti digitali, musica, didattica e creatività." />
+  <style>
+    :root{
+      --bg:#070a0e;
+      --panel: rgba(18, 22, 28, .72);
+      --panel2: rgba(18, 22, 28, .50);
+      --stroke: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --muted2: rgba(255,255,255,.52);
+      --brand: #59a9ff;
+      --ok:#5ef2a7;
+      --warn:#ffd36a;
+      --bad:#ff6a6a;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
+      --radius: 22px;
+      --radius2: 16px;
+      --max: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, rgba(89,169,255,.16), transparent 55%),
+        radial-gradient(900px 650px at 90% 20%, rgba(94,242,167,.10), transparent 52%),
+        radial-gradient(900px 650px at 55% 100%, rgba(255,211,106,.09), transparent 55%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+    a{color:inherit}
+    .bg{
+      position:fixed; inset:0;
+      background: center/cover no-repeat;
+      filter: saturate(1.05) contrast(1.05) brightness(.78);
+      transform: scale(1.04);
+      z-index:-2;
+      opacity:.9;
+    }
+    .bg::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(to bottom, rgba(7,10,14,.72), rgba(7,10,14,.72));
+      z-index: -1;
+    }
 
-<style>
-:root{
-  --bg:#000;
-  --card:rgba(0,0,0,.55);
-  --txt:#fff;
-  --muted:rgba(255,255,255,.75);
-  --btn:rgba(255,255,255,.15);
-  --btn2:rgba(255,255,255,.25);
-  --radius:22px;
-  --shadow:0 20px 60px rgba(0,0,0,.45);
-}
-*{box-sizing:border-box}
-body{
-  margin:0; min-height:100vh; background:var(--bg); color:var(--txt);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-}
-.bg{
-  position:fixed; inset:0;
-  background:
-    linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.55)),
-    url("sfondo-brancaleone.jpg") center/cover no-repeat;
-}
-.wrap{
-  position:relative; min-height:100vh;
-  display:flex; align-items:center; justify-content:center;
-  padding:24px 16px;
-}
-.card{
-  width:min(980px,100%);
-  background:var(--card);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-  padding:22px;
-  backdrop-filter:blur(10px);
-}
-.top{
-  display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
-}
-.title{margin:0;font-size:clamp(26px,3.5vw,44px)}
-.subtitle{margin:6px 0 0;color:var(--muted)}
-.avatars{display:flex;gap:12px}
-.avatar{
-  width:72px;height:72px;border-radius:18px;object-fit:cover;
-  border:1px solid rgba(255,255,255,.2)
-}
-.grid{
-  display:grid; grid-template-columns:1.2fr .8fr; gap:18px; margin-top:18px
-}
-@media(max-width:820px){.grid{grid-template-columns:1fr}}
-.panel{
-  background:rgba(255,255,255,.08);
-  border-radius:18px; padding:16px;
-  border:1px solid rgba(255,255,255,.15)
-}
-.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.btn{
-  background:var(--btn); color:var(--txt);
-  border:1px solid rgba(255,255,255,.2);
-  padding:12px 16px; border-radius:14px;
-  cursor:pointer; font-weight:600
-}
-.btn:hover{background:var(--btn2)}
-select,input[type=range]{
-  background:rgba(0,0,0,.4); color:var(--txt);
-  border:1px solid rgba(255,255,255,.2);
-  border-radius:14px; padding:10px
-}
-.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-.chip{
-  background:rgba(0,0,0,.3);
-  border:1px solid rgba(255,255,255,.2);
-  border-radius:999px; padding:8px 12px;
-  font-size:13px;color:var(--muted)
-}
-.tiny{font-size:12px;color:var(--muted);margin-top:10px}
-</style>
+    /* Header */
+    .topbar{
+      position:sticky; top:0;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(7,10,14,.55);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 18px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      text-decoration:none;
+    }
+    .avatar{
+      width:44px; height:44px; border-radius:14px;
+      background: center/cover no-repeat;
+      border:1px solid var(--stroke);
+      box-shadow: 0 10px 26px rgba(0,0,0,.35);
+    }
+    .brand-title{
+      display:flex; flex-direction:column; line-height:1.05;
+    }
+    .brand-title b{font-size:15px; letter-spacing:.2px}
+    .brand-title span{font-size:12px; color:var(--muted2)}
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .pill{
+      font-size:13px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      text-decoration:none;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+    }
+    .pill:hover{transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.16)}
+    .pill.primary{background: rgba(89,169,255,.14); border-color: rgba(89,169,255,.35)}
+    .pill.primary:hover{background: rgba(89,169,255,.18)}
+    .pill.ok{background: rgba(94,242,167,.12); border-color: rgba(94,242,167,.32)}
+    .pill.warn{background: rgba(255,211,106,.12); border-color: rgba(255,211,106,.32)}
+
+    /* Layout */
+    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 90px;}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns: 1fr; }
+      .nav{justify-content:flex-start}
+    }
+
+    .card{
+      background: var(--panel);
+      border:1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .in{padding:18px 18px;}
+    .card.soft{background: var(--panel2)}
+    .title{
+      font-size:34px; margin:0 0 6px;
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:15px;
+    }
+    .kpis{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    .kpi{
+      display:flex; align-items:center; gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      color:var(--muted);
+      font-size:13px;
+    }
+    .dot{width:8px;height:8px;border-radius:50%}
+    .dot.ok{background:var(--ok)}
+    .dot.brand{background:var(--brand)}
+    .dot.warn{background:var(--warn)}
+    .sep{height:1px;background:var(--stroke); margin:14px 0}
+
+    /* Sections */
+    h2{margin:0 0 8px; font-size:18px}
+    p{margin:0 0 10px; color:var(--muted); line-height:1.55}
+
+    .two{
+      display:grid; grid-template-columns: 1fr 1fr; gap:12px;
+    }
+    @media (max-width: 650px){ .two{grid-template-columns:1fr} }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:8px;
+      padding:10px 12px;
+      border-radius: 12px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.07);
+      color: var(--text);
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      text-decoration:none;
+      font-size:13px;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.16)}
+    .btn.primary{background: rgba(89,169,255,.16); border-color: rgba(89,169,255,.35)}
+    .btn.primary:hover{background: rgba(89,169,255,.20)}
+    .btn.ghost{background: transparent}
+    .btn.small{padding:8px 10px; border-radius: 999px}
+
+    /* Music */
+    .player{
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .range{
+      width: 100%;
+      accent-color: var(--brand);
+    }
+    select{
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--stroke);
+      background: rgba(10,12,16,.45);
+      color: var(--text);
+      outline:none;
+      min-width: 180px;
+    }
+    .hint{font-size:12px; color:var(--muted2); line-height:1.4}
+
+    /* Project list */
+    .list{display:flex; flex-direction:column; gap:10px}
+    .item{
+      padding:12px 12px;
+      border-radius: 16px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+    }
+    .item b{font-size:14px}
+    .item span{display:block; color:var(--muted2); font-size:12px; margin-top:2px}
+    .item .actions{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+
+    /* Clock & Weather */
+    .chips{display:flex; gap:10px; flex-wrap:wrap}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background: rgba(255,255,255,.06);
+      font-size:13px;
+      color:var(--muted);
+    }
+    .chip b{color:var(--text); font-weight:600}
+    .city-btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .mini{
+      width:32px; height:32px; border-radius:10px;
+      background:center/cover no-repeat;
+      border:1px solid var(--stroke);
+    }
+    .footer{
+      margin-top:18px;
+      padding:18px;
+      border-top:1px solid var(--stroke);
+      color:var(--muted2);
+      font-size:12px;
+      text-align:center;
+    }
+  </style>
 </head>
 
 <body>
-<div class="bg"></div>
+  <!-- ===== CONFIG SEMPLICE (modifica SOLO qui) ===== -->
+  <script>
+    const CONFIG = {
+      // immagini già nel repo (stessi nomi dei file)
+      backgroundImage: "sfondo-brancaleone.jpg",
+      avatarImage: "franco.png",
+      sidekickImage: "luma.png",
 
-<div class="wrap">
-<div class="card">
+      // link bottoni top
+      links: [
+        { label: "YouTube", url: "https://www.youtube.com/", style: "primary" },
+        { label: "Progetti", url: "#progetti", style: "" },
+        { label: "Musica", url: "#musica", style: "" },
+        { label: "Contatti", url: "#contatti", style: "ok" }
+      ],
 
-  <div class="top">
-    <div>
-      <h1 class="title">Benvenuto</h1>
-      <p class="subtitle">Ascolta. Il resto arriva da sé.</p>
+      // brani (file già nel repo)
+      tracks: [
+        { label: "Brano 1", file: "brano1_v2.mp3" },
+        { label: "Brano 2", file: "brano2.mp3" },
+        { label: "Brano 3", file: "brano3.mp3" }
+      ],
+
+      // città per meteo (Open-Meteo)
+      cities: {
+        "Brancaleone": { lat: 37.95, lon: 16.10 },
+        "Galbiate":    { lat: 45.82, lon: 9.37 }
+      },
+
+      // testo pagina
+      heroTitle: "Benvenuto",
+      heroSubtitle: "Qui metto ordine nel caos: progetti, musica e didattica. Il resto arriva da sé.",
+      aboutText:
+        "Sono Franco Ficara. Insegno, sperimento e costruisco cose digitali che funzionano davvero. " +
+        "Poche chiacchiere, tanta sostanza: strumenti, creatività e un pizzico di ironia calabrese.",
+      contactEmail: "francoficara1@gmail.com"
+    };
+  </script>
+  <!-- =============================================== -->
+
+  <div class="bg" id="bg"></div>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top">
+        <div class="avatar" id="avatar"></div>
+        <div class="brand-title">
+          <b>Franco Ficara</b>
+          <span>Digital • Progetti • Musica</span>
+        </div>
+      </a>
+
+      <nav class="nav" id="nav"></nav>
     </div>
-    <div class="avatars">
-      <img src="franco.png" class="avatar" alt="Franco">
-      <img src="luma.png" class="avatar" alt="Luma">
-    </div>
-  </div>
+  </header>
 
-  <div class="grid">
+  <main class="wrap" id="top">
+    <section class="grid">
+      <!-- LEFT: Hero + About + Projects -->
+      <div class="card">
+        <div class="in">
+          <h1 class="title" id="heroTitle">Benvenuto</h1>
+          <p class="subtitle" id="heroSubtitle"></p>
 
-    <!-- MUSICA -->
-    <div class="panel">
-      <div class="row">
-        <button class="btn" id="play">▶️ Avvia musica</button>
-        <label class="row">Volume
-          <input type="range" id="vol" min="0" max="100" value="70">
-        </label>
+          <div class="kpis">
+            <div class="kpi"><span class="dot ok"></span><span>Dominio attivo</span></div>
+            <div class="kpi"><span class="dot brand"></span><span>GitHub Pages</span></div>
+            <div class="kpi"><span class="dot warn"></span><span>Niente rogne</span></div>
+          </div>
+
+          <div class="sep"></div>
+
+          <div class="two" id="chi-sono">
+            <div class="card soft">
+              <div class="in">
+                <h2>Chi sono</h2>
+                <p id="aboutText"></p>
+                <div class="row" style="margin-top:10px">
+                  <a class="btn primary" href="#progetti">Vai ai progetti</a>
+                  <a class="btn" href="#musica">Ascolta musica</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card soft">
+              <div class="in">
+                <h2>Identità</h2>
+                <p>Tradizione davanti, futuro dietro le quinte. Un piede a scuola, uno nel digitale.</p>
+                <div class="row" style="margin-top:10px">
+                  <div class="mini" id="meMini" title="Franco"></div>
+                  <div class="mini" id="sideMini" title="Luma"></div>
+                  <span class="hint">Immagini prese dal tuo repo. Nessun upload extra.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sep"></div>
+
+          <div id="progetti">
+            <h2>Progetti</h2>
+            <p>Metti qui i link veri: Canva, QR, pagine, repository, video. Niente fumo: solo cose cliccabili.</p>
+
+            <div class="list" id="projectsList"></div>
+
+            <div class="hint" style="margin-top:10px">
+              Tip: vuoi aggiungere un progetto? Lo fai in alto nel CONFIG (sezione “projects” la aggiungo al volo quando vuoi).
+            </div>
+          </div>
+
+          <div class="footer">
+            © <span id="year"></span> Franco Ficara — costruito con calma, non con panico.
+          </div>
+        </div>
       </div>
 
-      <div class="row" style="margin-top:14px">
-        <select id="track">
-          <option value="brano1_v2.mp3">Brano 1</option>
-          <option value="brano2.mp3">Brano 2</option>
-          <option value="brano3.mp3">Brano 3</option>
-        </select>
-        <button class="btn" id="next">⏭️ Prossimo</button>
-      </div>
+      <!-- RIGHT: Music + Clock/Weather + Contacts -->
+      <aside class="card">
+        <div class="in">
 
-      <div class="chips">
-        <span class="chip">✅ Mobile-safe</span>
-        <span class="chip">✅ Niente cache drama</span>
-        <span class="chip">✅ Ricorda impostazioni</span>
-      </div>
+          <div id="musica">
+            <h2>Musica</h2>
+            <p class="subtitle" style="margin-bottom:10px">
+              Su telefono l’audio parte solo dopo un tocco. È una regola del browser, non una tua colpa.
+            </p>
 
-      <p class="tiny">
-        Nota: su telefono l’audio parte solo dopo un tocco. È normale.
-      </p>
-    </div>
+            <div class="player">
+              <div class="row">
+                <button class="btn primary" id="btnPlay">▶ Avvia</button>
+                <button class="btn" id="btnPause">⏸ Pausa</button>
+                <button class="btn" id="btnNext">⏭ Prossimo</button>
+              </div>
 
-    <!-- OROLOGIO + METEO -->
-    <div class="panel">
-      <div class="chips">
-        <span class="chip">🕒 <span id="clock">--:--:--</span></span>
-        <span class="chip">📍 <span id="place">Brancaleone</span></span>
-        <span class="chip">🌦️ <span id="meteo">Carico…</span></span>
-      </div>
+              <div class="row">
+                <label style="min-width:72px;color:var(--muted);font-size:13px">Brano</label>
+                <select id="trackSelect"></select>
+              </div>
 
-      <div class="row" style="margin-top:14px">
-        <button class="btn" onclick="weather('brancaleone')">Brancaleone</button>
-        <button class="btn" onclick="weather('galbiate')">Galbiate</button>
-      </div>
+              <div class="row">
+                <label style="min-width:72px;color:var(--muted);font-size:13px">Volume</label>
+                <input class="range" id="volume" type="range" min="0" max="1" step="0.01" />
+              </div>
 
-      <p class="tiny">
-        Meteo live (Open-Meteo). Nessuna chiave, nessun account.
-      </p>
-    </div>
+              <div class="hint" id="trackHint"></div>
 
-  </div>
+              <audio id="audio" preload="none"></audio>
+            </div>
+          </div>
 
-  <audio id="audio"></audio>
+          <div class="sep"></div>
 
-</div>
-</div>
+          <div>
+            <h2>Orologio & Meteo</h2>
+            <div class="chips">
+              <div class="chip">🕒 <b id="clock">--:--:--</b></div>
+              <div class="chip">📍 <b id="cityName">Brancaleone</b></div>
+              <div class="chip">🌡️ <b id="temp">--</b></div>
+            </div>
 
-<script>
-/* ===== AUDIO ===== */
-const audio=document.getElementById("audio");
-const play=document.getElementById("play");
-const next=document.getElementById("next");
-const track=document.getElementById("track");
-const vol=document.getElementById("vol");
-const CACHE="v=9";
+            <div class="city-btns" id="cityBtns"></div>
+            <p class="hint" style="margin-top:10px">
+              Meteo live (Open-Meteo). Nessuna chiave, nessun account, zero rogne.
+            </p>
+          </div>
 
-function setTrack(f,auto=false){
-  audio.src=f+"?"+CACHE;
-  audio.loop=true;
-  localStorage.setItem("track",f);
-  if(auto) audio.play().then(()=>play.textContent="⏸ Pausa musica");
-}
-function setVol(v){
-  audio.volume=v/100;
-  localStorage.setItem("vol",v);
-}
-play.onclick=async()=>{
-  if(audio.paused){
-    await audio.play();
-    play.textContent="⏸ Pausa musica";
-  }else{
-    audio.pause();
-    play.textContent="▶️ Avvia musica";
-  }
-}
-next.onclick=()=>{
-  track.selectedIndex=(track.selectedIndex+1)%track.options.length;
-  setTrack(track.value,!audio.paused);
-}
-track.onchange=()=>setTrack(track.value,!audio.paused);
-vol.oninput=()=>setVol(vol.value);
+          <div class="sep"></div>
 
-setVol(localStorage.getItem("vol")||70);
-setTrack(localStorage.getItem("track")||track.value,false);
+          <div id="contatti">
+            <h2>Contatti</h2>
+            <p>Se mi vuoi scrivere, fallo semplice: una mail e via. Niente form che si rompono.</p>
+            <div class="row">
+              <a class="btn ok" id="mailBtn" href="#">✉️ Email</a>
+              <a class="btn ghost" href="https://blob59.github.io/" target="_blank" rel="noreferrer">🔗 Versione GitHub</a>
+            </div>
+            <p class="hint" style="margin-top:10px">
+              Vuoi aggiungere WhatsApp/Instagram? Dimmi i link e li metto puliti.
+            </p>
+          </div>
 
-/* ===== OROLOGIO ===== */
-setInterval(()=>{
-  const d=new Date();
-  clock.textContent=d.toLocaleTimeString("it-IT");
-},1000);
+        </div>
+      </aside>
+    </section>
+  </main>
 
-/* ===== METEO ===== */
-const locs={
-  brancaleone:{n:"Brancaleone",lat:37.96,lon:16.10},
-  galbiate:{n:"Galbiate",lat:45.82,lon:9.38}
-};
-async function weather(k){
-  const l=locs[k];
-  place.textContent=l.n;
-  meteo.textContent="Carico…";
-  try{
-    const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${l.lat}&longitude=${l.lon}&current=temperature_2m&timezone=auto`);
-    const j=await r.json();
-    meteo.textContent=Math.round(j.current.temperature_2m)+"°C";
-  }catch{meteo.textContent="N/D"}
-}
-weather("brancaleone");
-</script>
+  <script>
+    // ===== init visuals
+    const bg = document.getElementById("bg");
+    const avatar = document.getElementById("avatar");
+    const meMini = document.getElementById("meMini");
+    const sideMini = document.getElementById("sideMini");
 
+    bg.style.backgroundImage = `url('${CONFIG.backgroundImage}')`;
+    avatar.style.backgroundImage = `url('${CONFIG.avatarImage}')`;
+    meMini.style.backgroundImage = `url('${CONFIG.avatarImage}')`;
+    sideMini.style.backgroundImage = `url('${CONFIG.sidekickImage}')`;
+
+    document.getElementById("heroTitle").textContent = CONFIG.heroTitle;
+    document.getElementById("heroSubtitle").textContent = CONFIG.heroSubtitle;
+    document.getElementById("aboutText").textContent = CONFIG.aboutText;
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ===== nav
+    const nav = document.getElementById("nav");
+    CONFIG.links.forEach(l => {
+      const a = document.createElement("a");
+      a.className = `pill ${l.style || ""}`.trim();
+      a.href = l.url;
+      a.textContent = l.label;
+      if (l.url.startsWith("http")) { a.target="_blank"; a.rel="noreferrer"; }
+      nav.appendChild(a);
+    });
+
+    // ===== projects (edit here if you want, or tell me i link e te lo preparo)
+    const projects = [
+      { title: "Maestro Franco Official", desc: "Home principale — musica, meteo, accesso rapido.", url: "https://francoficara.com" },
+      { title: "GitHub Pages", desc: "Repository e pubblicazione.", url: "https://github.com/blob59/blob59.github.io" },
+      { title: "Canva (aggiungi il link)", desc: "Presentazioni, video, materiali.", url: "#" }
+    ];
+    const projectsList = document.getElementById("projectsList");
+    projects.forEach(p=>{
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `
+        <div>
+          <b>${escapeHtml(p.title)}</b>
+          <span>${escapeHtml(p.desc)}</span>
+        </div>
+        <div class="actions">
+          <a class="btn small primary" href="${p.url}" ${p.url.startsWith("http") ? 'target="_blank" rel="noreferrer"' : ''}>Apri</a>
+        </div>
+      `;
+      projectsList.appendChild(div);
+    });
+
+    function escapeHtml(str){
+      return String(str).replace(/[&<>"']/g, m => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[m]));
+    }
+
+    // ===== mail
+    const mailBtn = document.getElementById("mailBtn");
+    mailBtn.href = `mailto:${CONFIG.contactEmail}?subject=${encodeURIComponent("Ciao Franco")}`;
+
+    // ===== music
+    const audio = document.getElementById("audio");
+    const btnPlay = document.getElementById("btnPlay");
+    const btnPause = document.getElementById("btnPause");
+    const btnNext = document.getElementById("btnNext");
+    const volume = document.getElementById("volume");
+    const trackSelect = document.getElementById("trackSelect");
+    const trackHint = document.getElementById("trackHint");
+
+    // restore settings
+    const saved = JSON.parse(localStorage.getItem("ff_settings") || "{}");
+    let trackIndex = Number.isFinite(saved.trackIndex) ? saved.trackIndex : 0;
+    let vol = (typeof saved.volume === "number") ? saved.volume : 0.65;
+
+    volume.value = String(vol);
+    audio.volume = vol;
+
+    CONFIG.tracks.forEach((t, idx)=>{
+      const opt = document.createElement("option");
+      opt.value = String(idx);
+      opt.textContent = t.label;
+      trackSelect.appendChild(opt);
+    });
+    trackSelect.value = String(trackIndex);
+
+    function setTrack(i){
+      trackIndex = (i + CONFIG.tracks.length) % CONFIG.tracks.length;
+      trackSelect.value = String(trackIndex);
+
+      // cache-bust leggero (evita "sento quello vecchio")
+      const file = CONFIG.tracks[trackIndex].file;
+      audio.src = `${file}?v=${Date.now()}`;
+      trackHint.textContent = `File: ${file}`;
+      saveSettings();
+    }
+    function saveSettings(){
+      localStorage.setItem("ff_settings", JSON.stringify({
+        trackIndex,
+        volume: audio.volume
+      }));
+    }
+
+    setTrack(trackIndex);
+
+    btnPlay.addEventListener("click", async ()=>{
+      try{
+        if(!audio.src) setTrack(trackIndex);
+        await audio.play();
+      }catch(e){
+        alert("Su alcuni browser serve un altro tocco per avviare l’audio. Riprova.");
+      }
+    });
+    btnPause.addEventListener("click", ()=> audio.pause());
+    btnNext.addEventListener("click", ()=>{
+      setTrack(trackIndex+1);
+      audio.play().catch(()=>{});
+    });
+
+    trackSelect.addEventListener("change", ()=>{
+      setTrack(parseInt(trackSelect.value,10));
+      audio.play().catch(()=>{});
+    });
+    volume.addEventListener("input", ()=>{
+      audio.volume = parseFloat(volume.value);
+      saveSettings();
+    });
+
+    // ===== clock
+    const clockEl = document.getElementById("clock");
+    function tick(){
+      const d = new Date();
+      const hh = String(d.getHours()).padStart(2,"0");
+      const mm = String(d.getMinutes()).padStart(2,"0");
+      const ss = String(d.getSeconds()).padStart(2,"0");
+      clockEl.textContent = `${hh}:${mm}:${ss}`;
+    }
+    tick(); setInterval(tick, 1000);
+
+    // ===== weather
+    const cityNameEl = document.getElementById("cityName");
+    const tempEl = document.getElementById("temp");
+    const cityBtns = document.getElementById("cityBtns");
+
+    const savedCity = (saved.city && CONFIG.cities[saved.city]) ? saved.city : Object.keys(CONFIG.cities)[0];
+    let currentCity = savedCity;
+
+    Object.keys(CONFIG.cities).forEach(name=>{
+      const b = document.createElement("button");
+      b.className = "btn";
+      b.textContent = name;
+      b.addEventListener("click", ()=>{
+        currentCity = name;
+        localStorage.setItem("ff_settings", JSON.stringify({
+          ...JSON.parse(localStorage.getItem("ff_settings")||"{}"),
+          city: currentCity
+        }));
+        cityNameEl.textContent = currentCity;
+        loadWeather();
+      });
+      cityBtns.appendChild(b);
+    });
+
+    cityNameEl.textContent = currentCity;
+
+    async function loadWeather(){
+      try{
+        const {lat, lon} = CONFIG.cities[currentCity];
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m&timezone=auto`;
+        const r = await fetch(url, { cache: "no-store" });
+        const j = await r.json();
+        const t = j?.current?.temperature_2m;
+        if(typeof t === "number"){
+          tempEl.textContent = `${Math.round(t)}°C`;
+        }else{
+          tempEl.textContent = "--";
+        }
+      }catch(e){
+        tempEl.textContent = "--";
+      }
+    }
+    loadWeather();
+    setInterval(loadWeather, 10 * 60 * 1000); // ogni 10 min
+  </script>
 </body>
 </html>
