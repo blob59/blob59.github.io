@@ -1,358 +1,222 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Maestro Franco</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Franco Ficara</title>
 
-  <style>
-    :root{
-      --card: rgba(0,0,0,.55);
-      --txt: #fff;
-      --muted: rgba(255,255,255,.75);
-      --btn: rgba(255,255,255,.14);
-      --btn2: rgba(255,255,255,.22);
-      --shadow: 0 20px 60px rgba(0,0,0,.45);
-      --radius: 22px;
-    }
-
-    *{ box-sizing: border-box; }
-    body{
-      margin:0;
-      min-height:100vh;
-      color: var(--txt);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      overflow-x:hidden;
-      background:#000;
-    }
-
-    /* Sfondo full */
-    .bg{
-      position:fixed;
-      inset:0;
-      background:
-        linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,.55)),
-        url("sfondo-brancaleone.jpg") center/cover no-repeat;
-      filter: saturate(1.05);
-      transform: scale(1.02);
-    }
-
-    /* Contenuto */
-    .wrap{
-      position:relative;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 28px 16px;
-    }
-
-    .card{
-      width:min(920px, 100%);
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 22px;
-      backdrop-filter: blur(10px);
-    }
-
-    .top{
-      display:flex;
-      gap:18px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
-    }
-
-    .title{
-      line-height:1.05;
-      margin:0;
-      font-size: clamp(26px, 3.6vw, 44px);
-      letter-spacing:.2px;
-    }
-
-    .subtitle{
-      margin:10px 0 0 0;
-      color: var(--muted);
-      font-size: clamp(14px, 1.7vw, 18px);
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:18px;
-      margin-top:18px;
-    }
-
-    @media (max-width: 820px){
-      .grid{ grid-template-columns: 1fr; }
-    }
-
-    .panel{
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      padding: 16px;
-    }
-
-    .row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      appearance:none;
-      border: 1px solid rgba(255,255,255,.18);
-      background: var(--btn);
-      color: var(--txt);
-      padding: 12px 14px;
-      border-radius: 14px;
-      cursor:pointer;
-      font-weight:600;
-      transition: .2s transform, .2s background;
-      user-select:none;
-    }
-    .btn:hover{ background: var(--btn2); transform: translateY(-1px); }
-    .btn:active{ transform: translateY(0); }
-
-    select{
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(0,0,0,.35);
-      color: var(--txt);
-      font-weight:600;
-      outline:none;
-      min-width: 220px;
-    }
-
-    input[type="range"]{
-      width: 240px;
-      max-width: 100%;
-    }
-
-    .chips{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top:12px;
-    }
-
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.25);
-      border: 1px solid rgba(255,255,255,.12);
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .avatars{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      justify-content:flex-end;
-    }
-
-    .avatar{
-      width: 74px;
-      height: 74px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.15);
-      background: rgba(255,255,255,.08);
-      object-fit: cover;
-      box-shadow: 0 14px 35px rgba(0,0,0,.35);
-    }
-
-    .links a{
-      color: #fff;
-      text-decoration:none;
-      border-bottom:1px dashed rgba(255,255,255,.35);
-    }
-    .links a:hover{ border-bottom-color:#fff; }
-
-    .tiny{
-      margin: 10px 0 0 0;
-      color: rgba(255,255,255,.7);
-      font-size: 12px;
-      line-height:1.35;
-    }
-  </style>
+<style>
+:root{
+  --bg:#000;
+  --card:rgba(0,0,0,.55);
+  --txt:#fff;
+  --muted:rgba(255,255,255,.75);
+  --btn:rgba(255,255,255,.15);
+  --btn2:rgba(255,255,255,.25);
+  --radius:22px;
+  --shadow:0 20px 60px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; background:var(--bg); color:var(--txt);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+}
+.bg{
+  position:fixed; inset:0;
+  background:
+    linear-gradient(to bottom,rgba(0,0,0,.6),rgba(0,0,0,.55)),
+    url("sfondo-brancaleone.jpg") center/cover no-repeat;
+}
+.wrap{
+  position:relative; min-height:100vh;
+  display:flex; align-items:center; justify-content:center;
+  padding:24px 16px;
+}
+.card{
+  width:min(980px,100%);
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:22px;
+  backdrop-filter:blur(10px);
+}
+.top{
+  display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap;
+}
+.title{margin:0;font-size:clamp(26px,3.5vw,44px)}
+.subtitle{margin:6px 0 0;color:var(--muted)}
+.avatars{display:flex;gap:12px}
+.avatar{
+  width:72px;height:72px;border-radius:18px;object-fit:cover;
+  border:1px solid rgba(255,255,255,.2)
+}
+.grid{
+  display:grid; grid-template-columns:1.2fr .8fr; gap:18px; margin-top:18px
+}
+@media(max-width:820px){.grid{grid-template-columns:1fr}}
+.panel{
+  background:rgba(255,255,255,.08);
+  border-radius:18px; padding:16px;
+  border:1px solid rgba(255,255,255,.15)
+}
+.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.btn{
+  background:var(--btn); color:var(--txt);
+  border:1px solid rgba(255,255,255,.2);
+  padding:12px 16px; border-radius:14px;
+  cursor:pointer; font-weight:600
+}
+.btn:hover{background:var(--btn2)}
+select,input[type=range]{
+  background:rgba(0,0,0,.4); color:var(--txt);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:14px; padding:10px
+}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.chip{
+  background:rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:999px; padding:8px 12px;
+  font-size:13px;color:var(--muted)
+}
+.tiny{font-size:12px;color:var(--muted);margin-top:10px}
+</style>
 </head>
 
 <body>
-  <div class="bg" aria-hidden="true"></div>
+<div class="bg"></div>
 
-  <div class="wrap">
-    <div class="card">
-      <div class="top">
-        <div>
-          <h1 class="title">Benvenuto</h1>
-          <p class="subtitle">Ascolta. Il resto arriva da sé.</p>
-        </div>
+<div class="wrap">
+<div class="card">
 
-        <div class="avatars">
-          <img class="avatar" src="franco.png" alt="Franco">
-          <img class="avatar" src="luma.png" alt="Luma">
-        </div>
-      </div>
-
-      <div class="grid">
-        <div class="panel">
-          <div class="row">
-            <button id="btnPlay" class="btn">▶️ Avvia musica</button>
-
-            <label style="display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:600;">
-              Volume
-              <input id="vol" type="range" min="0" max="100" value="70">
-            </label>
-          </div>
-
-          <div class="row" style="margin-top:14px;">
-            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-              <span style="color:var(--muted);font-weight:700;">Brano</span>
-              <select id="track">
-                <option value="brano1_v2.mp3">Brano 1</option>
-                <option value="brano2.mp3">Brano 2</option>
-                <option value="brano3.mp3">Brano 3</option>
-              </select>
-              <button id="btnNext" class="btn">⏭️ Prossimo</button>
-            </div>
-
-            <div class="chips">
-              <span class="chip">✅ Mobile-safe</span>
-              <span class="chip">✅ Niente cache drama</span>
-              <span class="chip">✅ Ricorda impostazioni</span>
-            </div>
-          </div>
-
-          <p class="tiny">
-            Nota: su telefono la musica non può partire “da sola”. È una regola del browser.
-            Per questo c’è il pulsante: un tocco e parte sempre.
-          </p>
-        </div>
-
-        <div class="panel links">
-          <h2 style="margin:0 0 10px 0;font-size:18px;">Collegamenti</h2>
-          <p style="margin:0 0 8px 0;color:var(--muted);">
-            Metti qui i tuoi bottoni, senza riscrivere mezzo mondo.
-          </p>
-
-          <div class="chips">
-            <span class="chip">🎬 <a href="#" onclick="alert('Metti qui il tuo link');return false;">YouTube</a></span>
-            <span class="chip">🧠 <a href="#" onclick="alert('Metti qui il tuo link');return false;">Progetti</a></span>
-            <span class="chip">📌 <a href="#" onclick="alert('Metti qui il tuo link');return false;">Contatti</a></span>
-          </div>
-
-          <p class="tiny">
-            Vuoi che i pulsanti portino a vere pagine/QR/Canva? Me lo dici e li mettiamo puliti.
-          </p>
-        </div>
-      </div>
-
-      <!-- AUDIO -->
-      <audio id="player" preload="auto"></audio>
+  <div class="top">
+    <div>
+      <h1 class="title">Benvenuto</h1>
+      <p class="subtitle">Ascolta. Il resto arriva da sé.</p>
+    </div>
+    <div class="avatars">
+      <img src="franco.png" class="avatar" alt="Franco">
+      <img src="luma.png" class="avatar" alt="Luma">
     </div>
   </div>
 
-  <script>
-    // === CONFIG ===
-    // Cache-busting automatico: cambia numero quando cambi file e vuoi forzare refresh.
-    const CACHE_BUST = "v=7";
+  <div class="grid">
 
-    const player = document.getElementById("player");
-    const btnPlay = document.getElementById("btnPlay");
-    const btnNext = document.getElementById("btnNext");
-    const trackSel = document.getElementById("track");
-    const vol = document.getElementById("vol");
+    <!-- MUSICA -->
+    <div class="panel">
+      <div class="row">
+        <button class="btn" id="play">▶️ Avvia musica</button>
+        <label class="row">Volume
+          <input type="range" id="vol" min="0" max="100" value="70">
+        </label>
+      </div>
 
-    const LS_TRACK = "mf_track";
-    const LS_VOL   = "mf_vol";
+      <div class="row" style="margin-top:14px">
+        <select id="track">
+          <option value="brano1_v2.mp3">Brano 1</option>
+          <option value="brano2.mp3">Brano 2</option>
+          <option value="brano3.mp3">Brano 3</option>
+        </select>
+        <button class="btn" id="next">⏭️ Prossimo</button>
+      </div>
 
-    function withBust(file){
-      // evita incasini: se già c'è un ? lo gestiamo
-      const sep = file.includes("?") ? "&" : "?";
-      return file + sep + CACHE_BUST;
-    }
+      <div class="chips">
+        <span class="chip">✅ Mobile-safe</span>
+        <span class="chip">✅ Niente cache drama</span>
+        <span class="chip">✅ Ricorda impostazioni</span>
+      </div>
 
-    function setTrack(file, autoplay=false){
-      player.src = withBust(file);
-      player.loop = true;
+      <p class="tiny">
+        Nota: su telefono l’audio parte solo dopo un tocco. È normale.
+      </p>
+    </div>
 
-      localStorage.setItem(LS_TRACK, file);
+    <!-- OROLOGIO + METEO -->
+    <div class="panel">
+      <div class="chips">
+        <span class="chip">🕒 <span id="clock">--:--:--</span></span>
+        <span class="chip">📍 <span id="place">Brancaleone</span></span>
+        <span class="chip">🌦️ <span id="meteo">Carico…</span></span>
+      </div>
 
-      if (autoplay) {
-        player.play().then(() => {
-          btnPlay.textContent = "⏸ Pausa musica";
-        }).catch(() => {
-          // se il browser blocca autoplay, ok: l'utente preme play
-          btnPlay.textContent = "▶️ Avvia musica";
-        });
-      }
-    }
+      <div class="row" style="margin-top:14px">
+        <button class="btn" onclick="weather('brancaleone')">Brancaleone</button>
+        <button class="btn" onclick="weather('galbiate')">Galbiate</button>
+      </div>
 
-    function setVolume(v){
-      const val = Math.max(0, Math.min(100, v));
-      player.volume = val / 100;
-      vol.value = String(val);
-      localStorage.setItem(LS_VOL, String(val));
-    }
+      <p class="tiny">
+        Meteo live (Open-Meteo). Nessuna chiave, nessun account.
+      </p>
+    </div>
 
-    // Ripristino impostazioni salvate
-    const savedTrack = localStorage.getItem(LS_TRACK);
-    const savedVol   = localStorage.getItem(LS_VOL);
+  </div>
 
-    if (savedVol) setVolume(parseInt(savedVol, 10));
-    else setVolume(70);
+  <audio id="audio"></audio>
 
-    if (savedTrack) {
-      // se l'opzione esiste nel select, selezionala
-      const opt = Array.from(trackSel.options).find(o => o.value === savedTrack);
-      if (opt) trackSel.value = savedTrack;
-      setTrack(trackSel.value, false);
-    } else {
-      setTrack(trackSel.value, false);
-    }
+</div>
+</div>
 
-    // Pulsante Play/Pausa
-    btnPlay.addEventListener("click", async () => {
-      if (player.paused) {
-        try {
-          await player.play();
-          btnPlay.textContent = "⏸ Pausa musica";
-        } catch (e) {
-          alert("Il browser sta bloccando l'audio. Riprova dopo un tap sulla pagina.");
-        }
-      } else {
-        player.pause();
-        btnPlay.textContent = "▶️ Avvia musica";
-      }
-    });
+<script>
+/* ===== AUDIO ===== */
+const audio=document.getElementById("audio");
+const play=document.getElementById("play");
+const next=document.getElementById("next");
+const track=document.getElementById("track");
+const vol=document.getElementById("vol");
+const CACHE="v=9";
 
-    // Cambio brano da menu
-    trackSel.addEventListener("change", () => {
-      const wasPlaying = !player.paused;
-      setTrack(trackSel.value, wasPlaying);
-    });
+function setTrack(f,auto=false){
+  audio.src=f+"?"+CACHE;
+  audio.loop=true;
+  localStorage.setItem("track",f);
+  if(auto) audio.play().then(()=>play.textContent="⏸ Pausa musica");
+}
+function setVol(v){
+  audio.volume=v/100;
+  localStorage.setItem("vol",v);
+}
+play.onclick=async()=>{
+  if(audio.paused){
+    await audio.play();
+    play.textContent="⏸ Pausa musica";
+  }else{
+    audio.pause();
+    play.textContent="▶️ Avvia musica";
+  }
+}
+next.onclick=()=>{
+  track.selectedIndex=(track.selectedIndex+1)%track.options.length;
+  setTrack(track.value,!audio.paused);
+}
+track.onchange=()=>setTrack(track.value,!audio.paused);
+vol.oninput=()=>setVol(vol.value);
 
-    // Prossimo brano
-    btnNext.addEventListener("click", () => {
-      const idx = trackSel.selectedIndex;
-      const next = (idx + 1) % trackSel.options.length;
-      trackSel.selectedIndex = next;
-      const wasPlaying = !player.paused;
-      setTrack(trackSel.value, wasPlaying);
-    });
+setVol(localStorage.getItem("vol")||70);
+setTrack(localStorage.getItem("track")||track.value,false);
 
-    // Volume
-    vol.addEventListener("input", () => setVolume(parseInt(vol.value, 10)));
-  </script>
+/* ===== OROLOGIO ===== */
+setInterval(()=>{
+  const d=new Date();
+  clock.textContent=d.toLocaleTimeString("it-IT");
+},1000);
+
+/* ===== METEO ===== */
+const locs={
+  brancaleone:{n:"Brancaleone",lat:37.96,lon:16.10},
+  galbiate:{n:"Galbiate",lat:45.82,lon:9.38}
+};
+async function weather(k){
+  const l=locs[k];
+  place.textContent=l.n;
+  meteo.textContent="Carico…";
+  try{
+    const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${l.lat}&longitude=${l.lon}&current=temperature_2m&timezone=auto`);
+    const j=await r.json();
+    meteo.textContent=Math.round(j.current.temperature_2m)+"°C";
+  }catch{meteo.textContent="N/D"}
+}
+weather("brancaleone");
+</script>
+
 </body>
 </html>
