@@ -1,47 +1,358 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>La mia pagina</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Maestro Franco</title>
 
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
+    :root{
+      --card: rgba(0,0,0,.55);
+      --txt: #fff;
+      --muted: rgba(255,255,255,.75);
+      --btn: rgba(255,255,255,.14);
+      --btn2: rgba(255,255,255,.22);
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 22px;
     }
 
-    .contenuto {
-      z-index: 1;
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      min-height:100vh;
+      color: var(--txt);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x:hidden;
+      background:#000;
     }
 
-    audio {
-      display: none;
+    /* Sfondo full */
+    .bg{
+      position:fixed;
+      inset:0;
+      background:
+        linear-gradient(to bottom, rgba(0,0,0,.65), rgba(0,0,0,.55)),
+        url("sfondo-brancaleone.jpg") center/cover no-repeat;
+      filter: saturate(1.05);
+      transform: scale(1.02);
+    }
+
+    /* Contenuto */
+    .wrap{
+      position:relative;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 28px 16px;
+    }
+
+    .card{
+      width:min(920px, 100%);
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(10px);
+    }
+
+    .top{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+
+    .title{
+      line-height:1.05;
+      margin:0;
+      font-size: clamp(26px, 3.6vw, 44px);
+      letter-spacing:.2px;
+    }
+
+    .subtitle{
+      margin:10px 0 0 0;
+      color: var(--muted);
+      font-size: clamp(14px, 1.7vw, 18px);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      margin-top:18px;
+    }
+
+    @media (max-width: 820px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 16px;
+    }
+
+    .row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid rgba(255,255,255,.18);
+      background: var(--btn);
+      color: var(--txt);
+      padding: 12px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight:600;
+      transition: .2s transform, .2s background;
+      user-select:none;
+    }
+    .btn:hover{ background: var(--btn2); transform: translateY(-1px); }
+    .btn:active{ transform: translateY(0); }
+
+    select{
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.35);
+      color: var(--txt);
+      font-weight:600;
+      outline:none;
+      min-width: 220px;
+    }
+
+    input[type="range"]{
+      width: 240px;
+      max-width: 100%;
+    }
+
+    .chips{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .avatars{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:flex-end;
+    }
+
+    .avatar{
+      width: 74px;
+      height: 74px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.08);
+      object-fit: cover;
+      box-shadow: 0 14px 35px rgba(0,0,0,.35);
+    }
+
+    .links a{
+      color: #fff;
+      text-decoration:none;
+      border-bottom:1px dashed rgba(255,255,255,.35);
+    }
+    .links a:hover{ border-bottom-color:#fff; }
+
+    .tiny{
+      margin: 10px 0 0 0;
+      color: rgba(255,255,255,.7);
+      font-size: 12px;
+      line-height:1.35;
     }
   </style>
 </head>
 
 <body>
+  <div class="bg" aria-hidden="true"></div>
 
-  <div class="contenuto">
-    <h1>Benvenuto</h1>
-    <p>Ascolta. Il resto arriva da sé.</p>
+  <div class="wrap">
+    <div class="card">
+      <div class="top">
+        <div>
+          <h1 class="title">Benvenuto</h1>
+          <p class="subtitle">Ascolta. Il resto arriva da sé.</p>
+        </div>
+
+        <div class="avatars">
+          <img class="avatar" src="franco.png" alt="Franco">
+          <img class="avatar" src="luma.png" alt="Luma">
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="panel">
+          <div class="row">
+            <button id="btnPlay" class="btn">▶️ Avvia musica</button>
+
+            <label style="display:flex;align-items:center;gap:10px;color:var(--muted);font-weight:600;">
+              Volume
+              <input id="vol" type="range" min="0" max="100" value="70">
+            </label>
+          </div>
+
+          <div class="row" style="margin-top:14px;">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+              <span style="color:var(--muted);font-weight:700;">Brano</span>
+              <select id="track">
+                <option value="brano1_v2.mp3">Brano 1</option>
+                <option value="brano2.mp3">Brano 2</option>
+                <option value="brano3.mp3">Brano 3</option>
+              </select>
+              <button id="btnNext" class="btn">⏭️ Prossimo</button>
+            </div>
+
+            <div class="chips">
+              <span class="chip">✅ Mobile-safe</span>
+              <span class="chip">✅ Niente cache drama</span>
+              <span class="chip">✅ Ricorda impostazioni</span>
+            </div>
+          </div>
+
+          <p class="tiny">
+            Nota: su telefono la musica non può partire “da sola”. È una regola del browser.
+            Per questo c’è il pulsante: un tocco e parte sempre.
+          </p>
+        </div>
+
+        <div class="panel links">
+          <h2 style="margin:0 0 10px 0;font-size:18px;">Collegamenti</h2>
+          <p style="margin:0 0 8px 0;color:var(--muted);">
+            Metti qui i tuoi bottoni, senza riscrivere mezzo mondo.
+          </p>
+
+          <div class="chips">
+            <span class="chip">🎬 <a href="#" onclick="alert('Metti qui il tuo link');return false;">YouTube</a></span>
+            <span class="chip">🧠 <a href="#" onclick="alert('Metti qui il tuo link');return false;">Progetti</a></span>
+            <span class="chip">📌 <a href="#" onclick="alert('Metti qui il tuo link');return false;">Contatti</a></span>
+          </div>
+
+          <p class="tiny">
+            Vuoi che i pulsanti portino a vere pagine/QR/Canva? Me lo dici e li mettiamo puliti.
+          </p>
+        </div>
+      </div>
+
+      <!-- AUDIO -->
+      <audio id="player" preload="auto"></audio>
+    </div>
   </div>
 
-  <!-- AUDIO DI SOTTOFONDO -->
-  <audio autoplay loop>
-    <source src="brano1_v2.mp3?v=3
-" type="audio/mpeg">
-    Il tuo browser non supporta l'audio.
-  </audio>
+  <script>
+    // === CONFIG ===
+    // Cache-busting automatico: cambia numero quando cambi file e vuoi forzare refresh.
+    const CACHE_BUST = "v=7";
 
+    const player = document.getElementById("player");
+    const btnPlay = document.getElementById("btnPlay");
+    const btnNext = document.getElementById("btnNext");
+    const trackSel = document.getElementById("track");
+    const vol = document.getElementById("vol");
+
+    const LS_TRACK = "mf_track";
+    const LS_VOL   = "mf_vol";
+
+    function withBust(file){
+      // evita incasini: se già c'è un ? lo gestiamo
+      const sep = file.includes("?") ? "&" : "?";
+      return file + sep + CACHE_BUST;
+    }
+
+    function setTrack(file, autoplay=false){
+      player.src = withBust(file);
+      player.loop = true;
+
+      localStorage.setItem(LS_TRACK, file);
+
+      if (autoplay) {
+        player.play().then(() => {
+          btnPlay.textContent = "⏸ Pausa musica";
+        }).catch(() => {
+          // se il browser blocca autoplay, ok: l'utente preme play
+          btnPlay.textContent = "▶️ Avvia musica";
+        });
+      }
+    }
+
+    function setVolume(v){
+      const val = Math.max(0, Math.min(100, v));
+      player.volume = val / 100;
+      vol.value = String(val);
+      localStorage.setItem(LS_VOL, String(val));
+    }
+
+    // Ripristino impostazioni salvate
+    const savedTrack = localStorage.getItem(LS_TRACK);
+    const savedVol   = localStorage.getItem(LS_VOL);
+
+    if (savedVol) setVolume(parseInt(savedVol, 10));
+    else setVolume(70);
+
+    if (savedTrack) {
+      // se l'opzione esiste nel select, selezionala
+      const opt = Array.from(trackSel.options).find(o => o.value === savedTrack);
+      if (opt) trackSel.value = savedTrack;
+      setTrack(trackSel.value, false);
+    } else {
+      setTrack(trackSel.value, false);
+    }
+
+    // Pulsante Play/Pausa
+    btnPlay.addEventListener("click", async () => {
+      if (player.paused) {
+        try {
+          await player.play();
+          btnPlay.textContent = "⏸ Pausa musica";
+        } catch (e) {
+          alert("Il browser sta bloccando l'audio. Riprova dopo un tap sulla pagina.");
+        }
+      } else {
+        player.pause();
+        btnPlay.textContent = "▶️ Avvia musica";
+      }
+    });
+
+    // Cambio brano da menu
+    trackSel.addEventListener("change", () => {
+      const wasPlaying = !player.paused;
+      setTrack(trackSel.value, wasPlaying);
+    });
+
+    // Prossimo brano
+    btnNext.addEventListener("click", () => {
+      const idx = trackSel.selectedIndex;
+      const next = (idx + 1) % trackSel.options.length;
+      trackSel.selectedIndex = next;
+      const wasPlaying = !player.paused;
+      setTrack(trackSel.value, wasPlaying);
+    });
+
+    // Volume
+    vol.addEventListener("input", () => setVolume(parseInt(vol.value, 10)));
+  </script>
 </body>
 </html>
-
