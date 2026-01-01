@@ -405,7 +405,10 @@
 
     // ====== MUSICA ======
     // Cambia qui se vuoi un altro file: brano2.mp3 / brano3.mp3
-    const audio = new Audio("brano1.mp3");
+    const audio = new Audio(<audio autoplay loop>
+  <source src="brano1_v2.mp3" type="audio/mpeg">
+</audio>
+);
     audio.loop = true;
     audio.volume = 0.22;
 
@@ -465,3 +468,4 @@
   </script>
 </body>
 </html>
+
