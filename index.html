@@ -1,611 +1,196 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0b0f14" />
-  <title>Franco Ficara — Digital</title>
-  <meta name="description" content="Franco Ficara — progetti digitali, musica, didattica e creatività." />
-  <style>
-    :root{
-      --bg:#070a0e;
-      --panel: rgba(18, 22, 28, .72);
-      --panel2: rgba(18, 22, 28, .50);
-      --stroke: rgba(255,255,255,.10);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.68);
-      --muted2: rgba(255,255,255,.52);
-      --brand: #59a9ff;
-      --ok:#5ef2a7;
-      --warn:#ffd36a;
-      --bad:#ff6a6a;
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
-      --radius: 22px;
-      --radius2: 16px;
-      --max: 1100px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text);
-      background:
-        radial-gradient(1200px 800px at 20% 10%, rgba(89,169,255,.16), transparent 55%),
-        radial-gradient(900px 650px at 90% 20%, rgba(94,242,167,.10), transparent 52%),
-        radial-gradient(900px 650px at 55% 100%, rgba(255,211,106,.09), transparent 55%),
-        var(--bg);
-      overflow-x:hidden;
-    }
-    a{color:inherit}
-    .bg{
-      position:fixed; inset:0;
-      background: center/cover no-repeat;
-      filter: saturate(1.05) contrast(1.05) brightness(.78);
-      transform: scale(1.04);
-      z-index:-2;
-      opacity:.9;
-    }
-    .bg::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(to bottom, rgba(7,10,14,.72), rgba(7,10,14,.72));
-      z-index: -1;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Franco Ficara</title>
 
-    /* Header */
-    .topbar{
-      position:sticky; top:0;
-      z-index:50;
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      background: rgba(7,10,14,.55);
-      border-bottom: 1px solid var(--stroke);
-    }
-    .topbar-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:14px 18px;
-      display:flex; align-items:center; justify-content:space-between;
-      gap:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      text-decoration:none;
-    }
-    .avatar{
-      width:44px; height:44px; border-radius:14px;
-      background: center/cover no-repeat;
-      border:1px solid var(--stroke);
-      box-shadow: 0 10px 26px rgba(0,0,0,.35);
-    }
-    .brand-title{
-      display:flex; flex-direction:column; line-height:1.05;
-    }
-    .brand-title b{font-size:15px; letter-spacing:.2px}
-    .brand-title span{font-size:12px; color:var(--muted2)}
-    .nav{
-      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
-    }
-    .pill{
-      font-size:13px;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
-      text-decoration:none;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      user-select:none;
-    }
-    .pill:hover{transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.16)}
-    .pill.primary{background: rgba(89,169,255,.14); border-color: rgba(89,169,255,.35)}
-    .pill.primary:hover{background: rgba(89,169,255,.18)}
-    .pill.ok{background: rgba(94,242,167,.12); border-color: rgba(94,242,167,.32)}
-    .pill.warn{background: rgba(255,211,106,.12); border-color: rgba(255,211,106,.32)}
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;
+  background:#0b0f14;
+  color:#eaeef3;
+}
+a{color:inherit;text-decoration:none}
 
-    /* Layout */
-    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 90px;}
-    .grid{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:18px;
-    }
-    @media (max-width: 980px){
-      .grid{grid-template-columns: 1fr; }
-      .nav{justify-content:flex-start}
-    }
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 32px;
+  background:rgba(10,14,20,.85);
+  backdrop-filter:blur(10px);
+  position:sticky;
+  top:0;
+}
 
-    .card{
-      background: var(--panel);
-      border:1px solid var(--stroke);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .card .in{padding:18px 18px;}
-    .card.soft{background: var(--panel2)}
-    .title{
-      font-size:34px; margin:0 0 6px;
-      letter-spacing:.2px;
-    }
-    .subtitle{
-      margin:0 0 14px;
-      color:var(--muted);
-      font-size:15px;
-    }
-    .kpis{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
-    .kpi{
-      display:flex; align-items:center; gap:8px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
-      color:var(--muted);
-      font-size:13px;
-    }
-    .dot{width:8px;height:8px;border-radius:50%}
-    .dot.ok{background:var(--ok)}
-    .dot.brand{background:var(--brand)}
-    .dot.warn{background:var(--warn)}
-    .sep{height:1px;background:var(--stroke); margin:14px 0}
+header .brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:600;
+}
 
-    /* Sections */
-    h2{margin:0 0 8px; font-size:18px}
-    p{margin:0 0 10px; color:var(--muted); line-height:1.55}
+header img{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+}
 
-    .two{
-      display:grid; grid-template-columns: 1fr 1fr; gap:12px;
-    }
-    @media (max-width: 650px){ .two{grid-template-columns:1fr} }
+nav a{
+  margin-left:12px;
+  padding:8px 14px;
+  border-radius:999px;
+  background:#1a2330;
+  font-size:14px;
+}
+nav a:hover{background:#263246}
 
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:8px;
-      padding:10px 12px;
-      border-radius: 12px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.07);
-      color: var(--text);
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      user-select:none;
-      text-decoration:none;
-      font-size:13px;
-    }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.16)}
-    .btn.primary{background: rgba(89,169,255,.16); border-color: rgba(89,169,255,.35)}
-    .btn.primary:hover{background: rgba(89,169,255,.20)}
-    .btn.ghost{background: transparent}
-    .btn.small{padding:8px 10px; border-radius: 999px}
+.hero{
+  min-height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+  background:url("sfondo.jpg") center/cover no-repeat;
+}
 
-    /* Music */
-    .player{
-      display:flex; flex-direction:column; gap:10px;
-    }
-    .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .range{
-      width: 100%;
-      accent-color: var(--brand);
-    }
-    select{
-      padding:10px 12px;
-      border-radius:12px;
-      border:1px solid var(--stroke);
-      background: rgba(10,12,16,.45);
-      color: var(--text);
-      outline:none;
-      min-width: 180px;
-    }
-    .hint{font-size:12px; color:var(--muted2); line-height:1.4}
+.card{
+  max-width:900px;
+  width:100%;
+  background:rgba(15,20,30,.78);
+  backdrop-filter:blur(12px);
+  border-radius:20px;
+  padding:32px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
 
-    /* Project list */
-    .list{display:flex; flex-direction:column; gap:10px}
-    .item{
-      padding:12px 12px;
-      border-radius: 16px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
-      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
-    }
-    .item b{font-size:14px}
-    .item span{display:block; color:var(--muted2); font-size:12px; margin-top:2px}
-    .item .actions{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+}
 
-    /* Clock & Weather */
-    .chips{display:flex; gap:10px; flex-wrap:wrap}
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
-      font-size:13px;
-      color:var(--muted);
-    }
-    .chip b{color:var(--text); font-weight:600}
-    .city-btns{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .mini{
-      width:32px; height:32px; border-radius:10px;
-      background:center/cover no-repeat;
-      border:1px solid var(--stroke);
-    }
-    .footer{
-      margin-top:18px;
-      padding:18px;
-      border-top:1px solid var(--stroke);
-      color:var(--muted2);
-      font-size:12px;
-      text-align:center;
-    }
-  </style>
+h1{font-size:36px;margin-bottom:10px}
+p{line-height:1.6;color:#cfd6e0}
+
+.section{
+  background:rgba(255,255,255,.05);
+  border-radius:16px;
+  padding:20px;
+}
+
+.badges span{
+  display:inline-block;
+  background:#1e293b;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:13px;
+  margin-right:6px;
+  margin-top:6px;
+}
+
+.cta{
+  margin-top:20px;
+}
+.cta a{
+  display:inline-block;
+  margin-right:10px;
+  padding:12px 18px;
+  border-radius:12px;
+  background:#2563eb;
+  font-weight:600;
+}
+.cta a.secondary{
+  background:#1e293b;
+}
+
+.identita{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-top:12px;
+}
+
+.identita img{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+}
+
+footer{
+  text-align:center;
+  padding:30px;
+  color:#9aa4b2;
+  font-size:14px;
+}
+
+@media(max-width:800px){
+  .grid{grid-template-columns:1fr}
+  h1{font-size:28px}
+}
+</style>
 </head>
 
 <body>
-  <!-- ===== CONFIG SEMPLICE (modifica SOLO qui) ===== -->
-  <script>
-    const CONFIG = {
-      // immagini già nel repo (stessi nomi dei file)
-      backgroundImage: "sfondo-brancaleone.jpg",
-      avatarImage: "franco.png",
-      sidekickImage: "luma.png",
 
-      // link bottoni top
-      links: [
-        { label: "YouTube", url: "https://www.youtube.com/", style: "primary" },
-        { label: "Progetti", url: "#progetti", style: "" },
-        { label: "Musica", url: "#musica", style: "" },
-        { label: "Contatti", url: "#contatti", style: "ok" }
-      ],
+<header>
+  <div class="brand">
+    <img src="franco.jpg" alt="Franco Ficara">
+    <div>Franco Ficara<br><small style="color:#9aa4b2">Digitale · Scuola · Musica</small></div>
+  </div>
+  <nav>
+    <a href="https://www.youtube.com/@MaestroFrancoOfficial" target="_blank">YouTube</a>
+  </nav>
+</header>
 
-      // brani (file già nel repo)
-      tracks: [
-        { label: "Brano 1", file: "brano1_v2.mp3" },
-        { label: "Brano 2", file: "brano2.mp3" },
-        { label: "Brano 3", file: "brano3.mp3" }
-      ],
+<section class="hero">
+  <div class="card">
+    <h1>Benvenuto</h1>
+    <p>
+      Qui raccolgo ciò che costruisco: didattica, musica e progetti digitali.
+      Un piede nella scuola, uno nel futuro. Il resto arriva da sé.
+    </p>
 
-      // città per meteo (Open-Meteo)
-      cities: {
-        "Brancaleone": { lat: 37.95, lon: 16.10 },
-        "Galbiate":    { lat: 45.82, lon: 9.37 }
-      },
-
-      // testo pagina
-      heroTitle: "Benvenuto",
-      heroSubtitle: "Qui metto ordine nel caos: progetti, musica e didattica. Il resto arriva da sé.",
-      aboutText:
-        "Sono Franco Ficara. Insegno, sperimento e costruisco cose digitali che funzionano davvero. " +
-        "Poche chiacchiere, tanta sostanza: strumenti, creatività e un pizzico di ironia calabrese.",
-      contactEmail: "francoficara1@gmail.com"
-    };
-  </script>
-  <!-- =============================================== -->
-
-  <div class="bg" id="bg"></div>
-
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="#top">
-        <div class="avatar" id="avatar"></div>
-        <div class="brand-title">
-          <b>Franco Ficara</b>
-          <span>Digital • Progetti • Musica</span>
-        </div>
-      </a>
-
-      <nav class="nav" id="nav"></nav>
+    <div class="badges">
+      <span>Maestro Franco</span>
+      <span>Luma</span>
+      <span>Progetti reali</span>
     </div>
-  </header>
 
-  <main class="wrap" id="top">
-    <section class="grid">
-      <!-- LEFT: Hero + About + Projects -->
-      <div class="card">
-        <div class="in">
-          <h1 class="title" id="heroTitle">Benvenuto</h1>
-          <p class="subtitle" id="heroSubtitle"></p>
+    <div class="grid" style="margin-top:24px">
 
-          <div class="kpis">
-            <div class="kpi"><span class="dot ok"></span><span>Dominio attivo</span></div>
-            <div class="kpi"><span class="dot brand"></span><span>GitHub Pages</span></div>
-            <div class="kpi"><span class="dot warn"></span><span>Niente rogne</span></div>
-          </div>
-
-          <div class="sep"></div>
-
-          <div class="two" id="chi-sono">
-            <div class="card soft">
-              <div class="in">
-                <h2>Chi sono</h2>
-                <p id="aboutText"></p>
-                <div class="row" style="margin-top:10px">
-                  <a class="btn primary" href="#progetti">Vai ai progetti</a>
-                  <a class="btn" href="#musica">Ascolta musica</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="card soft">
-              <div class="in">
-                <h2>Identità</h2>
-                <p>Tradizione davanti, futuro dietro le quinte. Un piede a scuola, uno nel digitale.</p>
-                <div class="row" style="margin-top:10px">
-                  <div class="mini" id="meMini" title="Franco"></div>
-                  <div class="mini" id="sideMini" title="Luma"></div>
-                  <span class="hint">Immagini prese dal tuo repo. Nessun upload extra.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="sep"></div>
-
-          <div id="progetti">
-            <h2>Progetti</h2>
-            <p>Metti qui i link veri: Canva, QR, pagine, repository, video. Niente fumo: solo cose cliccabili.</p>
-
-            <div class="list" id="projectsList"></div>
-
-            <div class="hint" style="margin-top:10px">
-              Tip: vuoi aggiungere un progetto? Lo fai in alto nel CONFIG (sezione “projects” la aggiungo al volo quando vuoi).
-            </div>
-          </div>
-
-          <div class="footer">
-            © <span id="year"></span> Franco Ficara — costruito con calma, non con panico.
-          </div>
+      <div class="section">
+        <h3>Chi sono</h3>
+        <p>
+          Sono Franco Ficara. Insegno, sperimento e creo strumenti digitali
+          che funzionano davvero. Poca scena, molta sostanza.
+        </p>
+        <div class="cta">
+          <a href="https://www.youtube.com/@MaestroFrancoOfficial" target="_blank">Vai al canale</a>
         </div>
       </div>
 
-      <!-- RIGHT: Music + Clock/Weather + Contacts -->
-      <aside class="card">
-        <div class="in">
-
-          <div id="musica">
-            <h2>Musica</h2>
-            <p class="subtitle" style="margin-bottom:10px">
-              Su telefono l’audio parte solo dopo un tocco. È una regola del browser, non una tua colpa.
-            </p>
-
-            <div class="player">
-              <div class="row">
-                <button class="btn primary" id="btnPlay">▶ Avvia</button>
-                <button class="btn" id="btnPause">⏸ Pausa</button>
-                <button class="btn" id="btnNext">⏭ Prossimo</button>
-              </div>
-
-              <div class="row">
-                <label style="min-width:72px;color:var(--muted);font-size:13px">Brano</label>
-                <select id="trackSelect"></select>
-              </div>
-
-              <div class="row">
-                <label style="min-width:72px;color:var(--muted);font-size:13px">Volume</label>
-                <input class="range" id="volume" type="range" min="0" max="1" step="0.01" />
-              </div>
-
-              <div class="hint" id="trackHint"></div>
-
-              <audio id="audio" preload="none"></audio>
-            </div>
-          </div>
-
-          <div class="sep"></div>
-
-          <div>
-            <h2>Orologio & Meteo</h2>
-            <div class="chips">
-              <div class="chip">🕒 <b id="clock">--:--:--</b></div>
-              <div class="chip">📍 <b id="cityName">Brancaleone</b></div>
-              <div class="chip">🌡️ <b id="temp">--</b></div>
-            </div>
-
-            <div class="city-btns" id="cityBtns"></div>
-            <p class="hint" style="margin-top:10px">
-              Meteo live (Open-Meteo). Nessuna chiave, nessun account, zero rogne.
-            </p>
-          </div>
-
-          <div class="sep"></div>
-
-          <div id="contatti">
-            <h2>Contatti</h2>
-            <p>Se mi vuoi scrivere, fallo semplice: una mail e via. Niente form che si rompono.</p>
-            <div class="row">
-              <a class="btn ok" id="mailBtn" href="#">✉️ Email</a>
-              <a class="btn ghost" href="https://blob59.github.io/" target="_blank" rel="noreferrer">🔗 Versione GitHub</a>
-            </div>
-            <p class="hint" style="margin-top:10px">
-              Vuoi aggiungere WhatsApp/Instagram? Dimmi i link e li metto puliti.
-            </p>
-          </div>
-
+      <div class="section">
+        <h3>Identità</h3>
+        <p>
+          Tradizione davanti, futuro dietro le quinte.
+          Tecnologia usata con criterio, ironia quanto basta.
+        </p>
+        <div class="identita">
+          <img src="franco.jpg" alt="Franco">
+          <img src="luma.png" alt="Luma">
         </div>
-      </aside>
-    </section>
-  </main>
+      </div>
 
-  <script>
-    // ===== init visuals
-    const bg = document.getElementById("bg");
-    const avatar = document.getElementById("avatar");
-    const meMini = document.getElementById("meMini");
-    const sideMini = document.getElementById("sideMini");
+    </div>
+  </div>
+</section>
 
-    bg.style.backgroundImage = `url('${CONFIG.backgroundImage}')`;
-    avatar.style.backgroundImage = `url('${CONFIG.avatarImage}')`;
-    meMini.style.backgroundImage = `url('${CONFIG.avatarImage}')`;
-    sideMini.style.backgroundImage = `url('${CONFIG.sidekickImage}')`;
+<footer>
+  © Franco Ficara — Tutti i diritti riservati
+</footer>
 
-    document.getElementById("heroTitle").textContent = CONFIG.heroTitle;
-    document.getElementById("heroSubtitle").textContent = CONFIG.heroSubtitle;
-    document.getElementById("aboutText").textContent = CONFIG.aboutText;
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // ===== nav
-    const nav = document.getElementById("nav");
-    CONFIG.links.forEach(l => {
-      const a = document.createElement("a");
-      a.className = `pill ${l.style || ""}`.trim();
-      a.href = l.url;
-      a.textContent = l.label;
-      if (l.url.startsWith("http")) { a.target="_blank"; a.rel="noreferrer"; }
-      nav.appendChild(a);
-    });
-
-    // ===== projects (edit here if you want, or tell me i link e te lo preparo)
-    const projects = [
-      { title: "Maestro Franco Official", desc: "Home principale — musica, meteo, accesso rapido.", url: "https://francoficara.com" },
-      { title: "GitHub Pages", desc: "Repository e pubblicazione.", url: "https://github.com/blob59/blob59.github.io" },
-      { title: "Canva (aggiungi il link)", desc: "Presentazioni, video, materiali.", url: "#" }
-    ];
-    const projectsList = document.getElementById("projectsList");
-    projects.forEach(p=>{
-      const div = document.createElement("div");
-      div.className = "item";
-      div.innerHTML = `
-        <div>
-          <b>${escapeHtml(p.title)}</b>
-          <span>${escapeHtml(p.desc)}</span>
-        </div>
-        <div class="actions">
-          <a class="btn small primary" href="${p.url}" ${p.url.startsWith("http") ? 'target="_blank" rel="noreferrer"' : ''}>Apri</a>
-        </div>
-      `;
-      projectsList.appendChild(div);
-    });
-
-    function escapeHtml(str){
-      return String(str).replace(/[&<>"']/g, m => ({
-        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-      }[m]));
-    }
-
-    // ===== mail
-    const mailBtn = document.getElementById("mailBtn");
-    mailBtn.href = `mailto:${CONFIG.contactEmail}?subject=${encodeURIComponent("Ciao Franco")}`;
-
-    // ===== music
-    const audio = document.getElementById("audio");
-    const btnPlay = document.getElementById("btnPlay");
-    const btnPause = document.getElementById("btnPause");
-    const btnNext = document.getElementById("btnNext");
-    const volume = document.getElementById("volume");
-    const trackSelect = document.getElementById("trackSelect");
-    const trackHint = document.getElementById("trackHint");
-
-    // restore settings
-    const saved = JSON.parse(localStorage.getItem("ff_settings") || "{}");
-    let trackIndex = Number.isFinite(saved.trackIndex) ? saved.trackIndex : 0;
-    let vol = (typeof saved.volume === "number") ? saved.volume : 0.65;
-
-    volume.value = String(vol);
-    audio.volume = vol;
-
-    CONFIG.tracks.forEach((t, idx)=>{
-      const opt = document.createElement("option");
-      opt.value = String(idx);
-      opt.textContent = t.label;
-      trackSelect.appendChild(opt);
-    });
-    trackSelect.value = String(trackIndex);
-
-    function setTrack(i){
-      trackIndex = (i + CONFIG.tracks.length) % CONFIG.tracks.length;
-      trackSelect.value = String(trackIndex);
-
-      // cache-bust leggero (evita "sento quello vecchio")
-      const file = CONFIG.tracks[trackIndex].file;
-      audio.src = `${file}?v=${Date.now()}`;
-      trackHint.textContent = `File: ${file}`;
-      saveSettings();
-    }
-    function saveSettings(){
-      localStorage.setItem("ff_settings", JSON.stringify({
-        trackIndex,
-        volume: audio.volume
-      }));
-    }
-
-    setTrack(trackIndex);
-
-    btnPlay.addEventListener("click", async ()=>{
-      try{
-        if(!audio.src) setTrack(trackIndex);
-        await audio.play();
-      }catch(e){
-        alert("Su alcuni browser serve un altro tocco per avviare l’audio. Riprova.");
-      }
-    });
-    btnPause.addEventListener("click", ()=> audio.pause());
-    btnNext.addEventListener("click", ()=>{
-      setTrack(trackIndex+1);
-      audio.play().catch(()=>{});
-    });
-
-    trackSelect.addEventListener("change", ()=>{
-      setTrack(parseInt(trackSelect.value,10));
-      audio.play().catch(()=>{});
-    });
-    volume.addEventListener("input", ()=>{
-      audio.volume = parseFloat(volume.value);
-      saveSettings();
-    });
-
-    // ===== clock
-    const clockEl = document.getElementById("clock");
-    function tick(){
-      const d = new Date();
-      const hh = String(d.getHours()).padStart(2,"0");
-      const mm = String(d.getMinutes()).padStart(2,"0");
-      const ss = String(d.getSeconds()).padStart(2,"0");
-      clockEl.textContent = `${hh}:${mm}:${ss}`;
-    }
-    tick(); setInterval(tick, 1000);
-
-    // ===== weather
-    const cityNameEl = document.getElementById("cityName");
-    const tempEl = document.getElementById("temp");
-    const cityBtns = document.getElementById("cityBtns");
-
-    const savedCity = (saved.city && CONFIG.cities[saved.city]) ? saved.city : Object.keys(CONFIG.cities)[0];
-    let currentCity = savedCity;
-
-    Object.keys(CONFIG.cities).forEach(name=>{
-      const b = document.createElement("button");
-      b.className = "btn";
-      b.textContent = name;
-      b.addEventListener("click", ()=>{
-        currentCity = name;
-        localStorage.setItem("ff_settings", JSON.stringify({
-          ...JSON.parse(localStorage.getItem("ff_settings")||"{}"),
-          city: currentCity
-        }));
-        cityNameEl.textContent = currentCity;
-        loadWeather();
-      });
-      cityBtns.appendChild(b);
-    });
-
-    cityNameEl.textContent = currentCity;
-
-    async function loadWeather(){
-      try{
-        const {lat, lon} = CONFIG.cities[currentCity];
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m&timezone=auto`;
-        const r = await fetch(url, { cache: "no-store" });
-        const j = await r.json();
-        const t = j?.current?.temperature_2m;
-        if(typeof t === "number"){
-          tempEl.textContent = `${Math.round(t)}°C`;
-        }else{
-          tempEl.textContent = "--";
-        }
-      }catch(e){
-        tempEl.textContent = "--";
-      }
-    }
-    loadWeather();
-    setInterval(loadWeather, 10 * 60 * 1000); // ogni 10 min
-  </script>
 </body>
 </html>
