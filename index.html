@@ -35,6 +35,7 @@
       overflow-x:hidden;
     }
 
+    /* BACKGROUND: non deve MAI bloccare i click */
     .bg{
       position:fixed; inset:0;
       background:
@@ -48,16 +49,20 @@
       filter: saturate(1.1) contrast(1.05);
       transform: scale(1.02);
       z-index:-2;
+      pointer-events:none;
     }
     .vignette{
       position:fixed; inset:0;
       background: radial-gradient(circle at 50% 35%, rgba(0,0,0,.00), rgba(0,0,0,.55) 75%, rgba(0,0,0,.75) 100%);
       z-index:-1;
+      pointer-events:none;
     }
 
     .wrap{
       width:min(var(--max), 92vw);
       margin: 26px auto 70px;
+      position:relative;
+      z-index:1;
     }
 
     header{
@@ -74,6 +79,7 @@
       position: sticky;
       top: 14px;
       z-index: 10;
+      pointer-events:auto;
     }
 
     .brand{
@@ -89,21 +95,9 @@
       box-shadow: 0 8px 18px rgba(0,0,0,.35);
       flex: 0 0 auto;
     }
-    .avatar img{
-      width:100%; height:100%; object-fit:cover;
-      display:block;
-    }
-    .brand h1{
-      margin:0;
-      font-size: 15px;
-      letter-spacing:.2px;
-      line-height: 1.1;
-    }
-    .brand .sub{
-      margin-top:2px;
-      font-size: 12px;
-      color: var(--muted);
-    }
+    .avatar img{width:100%; height:100%; object-fit:cover; display:block}
+    .brand h1{margin:0; font-size: 15px; letter-spacing:.2px; line-height: 1.1}
+    .brand .sub{margin-top:2px; font-size: 12px; color: var(--muted)}
 
     nav{
       display:flex;
@@ -125,6 +119,7 @@
       cursor:pointer;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
       user-select:none;
+      pointer-events:auto;
     }
     .pill:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.14); background: rgba(255,255,255,.08); }
     .pill.primary{
@@ -143,11 +138,7 @@
       overflow:hidden;
     }
     .hero-inner{ padding: 26px 22px; }
-    .title{
-      margin:0;
-      font-size: clamp(34px, 4.2vw, 54px);
-      letter-spacing: -0.6px;
-    }
+    .title{margin:0; font-size: clamp(34px, 4.2vw, 54px); letter-spacing: -0.6px}
     .lead{
       margin: 10px 0 0;
       color: var(--muted);
@@ -198,6 +189,7 @@
       font-size: 13px;
       cursor:pointer;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      pointer-events:auto;
     }
     .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.14); background: rgba(255,255,255,.09); }
     .btn.primary{
@@ -364,7 +356,7 @@
         <a class="pill" href="#progetti">Progetti</a>
         <a class="pill" href="#musica">Musica</a>
         <a class="pill" href="#contatti">Contatti</a>
-        <a class="pill primary" id="ytNav" href="#" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a class="pill primary" href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" rel="noopener noreferrer">YouTube</a>
       </nav>
     </header>
 
@@ -373,7 +365,8 @@
         <div class="hero-inner">
           <h2 class="title">Benvenuto</h2>
           <p class="lead">
-            Qui raccolgo ciò che costruisco: didattica, progetti digitali e musica. Un piede nella scuola, uno nel futuro. Il resto arriva da sé.
+            Qui raccolgo ciò che costruisco: didattica, progetti digitali e musica.
+            Un piede nella scuola, uno nel futuro. Il resto arriva da sé.
           </p>
         </div>
 
@@ -386,7 +379,7 @@
                 Poca scena, molta sostanza.
               </div>
               <div class="btnrow">
-                <a class="btn primary" id="ytBtn1" href="#" target="_blank" rel="noopener noreferrer">Vai al canale</a>
+                <a class="btn primary" href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" rel="noopener noreferrer">Vai al canale</a>
                 <a class="btn" href="#progetti">Vedi i progetti</a>
                 <a class="btn" href="#musica">Ascolta musica</a>
               </div>
@@ -410,26 +403,48 @@
               </div>
 
               <div class="muted2" style="margin-top:10px;">
-                Sito ufficiale: aggiornamenti, materiali e cose utili (non fumo).
+                Sito ufficiale: aggiornamenti, materiali e cose utili (niente fumo).
               </div>
             </div>
           </div>
         </div>
       </div>
 
+      <!-- PROGETTI -->
       <section id="progetti">
         <div class="head">
           <h2>Progetti</h2>
-          <div class="muted2">Link rapidi — pochi, buoni, veri</div>
+          <div class="muted2">In primo piano + link rapidi</div>
         </div>
+
         <div class="body">
+          <!-- IN PRIMO PIANO: WIX -->
+          <div class="card" style="margin-bottom:14px;">
+            <div class="in" style="display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;">
+              <div>
+                <div class="kpi" style="display:inline-flex; margin-bottom:10px;">
+                  <span class="dot ok"></span><span>In primo piano</span>
+                </div>
+                <h3 style="margin:0 0 8px;">Franco &amp; Luma Studios (Wix)</h3>
+                <div class="muted">Il sito in costruzione con pagine, galleria e contenuti completi.</div>
+              </div>
+
+              <div class="btnrow" style="margin-top:0;">
+                <a class="btn primary" href="https://francoficara1.wixsite.com/franco-e-luma-studios" target="_blank" rel="noopener noreferrer">
+                  Apri il sito
+                </a>
+                <a class="btn" href="#contatti">Contatti</a>
+              </div>
+            </div>
+          </div>
+
           <div class="cards">
             <div class="proj">
-              <div class="top"><span class="tag">Canale</span></div>
-              <h4>Maestro Franco Official</h4>
+              <div class="top"><span class="tag">YouTube</span></div>
+              <h4>Canale Maestro Franco</h4>
               <p>Video, didattica, esperimenti e pubblicazioni.</p>
               <div class="foot">
-                <a class="btn open primary" id="ytBtn2" href="#" target="_blank" rel="noopener noreferrer">Apri canale</a>
+                <a class="btn open primary" href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" rel="noopener noreferrer">Apri canale</a>
               </div>
             </div>
 
@@ -438,14 +453,14 @@
               <h4>Universo creativo</h4>
               <p>Una coppola, un coniglio, e un sacco di idee.</p>
               <div class="foot">
-                <a class="btn open" href="#contatti">Contattami</a>
+                <a class="btn open" href="https://francoficara1.wixsite.com/franco-e-luma-studios" target="_blank" rel="noopener noreferrer">Apri su Wix</a>
               </div>
             </div>
 
             <div class="proj">
               <div class="top"><span class="tag">Home</span></div>
               <h4>Questo sito</h4>
-              <p>La base stabile: qui mettiamo ordine nel caos.</p>
+              <p>Base stabile: qui mettiamo ordine nel caos.</p>
               <div class="foot">
                 <a class="btn open" href="#musica">Vai alla musica</a>
               </div>
@@ -453,10 +468,10 @@
           </div>
 
           <!-- VIDEO IN EVIDENZA -->
-          <div style="margin-top:14px;"></div>
-          <div class="head" style="padding: 0; margin-top: 18px;">
+          <div style="height:14px;"></div>
+          <div class="head" style="padding:0; margin-top:10px;">
             <h2 style="font-size:18px; margin:0;">Video in evidenza</h2>
-            <div class="muted2">Tre cose vere. Click e si va.</div>
+            <div class="muted2">Tre contenuti veri. Click e via.</div>
           </div>
 
           <div class="cards" style="margin-top:12px;">
@@ -491,6 +506,7 @@
         </div>
       </section>
 
+      <!-- MUSICA -->
       <section id="musica">
         <div class="head">
           <h2>Musica</h2>
@@ -555,6 +571,7 @@
         </div>
       </section>
 
+      <!-- CONTATTI -->
       <section id="contatti">
         <div class="head">
           <h2>Contatti</h2>
@@ -573,19 +590,19 @@
 
             <div class="proj">
               <div class="top"><span class="tag">GitHub</span></div>
-              <h4>Versione GitHub Pages</h4>
-              <p>Se vuoi vedere il repo che lo ospita.</p>
+              <h4>GitHub Pages</h4>
+              <p>Versione tecnica del sito.</p>
               <div class="foot">
                 <a class="btn open" href="https://blob59.github.io/" target="_blank" rel="noopener noreferrer">Apri</a>
               </div>
             </div>
 
             <div class="proj">
-              <div class="top"><span class="tag">YouTube</span></div>
-              <h4>Canale</h4>
-              <p>Video e contenuti di Maestro Franco.</p>
+              <div class="top"><span class="tag">Wix</span></div>
+              <h4>Franco &amp; Luma Studios</h4>
+              <p>Il progetto in costruzione.</p>
               <div class="foot">
-                <a class="btn open" id="ytBtn3" href="#" target="_blank" rel="noopener noreferrer">Vai al canale</a>
+                <a class="btn open" href="https://francoficara1.wixsite.com/franco-e-luma-studios" target="_blank" rel="noopener noreferrer">Apri</a>
               </div>
             </div>
           </div>
@@ -600,21 +617,14 @@
 
   <script>
     // ====== CONFIG ======
-    const BUILD = "2026-01-01-02"; // cambia SOLO se vuoi forzare cache bust
-    const YT_CHANNEL = "https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ";
-
-    const TRACKS = [
-      { label: "Brano 1", file: "brano1_v2.mp3" },
-      { label: "Brano 2", file: "brano2.mp3" },
-      { label: "Brano 3", file: "brano3.mp3" }
-    ];
+    const BUILD = "2026-01-01-03"; // se vuoi forzare cache, cambia SOLO questo
+    const TRACKS = ["brano1_v2.mp3","brano2.mp3","brano3.mp3"];
 
     const CITIES = {
       brancaleone: { name: "Brancaleone", lat: 38.125, lon: 16.086 },
       galbiate:    { name: "Galbiate",    lat: 45.813, lon: 9.378 }
     };
 
-    // ====== HELPERS ======
     const $ = (id) => document.getElementById(id);
 
     function cacheBust(url){
@@ -622,38 +632,31 @@
       return `${url}${sep}v=${encodeURIComponent(BUILD)}`;
     }
 
-    // ====== FIX YOUTUBE LINKS (menu + bottoni) ======
-    ["ytNav","ytBtn1","ytBtn2","ytBtn3"].forEach(id => {
-      const el = $(id);
-      if (el) el.href = YT_CHANNEL;
-    });
-
-    // ====== YEAR ======
+    // YEAR
     $("year").textContent = new Date().getFullYear();
 
-    // ====== CLOCK ======
+    // CLOCK
     function tickClock(){
       const d = new Date();
-      const hh = String(d.getHours()).padStart(2,"0");
-      const mm = String(d.getMinutes()).padStart(2,"0");
-      const ss = String(d.getSeconds()).padStart(2,"0");
-      $("clock").textContent = `${hh}:${mm}:${ss}`;
+      $("clock").textContent =
+        String(d.getHours()).padStart(2,"0") + ":" +
+        String(d.getMinutes()).padStart(2,"0") + ":" +
+        String(d.getSeconds()).padStart(2,"0");
     }
     tickClock();
     setInterval(tickClock, 1000);
 
-    // ====== MUSIC PLAYER ======
+    // MUSIC
     const audio = $("audio");
     const trackSel = $("trackSel");
     const volRange = $("volRange");
     const nowPlaying = $("nowPlaying");
-
-    const LS_KEY = "franco_site_player_v1";
+    const LS_KEY = "franco_site_player_v2";
 
     function loadState(){
       try{
         const s = JSON.parse(localStorage.getItem(LS_KEY) || "{}");
-        if (s.track) trackSel.value = s.track;
+        if (s.track && TRACKS.includes(s.track)) trackSel.value = s.track;
         if (typeof s.volume === "number") volRange.value = String(s.volume);
       }catch(e){}
     }
@@ -669,28 +672,15 @@
 
     function setTrack(file){
       audio.src = cacheBust(file);
-      nowPlaying.textContent = `Selezionato: ${file}`;
+      nowPlaying.textContent = "Selezionato: " + file;
       saveState();
-    }
-
-    function currentIndex(){
-      const i = TRACKS.findIndex(t => t.file === trackSel.value);
-      return i >= 0 ? i : 0;
-    }
-
-    function nextTrack(){
-      const i = currentIndex();
-      const n = (i + 1) % TRACKS.length;
-      trackSel.value = TRACKS[n].file;
-      setTrack(trackSel.value);
-      playSafe();
     }
 
     async function playSafe(){
       audio.volume = Number(volRange.value);
       try{
         await audio.play();
-        nowPlaying.textContent = `In riproduzione: ${trackSel.options[trackSel.selectedIndex].text}`;
+        nowPlaying.textContent = "In riproduzione: " + trackSel.options[trackSel.selectedIndex].text;
       }catch(err){
         nowPlaying.textContent = "Tocca ▶ Avvia per partire (blocco autoplay).";
       }
@@ -699,6 +689,14 @@
     function pause(){
       audio.pause();
       nowPlaying.textContent = "In pausa.";
+    }
+
+    function next(){
+      const i = TRACKS.indexOf(trackSel.value);
+      const n = (i + 1) % TRACKS.length;
+      trackSel.value = TRACKS[n];
+      setTrack(TRACKS[n]);
+      playSafe();
     }
 
     loadState();
@@ -710,9 +708,9 @@
 
     $("btnPlay").addEventListener("click", playSafe);
     $("btnPause").addEventListener("click", pause);
-    $("btnNext").addEventListener("click", nextTrack);
+    $("btnNext").addEventListener("click", next);
 
-    // ====== WEATHER (Open-Meteo) ======
+    // WEATHER
     let activeCity = "brancaleone";
 
     function setCity(key){
@@ -727,11 +725,11 @@
       try{
         const url =
           `https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lon}` +
-          `&current=temperature_2m,weather_code&timezone=auto`;
+          `&current=temperature_2m&timezone=auto`;
         const res = await fetch(url, { cache: "no-store" });
         const data = await res.json();
         const t = data?.current?.temperature_2m;
-        $("temp").textContent = (typeof t === "number") ? `${Math.round(t)}°C` : "--°C";
+        $("temp").textContent = (typeof t === "number") ? (Math.round(t) + "°C") : "--°C";
       }catch(e){
         $("temp").textContent = "--°C";
       }
@@ -740,6 +738,7 @@
     $("btnBranca").addEventListener("click", () => setCity("brancaleone"));
     $("btnGalb").addEventListener("click", () => setCity("galbiate"));
     setCity("brancaleone");
+    setInterval(fetchWeather, 10 * 60 * 1000);
   </script>
 </body>
 </html>
