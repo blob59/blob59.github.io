@@ -19,15 +19,14 @@
       --muted:rgba(234,242,246,.74);
       --muted2:rgba(234,242,246,.54);
 
-      --accent:#2ec4c6;
-      --accent2:#7be0e2;
+      --accent:#2ec4c6;  /* teal */
+      --accent2:#7cdbdd;
 
       --ok:#22c55e;
       --warn:#f59e0b;
 
       --radius:24px;
       --shadow: 0 22px 60px rgba(0,0,0,.55);
-      --shadow2: 0 12px 28px rgba(0,0,0,.35);
       --blur: blur(18px);
       --max: 1100px;
     }
@@ -46,21 +45,21 @@
     .bg{
       position:fixed; inset:0;
       background:
-        radial-gradient(1000px 650px at 18% 12%, rgba(46,196,198,.22), transparent 60%),
-        radial-gradient(900px 520px at 88% 18%, rgba(123,224,226,.12), transparent 62%),
-        radial-gradient(900px 600px at 60% 102%, rgba(245,158,11,.08), transparent 65%),
-        linear-gradient(180deg, rgba(11,28,36,.50), rgba(11,28,36,.92)),
+        radial-gradient(1000px 600px at 18% 8%, rgba(46,196,198,.22), transparent 60%),
+        radial-gradient(900px 500px at 92% 18%, rgba(34,197,94,.12), transparent 60%),
+        radial-gradient(900px 600px at 55% 102%, rgba(245,158,11,.10), transparent 65%),
+        linear-gradient(180deg, rgba(11,28,36,.58), rgba(7,11,20,.88)),
         url("sfondo-brancaleone.jpg");
       background-size: cover;
       background-position: center;
-      filter: saturate(1.05) contrast(1.05);
+      filter: saturate(1.15) contrast(1.06);
       transform: scale(1.02);
       z-index:-2;
       pointer-events:none;
     }
     .vignette{
       position:fixed; inset:0;
-      background: radial-gradient(circle at 50% 35%, rgba(0,0,0,.00), rgba(0,0,0,.58) 75%, rgba(0,0,0,.78) 100%);
+      background: radial-gradient(circle at 50% 35%, rgba(0,0,0,.00), rgba(0,0,0,.55) 75%, rgba(0,0,0,.78) 100%);
       z-index:-1;
       pointer-events:none;
     }
@@ -80,9 +79,9 @@
       padding:14px 14px;
       border:1px solid var(--stroke);
       border-radius: 999px;
-      background: rgba(10,24,30,.62);
+      background: rgba(9,13,23,.55);
       backdrop-filter: var(--blur);
-      box-shadow: var(--shadow2);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
       position: sticky;
       top: 14px;
       z-index: 10;
@@ -124,25 +123,16 @@
       font-size: 13px;
       line-height: 1;
       cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
       user-select:none;
       pointer-events:auto;
     }
-    .pill:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,.16);
-      background: rgba(255,255,255,.08);
-    }
+    .pill:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.09); }
     .pill.primary{
-      background: rgba(46,196,198,.16);
+      background: rgba(46,196,198,.18);
       border-color: rgba(46,196,198,.34);
-      box-shadow: 0 10px 22px rgba(46,196,198,.10);
     }
-    .pill.primary:hover{
-      background: rgba(46,196,198,.24);
-      border-color: rgba(46,196,198,.45);
-      box-shadow: 0 14px 30px rgba(46,196,198,.16);
-    }
+    .pill.primary:hover{ background: rgba(46,196,198,.26); }
 
     .hero{
       margin-top: 18px;
@@ -152,23 +142,32 @@
       backdrop-filter: var(--blur);
       box-shadow: var(--shadow);
       overflow:hidden;
+      position:relative;
     }
     .hero-inner{ padding: 26px 22px; }
-
-    .title{
-      margin:0;
-      font-size: clamp(34px, 4.2vw, 54px);
-      letter-spacing: -0.8px;
-      line-height: 1.05;
-    }
+    .title{margin:0; font-size: clamp(34px, 4.2vw, 54px); letter-spacing: -0.6px}
     .lead{
-      margin: 12px 0 0;
+      margin: 10px 0 0;
       color: var(--muted);
       max-width: 72ch;
       font-size: 15px;
-      line-height: 1.6;
+      line-height: 1.55;
     }
-    .lead strong{ color: var(--text); }
+
+    /* badge versione (anti-fregatura cache) */
+    .badge{
+      position:absolute;
+      top:16px; right:16px;
+      display:flex; align-items:center; gap:8px;
+      border:1px solid rgba(46,196,198,.35);
+      background: rgba(46,196,198,.10);
+      color: rgba(234,242,246,.9);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      box-shadow: 0 10px 24px rgba(0,0,0,.25);
+    }
+    .badge b{ color: var(--accent2); }
 
     .grid{
       display:grid;
@@ -183,20 +182,15 @@
       .grid{ grid-template-columns: 1fr; padding: 0 16px 16px; }
       .hero-inner{ padding: 22px 16px; }
       nav{ justify-content:flex-start; }
+      .badge{ position:static; margin: 0 16px 14px; width: fit-content;}
     }
 
     .card{
       border:1px solid var(--stroke);
       border-radius: 18px;
-      background: rgba(255,255,255,.045);
+      background: rgba(255,255,255,.04);
       box-shadow: 0 10px 26px rgba(0,0,0,.28);
       overflow:hidden;
-      transition: transform .14s ease, border-color .14s ease, background .14s ease;
-    }
-    .card:hover{
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,.14);
-      background: rgba(255,255,255,.055);
     }
     .card .in{ padding:16px; }
     .card h3{ margin:0 0 10px; font-size: 18px; letter-spacing: -.2px; }
@@ -217,26 +211,15 @@
       text-decoration:none;
       font-size: 13px;
       cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease, box-shadow .12s ease;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
       pointer-events:auto;
     }
-    .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,.16);
-      background: rgba(255,255,255,.09);
-    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.10); }
     .btn.primary{
-      background: linear-gradient(135deg, rgba(46,196,198,.26), rgba(123,224,226,.18));
-      border-color: rgba(46,196,198,.40);
-      box-shadow: 0 10px 22px rgba(46,196,198,.14);
-      color: #052126;
-      font-weight: 700;
+      background: rgba(46,196,198,.22);
+      border-color: rgba(46,196,198,.38);
     }
-    .btn.primary:hover{
-      background: linear-gradient(135deg, rgba(46,196,198,.34), rgba(123,224,226,.24));
-      border-color: rgba(46,196,198,.52);
-      box-shadow: 0 14px 30px rgba(46,196,198,.20);
-    }
+    .btn.primary:hover{ background: rgba(46,196,198,.30); }
 
     .idline{ display:flex; align-items:center; gap:10px; margin-top: 10px; }
     .chip{
@@ -292,12 +275,6 @@
       display:flex;
       flex-direction:column;
       min-height: 150px;
-      transition: transform .14s ease, border-color .14s ease, background .14s ease;
-    }
-    .proj:hover{
-      transform: translateY(-2px);
-      border-color: rgba(255,255,255,.14);
-      background: rgba(255,255,255,.055);
     }
     .proj .top{
       padding: 14px 14px 8px;
@@ -337,8 +314,7 @@
       outline:none;
       min-width: 180px;
     }
-    .select:focus{ border-color: rgba(46,196,198,.55); box-shadow: 0 0 0 4px rgba(46,196,198,.12); }
-    .range{ width: min(420px, 100%); accent-color: var(--accent); }
+    .range{ width: min(420px, 100%); }
 
     .kpis{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
     .kpi{
@@ -374,14 +350,8 @@
     footer{
       margin-top: 18px;
       text-align:center;
-      color: rgba(234,242,246,.58);
+      color: rgba(234,242,246,.55);
       font-size: 12px;
-    }
-
-    a:focus, button:focus, .btn:focus, .pill:focus {
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(46,196,198,.12);
-      border-color: rgba(46,196,198,.55);
     }
 
     html{ scroll-behavior:smooth; }
@@ -416,12 +386,15 @@
     <main>
       <div class="hero" id="home">
         <div class="hero-inner">
-          <h2 class="title">Tecnologia, scuola e creatività.<br/>Senza fumo. Con metodo.</h2>
+          <h2 class="title">Benvenuto</h2>
           <p class="lead">
-            Qui raccolgo didattica, progetti digitali e musica.
-            Questa è la mia base stabile: <strong>Franco &amp; Luma Studios</strong>.
-            (Il link Wix resta “storico”, ma il nome qui è quello giusto.)
+            Qui raccolgo didattica, progetti digitali e musica. E soprattutto: il mio laboratorio creativo,
+            <strong>Franco &amp; Luma Studios</strong> (il link Wix resta quello “storico”, ma il nome qui è giusto).
           </p>
+        </div>
+
+        <div class="badge" title="Se lo vedi, stai guardando il nuovo deploy.">
+          🌊 Theme: <b>Mediterraneo Notte</b> • Build: <span id="buildBadge">--</span>
         </div>
 
         <div class="grid">
@@ -429,13 +402,13 @@
             <div class="in">
               <h3>Chi sono</h3>
               <div class="muted">
-                Sono Franco Ficara. Insegno, sperimento e costruisco strumenti digitali che funzionano davvero.
-                Tradizione come base, tecnologia come strumento. Poca scena, molta sostanza.
+                Sono Franco Ficara. Insegno, sperimento e creo strumenti digitali che funzionano davvero.
+                Poca scena, molta sostanza.
               </div>
               <div class="btnrow">
-                <a class="btn primary" href="#progetti">Vedi i progetti</a>
-                <a class="btn" href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" rel="noopener noreferrer">YouTube</a>
-                <a class="btn" href="#musica">Musica</a>
+                <a class="btn primary" href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" rel="noopener noreferrer">Vai al canale</a>
+                <a class="btn" href="#progetti">Vedi i progetti</a>
+                <a class="btn" href="#musica">Ascolta musica</a>
               </div>
             </div>
           </div>
@@ -444,8 +417,7 @@
             <div class="in">
               <h3>Franco &amp; Luma</h3>
               <div class="muted">
-                Un laboratorio creativo: ironia quanto basta, tecnologia con criterio.
-                Il futuro si esplora meglio quando qualcuno tiene i piedi per terra.
+                Tradizione davanti, futuro dietro le quinte. Tecnologia usata con criterio, ironia quanto basta.
               </div>
 
               <div class="idline">
@@ -532,7 +504,7 @@
           <div class="cards" style="margin-top:12px;">
             <div class="proj">
               <div class="top"><span class="tag">Video</span></div>
-              <h4>Un’idea spiegata bene</h4>
+              <h4>Video 1</h4>
               <p>Apri su YouTube.</p>
               <div class="foot">
                 <a class="btn open primary" href="https://www.youtube.com/watch?v=4rgxf7v5GRA" target="_blank" rel="noopener noreferrer">Guarda</a>
@@ -541,7 +513,7 @@
 
             <div class="proj">
               <div class="top"><span class="tag">Video</span></div>
-              <h4>Un esperimento riuscito</h4>
+              <h4>Video 2</h4>
               <p>Apri su YouTube.</p>
               <div class="foot">
                 <a class="btn open primary" href="https://www.youtube.com/watch?v=yiXu8UqvsgE&t=1062s" target="_blank" rel="noopener noreferrer">Guarda</a>
@@ -550,7 +522,7 @@
 
             <div class="proj">
               <div class="top"><span class="tag">Video</span></div>
-              <h4>Un errore che valeva la pena</h4>
+              <h4>Video 3</h4>
               <p>Apri su YouTube.</p>
               <div class="foot">
                 <a class="btn open primary" href="https://www.youtube.com/watch?v=zN8BEUcsq1M" target="_blank" rel="noopener noreferrer">Guarda</a>
@@ -671,7 +643,10 @@
   </div>
 
   <script>
-    const BUILD = "2026-01-13-v3"; // per forzare cache cambia SOLO questo
+    // Cambia questo ad ogni commit se vuoi uccidere la cache: è il tuo "timbro" di versione.
+    const BUILD = "2026-01-13-TEAL-v1";
+    document.getElementById("buildBadge").textContent = BUILD;
+
     const TRACKS = ["brano1_v2.mp3","brano2.mp3","brano3.mp3"];
     const CITIES = {
       brancaleone: { name: "Brancaleone", lat: 38.125, lon: 16.086 },
@@ -703,7 +678,7 @@
     const trackSel = $("trackSel");
     const volRange = $("volRange");
     const nowPlaying = $("nowPlaying");
-    const LS_KEY = "franco_site_player_full_v2";
+    const LS_KEY = "franco_site_player_teal_v1";
 
     function loadState(){
       try{
