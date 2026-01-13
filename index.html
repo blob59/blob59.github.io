@@ -1,727 +1,78 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>Franco Ficara — Digitale • Scuola • Franco & Luma Studios</title>
-  <meta name="description" content="Franco Ficara: progetti digitali, didattica, musica. Franco & Luma Studios." />
-
-  <style>
-    :root{
-      --bg:#ffffff;
-      --surface:#f6f7fb;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#475569;
-      --line:#e2e8f0;
-      --brand:#2563eb;
-      --brand2:#0ea5e9;
-      --shadow: 0 10px 30px rgba(2,6,23,.08);
-      --radius: 16px;
-      --max: 1120px;
-    }
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(1000px 600px at 10% -10%, rgba(37,99,235,.10), transparent 60%),
-        radial-gradient(900px 500px at 110% 10%, rgba(14,165,233,.12), transparent 55%),
-        var(--bg);
-      line-height:1.55;
-    }
-    a{ color:inherit; text-decoration:none; }
-    a:hover{ text-decoration:underline; }
-    .wrap{ max-width:var(--max); margin:0 auto; padding:24px; }
-
-    header{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter:saturate(160%) blur(10px);
-      background: rgba(255,255,255,.80);
-      border-bottom:1px solid var(--line);
-    }
-    .top{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      padding:14px 24px;
-      max-width:var(--max); margin:0 auto;
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width: 240px;
-    }
-    .avatar{
-      width:42px; height:42px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background:#fff;
-      object-fit:cover;
-      box-shadow: 0 10px 18px rgba(2,6,23,.08);
-    }
-    .brand .name{ font-weight:900; letter-spacing:-.2px; line-height:1.1; }
-    .brand .sub{ font-size:13px; color:var(--muted); margin-top:2px; }
-
-    nav{
-      display:flex; align-items:center; gap:10px; flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .navpill{
-      font-size:14px;
-      color:var(--muted);
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.7);
-    }
-    .navpill:hover{ text-decoration:none; background:var(--surface); color:var(--text); }
-    .navpill.primary{
-      border-color: rgba(37,99,235,.25);
-      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(14,165,233,.12));
-      color:#0b1b3a;
-      font-weight:900;
-    }
-
-    section{ padding: 28px 0; }
-    .panel{
-      background: rgba(255,255,255,.78);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:22px;
-    }
-    .grid2{
-      display:grid; grid-template-columns: 1.2fr .8fr; gap:16px;
-    }
-    @media (max-width: 900px){ .grid2{ grid-template-columns: 1fr; } }
-
-    h1{
-      margin:0 0 10px;
-      font-size: clamp(30px, 3.4vw, 50px);
-      line-height:1.05;
-      letter-spacing:-.8px;
-    }
-    .lead{
-      margin:0 0 16px;
-      color:var(--muted);
-      font-size:16px;
-      max-width:75ch;
-    }
-
-    .cta{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background: var(--card);
-      box-shadow: 0 10px 18px rgba(2,6,23,.06);
-      font-weight:900;
-      font-size:14px;
-      cursor:pointer;
-      user-select:none;
-    }
-    .btn:hover{ transform: translateY(-1px); }
-    .btn.primary{
-      border-color: rgba(37,99,235,.25);
-      background: linear-gradient(135deg, rgba(37,99,235,.16), rgba(14,165,233,.12));
-    }
-
-    .mini{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-    .pill{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.72);
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:13px;
-      color: var(--muted);
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-    }
-
-    .split{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-    }
-    @media (max-width: 860px){ .split{ grid-template-columns: 1fr; } }
-
-    .section-title{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      margin:0 0 14px;
-    }
-    .section-title h2{
-      margin:0;
-      font-size: 28px;
-      letter-spacing:-.4px;
-    }
-    .muted{ color:var(--muted); }
-
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap:14px;
-    }
-    .card{
-      grid-column: span 4;
-      background: var(--card);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      padding:16px;
-      box-shadow: 0 8px 18px rgba(2,6,23,.05);
-      min-height: 130px;
-      display:flex; flex-direction:column; gap:8px;
-    }
-    .card h3{ margin:0; font-size:16px; }
-    .card p{ margin:0; font-size:14px; color:var(--muted); }
-    .tag{
-      display:inline-flex;
-      margin-top:auto;
-      font-size:12px;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px solid var(--line);
-      background: var(--surface);
-      color: var(--muted);
-      width: fit-content;
-    }
-    .link{
-      font-weight:900;
-      color: var(--brand);
-      text-decoration:none;
-    }
-    .link:hover{ text-decoration:underline; }
-    @media (max-width: 980px){ .card{ grid-column: span 6; } }
-    @media (max-width: 640px){ .card{ grid-column: span 12; } }
-
-    /* Meteo box */
-    .meteoRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:10px;
-    }
-    select{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.85);
-      border-radius: 12px;
-      padding:10px 12px;
-      font-weight:800;
-      color: var(--text);
-      outline:none;
-    }
-    .meteoGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    @media (max-width: 860px){ .meteoGrid{ grid-template-columns: 1fr; } }
-    .meteoCard{
-      border:1px solid var(--line);
-      background: var(--card);
-      border-radius: 16px;
-      padding:14px;
-      box-shadow: 0 8px 18px rgba(2,6,23,.04);
-    }
-    .bigTemp{
-      font-size: 34px;
-      font-weight: 1000;
-      letter-spacing: -.6px;
-      margin: 2px 0 6px;
-    }
-    .meteoMeta{
-      color: var(--muted);
-      font-size: 13px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
-    }
-    .small{
-      font-size:12px;
-      color: var(--muted);
-      margin-top: 10px;
-    }
-
-    /* Music */
-    .track{
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
-      padding:14px;
-      border:1px solid var(--line);
-      border-radius: 16px;
-      background: var(--card);
-      box-shadow: 0 8px 18px rgba(2,6,23,.04);
-    }
-    .badge{
-      width:38px; height:38px;
-      border-radius: 14px;
-      display:flex; align-items:center; justify-content:center;
-      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(14,165,233,.12));
-      border:1px solid rgba(37,99,235,.20);
-      font-weight:1000;
-      flex:0 0 auto;
-    }
-    .track b{ display:block; font-size:14px; margin-bottom:4px; }
-    .track small{ color:var(--muted); display:block; margin-bottom:8px; }
-    audio{ width:100%; }
-
-    footer{
-      border-top:1px solid var(--line);
-      margin-top: 24px;
-      padding: 18px 0 30px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    :focus-visible{ outline: 3px solid rgba(37,99,235,.35); outline-offset: 2px; border-radius: 12px; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Franco Ficara — Digitale • Scuola • Franco & Luma Studios</title>
+<style>
+body{margin:0;font-family:system-ui,Arial;background:#f4f6fb;color:#0f172a}
+header{background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0}
+.wrap{max-width:1100px;margin:auto;padding:20px}
+nav a{margin-left:10px;padding:8px 12px;border-radius:20px;border:1px solid #e2e8f0;text-decoration:none;color:#334155}
+nav a.primary{background:#2563eb;color:#fff;border:none}
+.panel{background:#fff;border-radius:20px;padding:20px;margin:20px 0;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px}
+audio{width:100%}
+footer{border-top:1px solid #e2e8f0;margin-top:40px;padding:20px 0;color:#64748b;font-size:14px}
+.pill{display:inline-block;padding:6px 12px;border-radius:20px;border:1px solid #e2e8f0;margin-right:8px}
+</style>
 </head>
 
 <body>
-  <header>
-    <div class="top">
-      <div class="brand">
-        <img class="avatar" src="franco.png" alt="Foto Franco" onerror="this.style.display='none'">
-        <div>
-          <div class="name">Franco Ficara</div>
-          <div class="sub">Digitale • Scuola • Franco &amp; Luma Studios</div>
-        </div>
-      </div>
+<header>
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center">
+    <strong>Franco Ficara</strong>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#progetti">Progetti</a>
+      <a href="#musica">Musica</a>
+      <a href="#contatti">Contatti</a>
+      <a class="primary" href="https://www.youtube.com" target="_blank">YouTube</a>
+    </nav>
+  </div>
+</header>
 
-      <nav aria-label="Navigazione">
-        <a class="navpill" href="#home">Home</a>
-        <a class="navpill" href="#progetti">Progetti</a>
-        <a class="navpill" href="#musica">Musica</a>
-        <a class="navpill" href="#contatti">Contatti</a>
-        <a class="navpill primary" href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
-      </nav>
-    </div>
-  </header>
+<main class="wrap">
 
-  <main class="wrap">
-    <!-- HOME -->
-    <section id="home" class="grid2">
-      <div class="panel">
-        <h1>Tecnologia, scuola e creatività.<br/>Poca scena. Molta sostanza.</h1>
-        <p class="lead">
-          Qui raccolgo didattica, progetti digitali e musica. Questa è la mia base stabile:
-          <b>Franco &amp; Luma Studios</b>.
-        </p>
+<section id="home" class="panel">
+<h1>Tecnologia, scuola e creatività.<br>Poca scena. Molta sostanza.</h1>
+<p>Questa è la mia base stabile: <b>Franco & Luma Studios</b>.</p>
+<div class="pill">🕒 <span id="clock">--:--:--</span></div>
+</section>
 
-        <div class="split">
-          <div class="panel" style="box-shadow:none; background:var(--surface);">
-            <h3 style="margin:0 0 8px;">Chi sono</h3>
-            <p class="muted" style="margin:0;">
-              Insegno, sperimento e costruisco strumenti digitali che funzionano davvero.<br/>
-              Tradizione come base, tecnologia come strumento.
-            </p>
-            <div class="cta" style="margin-top:12px;">
-              <a class="btn primary" href="#progetti">Vedi i progetti</a>
-              <a class="btn" href="#musica">Musica</a>
-              <a class="btn" href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
-            </div>
-          </div>
+<section id="progetti" class="panel">
+<h2>Progetti</h2>
+<div class="cards">
+<div class="panel">Canale Maestro Franco</div>
+<div class="panel">Franco & Luma Studios</div>
+<div class="panel">Questo sito</div>
+</div>
+</section>
 
-          <div class="panel" style="box-shadow:none; background:var(--surface);">
-            <h3 style="margin:0 0 8px;">Franco &amp; Luma</h3>
-            <p class="muted" style="margin:0;">
-              Un laboratorio creativo: ironia quanto basta, tecnologia con criterio.
-            </p>
-            <div style="display:flex; gap:10px; align-items:center; margin-top:12px;">
-              <img src="luma.png" alt="Luma" style="width:54px;height:54px;border-radius:16px;border:1px solid var(--line);object-fit:cover; background:#fff"
-                   onerror="this.style.display='none'">
-              <div class="muted" style="font-size:13px;">
-                Se Luma non si vede, il sito non crolla. È questa la stabilità.
-              </div>
-            </div>
-          </div>
-        </div>
+<section id="musica" class="panel">
+<h2>Musica</h2>
+<audio controls src="brano1_v2.mp3"></audio><br><br>
+<audio controls src="brano2.mp3"></audio><br><br>
+<audio controls src="brano3.mp3"></audio>
+</section>
 
-        <!-- Pill meteo/orologio mini -->
-        <div class="mini" aria-label="Info rapide">
-          <span class="pill">🕒 <span id="clock">--:--:--</span></span>
-          <span class="pill">📍 <span id="placeLabel">Galbiate</span></span>
-          <span class="pill">🌡️ <span id="tempMini">--</span></span>
-          <span class="pill">💨 <span id="windMini">--</span></span>
-        </div>
+<section id="contatti" class="panel">
+<h2>Contatti</h2>
+<p>Email e link qui.</p>
+</section>
 
-        <div class="mini" aria-label="Tag">
-          <span class="pill">🧑‍🏫 Insegnante</span>
-          <span class="pill">🧠 AI & didattica</span>
-          <span class="pill">🎬 Video / Presentazioni</span>
-          <span class="pill">🐰 Franco & Luma</span>
-        </div>
-      </div>
+<footer>
+© <span id="year"></span> Franco Ficara
+</footer>
 
-      <!-- Sidebar: Meteo + utilities -->
-      <aside class="panel">
-        <div class="section-title" style="margin-bottom:10px;">
-          <h2 style="font-size:22px;margin:0;">Meteo & Orologio</h2>
-          <span class="muted" style="font-size:13px;">Live</span>
-        </div>
+</main>
 
-        <div class="meteoRow">
-          <div class="muted" style="font-size:13px;">Località:</div>
-          <select id="placeSelect" aria-label="Seleziona località">
-            <option value="galbiate">Galbiate</option>
-            <option value="brancaleone">Brancaleone</option>
-          </select>
-        </div>
-
-        <div class="meteoGrid">
-          <div class="meteoCard">
-            <div class="muted" style="font-weight:900;">Ora locale</div>
-            <div class="bigTemp" id="clockBig">--:--</div>
-            <div class="meteoMeta">
-              <span>📅 <span id="dateBig">--</span></span>
-              <span>🗺️ <span id="placeBig">Galbiate</span></span>
-            </div>
-          </div>
-
-          <div class="meteoCard">
-            <div class="muted" style="font-weight:900;">Meteo attuale</div>
-            <div class="bigTemp"><span id="tempBig">--</span></div>
-            <div class="meteoMeta">
-              <span>💨 <span id="windBig">--</span></span>
-              <span>☁️ <span id="codeLabel">--</span></span>
-              <span>⏱️ <span id="meteoTime">--</span></span>
-            </div>
-          </div>
-        </div>
-
-        <p class="small">
-          Fonte meteo: <b>Open-Meteo</b> (gratuito, senza chiavi). Se sei offline, resta tutto stabile e non “sparisce” niente.
-        </p>
-
-        <div class="cta" style="margin-top:10px;">
-          <button class="btn" id="copyLink" type="button">Copia link</button>
-          <button class="btn" id="refreshMeteo" type="button">Aggiorna meteo</button>
-        </div>
-      </aside>
-    </section>
-
-    <!-- PROGETTI -->
-    <section id="progetti">
-      <div class="section-title">
-        <h2>Progetti</h2>
-        <div class="muted">In primo piano + video</div>
-      </div>
-
-      <div class="cards">
-        <article class="card">
-          <h3>Canale Maestro Franco</h3>
-          <p>Didattica, esperimenti e pubblicazioni.</p>
-          <a class="link" href="https://www.youtube.com/" target="_blank" rel="noopener">Apri →</a>
-          <span class="tag">YouTube</span>
-        </article>
-
-        <article class="card">
-          <h3>Franco &amp; Luma Studios</h3>
-          <p>Laboratorio creativo (Wix o sito esterno).</p>
-          <a class="link" href="#" onclick="alert('Metti qui il link vero (Wix o altro).'); return false;">Apri →</a>
-          <span class="tag">Creatività</span>
-        </article>
-
-        <article class="card">
-          <h3>Questo sito</h3>
-          <p>Base stabile, senza fronzoli.</p>
-          <a class="link" href="#home">Torna su →</a>
-          <span class="tag">Stabile</span>
-        </article>
-
-        <article class="card">
-          <h3>Risorse per la classe</h3>
-          <p>Materiali pronti: coding, AI, presentazioni.</p>
-          <a class="link" href="#contatti">Organizza →</a>
-          <span class="tag">Didattica</span>
-        </article>
-
-        <article class="card">
-          <h3>Template &amp; Prompt</h3>
-          <p>Checklist anti-caos per video, immagini e slide.</p>
-          <a class="link" href="#contatti">Richiedi →</a>
-          <span class="tag">Operativo</span>
-        </article>
-
-        <article class="card">
-          <h3>Archivio</h3>
-          <p>Sezione ordinata per non perdere pezzi.</p>
-          <a class="link" href="#contatti">Imposta →</a>
-          <span class="tag">Organizzazione</span>
-        </article>
-      </div>
-    </section>
-
-    <!-- MUSICA -->
-    <section id="musica">
-      <div class="section-title">
-        <h2>Musica</h2>
-        <div class="muted">Player diretto dai tuoi MP3</div>
-      </div>
-
-      <div class="panel">
-        <p class="muted" style="margin:0 0 14px;">
-          Usa i file che hai già nel repo: <b>brano1_v2.mp3</b>, <b>brano2.mp3</b>, <b>brano3.mp3</b>.
-          Se un brano non parte: nome file diverso o mancante.
-        </p>
-
-        <div class="track">
-          <div class="badge">1</div>
-          <div style="width:100%;">
-            <b>Brano 1</b>
-            <small>File: brano1_v2.mp3</small>
-            <audio controls preload="none">
-              <source src="brano1_v2.mp3" type="audio/mpeg">
-              Il tuo browser non supporta l’audio.
-            </audio>
-          </div>
-        </div>
-
-        <div style="height:10px;"></div>
-
-        <div class="track">
-          <div class="badge">2</div>
-          <div style="width:100%;">
-            <b>Brano 2</b>
-            <small>File: brano2.mp3</small>
-            <audio controls preload="none">
-              <source src="brano2.mp3" type="audio/mpeg">
-              Il tuo browser non supporta l’audio.
-            </audio>
-          </div>
-        </div>
-
-        <div style="height:10px;"></div>
-
-        <div class="track">
-          <div class="badge">3</div>
-          <div style="width:100%;">
-            <b>Brano 3</b>
-            <small>File: brano3.mp3</small>
-            <audio controls preload="none">
-              <source src="brano3.mp3" type="audio/mpeg">
-              Il tuo browser non supporta l’audio.
-            </audio>
-          </div>
-        </div>
-
-        <div class="cta" style="margin-top:14px;">
-          <a class="btn primary" href="#progetti">Torna ai progetti</a>
-          <a class="btn" href="https://www.youtube.com/" target="_blank" rel="noopener">Video su YouTube</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTATTI -->
-    <section id="contatti">
-      <div class="section-title">
-        <h2>Contatti</h2>
-        <div class="muted">Essenziale, senza casino</div>
-      </div>
-
-      <div class="panel">
-        <p class="muted" style="margin-top:0;">
-          Metti qui email, link e due righe. Se mi dai i link veri, li inserisco “puliti” e coerenti.
-        </p>
-
-        <div class="cards">
-          <article class="card" style="grid-column: span 6;">
-            <h3>Email</h3>
-            <p><span class="muted">Esempio:</span> <a class="link" href="mailto:tuoindirizzo@email.it">tuoindirizzo@email.it</a></p>
-            <span class="tag">Da personalizzare</span>
-          </article>
-
-          <article class="card" style="grid-column: span 6;">
-            <h3>Link</h3>
-            <p class="muted" style="line-height:1.7;">
-              • YouTube<br/>
-              • Wix / Portfolio<br/>
-              • Social
-            </p>
-            <span class="tag">Da personalizzare</span>
-          </article>
-        </div>
-
-        <div class="cta" style="margin-top:14px;">
-          <button class="btn" id="scrollTop" type="button">Torna su</button>
-          <button class="btn" id="copyLink2" type="button">Copia link</button>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-        <span>© <span id="year"></span> Franco Ficara</span>
-        <span>Versione SUPERPROVA • 1 file • meteo + orologio</span>
-      </div>
-    </footer>
-  </main>
-
-  <script>
-    // -------------------------
-    // OROLOGIO (sempre stabile)
-    // -------------------------
-    const clock = document.getElementById("clock");
-    const clockBig = document.getElementById("clockBig");
-    const dateBig = document.getElementById("dateBig");
-
-    function pad(n){ return String(n).padStart(2,"0"); }
-
-    function tick(){
-      const d = new Date();
-      const hh = pad(d.getHours()), mm = pad(d.getMinutes()), ss = pad(d.getSeconds());
-      clock.textContent = `${hh}:${mm}:${ss}`;
-      clockBig.textContent = `${hh}:${mm}`;
-      dateBig.textContent = d.toLocaleDateString("it-IT", { weekday:"long", year:"numeric", month:"long", day:"numeric" });
-    }
-    tick();
-    setInterval(tick, 1000);
-
-    // -------------------------
-    // METEO (Open-Meteo, no key)
-    // -------------------------
-    const places = {
-      galbiate: { label: "Galbiate", lat: 45.818, lon: 9.377 },
-      brancaleone: { label: "Brancaleone", lat: 37.963, lon: 16.104 }
-    };
-
-    const placeSelect = document.getElementById("placeSelect");
-    const placeLabel = document.getElementById("placeLabel");
-    const placeBig = document.getElementById("placeBig");
-
-    const tempMini = document.getElementById("tempMini");
-    const windMini = document.getElementById("windMini");
-
-    const tempBig = document.getElementById("tempBig");
-    const windBig = document.getElementById("windBig");
-    const codeLabel = document.getElementById("codeLabel");
-    const meteoTime = document.getElementById("meteoTime");
-
-    function codeToLabel(code){
-      // Etichette semplici, robuste, “basta che capisci”
-      const m = {
-        0:"Sereno",
-        1:"Preval. sereno",
-        2:"Parz. nuvoloso",
-        3:"Coperto",
-        45:"Nebbia",
-        48:"Nebbia",
-        51:"Pioviggine",
-        53:"Pioviggine",
-        55:"Pioviggine",
-        61:"Pioggia",
-        63:"Pioggia",
-        65:"Pioggia forte",
-        71:"Neve",
-        73:"Neve",
-        75:"Neve forte",
-        80:"Rovesci",
-        81:"Rovesci",
-        82:"Rovesci forti",
-        95:"Temporale"
-      };
-      return m[code] || `Codice ${code}`;
-    }
-
-    async function loadMeteo(key){
-      const p = places[key] || places.galbiate;
-      placeLabel.textContent = p.label;
-      placeBig.textContent = p.label;
-
-      // Stato "loading" (ma senza tremolii)
-      tempMini.textContent = "…";
-      windMini.textContent = "…";
-      tempBig.textContent = "…";
-      windBig.textContent = "…";
-      codeLabel.textContent = "…";
-      meteoTime.textContent = "…";
-
-      try{
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${p.lat}&longitude=${p.lon}&current=temperature_2m,wind_speed_10m,weather_code&timezone=auto`;
-        const res = await fetch(url, { cache: "no-store" });
-        if(!res.ok) throw new Error("HTTP " + res.status);
-        const data = await res.json();
-
-        const c = data.current;
-        const t = Math.round(c.temperature_2m);
-        const w = Math.round(c.wind_speed_10m);
-        const code = c.weather_code;
-        const time = c.time;
-
-        const unitT = (data.current_units && data.current_units.temperature_2m) ? data.current_units.temperature_2m : "°C";
-        const unitW = (data.current_units && data.current_units.wind_speed_10m) ? data.current_units.wind_speed_10m : "km/h";
-
-        tempMini.textContent = `${t}${unitT}`;
-        windMini.textContent = `${w} ${unitW}`;
-
-        tempBig.textContent = `${t}${unitT}`;
-        windBig.textContent = `${w} ${unitW}`;
-        codeLabel.textContent = codeToLabel(code);
-
-        // Orario meteo leggibile
-        meteoTime.textContent = new Date(time).toLocaleString("it-IT", { hour:"2-digit", minute:"2-digit" });
-      }catch(e){
-        // Fallback: niente panico, nessun crash.
-        tempMini.textContent = "--";
-        windMini.textContent = "--";
-        tempBig.textContent = "--";
-        windBig.textContent = "--";
-        codeLabel.textContent = "Meteo non disponibile";
-        meteoTime.textContent = "offline / errore rete";
-      }
-    }
-
-    // Memorizza scelta località
-    const saved = localStorage.getItem("ff_place");
-    if(saved && places[saved]) placeSelect.value = saved;
-
-    placeSelect.addEventListener("change", ()=>{
-      const k = placeSelect.value;
-      localStorage.setItem("ff_place", k);
-      loadMeteo(k);
-    });
-
-    document.getElementById("refreshMeteo").addEventListener("click", ()=>{
-      loadMeteo(placeSelect.value);
-    });
-
-    // Carica meteo all’avvio
-    loadMeteo(placeSelect.value);
-
-    // -------------------------
-    // COPY LINK + TORNA SU
-    // -------------------------
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    async function copyUrl(btn){
-      const url = window.location.href;
-      try{
-        await navigator.clipboard.writeText(url);
-        const old = btn.textContent;
-        btn.textContent = "Copiato ✔";
-        setTimeout(()=> btn.textContent = old, 1200);
-      }catch(e){
-        prompt("Copia questo link:", url);
-      }
-    }
-
-    const copy1 = document.getElementById("copyLink");
-    const copy2 = document.getElementById("copyLink2");
-    copy1.addEventListener("click", ()=> copyUrl(copy1));
-    copy2.addEventListener("click", ()=> copyUrl(copy2));
-
-    document.getElementById("scrollTop").addEventListener("click", ()=>{
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  </script>
+<script>
+document.getElementById("year").textContent=new Date().getFullYear();
+setInterval(()=>{
+  const d=new Date();
+  document.getElementById("clock").textContent=d.toLocaleTimeString("it-IT");
+},1000);
+</script>
 </body>
 </html>
