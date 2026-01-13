@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="theme-color" content="#ffffff" />
   <title>Franco Ficara — Digitale • Scuola • Franco & Luma Studios</title>
-  <meta name="description" content="Franco Ficara: progetti digitali, didattica, creatività. Franco & Luma Studios." />
+  <meta name="description" content="Franco Ficara: progetti digitali, didattica, musica. Franco & Luma Studios." />
 
   <style>
     :root{
@@ -19,31 +19,29 @@
       --brand2:#0ea5e9;
       --shadow: 0 10px 30px rgba(2,6,23,.08);
       --radius: 16px;
-      --max: 1060px;
+      --max: 1120px;
     }
-
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--text);
-      background: radial-gradient(1000px 600px at 10% -10%, rgba(37,99,235,.10), transparent 60%),
-                  radial-gradient(900px 500px at 110% 10%, rgba(14,165,233,.12), transparent 55%),
-                  var(--bg);
-      line-height:1.5;
+      background:
+        radial-gradient(1000px 600px at 10% -10%, rgba(37,99,235,.10), transparent 60%),
+        radial-gradient(900px 500px at 110% 10%, rgba(14,165,233,.12), transparent 55%),
+        var(--bg);
+      line-height:1.55;
     }
-
     a{ color:inherit; text-decoration:none; }
     a:hover{ text-decoration:underline; }
-
     .wrap{ max-width:var(--max); margin:0 auto; padding:24px; }
 
-    /* Top bar */
+    /* Header */
     header{
-      position:sticky; top:0; z-index:20;
+      position:sticky; top:0; z-index:50;
       backdrop-filter:saturate(160%) blur(10px);
-      background: rgba(255,255,255,.78);
+      background: rgba(255,255,255,.80);
       border-bottom:1px solid var(--line);
     }
     .top{
@@ -53,71 +51,68 @@
       max-width:var(--max); margin:0 auto;
     }
     .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:800;
-      letter-spacing:.2px;
-      white-space:nowrap;
+      display:flex; align-items:center; gap:12px;
+      min-width: 220px;
     }
-    .dot{
-      width:12px; height:12px; border-radius:999px;
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
-      box-shadow: 0 6px 20px rgba(37,99,235,.35);
-      flex:0 0 auto;
+    .avatar{
+      width:42px; height:42px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: #fff;
+      object-fit: cover;
+      box-shadow: 0 10px 18px rgba(2,6,23,.08);
     }
+    .brand .name{ font-weight:900; letter-spacing:-.2px; line-height:1.1; }
+    .brand .sub{ font-size:13px; color:var(--muted); margin-top:2px; }
+
     nav{
-      display:flex; align-items:center; gap:14px;
-      flex-wrap:wrap;
+      display:flex; align-items:center; gap:10px; flex-wrap:wrap;
       justify-content:flex-end;
     }
-    nav a{
+    .navpill{
       font-size:14px;
       color:var(--muted);
-      padding:8px 10px;
-      border-radius:10px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.7);
     }
-    nav a:hover{
-      background: var(--surface);
-      text-decoration:none;
-      color:var(--text);
-    }
-
-    /* Hero */
-    .hero{
-      padding:28px 0 10px;
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    @media (max-width: 860px){
-      .hero{ grid-template-columns: 1fr; }
+    .navpill:hover{ text-decoration:none; background:var(--surface); color:var(--text); }
+    .navpill.primary{
+      border-color: rgba(37,99,235,.25);
+      background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(14,165,233,.12));
+      color: #0b1b3a;
+      font-weight:800;
     }
 
+    /* Sections */
+    section{ padding: 28px 0; }
     .panel{
-      background: rgba(255,255,255,.75);
+      background: rgba(255,255,255,.78);
       border:1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding:22px;
     }
+    .grid2{
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:16px;
+    }
+    @media (max-width: 900px){ .grid2{ grid-template-columns: 1fr; } }
 
     h1{
-      margin:0 0 8px;
-      font-size: clamp(28px, 3.2vw, 44px);
-      line-height:1.1;
-      letter-spacing:-.6px;
+      margin:0 0 10px;
+      font-size: clamp(30px, 3.4vw, 50px);
+      line-height:1.05;
+      letter-spacing:-.8px;
     }
-    .subtitle{
-      margin:0 0 18px;
+    .lead{
+      margin:0 0 16px;
       color:var(--muted);
       font-size:16px;
-      max-width: 70ch;
+      max-width:75ch;
     }
 
-    .cta{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top: 6px;
-    }
+    .cta{ display:flex; gap:10px; flex-wrap:wrap; margin-top:8px; }
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       gap:10px;
@@ -126,7 +121,7 @@
       border:1px solid var(--line);
       background: var(--card);
       box-shadow: 0 10px 18px rgba(2,6,23,.06);
-      font-weight:700;
+      font-weight:800;
       font-size:14px;
       cursor:pointer;
       user-select:none;
@@ -134,16 +129,37 @@
     .btn:hover{ transform: translateY(-1px); }
     .btn.primary{
       border-color: rgba(37,99,235,.25);
-      background: linear-gradient(135deg, rgba(37,99,235,.12), rgba(14,165,233,.10));
+      background: linear-gradient(135deg, rgba(37,99,235,.16), rgba(14,165,233,.12));
     }
-    .btn small{ font-weight:600; color:var(--muted); }
 
-    /* Cards grid */
-    .grid{
+    .mini{
+      display:flex; gap:8px; flex-wrap:wrap; margin-top: 10px;
+    }
+    .pill{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      color: var(--muted);
+    }
+
+    .section-title{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px;
+      margin:0 0 14px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: 28px;
+      letter-spacing:-.4px;
+    }
+    .muted{ color:var(--muted); }
+
+    .cards{
       display:grid;
       grid-template-columns: repeat(12, 1fr);
       gap:14px;
-      margin-top: 14px;
     }
     .card{
       grid-column: span 4;
@@ -152,63 +168,62 @@
       border-radius: var(--radius);
       padding:16px;
       box-shadow: 0 8px 18px rgba(2,6,23,.05);
-      min-height: 120px;
+      min-height: 130px;
+      display:flex; flex-direction:column; gap:8px;
     }
-    .card h3{ margin:0 0 6px; font-size:16px; }
-    .card p{ margin:0; color:var(--muted); font-size:14px; }
-    .card .tag{
+    .card h3{ margin:0; font-size:16px; }
+    .card p{ margin:0; font-size:14px; color:var(--muted); }
+    .tag{
       display:inline-flex;
-      margin-top:10px;
+      margin-top:auto;
       font-size:12px;
       padding:6px 10px;
       border-radius:999px;
       border:1px solid var(--line);
       background: var(--surface);
       color: var(--muted);
+      width: fit-content;
     }
-    @media (max-width: 960px){
-      .card{ grid-column: span 6; }
+    .card a.link{
+      font-weight:800;
+      color: var(--brand);
+      text-decoration:none;
     }
-    @media (max-width: 640px){
-      .card{ grid-column: span 12; }
-    }
+    .card a.link:hover{ text-decoration:underline; }
+    @media (max-width: 980px){ .card{ grid-column: span 6; } }
+    @media (max-width: 640px){ .card{ grid-column: span 12; } }
 
-    /* Right panel list */
-    .list{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin-top:10px;
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
     }
-    .item{
+    @media (max-width: 860px){ .split{ grid-template-columns: 1fr; } }
+
+    /* Music */
+    .track{
       display:flex;
-      gap:10px;
-      padding:12px;
-      border-radius: 14px;
-      border:1px solid var(--line);
-      background: var(--card);
+      gap:12px;
       align-items:flex-start;
+      padding:14px;
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background: var(--card);
+      box-shadow: 0 8px 18px rgba(2,6,23,.04);
     }
-    .ico{
-      width:34px; height:34px;
-      border-radius: 12px;
+    .badge{
+      width:38px; height:38px;
+      border-radius: 14px;
       display:flex; align-items:center; justify-content:center;
       background: linear-gradient(135deg, rgba(37,99,235,.14), rgba(14,165,233,.12));
-      border: 1px solid rgba(37,99,235,.20);
-      flex:0 0 auto;
+      border:1px solid rgba(37,99,235,.20);
       font-weight:900;
+      flex:0 0 auto;
     }
-    .item b{ display:block; font-size:14px; margin-bottom:2px; }
-    .item span{ display:block; font-size:13px; color:var(--muted); }
+    .track b{ display:block; font-size:14px; margin-bottom:4px; }
+    .track small{ color:var(--muted); display:block; margin-bottom:8px; }
 
-    /* Sections */
-    section{ padding: 16px 0; }
-    .section-title{
-      font-size:18px;
-      margin: 0 0 10px;
-      letter-spacing:-.2px;
-    }
-    .muted{ color:var(--muted); }
+    audio{ width: 100%; }
 
     /* Footer */
     footer{
@@ -219,19 +234,6 @@
       font-size: 13px;
     }
 
-    /* Tiny utilities */
-    .row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
-    .pill{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.7);
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:13px;
-      color: var(--muted);
-    }
-    .sep{ height:1px; background:var(--line); margin:14px 0; }
-
-    /* Accessibility */
     :focus-visible{ outline: 3px solid rgba(37,99,235,.35); outline-offset: 2px; border-radius: 12px; }
   </style>
 </head>
@@ -239,148 +241,271 @@
 <body>
   <header>
     <div class="top">
-      <div class="brand" aria-label="Brand">
-        <span class="dot" aria-hidden="true"></span>
-        <span>Franco Ficara</span>
+      <div class="brand">
+        <img class="avatar" src="franco.png" alt="Foto Franco (se non si vede, carica franco.png nella root)" onerror="this.style.display='none'">
+        <div>
+          <div class="name">Franco Ficara</div>
+          <div class="sub">Digitale • Scuola • Franco &amp; Luma Studios</div>
+        </div>
       </div>
-      <nav aria-label="Navigazione principale">
-        <a href="#progetti">Progetti</a>
-        <a href="#didattica">Didattica</a>
-        <a href="#contatti">Contatti</a>
+
+      <nav aria-label="Navigazione">
+        <a class="navpill" href="#home">Home</a>
+        <a class="navpill" href="#progetti">Progetti</a>
+        <a class="navpill" href="#musica">Musica</a>
+        <a class="navpill" href="#contatti">Contatti</a>
+        <a class="navpill primary" href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
       </nav>
     </div>
   </header>
 
   <main class="wrap">
-    <div class="hero">
-      <!-- Left: hero -->
+    <!-- HOME -->
+    <section id="home" class="grid2">
       <div class="panel">
-        <h1>Digitale, scuola, creatività.<br/>Senza rumore.</h1>
-        <p class="subtitle">
-          Qui trovi la mia base: progetti chiari, materiali didattici e il mondo <b>Franco & Luma Studios</b>.
-          Minimal, leggibile, stabile: come un quaderno a quadretti fatto bene.
+        <h1>Poca scena. Molta sostanza.</h1>
+        <p class="lead">
+          Qui raccolgo didattica, progetti digitali e musica. Questa è la mia base stabile:
+          <b>Franco &amp; Luma Studios</b>.
         </p>
 
-        <div class="cta">
-          <a class="btn primary" href="#progetti" role="button">Vai ai progetti</a>
-          <a class="btn" href="#contatti" role="button">Contattami</a>
-          <button class="btn" id="copyLink" type="button" title="Copia link del sito">
-            Copia link <small>(1 click)</small>
-          </button>
+        <div class="split">
+          <div class="panel" style="box-shadow:none; background:var(--surface);">
+            <h3 style="margin:0 0 8px;">Chi sono</h3>
+            <p class="muted" style="margin:0;">
+              Insegno, sperimento e costruisco strumenti digitali che funzionano davvero.<br/>
+              Tradizione come base, tecnologia come strumento.
+            </p>
+            <div class="cta" style="margin-top:12px;">
+              <a class="btn primary" href="#progetti">Vedi i progetti</a>
+              <a class="btn" href="#musica">Musica</a>
+              <a class="btn" href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a>
+            </div>
+          </div>
+
+          <div class="panel" style="box-shadow:none; background:var(--surface);">
+            <h3 style="margin:0 0 8px;">Franco &amp; Luma</h3>
+            <p class="muted" style="margin:0;">
+              Un laboratorio creativo: ironia quanto basta, tecnologia con criterio.
+            </p>
+            <div style="display:flex; gap:10px; align-items:center; margin-top:12px;">
+              <img src="luma.png" alt="Luma" style="width:54px;height:54px;border-radius:16px;border:1px solid var(--line);object-fit:cover; background:#fff"
+                   onerror="this.style.display='none'">
+              <div class="muted" style="font-size:13px;">
+                Se Luma non si vede, ok: il sito non crolla. È questa la stabilità.
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="sep"></div>
-
-        <div class="row" aria-label="Info rapide">
+        <div class="mini" aria-label="Info rapide">
           <span class="pill">🧑‍🏫 Insegnante</span>
           <span class="pill">🧠 AI & didattica</span>
           <span class="pill">🎬 Video / Presentazioni</span>
           <span class="pill">🐰 Franco & Luma</span>
         </div>
-
-        <section id="progetti" aria-label="Progetti">
-          <h2 class="section-title">Progetti</h2>
-
-          <div class="grid">
-            <article class="card">
-              <h3>Franco & Luma Studios</h3>
-              <p>Universo creativo: immagini, video, canzoni, esperimenti.</p>
-              <span class="tag">In aggiornamento</span>
-            </article>
-
-            <article class="card">
-              <h3>Siti & risorse scuola</h3>
-              <p>Materiali pratici, chiari, pronti per classe 4ª/5ª.</p>
-              <span class="tag">Didattica</span>
-            </article>
-
-            <article class="card">
-              <h3>Toolbox creator</h3>
-              <p>Workflow snello: prompt, template, checklist anti-caos.</p>
-              <span class="tag">Operativo</span>
-            </article>
-          </div>
-
-          <p class="muted" style="margin-top:10px;">
-            Vuoi che qui compaiano i link veri (Wix, GitHub, YouTube, ecc.)? Dimmi solo i 3–5 link e te li impacchetto senza drama.
-          </p>
-        </section>
       </div>
 
-      <!-- Right: quick links/info -->
-      <aside class="panel" aria-label="Pannello rapido">
-        <h2 class="section-title">Start rapido</h2>
-        <p class="muted" style="margin:0 0 10px;">
-          Questa pagina è “roccia”: niente librerie esterne, niente robe fragili.
+      <aside class="panel">
+        <div class="section-title" style="margin-bottom:10px;">
+          <h2 style="font-size:22px;margin:0;">Start rapido</h2>
+          <span class="muted" style="font-size:13px;">Base stabile</span>
+        </div>
+
+        <div class="muted" style="font-size:14px; margin-bottom:12px;">
+          Nessuna libreria esterna. Nessun effetto fragile. Niente “sparisce tutto”.
+        </div>
+
+        <div class="cta">
+          <button class="btn" id="copyLink" type="button">Copia link</button>
+          <a class="btn" href="#contatti">Scrivimi</a>
+        </div>
+
+        <div style="height:1px;background:var(--line); margin:16px 0;"></div>
+
+        <div class="muted" style="font-size:13px;">
+          Vecchia regola che non tradisce mai: <b>meno fronzoli = più affidabilità</b>.
+          Il sito deve essere come una campanella: suona sempre.
+        </div>
+      </aside>
+    </section>
+
+    <!-- PROGETTI -->
+    <section id="progetti">
+      <div class="section-title">
+        <h2>Progetti</h2>
+        <div class="muted">In primo piano + video</div>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <h3>Canale Maestro Franco</h3>
+          <p>Didattica, esperimenti e pubblicazioni.</p>
+          <a class="link" href="https://www.youtube.com/" target="_blank" rel="noopener">Apri →</a>
+          <span class="tag">YouTube</span>
+        </article>
+
+        <article class="card">
+          <h3>Franco &amp; Luma Studios</h3>
+          <p>Laboratorio creativo (Wix o sito esterno).</p>
+          <a class="link" href="#" onclick="alert('Metti qui il link vero (Wix o altro).'); return false;">Apri →</a>
+          <span class="tag">Creatività</span>
+        </article>
+
+        <article class="card">
+          <h3>Questo sito</h3>
+          <p>Base stabile, senza fronzoli.</p>
+          <a class="link" href="#home">Torna su →</a>
+          <span class="tag">Stabile</span>
+        </article>
+
+        <article class="card">
+          <h3>Risorse per la classe</h3>
+          <p>Materiali pronti: coding, AI, presentazioni.</p>
+          <a class="link" href="#" onclick="alert('Se vuoi, creo io la sezione “Risorse” con link e download.'); return false;">Organizza →</a>
+          <span class="tag">Didattica</span>
+        </article>
+
+        <article class="card">
+          <h3>Template &amp; Prompt</h3>
+          <p>Checklist anti-caos per video, immagini e slide.</p>
+          <a class="link" href="#" onclick="alert('Dimmi cosa vuoi: Sora / Kling / Filmora / Canva.'); return false;">Apri →</a>
+          <span class="tag">Operativo</span>
+        </article>
+
+        <article class="card">
+          <h3>Archivio</h3>
+          <p>Sezione “ordinata” per non perdere pezzi.</p>
+          <a class="link" href="#" onclick="alert('Qui possiamo mettere cartelle / pagine quando vuoi, ma senza rompere il layout.'); return false;">Prepara →</a>
+          <span class="tag">Organizzazione</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- MUSICA -->
+    <section id="musica">
+      <div class="section-title">
+        <h2>Musica</h2>
+        <div class="muted">Player diretto dai tuoi MP3</div>
+      </div>
+
+      <div class="panel">
+        <p class="muted" style="margin:0 0 14px;">
+          Qui sotto suona da subito usando i file che hai già nella root del repo.
+          Se un brano non parte, significa: nome file diverso o mancante.
         </p>
 
-        <div class="list">
-          <div class="item">
-            <div class="ico" aria-hidden="true">✓</div>
-            <div>
-              <b>Stabile</b>
-              <span>Solo HTML/CSS/JS base. Zero dipendenze.</span>
-            </div>
-          </div>
-
-          <div class="item">
-            <div class="ico" aria-hidden="true">☀</div>
-            <div>
-              <b>Chiara</b>
-              <span>Non è “troppo buia”. Leggibile sempre.</span>
-            </div>
-          </div>
-
-          <div class="item" id="didattica">
-            <div class="ico" aria-hidden="true">📚</div>
-            <div>
-              <b>Didattica</b>
-              <span>Struttura pronta per aggiungere sezioni e materiali.</span>
-            </div>
-          </div>
-
-          <div class="item" id="contatti">
-            <div class="ico" aria-hidden="true">✉</div>
-            <div>
-              <b>Contatti</b>
-              <span>Aggiungi qui email/social quando vuoi (senza rompere il layout).</span>
-            </div>
+        <div class="track">
+          <div class="badge">1</div>
+          <div style="width:100%;">
+            <b>Brano 1</b>
+            <small>File: brano1_v2.mp3</small>
+            <audio controls preload="none">
+              <source src="brano1_v2.mp3" type="audio/mpeg">
+              Il tuo browser non supporta l’audio.
+            </audio>
           </div>
         </div>
 
-        <div class="sep"></div>
+        <div style="height:10px;"></div>
 
-        <p class="muted" style="margin:0">
-          Nota “vecchia scuola” ma vera: meno effetti = più affidabilità. Il sito deve essere come una campanella: suona sempre.
+        <div class="track">
+          <div class="badge">2</div>
+          <div style="width:100%;">
+            <b>Brano 2</b>
+            <small>File: brano2.mp3</small>
+            <audio controls preload="none">
+              <source src="brano2.mp3" type="audio/mpeg">
+              Il tuo browser non supporta l’audio.
+            </audio>
+          </div>
+        </div>
+
+        <div style="height:10px;"></div>
+
+        <div class="track">
+          <div class="badge">3</div>
+          <div style="width:100%;">
+            <b>Brano 3</b>
+            <small>File: brano3.mp3</small>
+            <audio controls preload="none">
+              <source src="brano3.mp3" type="audio/mpeg">
+              Il tuo browser non supporta l’audio.
+            </audio>
+          </div>
+        </div>
+
+        <div class="cta" style="margin-top:14px;">
+          <a class="btn primary" href="#progetti">Torna ai progetti</a>
+          <a class="btn" href="https://www.youtube.com/" target="_blank" rel="noopener">Video su YouTube</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATTI -->
+    <section id="contatti">
+      <div class="section-title">
+        <h2>Contatti</h2>
+        <div class="muted">Essenziale, senza casino</div>
+      </div>
+
+      <div class="panel">
+        <p class="muted" style="margin-top:0;">
+          Metti qui quello che vuoi mostrare. Se mi dai email/Instagram ecc, te lo impagino io in 10 secondi.
         </p>
-      </aside>
-    </div>
+
+        <div class="cards">
+          <article class="card" style="grid-column: span 6;">
+            <h3>Email</h3>
+            <p>Inserisci l’indirizzo (o lo nascondiamo con un form).</p>
+            <span class="tag">Da impostare</span>
+          </article>
+
+          <article class="card" style="grid-column: span 6;">
+            <h3>Social / Link</h3>
+            <p>YouTube, Wix, sito personale, quello che vuoi.</p>
+            <span class="tag">Da impostare</span>
+          </article>
+        </div>
+
+        <div class="cta" style="margin-top:14px;">
+          <button class="btn" id="scrollTop" type="button">Torna su</button>
+          <button class="btn" id="copyLink2" type="button">Copia link</button>
+        </div>
+      </div>
+    </section>
 
     <footer>
-      <div class="wrap" style="padding:0; max-width:var(--max);">
-        <div class="row" style="justify-content:space-between;">
-          <span>© <span id="year"></span> Franco Ficara</span>
-          <span>Versione pulita • HTML singolo</span>
-        </div>
+      <div style="display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <span>© <span id="year"></span> Franco Ficara</span>
+        <span>Versione stabile • 1 file • zero dipendenze</span>
       </div>
     </footer>
   </main>
 
   <script>
-    // Roba minima, stabile, senza magie.
+    // JS minimo, affidabile.
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    const btn = document.getElementById("copyLink");
-    btn.addEventListener("click", async () => {
+    async function copyUrl(btn){
       const url = window.location.href;
       try{
         await navigator.clipboard.writeText(url);
+        const old = btn.textContent;
         btn.textContent = "Copiato ✔";
-        setTimeout(()=> btn.innerHTML = 'Copia link <small>(1 click)</small>', 1400);
+        setTimeout(()=> btn.textContent = old, 1200);
       }catch(e){
-        // fallback super semplice
         prompt("Copia questo link:", url);
       }
+    }
+
+    const copy1 = document.getElementById("copyLink");
+    const copy2 = document.getElementById("copyLink2");
+    copy1.addEventListener("click", ()=> copyUrl(copy1));
+    copy2.addEventListener("click", ()=> copyUrl(copy2));
+
+    document.getElementById("scrollTop").addEventListener("click", ()=>{
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   </script>
 </body>
