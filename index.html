@@ -3,768 +3,267 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="theme-color" content="#0b1c24" />
+  <meta name="theme-color" content="#070b14" />
   <title>Franco Ficara — Digitale • Scuola • Franco & Luma Studios</title>
-  <meta name="description" content="Franco Ficara. Progetti digitali, didattica, musica. Franco & Luma Studios." />
+  <meta name="description" content="Franco Ficara. Didattica, progetti digitali e musica. Poca scena, molta sostanza." />
 
   <style>
     :root{
-      /* THEME: Mediterraneo Notte */
-      --bg:#0b1c24;
-      --panel:rgba(18,40,51,.78);
-      --panel2:rgba(18,40,51,.60);
-      --stroke:rgba(255,255,255,.09);
+      /* THEME: Minimal Premium – Mediterraneo Notte */
+      --bg:#070b14;
+      --panel: rgba(11,16,28,.72);
+      --panel2: rgba(11,16,28,.56);
+      --stroke: rgba(255,255,255,.10);
 
-      --text:#eaf2f6;
-      --muted:rgba(234,242,246,.74);
-      --muted2:rgba(234,242,246,.54);
+      --text:#eaf2ff;
+      --muted: rgba(234,242,255,.74);
+      --muted2: rgba(234,242,255,.52);
 
-      --accent:#2ec4c6;  /* teal */
-      --accent2:#7cdbdd;
+      --accent:#2ec4c6;
 
       --ok:#22c55e;
       --warn:#f59e0b;
 
-      --radius:24px;
-      --shadow: 0 22px 60px rgba(0,0,0,.55);
-      --blur: blur(18px);
-      --max: 1100px;
+      --radius:22px;
+      --shadow: 0 18px 48px rgba(0,0,0,.48);
+      --blur: blur(16px);
+      --max:1100px;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background:var(--bg);
       color:var(--text);
-      background: var(--bg);
       overflow-x:hidden;
     }
 
-    /* BACKGROUND: non deve MAI bloccare i click */
     .bg{
       position:fixed; inset:0;
       background:
-        radial-gradient(1000px 600px at 18% 8%, rgba(46,196,198,.22), transparent 60%),
-        radial-gradient(900px 500px at 92% 18%, rgba(34,197,94,.12), transparent 60%),
-        radial-gradient(900px 600px at 55% 102%, rgba(245,158,11,.10), transparent 65%),
-        linear-gradient(180deg, rgba(11,28,36,.58), rgba(7,11,20,.88)),
+        radial-gradient(900px 500px at 15% 10%, rgba(46,196,198,.18), transparent 60%),
+        linear-gradient(180deg, rgba(7,11,20,.55), rgba(7,11,20,.88)),
         url("sfondo-brancaleone.jpg");
-      background-size: cover;
-      background-position: center;
-      filter: saturate(1.15) contrast(1.06);
-      transform: scale(1.02);
+      background-size:cover;
+      background-position:center;
       z-index:-2;
       pointer-events:none;
     }
     .vignette{
       position:fixed; inset:0;
-      background: radial-gradient(circle at 50% 35%, rgba(0,0,0,.00), rgba(0,0,0,.55) 75%, rgba(0,0,0,.78) 100%);
+      background:radial-gradient(circle at 50% 30%, transparent, rgba(0,0,0,.7) 80%);
       z-index:-1;
       pointer-events:none;
     }
 
     .wrap{
-      width:min(var(--max), 92vw);
-      margin: 26px auto 70px;
-      position:relative;
-      z-index:1;
+      width:min(var(--max),92vw);
+      margin:26px auto 70px;
     }
 
     header{
       display:flex;
-      align-items:center;
       justify-content:space-between;
+      align-items:center;
       gap:16px;
-      padding:14px 14px;
+      padding:14px;
+      border-radius:999px;
       border:1px solid var(--stroke);
-      border-radius: 999px;
-      background: rgba(9,13,23,.55);
-      backdrop-filter: var(--blur);
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      position: sticky;
-      top: 14px;
-      z-index: 10;
-      pointer-events:auto;
+      background:rgba(9,13,23,.55);
+      backdrop-filter:var(--blur);
+      position:sticky;
+      top:14px;
+      z-index:10;
     }
 
     .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width: 240px;
+      display:flex;
+      gap:12px;
+      align-items:center;
     }
     .avatar{
-      width:44px; height:44px;
-      border-radius: 999px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
+      width:44px;height:44px;
+      border-radius:50%;
       overflow:hidden;
-      box-shadow: 0 8px 18px rgba(0,0,0,.35);
-      flex: 0 0 auto;
-    }
-    .avatar img{width:100%; height:100%; object-fit:cover; display:block}
-    .brand h1{margin:0; font-size: 15px; letter-spacing:.2px; line-height: 1.1}
-    .brand .sub{margin-top:2px; font-size: 12px; color: var(--muted)}
-
-    nav{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .pill{
-      appearance:none;
       border:1px solid var(--stroke);
-      background: rgba(255,255,255,.05);
-      color: var(--text);
+    }
+    .avatar img{width:100%;height:100%;object-fit:cover}
+    .brand h1{margin:0;font-size:15px}
+    .brand .sub{font-size:12px;color:var(--muted)}
+
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{
       padding:10px 14px;
-      border-radius: 999px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
       text-decoration:none;
-      font-size: 13px;
-      line-height: 1;
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      user-select:none;
-      pointer-events:auto;
+      font-size:13px;
     }
-    .pill:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.09); }
     .pill.primary{
-      background: rgba(46,196,198,.18);
-      border-color: rgba(46,196,198,.34);
+      background:rgba(46,196,198,.18);
+      border-color:rgba(46,196,198,.36);
     }
-    .pill.primary:hover{ background: rgba(46,196,198,.26); }
 
     .hero{
-      margin-top: 18px;
-      border: 1px solid var(--stroke);
-      border-radius: var(--radius);
-      background: var(--panel);
-      backdrop-filter: var(--blur);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
+      margin-top:18px;
+      border-radius:var(--radius);
+      border:1px solid var(--stroke);
+      background:var(--panel);
+      backdrop-filter:var(--blur);
+      box-shadow:var(--shadow);
     }
-    .hero-inner{ padding: 26px 22px; }
-    .title{margin:0; font-size: clamp(34px, 4.2vw, 54px); letter-spacing: -0.6px}
+    .hero-inner{padding:28px 24px 16px}
+    .title{
+      margin:0;
+      font-size:clamp(34px,4.4vw,52px);
+      letter-spacing:-.8px;
+      line-height:1.05;
+    }
     .lead{
-      margin: 10px 0 0;
-      color: var(--muted);
-      max-width: 72ch;
-      font-size: 15px;
-      line-height: 1.55;
+      margin-top:12px;
+      max-width:68ch;
+      color:var(--muted);
+      line-height:1.65;
+      font-size:15px;
     }
-
-    /* badge versione (anti-fregatura cache) */
-    .badge{
-      position:absolute;
-      top:16px; right:16px;
-      display:flex; align-items:center; gap:8px;
-      border:1px solid rgba(46,196,198,.35);
-      background: rgba(46,196,198,.10);
-      color: rgba(234,242,246,.9);
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      box-shadow: 0 10px 24px rgba(0,0,0,.25);
-    }
-    .badge b{ color: var(--accent2); }
 
     .grid{
       display:grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 16px;
-      margin-top: 18px;
-      padding: 0 22px 22px;
-    }
-    @media (max-width: 920px){
-      header{ position: static; border-radius: 18px; }
-      .brand{ min-width: unset; }
-      .grid{ grid-template-columns: 1fr; padding: 0 16px 16px; }
-      .hero-inner{ padding: 22px 16px; }
-      nav{ justify-content:flex-start; }
-      .badge{ position:static; margin: 0 16px 14px; width: fit-content;}
+      grid-template-columns:1.4fr 1fr;
+      gap:16px;
+      padding:0 24px 24px;
     }
 
     .card{
+      border-radius:18px;
       border:1px solid var(--stroke);
-      border-radius: 18px;
-      background: rgba(255,255,255,.04);
-      box-shadow: 0 10px 26px rgba(0,0,0,.28);
-      overflow:hidden;
+      background:rgba(255,255,255,.035);
     }
-    .card .in{ padding:16px; }
-    .card h3{ margin:0 0 10px; font-size: 18px; letter-spacing: -.2px; }
-    .muted{ color: var(--muted); font-size: 14px; line-height: 1.55; }
-    .muted2{ color: var(--muted2); font-size: 12px; line-height: 1.4; }
+    .card .in{padding:18px}
+    h3{margin:0 0 10px}
 
-    .btnrow{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px; }
+    .btnrow{display:flex;gap:10px;flex-wrap:wrap}
     .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      padding: 11px 14px;
-      border-radius: 14px;
+      padding:11px 14px;
+      border-radius:14px;
       border:1px solid var(--stroke);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
       text-decoration:none;
-      font-size: 13px;
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      pointer-events:auto;
+      font-size:13px;
     }
-    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.10); }
     .btn.primary{
-      background: rgba(46,196,198,.22);
-      border-color: rgba(46,196,198,.38);
-    }
-    .btn.primary:hover{ background: rgba(46,196,198,.30); }
-
-    .idline{ display:flex; align-items:center; gap:10px; margin-top: 10px; }
-    .chip{
-      display:inline-flex; align-items:center; gap:8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .mini-avatars{ display:flex; gap:8px; margin-left:auto; }
-    .mini-avatars img{
-      width:40px; height:40px; border-radius: 12px;
-      border:1px solid var(--stroke);
-      object-fit:cover;
-      background: rgba(255,255,255,.06);
+      background:rgba(46,196,198,.18);
+      border-color:rgba(46,196,198,.36);
     }
 
     section{
-      margin-top: 18px;
+      margin-top:18px;
+      border-radius:var(--radius);
       border:1px solid var(--stroke);
-      border-radius: var(--radius);
-      background: var(--panel2);
-      backdrop-filter: var(--blur);
-      box-shadow: 0 18px 50px rgba(0,0,0,.42);
-      overflow:hidden;
+      background:var(--panel2);
+      backdrop-filter:var(--blur);
+      box-shadow:var(--shadow);
     }
     section .head{
-      padding: 18px 18px 0;
+      padding:18px;
       display:flex;
-      align-items:flex-end;
       justify-content:space-between;
-      gap: 12px;
-      flex-wrap:wrap;
+      align-items:end;
+      gap:12px;
     }
-    section .head h2{ margin:0; font-size: 22px; letter-spacing:-.2px; }
-    section .body{ padding: 14px 18px 18px; }
-
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 12px;
-    }
-    @media (max-width: 920px){ .cards{ grid-template-columns: 1fr; } }
-
-    .proj{
-      border:1px solid var(--stroke);
-      border-radius: 18px;
-      background: rgba(255,255,255,.04);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-      min-height: 150px;
-    }
-    .proj .top{
-      padding: 14px 14px 8px;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .proj .tag{
-      font-size: 12px;
-      color: var(--muted2);
-      border:1px solid var(--stroke);
-      padding:6px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.03);
-    }
-    .proj h4{ margin: 8px 14px 0; font-size: 16px; letter-spacing:-.2px; }
-    .proj p{ margin: 8px 14px 12px; color: var(--muted); font-size: 13px; line-height: 1.45; }
-    .proj .foot{ margin-top:auto; padding: 12px 14px 14px; display:flex; justify-content:flex-end; }
-    .proj .open{ width:100%; }
-
-    .music-grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 12px;
-    }
-    @media (max-width: 920px){ .music-grid{ grid-template-columns: 1fr; } }
-
-    .controls{
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
-      margin-top: 10px;
-    }
-    .select{
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.05);
-      color: var(--text);
-      padding: 10px 12px;
-      border-radius: 12px;
-      font-size: 13px;
-      outline:none;
-      min-width: 180px;
-    }
-    .range{ width: min(420px, 100%); }
-
-    .kpis{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 10px; }
-    .kpi{
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-      border-radius: 14px;
-      padding: 9px 11px;
-      font-size: 12px;
-      color: var(--muted);
-      display:inline-flex; align-items:center; gap:8px;
-    }
-    .dot{
-      width:8px; height:8px; border-radius: 99px;
-      background: rgba(255,255,255,.18);
-      box-shadow: 0 0 0 3px rgba(255,255,255,.06);
-    }
-    .dot.ok{ background: var(--ok); box-shadow: 0 0 0 3px rgba(34,197,94,.15); }
-    .dot.warn{ background: var(--warn); box-shadow: 0 0 0 3px rgba(245,158,11,.16); }
-
-    .mini{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top: 10px; }
-    .pill2{
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.04);
-      border-radius: 999px;
-      padding: 10px 12px;
-      font-size: 13px;
-      color: var(--muted);
-      display:inline-flex; gap:8px; align-items:center;
-      min-width: 160px;
-      justify-content:center;
-    }
+    section .body{padding:18px}
 
     footer{
-      margin-top: 18px;
+      margin-top:18px;
       text-align:center;
-      color: rgba(234,242,246,.55);
-      font-size: 12px;
+      font-size:12px;
+      color:var(--muted2);
     }
 
-    html{ scroll-behavior:smooth; }
+    @media(max-width:900px){
+      header{position:static;border-radius:18px}
+      .grid{grid-template-columns:1fr;padding:0 16px 16px}
+      .hero-inner{padding:22px 16px 14px}
+    }
   </style>
 </head>
 
 <body>
-  <div class="bg" aria-hidden="true"></div>
-  <div class="vignette" aria-hidden="true"></div>
+<div class="bg"></div>
+<div class="vignette"></div>
 
-  <div class="wrap">
-    <header>
-      <div class="brand">
-        <div class="avatar" title="Franco">
-          <img src="franco.png" alt="Foto di Franco" />
-        </div>
-        <div>
-          <h1>Franco Ficara</h1>
-          <div class="sub">Digitale • Scuola • Franco &amp; Luma Studios</div>
-        </div>
-      </div>
+<div class="wrap">
+<header>
+  <div class="brand">
+    <div class="avatar"><img src="franco.png" alt="Franco"></div>
+    <div>
+      <h1>Franco Ficara</h1>
+      <div class="sub">Digitale • Scuola • Franco & Luma Studios</div>
+    </div>
+  </div>
+  <nav>
+    <a class="pill" href="#home">Home</a>
+    <a class="pill" href="#progetti">Progetti</a>
+    <a class="pill" href="#musica">Musica</a>
+    <a class="pill" href="#contatti">Contatti</a>
+    <a class="pill primary" href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank">YouTube</a>
+  </nav>
+</header>
 
-      <nav aria-label="Navigazione">
-        <a class="pill" href="#home">Home</a>
-        <a class="pill" href="#progetti">Progetti</a>
-        <a class="pill" href="#musica">Musica</a>
-        <a class="pill" href="#contatti">Contatti</a>
-        <a class="pill primary" href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" rel="noopener noreferrer">YouTube</a>
-      </nav>
-    </header>
-
-    <main>
-      <div class="hero" id="home">
-        <div class="hero-inner">
-          <h2 class="title">Benvenuto</h2>
-          <p class="lead">
-            Qui raccolgo didattica, progetti digitali e musica. E soprattutto: il mio laboratorio creativo,
-            <strong>Franco &amp; Luma Studios</strong> (il link Wix resta quello “storico”, ma il nome qui è giusto).
-          </p>
-        </div>
-
-        <div class="badge" title="Se lo vedi, stai guardando il nuovo deploy.">
-          🌊 Theme: <b>Mediterraneo Notte</b> • Build: <span id="buildBadge">--</span>
-        </div>
-
-        <div class="grid">
-          <div class="card">
-            <div class="in">
-              <h3>Chi sono</h3>
-              <div class="muted">
-                Sono Franco Ficara. Insegno, sperimento e creo strumenti digitali che funzionano davvero.
-                Poca scena, molta sostanza.
-              </div>
-              <div class="btnrow">
-                <a class="btn primary" href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" rel="noopener noreferrer">Vai al canale</a>
-                <a class="btn" href="#progetti">Vedi i progetti</a>
-                <a class="btn" href="#musica">Ascolta musica</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="in">
-              <h3>Franco &amp; Luma</h3>
-              <div class="muted">
-                Tradizione davanti, futuro dietro le quinte. Tecnologia usata con criterio, ironia quanto basta.
-              </div>
-
-              <div class="idline">
-                <span class="chip">Franco</span>
-                <span class="chip">Luma</span>
-                <div class="mini-avatars" aria-label="Franco e Luma">
-                  <img src="franco.png" alt="Franco" />
-                  <img src="luma.png" alt="Luma" />
-                </div>
-              </div>
-
-              <div class="muted2" style="margin-top:10px;">
-                Brand visivo: <strong>Franco &amp; Luma Studios</strong>.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROGETTI -->
-      <section id="progetti">
-        <div class="head">
-          <h2>Progetti</h2>
-          <div class="muted2">In primo piano + video</div>
-        </div>
-
-        <div class="body">
-          <!-- IN PRIMO PIANO: WIX -->
-          <div class="card" style="margin-bottom:14px;">
-            <div class="in" style="display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;">
-              <div>
-                <div class="kpi" style="display:inline-flex; margin-bottom:10px;">
-                  <span class="dot ok"></span><span>In primo piano</span>
-                </div>
-                <h3 style="margin:0 0 8px;">Franco &amp; Luma Studios (Wix)</h3>
-                <div class="muted">Sito in costruzione: pagine, galleria e contenuti completi. Nome corretto qui, URL “storico” su Wix.</div>
-              </div>
-
-              <div class="btnrow" style="margin-top:0;">
-                <a class="btn primary" href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank" rel="noopener noreferrer">
-                  Apri Franco &amp; Luma Studios
-                </a>
-                <a class="btn" href="#contatti">Contatti</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="cards">
-            <div class="proj">
-              <div class="top"><span class="tag">YouTube</span></div>
-              <h4>Canale Maestro Franco</h4>
-              <p>Video, didattica, esperimenti e pubblicazioni.</p>
-              <div class="foot">
-                <a class="btn open primary" href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" rel="noopener noreferrer">Apri canale</a>
-              </div>
-            </div>
-
-            <div class="proj">
-              <div class="top"><span class="tag">Studios</span></div>
-              <h4>Franco &amp; Luma Studios</h4>
-              <p>Il laboratorio creativo (link Wix, nome in chiaro qui).</p>
-              <div class="foot">
-                <a class="btn open" href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank" rel="noopener noreferrer">Apri su Wix</a>
-              </div>
-            </div>
-
-            <div class="proj">
-              <div class="top"><span class="tag">Home</span></div>
-              <h4>Questo sito</h4>
-              <p>Base stabile: qui mettiamo ordine nel caos.</p>
-              <div class="foot">
-                <a class="btn open" href="#musica">Vai alla musica</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- VIDEO IN EVIDENZA -->
-          <div style="height:14px;"></div>
-          <div class="head" style="padding:0; margin-top:10px;">
-            <h2 style="font-size:18px; margin:0;">Video in evidenza</h2>
-            <div class="muted2">Tre contenuti veri. Click e via.</div>
-          </div>
-
-          <div class="cards" style="margin-top:12px;">
-            <div class="proj">
-              <div class="top"><span class="tag">Video</span></div>
-              <h4>Video 1</h4>
-              <p>Apri su YouTube.</p>
-              <div class="foot">
-                <a class="btn open primary" href="https://www.youtube.com/watch?v=4rgxf7v5GRA" target="_blank" rel="noopener noreferrer">Guarda</a>
-              </div>
-            </div>
-
-            <div class="proj">
-              <div class="top"><span class="tag">Video</span></div>
-              <h4>Video 2</h4>
-              <p>Apri su YouTube.</p>
-              <div class="foot">
-                <a class="btn open primary" href="https://www.youtube.com/watch?v=yiXu8UqvsgE&t=1062s" target="_blank" rel="noopener noreferrer">Guarda</a>
-              </div>
-            </div>
-
-            <div class="proj">
-              <div class="top"><span class="tag">Video</span></div>
-              <h4>Video 3</h4>
-              <p>Apri su YouTube.</p>
-              <div class="foot">
-                <a class="btn open primary" href="https://www.youtube.com/watch?v=zN8BEUcsq1M" target="_blank" rel="noopener noreferrer">Guarda</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- MUSICA -->
-      <section id="musica">
-        <div class="head">
-          <h2>Musica</h2>
-          <div class="muted2">Su telefono parte dopo un tocco: è una regola del browser.</div>
-        </div>
-
-        <div class="body">
-          <div class="music-grid">
-            <div class="card">
-              <div class="in">
-                <h3>Player</h3>
-
-                <div class="controls">
-                  <button class="btn primary" id="btnPlay">▶ Avvia</button>
-                  <button class="btn" id="btnPause">⏸ Pausa</button>
-                  <button class="btn" id="btnNext">⏭ Prossimo</button>
-
-                  <label class="muted2" for="trackSel" style="margin-left:auto;">Brano</label>
-                  <select class="select" id="trackSel" aria-label="Seleziona brano">
-                    <option value="brano1_v2.mp3">Brano 1</option>
-                    <option value="brano2.mp3">Brano 2</option>
-                    <option value="brano3.mp3">Brano 3</option>
-                  </select>
-                </div>
-
-                <div class="controls" style="margin-top:12px;">
-                  <label class="muted2" for="volRange">Volume</label>
-                  <input class="range" id="volRange" type="range" min="0" max="1" step="0.01" value="0.7" />
-                  <span class="muted2" id="nowPlaying" style="margin-left:auto;">Pronto.</span>
-                </div>
-
-                <div class="kpis">
-                  <div class="kpi"><span class="dot ok"></span><span>Salva impostazioni</span></div>
-                  <div class="kpi"><span class="dot ok"></span><span>Anti-cache</span></div>
-                  <div class="kpi"><span class="dot warn"></span><span>Autoplay: serve un click</span></div>
-                </div>
-
-                <audio id="audio" preload="metadata"></audio>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="in">
-                <h3>Orologio &amp; Meteo</h3>
-                <div class="mini">
-                  <div class="pill2" title="Ora locale"><span>🕒</span><span id="clock">--:--:--</span></div>
-                  <div class="pill2" title="Città selezionata"><span>📍</span><span id="cityName">Brancaleone</span></div>
-                  <div class="pill2" title="Temperatura"><span>🌡️</span><span id="temp">--°C</span></div>
-                </div>
-
-                <div class="btnrow" style="margin-top:12px;">
-                  <button class="btn" id="btnBranca">Brancaleone</button>
-                  <button class="btn" id="btnGalb">Galbiate</button>
-                </div>
-
-                <div class="muted2" style="margin-top:10px;">
-                  Meteo live (Open-Meteo). Nessuna chiave, nessun account.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTATTI -->
-      <section id="contatti">
-        <div class="head">
-          <h2>Contatti</h2>
-          <div class="muted2">Semplice, senza moduli che impazziscono</div>
-        </div>
-        <div class="body">
-          <div class="cards">
-            <div class="proj">
-              <div class="top"><span class="tag">Email</span></div>
-              <h4>Scrivimi</h4>
-              <p>Una mail e via.</p>
-              <div class="foot">
-                <a class="btn open primary" href="mailto:francoficara1@gmail.com">Apri Email</a>
-              </div>
-            </div>
-
-            <div class="proj">
-              <div class="top"><span class="tag">Wix</span></div>
-              <h4>Franco &amp; Luma Studios</h4>
-              <p>Nome corretto qui, link Wix “storico”.</p>
-              <div class="foot">
-                <a class="btn open" href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank" rel="noopener noreferrer">Apri</a>
-              </div>
-            </div>
-
-            <div class="proj">
-              <div class="top"><span class="tag">YouTube</span></div>
-              <h4>Canale</h4>
-              <p>Contenuti di Maestro Franco.</p>
-              <div class="foot">
-                <a class="btn open" href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" rel="noopener noreferrer">Vai al canale</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <footer>
-        © <span id="year"></span> Franco Ficara — Franco &amp; Luma Studios
-      </footer>
-    </main>
+<main>
+<div class="hero" id="home">
+  <div class="hero-inner">
+    <h2 class="title">Tecnologia, scuola, creatività.<br>Poca scena. Molta sostanza.</h2>
+    <p class="lead">
+      Qui raccolgo didattica, progetti digitali e musica. Questa è la mia base stabile:
+      <strong>Franco &amp; Luma Studios</strong>.
+    </p>
   </div>
 
-  <script>
-    // Cambia questo ad ogni commit se vuoi uccidere la cache: è il tuo "timbro" di versione.
-    const BUILD = "2026-01-13-TEAL-v1";
-    document.getElementById("buildBadge").textContent = BUILD;
+  <div class="grid">
+    <div class="card">
+      <div class="in">
+        <h3>Chi sono</h3>
+        <p class="lead">
+          Insegno, sperimento e costruisco strumenti digitali che funzionano davvero.
+          Tradizione come base, tecnologia come strumento.
+        </p>
+        <div class="btnrow">
+          <a class="btn primary" href="#progetti">Vedi i progetti</a>
+          <a class="btn" href="#musica">Musica</a>
+          <a class="btn" href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank">YouTube</a>
+        </div>
+      </div>
+    </div>
 
-    const TRACKS = ["brano1_v2.mp3","brano2.mp3","brano3.mp3"];
-    const CITIES = {
-      brancaleone: { name: "Brancaleone", lat: 38.125, lon: 16.086 },
-      galbiate:    { name: "Galbiate",    lat: 45.813, lon: 9.378 }
-    };
+    <div class="card">
+      <div class="in">
+        <h3>Franco &amp; Luma</h3>
+        <p class="lead">
+          Un laboratorio creativo: ironia quanto basta, tecnologia con criterio.
+        </p>
+        <div class="btnrow">
+          <span class="btn">Franco</span>
+          <span class="btn">Luma</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-    const $ = (id) => document.getElementById(id);
-    function cacheBust(url){
-      const sep = url.includes("?") ? "&" : "?";
-      return `${url}${sep}v=${encodeURIComponent(BUILD)}`;
-    }
+<footer>
+  © <span id="year"></span> Franco Ficara — Franco &amp; Luma Studios
+</footer>
+</main>
+</div>
 
-    // YEAR
-    $("year").textContent = new Date().getFullYear();
-
-    // CLOCK
-    function tickClock(){
-      const d = new Date();
-      $("clock").textContent =
-        String(d.getHours()).padStart(2,"0") + ":" +
-        String(d.getMinutes()).padStart(2,"0") + ":" +
-        String(d.getSeconds()).padStart(2,"0");
-    }
-    tickClock();
-    setInterval(tickClock, 1000);
-
-    // MUSIC
-    const audio = $("audio");
-    const trackSel = $("trackSel");
-    const volRange = $("volRange");
-    const nowPlaying = $("nowPlaying");
-    const LS_KEY = "franco_site_player_teal_v1";
-
-    function loadState(){
-      try{
-        const s = JSON.parse(localStorage.getItem(LS_KEY) || "{}");
-        if (s.track && TRACKS.includes(s.track)) trackSel.value = s.track;
-        if (typeof s.volume === "number") volRange.value = String(s.volume);
-      }catch(e){}
-    }
-
-    function saveState(){
-      try{
-        localStorage.setItem(LS_KEY, JSON.stringify({
-          track: trackSel.value,
-          volume: Number(volRange.value)
-        }));
-      }catch(e){}
-    }
-
-    function setTrack(file){
-      audio.src = cacheBust(file);
-      nowPlaying.textContent = "Selezionato: " + file;
-      saveState();
-    }
-
-    async function playSafe(){
-      audio.volume = Number(volRange.value);
-      try{
-        await audio.play();
-        nowPlaying.textContent = "In riproduzione: " + trackSel.options[trackSel.selectedIndex].text;
-      }catch(err){
-        nowPlaying.textContent = "Tocca ▶ Avvia per partire (blocco autoplay).";
-      }
-    }
-
-    function pause(){
-      audio.pause();
-      nowPlaying.textContent = "In pausa.";
-    }
-
-    function next(){
-      const i = TRACKS.indexOf(trackSel.value);
-      const n = (i + 1) % TRACKS.length;
-      trackSel.value = TRACKS[n];
-      setTrack(TRACKS[n]);
-      playSafe();
-    }
-
-    loadState();
-    setTrack(trackSel.value);
-    audio.volume = Number(volRange.value);
-
-    $("btnPlay").addEventListener("click", playSafe);
-    $("btnPause").addEventListener("click", pause);
-    $("btnNext").addEventListener("click", next);
-    trackSel.addEventListener("change", () => setTrack(trackSel.value));
-    volRange.addEventListener("input", () => { audio.volume = Number(volRange.value); saveState(); });
-
-    // WEATHER
-    let activeCity = "brancaleone";
-
-    function setCity(key){
-      activeCity = key;
-      $("cityName").textContent = CITIES[key].name;
-      fetchWeather();
-    }
-
-    async function fetchWeather(){
-      const c = CITIES[activeCity];
-      $("temp").textContent = "--°C";
-      try{
-        const url =
-          `https://api.open-meteo.com/v1/forecast?latitude=${c.lat}&longitude=${c.lon}` +
-          `&current=temperature_2m&timezone=auto`;
-        const res = await fetch(url, { cache: "no-store" });
-        const data = await res.json();
-        const t = data?.current?.temperature_2m;
-        $("temp").textContent = (typeof t === "number") ? (Math.round(t) + "°C") : "--°C";
-      }catch(e){
-        $("temp").textContent = "--°C";
-      }
-    }
-
-    $("btnBranca").addEventListener("click", () => setCity("brancaleone"));
-    $("btnGalb").addEventListener("click", () => setCity("galbiate"));
-    setCity("brancaleone");
-    setInterval(fetchWeather, 10 * 60 * 1000);
-  </script>
+<script>
+document.getElementById("year").textContent=new Date().getFullYear();
+</script>
 </body>
 </html>
