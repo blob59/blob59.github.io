@@ -10,26 +10,16 @@
         .container { max-width: 900px; margin: auto; padding: 20px; }
         
         .profile-section { padding: 40px 20px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 2px solid #3b82f6; }
-        .profile-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #3b82f6; object-fit: cover; margin-bottom: 10px; transition: 0.3s; }
-        
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #3b82f6; object-fit: cover; margin-bottom: 10px; }
         h1 { margin: 5px 0; font-size: 2.5em; color: #fff; }
         
-        /* Stile per il Messaggio e il Tasto Voce */
         .welcome-container { margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
         #welcome-msg { font-size: 1.2em; color: #94a3b8; font-style: italic; }
         .speak-btn { background: #3b82f6; border: none; color: white; padding: 8px 12px; border-radius: 50%; cursor: pointer; transition: 0.3s; }
-        .speak-btn:hover { background: #2563eb; transform: scale(1.1); }
 
         #clock { font-size: 1.8em; color: #3b82f6; font-weight: bold; margin-bottom: 15px; font-family: 'Courier New', monospace; background: rgba(30, 41, 59, 0.8); display: inline-block; padding: 8px 20px; border-radius: 12px; border: 1px solid #3b82f6; }
 
-        .featured-photo-container { 
-            max-width: 800px; 
-            margin: 20px auto 40px auto; 
-            border-radius: 20px; 
-            overflow: hidden; 
-            border: 2px solid rgba(59, 130, 246, 0.5); 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-        }
+        .featured-photo-container { max-width: 800px; margin: 20px auto 40px auto; border-radius: 20px; overflow: hidden; border: 2px solid rgba(59, 130, 246, 0.5); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
         .featured-photo { width: 100%; height: auto; display: block; }
 
         .btn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 30px 0; }
@@ -46,20 +36,13 @@
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-        .gallery-item { width: 100%; height: 200px; border-radius: 15px; object-fit: cover; border: 2px solid #334155; transition: 0.4s; }
+        /* Stile Contatore Visite */
+        .visit-counter { background: #1e293b; padding: 10px 20px; border-radius: 10px; display: inline-block; margin-top: 10px; border: 1px solid #334155; }
 
-        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 35px; z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; }
-
-        h2 { color: #94a3b8; margin-top: 50px; text-transform: uppercase; letter-spacing: 3px; border-bottom: 2px solid #3b82f6; display: inline-block; padding-bottom: 5px; margin-bottom: 25px; }
         footer { margin-top: 60px; padding: 30px; font-size: 0.9em; color: #94a3b8; border-top: 1px solid #334155; }
     </style>
 </head>
 <body>
-
-    <a href="https://wa.me/39XXXXXXXXXX" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
 
     <div class="profile-section">
         <img src="franco-luma.jpg" alt="Franco e Luma" class="profile-img">
@@ -67,9 +50,7 @@
         
         <div class="welcome-container">
             <span id="welcome-msg">Caricamento...</span>
-            <button onclick="speakWelcome()" class="speak-btn" title="Ascolta il messaggio">
-                <i class="fas fa-volume-up"></i>
-            </button>
+            <button onclick="speakWelcome()" class="speak-btn"><i class="fas fa-volume-up"></i></button>
         </div>
         
         <div id="clock">00:00:00</div>
@@ -77,8 +58,6 @@
         <div class="featured-photo-container">
             <img src="franco-grande.jpg" alt="Franco Ficara" class="featured-photo">
         </div>
-        
-        <p>Innovazione, Natura e Intelligenza Artificiale</p>
     </div>
 
     <div class="container">
@@ -90,31 +69,20 @@
             <a href="https://openai.com/sora" target="_blank" class="btn btn-ai">Sora AI</a>
         </div>
 
-        <h2>🎵 Le Mie Emozioni in Musica</h2>
+        <h2>🎵 Playlist & Clip</h2>
         <div class="btn-grid">
             <a href="https://www.youtube.com/watch?v=IE32yM0ccWY" target="_blank" class="btn btn-music">🎶 Io che resto</a>
             <a href="https://www.youtube.com/watch?v=oxWN9TXGmEY" target="_blank" class="btn btn-music">🎼 Il Maestro dal mare</a>
-            <a href="https://www.youtube.com/watch?v=be_-J-ed150" target="_blank" class="btn btn-music">🎹 Ho messo via...</a>
-            <a href="https://www.youtube.com/watch?v=yiXu8UqvsgE" target="_blank" class="btn btn-music">🎸 Ombre che brillano</a>
             <a href="https://youtu.be/HPiaAz-6nhY" target="_blank" class="btn btn-music">🎬 Clip Looney Tunes</a>
-        </div>
-
-        <h2>🎥 In primo piano: Luma Film</h2>
-        <div class="video-box">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/4rgxf7v5GRA" title="Luma film" allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <h2>🌦️ Meteo Rapido</h2>
-        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-            <a href="https://www.ilmeteo.it/meteo/Brancaleone" target="_blank" class="btn btn-meteo" style="min-width: 250px;">☀️ Brancaleone (RC)</a>
-            <a href="https://www.ilmeteo.it/meteo/Galbiate" target="_blank" class="btn btn-meteo" style="min-width: 250px;">☁️ Galbiate (LC)</a>
         </div>
 
         <footer>
             <p>&copy; 2026 Franco Ficara | Hub Personale</p>
-            <p>Visitatori: <img src="https://counter9.optistats.ovh/private/freecounterstat.php?c=8l8n8z6n2m1u5l3p1j4n9r1v5x7z9q2b" style="vertical-align: middle;"></p>
+            
+            <div class="visit-counter">
+                <i class="fas fa-eye"></i> Visite totali: 
+                <img src="https://hitwebcounter.com/counter/counter.php?page=10000000&style=0005&nbdigits=5&type=page&initCount=0" title="Counter" Alt="Visitatori" border="0" style="vertical-align: middle; margin-left: 10px;">
+            </div>
         </footer>
     </div>
 
@@ -122,25 +90,20 @@
         function updateClock() {
             const now = new Date();
             const hours = now.getHours();
-            const timeString = now.toLocaleTimeString('it-IT');
-            document.getElementById('clock').textContent = timeString;
+            document.getElementById('clock').textContent = now.toLocaleTimeString('it-IT');
 
             let welcome;
             if (hours >= 5 && hours < 12) welcome = "Buongiorno Franco! Caffè e innovazione?";
             else if (hours >= 12 && hours < 18) welcome = "Buon pomeriggio! Musica e creatività?";
             else if (hours >= 18 && hours < 22) welcome = "Buonasera! Relax con Luma?";
             else welcome = "Buonanotte! Sognando nuovi progetti...";
-            
             document.getElementById('welcome-msg').textContent = welcome;
         }
 
-        // Funzione per far parlare il sito
         function speakWelcome() {
             const text = document.getElementById('welcome-msg').textContent;
-            const speech = new SpeechSynthesisUtterance();
-            speech.text = text;
+            const speech = new SpeechSynthesisUtterance(text);
             speech.lang = 'it-IT';
-            speech.rate = 1; 
             window.speechSynthesis.speak(speech);
         }
         
