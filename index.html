@@ -8,25 +8,52 @@
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; text-align: center; scroll-behavior: smooth; }
         .container { max-width: 900px; margin: auto; padding: 20px; }
-        .profile-section { padding: 40px 20px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 2px solid #3b82f6; }
+        .profile-section { padding: 40px 20px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 2px solid #3b82f6; position: relative; }
         .profile-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #3b82f6; object-fit: cover; margin-bottom: 10px; }
         h1 { margin: 5px 0; font-size: 2.5em; color: #fff; }
-        #clock { font-size: 1.8em; color: #3b82f6; font-weight: bold; margin: 15px 0; font-family: 'Courier New', monospace; background: rgba(30, 41, 59, 0.8); display: inline-block; padding: 8px 20px; border-radius: 12px; border: 1px solid #3b82f6; }
+        
+        /* OROLOGIO E FUMETTO INTERATTIVO LUMA */
+        #clock-container { position: relative; display: inline-block; margin: 15px 0; }
+        #clock { font-size: 1.8em; color: #3b82f6; font-weight: bold; font-family: 'Courier New', monospace; background: rgba(30, 41, 59, 0.8); padding: 8px 20px; border-radius: 12px; border: 1px solid #3b82f6; }
+        #luma-bubble { 
+            position: absolute; 
+            top: -60px; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            background: #f59e0b; 
+            color: #000; 
+            padding: 10px 18px; 
+            border-radius: 20px; 
+            font-size: 0.95em; 
+            font-weight: bold; 
+            display: none; 
+            white-space: nowrap; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4); 
+            z-index: 100;
+            border: 2px solid white;
+        }
+        #luma-bubble::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid #f59e0b; }
+
         .featured-photo-container { max-width: 800px; margin: 20px auto 40px auto; border-radius: 20px; overflow: hidden; border: 2px solid rgba(59, 130, 246, 0.5); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
         .featured-photo { width: 100%; height: auto; display: block; }
+        
         .btn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 30px 0; }
-        .btn { padding: 18px; border-radius: 15px; text-decoration: none; font-weight: bold; color: white; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+        .btn { padding: 18px; border-radius: 15px; text-decoration: none; font-weight: bold; color: white; transition: 0.3s; display: flex; align-items: center; justify-content: center; text-align: center; }
         .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4); }
+        
         .btn-wix { background: linear-gradient(45deg, #cf11ff, #9111ff); grid-column: 1 / -1; font-size: 1.4em; border: 2px solid #fff; }
         .btn-yt { background-color: #ef4444; }
         .btn-ai { background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); }
         .btn-music { background: linear-gradient(45deg, #f59e0b, #d97706); border: 1px solid #fff; }
+
         .weather-section { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 40px 0; }
         .weather-box { background: #1e293b; padding: 15px; border-radius: 20px; border: 1px solid #3b82f6; }
         .weather-link { color: #3b82f6; text-decoration: none; font-weight: bold; display: block; margin-top: 10px; }
+        
         .widget-box { margin: 40px 0; background: #1e293b; padding: 20px; border-radius: 20px; border: 1px solid #334155; }
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        
         h2 { color: #94a3b8; margin-top: 50px; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #3b82f6; display: inline-block; padding-bottom: 5px; }
         footer { margin-top: 60px; padding: 30px; border-top: 1px solid #334155; color: #94a3b8; }
         .visit-counter { background: #1e293b; padding: 10px; border-radius: 10px; display: inline-block; border: 1px solid #3b82f6; margin-top: 10px; }
@@ -37,7 +64,12 @@
     <div class="profile-section">
         <img src="franco-luma.jpg" alt="Franco e Luma" class="profile-img">
         <h1>Franco Ficara</h1>
-        <div id="clock">00:00:00</div>
+        
+        <div id="clock-container">
+            <div id="luma-bubble">Ciao Franco!</div>
+            <div id="clock">00:00:00</div>
+        </div>
+        
         <div class="featured-photo-container">
             <img src="franco-grande.jpg" alt="Franco Ficara" class="featured-photo">
         </div>
@@ -48,8 +80,8 @@
             <a href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank" class="btn btn-wix">🚀 Franco e Luma Studios</a>
             <a href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" class="btn btn-yt">📺 YouTube</a>
             <a href="https://chatgpt.com" target="_blank" class="btn btn-ai">ChatGPT</a>
-            <a href="https://gemini.google.com" target="_blank" class="btn btn-ai">Gemini AI</a>
             <a href="https://openai.com/sora" target="_blank" class="btn btn-ai">Sora AI</a>
+            <a href="https://gemini.google.com" target="_blank" class="btn btn-ai">Gemini AI</a>
         </div>
 
         <h2>🎵 La Mia Musica</h2>
@@ -63,39 +95,70 @@
         <div class="weather-section">
             <div class="weather-box">
                 <i class="fas fa-sun" style="font-size: 2em; color: #f59e0b;"></i>
-                <h3>Brancaleone</h3>
-                <a href="https://www.meteo.it/meteo/brancaleone-80014" target="_blank" class="weather-link">Meteo.it</a>
+                <h3>Brancaleone (RC)</h3>
+                <a href="https://www.meteo.it/meteo/brancaleone-80014" target="_blank" class="weather-link">Vedi Meteo</a>
             </div>
             <div class="weather-box">
                 <i class="fas fa-cloud-sun" style="font-size: 2em; color: #3b82f6;"></i>
-                <h3>Galbiate</h3>
-                <a href="https://www.meteo.it/meteo/galbiate-97036" target="_blank" class="weather-link">Meteo.it</a>
+                <h3>Galbiate (LC)</h3>
+                <a href="https://www.meteo.it/meteo/galbiate-97036" target="_blank" class="weather-link">Vedi Meteo</a>
             </div>
         </div>
 
-        <h2>🎥 In Primo Piano</h2>
+        <h2>🎥 Video Studios</h2>
         <div class="widget-box">
             <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/4rgxf7v5GRA" title="Luma film" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/4rgxf7v5GRA" title="Franco e Luma Studios" allowfullscreen></iframe>
             </div>
         </div>
 
         <footer>
-            <p>&copy; 2026 Franco Ficara | Hub Personale</p>
+            <p>&copy; 2026 Franco Ficara | Franco e Luma Studios</p>
             <div class="visit-counter">
-                <span style="font-size: 0.8em; color: #3b82f6;">VISITATORI</span><br>
+                <span style="font-size: 0.8em; color: #3b82f6;">VISITATORI HUB</span><br>
                 <img src="https://counter9.optistats.ovh/private/freecounterstat.php?c=8l8n8z6n2m1u5l3p1j4n9r1v5x7z9q2b" border="0">
             </div>
         </footer>
     </div>
 
     <script>
+        // FUNZIONE OROLOGIO
         function updateClock() {
             const now = new Date();
             document.getElementById('clock').textContent = now.toLocaleTimeString('it-IT');
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+        // FRASI DI LUMA (Simpatiche e Comiche)
+        const lumaQuotes = [
+            "Franco, mi prude il naso! 🐰",
+            "Che bella musica oggi!",
+            "Brancaleone arriviamo! 🌊",
+            "Hai visto che ore sono? ⏰",
+            "Ma io sono un coniglio AI?",
+            "Sora mi farà bellissimo! ✨",
+            "Galbiate è fresca oggi! ❄️",
+            "Franco, fammi ballare! 🎶",
+            "Controlla il meteo, presto!",
+            "Siamo i migliori, vero?"
+        ];
+
+        function showLumaBubble() {
+            const bubble = document.getElementById('luma-bubble');
+            const randomQuote = lumaQuotes[Math.floor(Math.random() * lumaQuotes.length)];
+            bubble.textContent = randomQuote;
+            bubble.style.display = 'block';
+            
+            setTimeout(() => {
+                bubble.style.display = 'none';
+            }, 4500); // Il fumetto resta visibile per 4.5 secondi
+        }
+
+        // Messaggio ogni 12 secondi per essere dinamico
+        setInterval(showLumaBubble, 12000);
+        // Primo saluto dopo 2 secondi
+        setTimeout(showLumaBubble, 2000);
     </script>
 </body>
 </html>
