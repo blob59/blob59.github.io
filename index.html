@@ -8,18 +8,14 @@
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; text-align: center; }
         .container { max-width: 900px; margin: auto; padding: 20px; }
         
-        /* Header con Foto e Orologio */
         .profile-section { padding: 40px 20px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 2px solid #334155; }
-        .profile-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid #3b82f6; object-fit: cover; margin-bottom: 15px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5); }
+        .profile-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid #3b82f6; object-fit: cover; margin-bottom: 15px; }
         h1 { margin: 10px 0; font-size: 2.5em; color: #fff; }
-        
-        /* Stile Orologio */
-        #clock { font-size: 1.5em; color: #3b82f6; font-weight: bold; margin-top: 10px; font-family: 'Courier New', Courier, monospace; }
+        #clock { font-size: 1.5em; color: #3b82f6; font-weight: bold; margin-bottom: 10px; font-family: monospace; }
 
-        /* Bottoni Principali */
         .btn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 30px 0; }
-        .btn { padding: 15px; border-radius: 12px; text-decoration: none; font-weight: bold; color: white; transition: transform 0.2s, box-shadow 0.2s; display: flex; align-items: center; justify-content: center; font-size: 1.1em; }
-        .btn:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+        .btn { padding: 15px; border-radius: 12px; text-decoration: none; font-weight: bold; color: white; transition: 0.2s; display: flex; align-items: center; justify-content: center; }
+        .btn:hover { transform: translateY(-3px); }
         
         .btn-wix { background-color: #cf11ff; grid-column: 1 / -1; font-size: 1.3em; border: 2px solid #fff; }
         .btn-yt { background-color: #ef4444; }
@@ -27,10 +23,10 @@
         .btn-gemini { background-color: #4285f4; }
         .btn-sora { background-color: #6366f1; }
 
-        /* Sezione Meteo */
+        /* Sezione Meteo Sistemata */
         .weather-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
-        .weather-card { background: #1e293b; padding: 15px; border-radius: 16px; border: 1px solid #334155; }
-        h2 { color: #94a3b8; margin-top: 40px; text-transform: uppercase; letter-spacing: 1px; }
+        .weather-card { background: #1e293b; padding: 20px; border-radius: 16px; border: 1px solid #3b82f6; min-height: 150px; }
+        h2 { color: #94a3b8; margin-top: 40px; text-transform: uppercase; }
     </style>
 </head>
 <body>
@@ -43,7 +39,6 @@
 </div>
 
 <div class="container">
-    
     <div class="btn-grid">
         <a href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank" class="btn btn-wix">Visita il mio sito Wix</a>
         <a href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" class="btn btn-yt">YouTube</a>
@@ -52,31 +47,26 @@
         <a href="https://openai.com/sora" target="_blank" class="btn btn-sora">Sora AI</a>
     </div>
 
-    <h2>Meteo Locale</h2>
+    <h2>METEO LOCALE</h2>
     <div class="weather-section">
         <div class="weather-card">
-            <a class="weatherwidget-io" href="https://weatherwidget.io/w/0/it/brancaleone/2525505/" data-label_1="BRANCALEONE (RC)" data-theme="pure" >BRANCALEONE (RC)</a>
+            <a class="weatherwidget-io" href="https://weatherwidget.io/w/0/it/brancaleone/2525505/" data-label_1="BRANCALEONE (RC)" data-label_2="METEO" data-theme="dark" >BRANCALEONE (RC)</a>
         </div>
-
         <div class="weather-card">
-            <a class="weatherwidget-io" href="https://weatherwidget.io/w/0/it/galbiate/1550969/" data-label_1="GALBIATE (LC)" data-theme="pure" >GALBIATE (LC)</a>
+            <a class="weatherwidget-io" href="https://weatherwidget.io/w/0/it/galbiate/1550969/" data-label_1="GALBIATE (LC)" data-label_2="METEO" data-theme="dark" >GALBIATE (LC)</a>
         </div>
     </div>
 </div>
 
 <script>
-    // Funzione per l'Orologio
     function updateClock() {
         const now = new Date();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const seconds = String(now.getSeconds()).padStart(2, '0');
-        document.getElementById('clock').textContent = hours + ":" + minutes + ":" + seconds;
+        document.getElementById('clock').textContent = now.toLocaleTimeString('it-IT');
     }
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Script per il Meteo
+    // Script Meteo
     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
 </script>
 
