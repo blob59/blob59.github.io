@@ -6,66 +6,50 @@
     <title>Franco Ficara Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: sans-serif; background-color: #0f172a; color: white; margin: 0; text-align: center; }
-        .container { max-width: 900px; margin: auto; padding: 20px; }
-        
-        /* Sezione Alta */
-        .profile-section { padding: 40px 20px; background: #1e293b; border-bottom: 3px solid #3b82f6; }
-        .profile-img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid #3b82f6; object-fit: cover; }
-        
-        /* Orologio e Voce */
-        #clock { font-size: 2em; color: #3b82f6; font-weight: bold; margin: 15px 0; display: block; }
-        .welcome-box { margin-bottom: 20px; }
-        .speak-btn { background: #3b82f6; border: none; color: white; padding: 10px 15px; border-radius: 20px; cursor: pointer; }
-
-        /* Foto Grande */
-        .main-photo { width: 100%; max-width: 800px; border-radius: 15px; margin: 20px 0; border: 2px solid #334155; }
-
-        /* Griglia Bottoni */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; padding: 20px; }
-        .btn { padding: 20px; border-radius: 12px; text-decoration: none; color: white; font-weight: bold; display: block; }
-        .btn-wix { background: linear-gradient(to right, #cf11ff, #9111ff); grid-column: 1 / -1; font-size: 1.2em; }
+        body { font-family: sans-serif; background-color: #0f172a; color: white; margin: 0; padding: 0; text-align: center; }
+        .header { padding: 30px; background: #1e293b; border-bottom: 4px solid #3b82f6; }
+        .profile-img { width: 130px; height: 130px; border-radius: 50%; border: 3px solid #3b82f6; object-fit: cover; }
+        #clock { font-size: 2.2em; color: #3b82f6; font-weight: bold; margin: 15px 0; display: block; font-family: monospace; }
+        .main-photo { width: 95%; max-width: 800px; border-radius: 15px; margin: 20px auto; display: block; border: 2px solid #334155; }
+        .container { max-width: 800px; margin: auto; padding: 20px; }
+        .btn { display: block; padding: 20px; margin: 10px 0; border-radius: 12px; text-decoration: none; color: white; font-weight: bold; font-size: 1.1em; }
+        .btn-wix { background: linear-gradient(to right, #cf11ff, #9111ff); border: 2px solid white; }
         .btn-yt { background: #ef4444; }
         .btn-music { background: #f59e0b; }
-        .btn-ai { background: #334155; }
-
-        /* Contatore */
-        .footer-box { margin-top: 50px; padding: 20px; border-top: 1px solid #334155; }
-        .counter-box { background: #1e293b; padding: 15px; border-radius: 10px; display: inline-block; border: 1px solid #3b82f6; }
+        .btn-ai { background: #334155; border: 1px solid #475569; }
+        .footer { margin-top: 50px; padding: 20px; border-top: 1px solid #334155; color: #94a3b8; }
+        .counter-box { background: #1e293b; padding: 15px; border-radius: 10px; display: inline-block; border: 1px solid #3b82f6; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="profile-section">
+    <div class="header">
         <img src="franco-luma.jpg" alt="Franco" class="profile-img">
         <h1>Franco Ficara</h1>
+        <div id="clock">00:00:00</div>
         
-        <div class="welcome-box">
-            <p id="welcome-msg">Benvenuto nel mio Hub</p>
-            <button onclick="speak()" class="speak-btn"><i class="fas fa-volume-up"></i> Ascolta Saluto</button>
-        </div>
-
-        <span id="clock">00:00:00</span>
-        
-        <img src="franco-grande.jpg" alt="Franco Grande" class="main-photo">
+        <button onclick="parla()" style="background:#3b82f6; color:white; border:none; padding:10px 20px; border-radius:20px; cursor:pointer;">
+            <i class="fas fa-volume-up"></i> ASCOLTA SALUTO
+        </button>
     </div>
 
+    <img src="franco-grande.jpg" alt="Franco Foto" class="main-photo">
+
     <div class="container">
-        <div class="grid">
-            <a href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank" class="btn btn-wix">🚀 FRANCO E LUMA STUDIOS</a>
-            <a href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" class="btn btn-yt">YouTube</a>
+        <a href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank" class="btn btn-wix">🚀 FRANCO E LUMA STUDIOS</a>
+        <a href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" class="btn btn-yt">IL MIO YOUTUBE</a>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
             <a href="https://chatgpt.com" target="_blank" class="btn btn-ai">ChatGPT</a>
             <a href="https://gemini.google.com" target="_blank" class="btn btn-ai">Gemini</a>
         </div>
 
-        <h2>MIA MUSICA</h2>
-        <div class="grid">
-            <a href="https://www.youtube.com/watch?v=IE32yM0ccWY" target="_blank" class="btn btn-music">Io che resto</a>
-            <a href="https://www.youtube.com/watch?v=oxWN9TXGmEY" target="_blank" class="btn btn-music">Maestro dal mare</a>
-            <a href="https://youtu.be/HPiaAz-6nhY" target="_blank" class="btn btn-music">Looney Tunes</a>
-        </div>
+        <h2 style="margin-top:40px; color:#3b82f6;">LA MIA MUSICA</h2>
+        <a href="https://www.youtube.com/watch?v=IE32yM0ccWY" target="_blank" class="btn btn-music">Io che resto</a>
+        <a href="https://www.youtube.com/watch?v=oxWN9TXGmEY" target="_blank" class="btn btn-music">Maestro dal mare</a>
+        <a href="https://youtu.be/HPiaAz-6nhY" target="_blank" class="btn btn-music">Looney Tunes</a>
 
-        <div class="footer-box">
+        <div class="footer">
             <p>© 2026 Franco Ficara</p>
             <div class="counter-box">
                 <span style="display:block; margin-bottom:5px;">VISITATORI (da 1540)</span>
@@ -75,28 +59,26 @@
     </div>
 
     <script>
-        function update() {
-            const d = new Date();
-            const h = d.getHours();
-            document.getElementById('clock').innerText = d.toLocaleTimeString('it-IT');
+        function aggiorna() {
+            const ora = new Date();
+            document.getElementById('clock').innerText = ora.toLocaleTimeString('it-IT');
+        }
+        
+        function parla() {
+            const ora = new Date().getHours();
+            let saluto = "Buongiorno Franco!";
+            if(ora >= 12) saluto = "Buon pomeriggio Franco!";
+            if(ora >= 18) saluto = "Buonasera Franco!";
             
-            let m = "Buongiorno Franco!";
-            if(h >= 12) m = "Buon pomeriggio Franco!";
-            if(h >= 18) m = "Buonasera Franco!";
-            document.getElementById('welcome-msg').innerText = m;
-        }
-
-        function speak() {
-            const msg = document.getElementById('welcome-msg').innerText;
-            const s = new SpeechSynthesisUtterance(msg);
-            s.lang = 'it-IT';
-            s.rate = 0.8;
+            const voce = new SpeechSynthesisUtterance(saluto);
+            voce.lang = 'it-IT';
+            voce.rate = 0.8;
             window.speechSynthesis.cancel();
-            window.speechSynthesis.speak(s);
+            window.speechSynthesis.speak(voce);
         }
 
-        setInterval(update, 1000);
-        update();
+        setInterval(aggiorna, 1000);
+        aggiorna();
     </script>
 </body>
 </html>
