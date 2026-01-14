@@ -10,15 +10,17 @@
         .container { max-width: 900px; margin: auto; padding: 20px; }
         
         .profile-section { padding: 40px 20px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 2px solid #3b82f6; }
-        .profile-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #3b82f6; object-fit: cover; margin-bottom: 10px; transition: transform 0.3s; }
-        .profile-img:hover { transform: rotate(5deg) scale(1.1); }
+        .profile-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #3b82f6; object-fit: cover; margin-bottom: 10px; transition: 0.3s; }
         
         h1 { margin: 5px 0; font-size: 2.5em; color: #fff; }
         
-        /* Benvenuto Dinamico */
-        #welcome-msg { font-size: 1.2em; color: #94a3b8; margin-bottom: 10px; font-style: italic; min-height: 1.5em; }
+        /* Stile per il Messaggio e il Tasto Voce */
+        .welcome-container { margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        #welcome-msg { font-size: 1.2em; color: #94a3b8; font-style: italic; }
+        .speak-btn { background: #3b82f6; border: none; color: white; padding: 8px 12px; border-radius: 50%; cursor: pointer; transition: 0.3s; }
+        .speak-btn:hover { background: #2563eb; transform: scale(1.1); }
 
-        #clock { font-size: 1.8em; color: #3b82f6; font-weight: bold; margin-bottom: 15px; font-family: 'Courier New', monospace; background: rgba(30, 41, 59, 0.8); display: inline-block; padding: 8px 20px; border-radius: 12px; border: 1px solid #3b82f6; min-width: 150px; box-shadow: 0 0 15px rgba(59, 130, 246, 0.3); }
+        #clock { font-size: 1.8em; color: #3b82f6; font-weight: bold; margin-bottom: 15px; font-family: 'Courier New', monospace; background: rgba(30, 41, 59, 0.8); display: inline-block; padding: 8px 20px; border-radius: 12px; border: 1px solid #3b82f6; }
 
         .featured-photo-container { 
             max-width: 800px; 
@@ -28,13 +30,10 @@
             border: 2px solid rgba(59, 130, 246, 0.5); 
             box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
-        .featured-photo { width: 100%; height: auto; display: block; transition: 0.8s; }
-        .featured-photo:hover { filter: brightness(1.1); }
+        .featured-photo { width: 100%; height: auto; display: block; }
 
         .btn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 30px 0; }
-        .btn { padding: 18px; border-radius: 15px; text-decoration: none; font-weight: bold; color: white; transition: 0.3s; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        
-        /* Effetto bagliore al passaggio */
+        .btn { padding: 18px; border-radius: 15px; text-decoration: none; font-weight: bold; color: white; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
         .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4); }
         
         .btn-wix { background: linear-gradient(45deg, #cf11ff, #9111ff); grid-column: 1 / -1; font-size: 1.4em; border: 2px solid #fff; }
@@ -49,10 +48,8 @@
 
         .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
         .gallery-item { width: 100%; height: 200px; border-radius: 15px; object-fit: cover; border: 2px solid #334155; transition: 0.4s; }
-        .gallery-item:hover { transform: scale(1.05); cursor: pointer; border-color: #3b82f6; }
 
-        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 35px; z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); transition: 0.3s; }
-        .whatsapp-float:hover { transform: scale(1.1) rotate(10deg); }
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 35px; z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; }
 
         h2 { color: #94a3b8; margin-top: 50px; text-transform: uppercase; letter-spacing: 3px; border-bottom: 2px solid #3b82f6; display: inline-block; padding-bottom: 5px; margin-bottom: 25px; }
         footer { margin-top: 60px; padding: 30px; font-size: 0.9em; color: #94a3b8; border-top: 1px solid #334155; }
@@ -68,7 +65,12 @@
         <img src="franco-luma.jpg" alt="Franco e Luma" class="profile-img">
         <h1>Franco Ficara</h1>
         
-        <div id="welcome-msg">Caricamento...</div>
+        <div class="welcome-container">
+            <span id="welcome-msg">Caricamento...</span>
+            <button onclick="speakWelcome()" class="speak-btn" title="Ascolta il messaggio">
+                <i class="fas fa-volume-up"></i>
+            </button>
+        </div>
         
         <div id="clock">00:00:00</div>
         
@@ -110,13 +112,6 @@
             <a href="https://www.ilmeteo.it/meteo/Galbiate" target="_blank" class="btn btn-meteo" style="min-width: 250px;">☁️ Galbiate (LC)</a>
         </div>
 
-        <h2>🐰 Le Avventure di Luma</h2>
-        <div class="gallery">
-            <img src="luma1.jpg" alt="Luma 1" class="gallery-item">
-            <img src="luma2.jpg" alt="Luma 2" class="gallery-item">
-            <img src="luma3.jpg" alt="Luma 3" class="gallery-item">
-        </div>
-
         <footer>
             <p>&copy; 2026 Franco Ficara | Hub Personale</p>
             <p>Visitatori: <img src="https://counter9.optistats.ovh/private/freecounterstat.php?c=8l8n8z6n2m1u5l3p1j4n9r1v5x7z9q2b" style="vertical-align: middle;"></p>
@@ -130,14 +125,23 @@
             const timeString = now.toLocaleTimeString('it-IT');
             document.getElementById('clock').textContent = timeString;
 
-            // Logica Benvenuto Dinamico
             let welcome;
-            if (hours >= 5 && hours < 12) welcome = "Buongiorno Franco! Caffè e innovazione? ☕";
-            else if (hours >= 12 && hours < 18) welcome = "Buon pomeriggio! Musica e creatività? 🎸";
-            else if (hours >= 18 && hours < 22) welcome = "Buonasera! Relax con Luma? 🌙";
-            else welcome = "Buonanotte! Sognando nuovi progetti... ✨";
+            if (hours >= 5 && hours < 12) welcome = "Buongiorno Franco! Caffè e innovazione?";
+            else if (hours >= 12 && hours < 18) welcome = "Buon pomeriggio! Musica e creatività?";
+            else if (hours >= 18 && hours < 22) welcome = "Buonasera! Relax con Luma?";
+            else welcome = "Buonanotte! Sognando nuovi progetti...";
             
             document.getElementById('welcome-msg').textContent = welcome;
+        }
+
+        // Funzione per far parlare il sito
+        function speakWelcome() {
+            const text = document.getElementById('welcome-msg').textContent;
+            const speech = new SpeechSynthesisUtterance();
+            speech.text = text;
+            speech.lang = 'it-IT';
+            speech.rate = 1; 
+            window.speechSynthesis.speak(speech);
         }
         
         setInterval(updateClock, 1000);
