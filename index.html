@@ -4,19 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Franco Ficara - Hub Personale</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; text-align: center; scroll-behavior: smooth; }
         .container { max-width: 900px; margin: auto; padding: 20px; }
         
         .profile-section { padding: 60px 20px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 2px solid #3b82f6; }
-        .profile-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid #3b82f6; object-fit: cover; margin-bottom: 15px; transition: transform 0.3s; }
-        .profile-img:hover { transform: scale(1.05); }
+        .profile-img { width: 180px; height: 180px; border-radius: 50%; border: 4px solid #3b82f6; object-fit: cover; margin-bottom: 15px; }
         
-        h1 { margin: 10px 0; font-size: 2.8em; color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        h1 { margin: 10px 0; font-size: 2.8em; color: #fff; }
         #clock { font-size: 2em; color: #3b82f6; font-weight: bold; margin-bottom: 20px; font-family: 'Courier New', monospace; background: rgba(30, 41, 59, 0.8); display: inline-block; padding: 10px 20px; border-radius: 15px; border: 1px solid #3b82f6; }
 
         .btn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 30px 0; }
-        .btn { padding: 18px; border-radius: 15px; text-decoration: none; font-weight: bold; color: white; transition: 0.3s; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .btn { padding: 18px; border-radius: 15px; text-decoration: none; font-weight: bold; color: white; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
         .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
         
         .btn-wix { background-color: #cf11ff; grid-column: 1 / -1; font-size: 1.4em; border: 2px solid #fff; }
@@ -24,15 +24,27 @@
         .btn-ai { background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); }
         .btn-meteo { background-color: #0056b3; border: 1px solid #3b82f6; }
 
-        /* Galleria Luma */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-        .gallery-item { width: 100%; height: 200px; border-radius: 15px; object-fit: cover; border: 2px solid #334155; transition: 0.3s; }
-        .gallery-item:hover { border-color: #3b82f6; transform: scale(1.02); }
+        /* Video YouTube */
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; border: 2px solid #334155; margin: 20px 0; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        h2 { color: #94a3b8; margin-top: 50px; text-transform: uppercase; letter-spacing: 3px; border-bottom: 1px solid #334155; display: inline-block; padding-bottom: 5px; }
+        /* Galleria */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+        .gallery-item { width: 100%; height: 200px; border-radius: 15px; object-fit: cover; border: 2px solid #334155; }
+
+        /* WhatsApp Button */
+        .whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: #25d366; color: #FFF; border-radius: 50px; text-align: center; font-size: 30px; box-shadow: 2px 2px 3px #999; z-index: 100; display: flex; align-items: center; justify-content: center; text-decoration: none; }
+
+        /* Footer e Contatore */
+        footer { margin-top: 50px; padding: 20px; font-size: 0.9em; color: #94a3b8; border-top: 1px solid #334155; }
+        h2 { color: #94a3b8; margin-top: 50px; text-transform: uppercase; letter-spacing: 2px; }
     </style>
 </head>
 <body>
+
+<a href="https://wa.me/39INSERISCIILTUONUMERO" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
 <div class="profile-section">
     <img src="franco-luma.jpg" alt="Franco e Luma" class="profile-img">
@@ -50,18 +62,27 @@
         <a href="https://openai.com/sora" target="_blank" class="btn btn-ai">Sora AI</a>
     </div>
 
+    <h2>🎥 Ultimo Video dal Canale</h2>
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/SshMhBExHqY" frameborder="0" allowfullscreen></iframe>
+    </div>
+
     <h2>🌦️ Meteo Rapido</h2>
-    <div class="weather-section" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+    <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
         <a href="https://www.ilmeteo.it/meteo/Brancaleone" target="_blank" class="btn btn-meteo" style="min-width: 250px;">Brancaleone (RC)</a>
         <a href="https://www.ilmeteo.it/meteo/Galbiate" target="_blank" class="btn btn-meteo" style="min-width: 250px;">Galbiate (LC)</a>
     </div>
 
     <h2>🐰 Le Avventure di Luma</h2>
     <div class="gallery">
-        <img src="luma1.jpg" alt="Luma 1" class="gallery-item" onerror="this.src='https://via.placeholder.com/200?text=Foto+Luma+1'">
-        <img src="luma2.jpg" alt="Luma 2" class="gallery-item" onerror="this.src='https://via.placeholder.com/200?text=Foto+Luma+2'">
-        <img src="luma3.jpg" alt="Luma 3" class="gallery-item" onerror="this.src='https://via.placeholder.com/200?text=Foto+Luma+3'">
+        <img src="luma1.jpg" alt="Luma 1" class="gallery-item">
+        <img src="luma2.jpg" alt="Luma 2" class="gallery-item">
+        <img src="luma3.jpg" alt="Luma 3" class="gallery-item">
     </div>
+
+    <footer>
+        <p>&copy; 2024 Franco Ficara | Visitatori: <img src="https://counter9.optistats.ovh/private/freecounterstat.php?c=8l8n8z6n2m1u5l3p1j4n9r1v5x7z9q2b" title="contatore visite" alt="contatore visite" style="vertical-align: middle;"></p>
+    </footer>
 </div>
 
 <script>
