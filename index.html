@@ -3,109 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Franco Ficara - Hub Personale</title>
+    <title>Franco Ficara Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; text-align: center; scroll-behavior: smooth; }
+        body { font-family: sans-serif; background-color: #0f172a; color: white; margin: 0; text-align: center; }
         .container { max-width: 900px; margin: auto; padding: 20px; }
         
-        /* HEADER */
-        .profile-section { padding: 40px 20px; background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-bottom: 2px solid #3b82f6; }
-        .profile-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #3b82f6; object-fit: cover; margin-bottom: 10px; }
-        h1 { margin: 5px 0; font-size: 2.5em; color: #fff; }
+        /* Sezione Alta */
+        .profile-section { padding: 40px 20px; background: #1e293b; border-bottom: 3px solid #3b82f6; }
+        .profile-img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid #3b82f6; object-fit: cover; }
         
-        /* VOCE E OROLOGIO */
-        .welcome-container { margin-bottom: 15px; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        #welcome-msg { font-size: 1.2em; color: #94a3b8; font-style: italic; }
-        .speak-btn { background: #3b82f6; border: none; color: white; padding: 10px; border-radius: 50%; cursor: pointer; transition: 0.3s; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-        #clock { font-size: 1.8em; color: #3b82f6; font-weight: bold; margin-bottom: 15px; font-family: 'Courier New', monospace; background: rgba(30, 41, 59, 0.8); display: inline-block; padding: 8px 20px; border-radius: 12px; border: 1px solid #3b82f6; }
+        /* Orologio e Voce */
+        #clock { font-size: 2em; color: #3b82f6; font-weight: bold; margin: 15px 0; display: block; }
+        .welcome-box { margin-bottom: 20px; }
+        .speak-btn { background: #3b82f6; border: none; color: white; padding: 10px 15px; border-radius: 20px; cursor: pointer; }
 
-        /* FOTO IN RISALTO */
-        .featured-photo-container { max-width: 800px; margin: 20px auto 40px auto; border-radius: 20px; overflow: hidden; border: 2px solid rgba(59, 130, 246, 0.5); box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
-        .featured-photo { width: 100%; height: auto; display: block; }
+        /* Foto Grande */
+        .main-photo { width: 100%; max-width: 800px; border-radius: 15px; margin: 20px 0; border: 2px solid #334155; }
 
-        /* BOTTONI */
-        .btn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 30px 0; }
-        .btn { padding: 18px; border-radius: 15px; text-decoration: none; font-weight: bold; color: white; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
-        .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(59, 130, 246, 0.4); }
-        .btn-wix { background: linear-gradient(45deg, #cf11ff, #9111ff); grid-column: 1 / -1; font-size: 1.4em; border: 2px solid white; }
-        .btn-yt { background-color: #ef4444; }
-        .btn-ai { background-color: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); }
-        .btn-music { background: linear-gradient(45deg, #f59e0b, #d97706); }
+        /* Griglia Bottoni */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; padding: 20px; }
+        .btn { padding: 20px; border-radius: 12px; text-decoration: none; color: white; font-weight: bold; display: block; }
+        .btn-wix { background: linear-gradient(to right, #cf11ff, #9111ff); grid-column: 1 / -1; font-size: 1.2em; }
+        .btn-yt { background: #ef4444; }
+        .btn-music { background: #f59e0b; }
+        .btn-ai { background: #334155; }
 
-        /* FOOTER E CONTATORE */
-        .visit-counter { background: #1e293b; padding: 15px; border-radius: 12px; display: inline-block; margin-top: 20px; border: 1px solid #3b82f6; }
-        footer { margin-top: 60px; padding: 30px; font-size: 0.9em; color: #94a3b8; border-top: 1px solid #334155; }
-        h2 { color: #94a3b8; margin-top: 40px; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #3b82f6; display: inline-block; padding-bottom: 5px; }
+        /* Contatore */
+        .footer-box { margin-top: 50px; padding: 20px; border-top: 1px solid #334155; }
+        .counter-box { background: #1e293b; padding: 15px; border-radius: 10px; display: inline-block; border: 1px solid #3b82f6; }
     </style>
 </head>
 <body>
 
     <div class="profile-section">
-        <img src="franco-luma.jpg" alt="Franco e Luma" class="profile-img">
+        <img src="franco-luma.jpg" alt="Franco" class="profile-img">
         <h1>Franco Ficara</h1>
-        <div class="welcome-container">
-            <span id="welcome-msg">Benvenuto!</span>
-            <button onclick="speakWelcome()" class="speak-btn"><i class="fas fa-volume-up"></i></button>
+        
+        <div class="welcome-box">
+            <p id="welcome-msg">Benvenuto nel mio Hub</p>
+            <button onclick="speak()" class="speak-btn"><i class="fas fa-volume-up"></i> Ascolta Saluto</button>
         </div>
-        <div id="clock">00:00:00</div>
-        <div class="featured-photo-container">
-            <img src="franco-grande.jpg" alt="Franco Ficara" class="featured-photo">
-        </div>
+
+        <span id="clock">00:00:00</span>
+        
+        <img src="franco-grande.jpg" alt="Franco Grande" class="main-photo">
     </div>
 
     <div class="container">
-        <div class="btn-grid">
-            <a href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank" class="btn btn-wix">🚀 Vai al sito Franco e Luma Studios</a>
-            <a href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" class="btn btn-yt">📺 YouTube</a>
+        <div class="grid">
+            <a href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank" class="btn btn-wix">🚀 FRANCO E LUMA STUDIOS</a>
+            <a href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" class="btn btn-yt">YouTube</a>
             <a href="https://chatgpt.com" target="_blank" class="btn btn-ai">ChatGPT</a>
             <a href="https://gemini.google.com" target="_blank" class="btn btn-ai">Gemini</a>
-            <a href="https://openai.com/sora" target="_blank" class="btn btn-ai">Sora AI</a>
         </div>
 
-        <h2>🎵 La Mia Musica</h2>
-        <div class="btn-grid">
-            <a href="https://www.youtube.com/watch?v=IE32yM0ccWY" target="_blank" class="btn btn-music">🎶 Io che resto</a>
-            <a href="https://www.youtube.com/watch?v=oxWN9TXGmEY" target="_blank" class="btn btn-music">🎼 Maestro dal mare</a>
-            <a href="https://youtu.be/HPiaAz-6nhY" target="_blank" class="btn btn-music">🎬 Clip Looney Tunes</a>
+        <h2>MIA MUSICA</h2>
+        <div class="grid">
+            <a href="https://www.youtube.com/watch?v=IE32yM0ccWY" target="_blank" class="btn btn-music">Io che resto</a>
+            <a href="https://www.youtube.com/watch?v=oxWN9TXGmEY" target="_blank" class="btn btn-music">Maestro dal mare</a>
+            <a href="https://youtu.be/HPiaAz-6nhY" target="_blank" class="btn btn-music">Looney Tunes</a>
         </div>
 
-        <footer>
-            <p>&copy; 2026 Franco Ficara | Hub Personale</p>
-            <div class="visit-counter">
-                <span style="font-size: 0.9em; color: #94a3b8;"><i class="fas fa-eye"></i> VISITATORI</span><br>
-                <img src="https://counter9.optistats.ovh/private/freecounterstat.php?c=8l8n8z6n2m1u5l3p1j4n9r1v5x7z9q2b" border="0" alt="visitatori">
-                <p style="font-size: 0.7em; margin: 5px 0 0 0;">Inizio conteggio: 1540</p>
+        <div class="footer-box">
+            <p>© 2026 Franco Ficara</p>
+            <div class="counter-box">
+                <span style="display:block; margin-bottom:5px;">VISITATORI (da 1540)</span>
+                <img src="https://counter9.optistats.ovh/private/freecounterstat.php?c=8l8n8z6n2m1u5l3p1j4n9r1v5x7z9q2b" border="0">
             </div>
-        </footer>
+        </div>
     </div>
 
     <script>
-        function updateClock() {
-            const now = new Date();
-            const hours = now.getHours();
-            document.getElementById('clock').textContent = now.toLocaleTimeString('it-IT');
-            let welcome;
-            if (hours >= 5 && hours < 12) welcome = "Buongiorno Franco! Caffè e innovazione?";
-            else if (hours >= 12 && hours < 18) welcome = "Buon pomeriggio! Musica e creatività?";
-            else if (hours >= 18 && hours < 22) welcome = "Buonasera! Relax con Luma?";
-            else welcome = "Buonanotte! Sognando nuovi progetti...";
-            document.getElementById('welcome-msg').textContent = welcome;
+        function update() {
+            const d = new Date();
+            const h = d.getHours();
+            document.getElementById('clock').innerText = d.toLocaleTimeString('it-IT');
+            
+            let m = "Buongiorno Franco!";
+            if(h >= 12) m = "Buon pomeriggio Franco!";
+            if(h >= 18) m = "Buonasera Franco!";
+            document.getElementById('welcome-msg').innerText = m;
         }
 
-        function speakWelcome() {
-            const text = document.getElementById('welcome-msg').textContent;
-            const speech = new SpeechSynthesisUtterance(text);
-            const voices = window.speechSynthesis.getVoices();
-            const itVoice = voices.find(v => v.lang.startsWith('it'));
-            if (itVoice) speech.voice = itVoice;
-            speech.lang = 'it-IT';
-            speech.rate = 0.8;
+        function speak() {
+            const msg = document.getElementById('welcome-msg').innerText;
+            const s = new SpeechSynthesisUtterance(msg);
+            s.lang = 'it-IT';
+            s.rate = 0.8;
             window.speechSynthesis.cancel();
-            window.speechSynthesis.speak(speech);
+            window.speechSynthesis.speak(s);
         }
-        setInterval(updateClock, 1000);
-        updateClock();
+
+        setInterval(update, 1000);
+        update();
     </script>
 </body>
 </html>
