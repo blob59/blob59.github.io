@@ -13,11 +13,11 @@
         h1 { margin: 5px 0; font-size: 2.5em; color: #fff; }
         
         /* OROLOGIO E FUMETTO INTERATTIVO LUMA */
-        #clock-container { position: relative; display: inline-block; margin: 15px 0; }
+        #clock-container { position: relative; display: inline-block; margin: 15px 0; cursor: pointer; }
         #clock { font-size: 1.8em; color: #3b82f6; font-weight: bold; font-family: 'Courier New', monospace; background: rgba(30, 41, 59, 0.8); padding: 8px 20px; border-radius: 12px; border: 1px solid #3b82f6; }
         #luma-bubble { 
             position: absolute; 
-            top: -60px; 
+            top: -65px; 
             left: 50%; 
             transform: translateX(-50%); 
             background: #f59e0b; 
@@ -56,7 +56,6 @@
         
         h2 { color: #94a3b8; margin-top: 50px; text-transform: uppercase; letter-spacing: 2px; border-bottom: 2px solid #3b82f6; display: inline-block; padding-bottom: 5px; }
         footer { margin-top: 60px; padding: 30px; border-top: 1px solid #334155; color: #94a3b8; }
-        .visit-counter { background: #1e293b; padding: 10px; border-radius: 10px; display: inline-block; border: 1px solid #3b82f6; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -65,7 +64,7 @@
         <img src="franco-luma.jpg" alt="Franco e Luma" class="profile-img">
         <h1>Franco Ficara</h1>
         
-        <div id="clock-container">
+        <div id="clock-container" title="Clicca per far parlare Luma!">
             <div id="luma-bubble">Ciao Franco!</div>
             <div id="clock">00:00:00</div>
         </div>
@@ -79,50 +78,37 @@
         <div class="btn-grid">
             <a href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank" class="btn btn-wix">🚀 Franco e Luma Studios</a>
             <a href="https://www.youtube.com/channel/UC0OEDNIVL7V8Ln11AKh9nyQ" target="_blank" class="btn btn-yt">📺 YouTube</a>
-            <a href="https://chatgpt.com" target="_blank" class="btn btn-ai">ChatGPT</a>
             <a href="https://openai.com/sora" target="_blank" class="btn btn-ai">Sora AI</a>
-            <a href="https://gemini.google.com" target="_blank" class="btn btn-ai">Gemini AI</a>
+            <a href="https://chatgpt.com" target="_blank" class="btn btn-ai">ChatGPT</a>
         </div>
 
-        <h2>🎵 La Mia Musica</h2>
-        <div class="btn-grid">
-            <a href="https://www.youtube.com/watch?v=IE32yM0ccWY" target="_blank" class="btn btn-music">🎶 Io che resto</a>
-            <a href="https://www.youtube.com/watch?v=oxWN9TXGmEY" target="_blank" class="btn btn-music">🎼 Maestro dal mare</a>
-            <a href="https://youtu.be/HPiaAz-6nhY" target="_blank" class="btn btn-music">🎸 Looney Tunes</a>
+        <h2>🎵 In Primo Piano</h2>
+        <div class="widget-box">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/be_-J-ed150" title="Franco Ficara - Ho messo via" allowfullscreen></iframe>
+            </div>
         </div>
 
-        <h2>🌤️ Situazione Meteo</h2>
+        <h2>🌤️ Meteo Locali</h2>
         <div class="weather-section">
             <div class="weather-box">
                 <i class="fas fa-sun" style="font-size: 2em; color: #f59e0b;"></i>
-                <h3>Brancaleone (RC)</h3>
-                <a href="https://www.meteo.it/meteo/brancaleone-80014" target="_blank" class="weather-link">Vedi Meteo</a>
+                <h3>Brancaleone</h3>
+                <a href="https://www.meteo.it/meteo/brancaleone-80014" target="_blank" class="weather-link">Meteo.it</a>
             </div>
             <div class="weather-box">
                 <i class="fas fa-cloud-sun" style="font-size: 2em; color: #3b82f6;"></i>
-                <h3>Galbiate (LC)</h3>
-                <a href="https://www.meteo.it/meteo/galbiate-97036" target="_blank" class="weather-link">Vedi Meteo</a>
-            </div>
-        </div>
-
-        <h2>🎥 Video Studios</h2>
-        <div class="widget-box">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/4rgxf7v5GRA" title="Franco e Luma Studios" allowfullscreen></iframe>
+                <h3>Galbiate</h3>
+                <a href="https://www.meteo.it/meteo/galbiate-97036" target="_blank" class="weather-link">Meteo.it</a>
             </div>
         </div>
 
         <footer>
             <p>&copy; 2026 Franco Ficara | Franco e Luma Studios</p>
-            <div class="visit-counter">
-                <span style="font-size: 0.8em; color: #3b82f6;">VISITATORI HUB</span><br>
-                <img src="https://counter9.optistats.ovh/private/freecounterstat.php?c=8l8n8z6n2m1u5l3p1j4n9r1v5x7z9q2b" border="0">
-            </div>
         </footer>
     </div>
 
     <script>
-        // FUNZIONE OROLOGIO
         function updateClock() {
             const now = new Date();
             document.getElementById('clock').textContent = now.toLocaleTimeString('it-IT');
@@ -130,19 +116,25 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // FRASI DI LUMA (Simpatiche e Comiche)
         const lumaQuotes = [
             "Franco, mi prude il naso! 🐰",
-            "Che bella musica oggi!",
-            "Brancaleone arriviamo! 🌊",
-            "Hai visto che ore sono? ⏰",
+            "Che bella questa canzone!",
+            "Brancaleone nel cuore! 🌊",
+            "Sora ci farà volare alto!",
             "Ma io sono un coniglio AI?",
-            "Sora mi farà bellissimo! ✨",
-            "Galbiate è fresca oggi! ❄️",
-            "Franco, fammi ballare! 🎶",
+            "Maestro, sei un grande! ✨",
+            "A Galbiate si sta bene!",
             "Controlla il meteo, presto!",
             "Siamo i migliori, vero?"
         ];
+
+        function parlaLuma(testo) {
+            const messaggio = new SpeechSynthesisUtterance(testo);
+            messaggio.lang = 'it-IT';
+            messaggio.pitch = 1.8; // Voce acuta e comica
+            messaggio.rate = 1.1; 
+            window.speechSynthesis.speak(messaggio);
+        }
 
         function showLumaBubble() {
             const bubble = document.getElementById('luma-bubble');
@@ -150,15 +142,19 @@
             bubble.textContent = randomQuote;
             bubble.style.display = 'block';
             
+            // Luma parla!
+            parlaLuma(randomQuote);
+            
             setTimeout(() => {
                 bubble.style.display = 'none';
-            }, 4500); // Il fumetto resta visibile per 4.5 secondi
+            }, 4500);
         }
 
-        // Messaggio ogni 12 secondi per essere dinamico
-        setInterval(showLumaBubble, 12000);
-        // Primo saluto dopo 2 secondi
-        setTimeout(showLumaBubble, 2000);
+        // Clicca sull'orologio per attivare Luma
+        document.getElementById('clock-container').onclick = showLumaBubble;
+
+        // Messaggio automatico ogni 20 secondi
+        setInterval(showLumaBubble, 20000);
     </script>
 </body>
 </html>
