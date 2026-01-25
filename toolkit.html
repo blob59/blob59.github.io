@@ -10,51 +10,59 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: system-ui, sans-serif; background: #050816; color: var(--text); padding: 20px; }
         .wrapper { max-width: 1100px; margin: 0 auto; }
-        
-        /* HEADER */
-        .back-home { color: #38bdf8; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-block; margin-bottom: 20px; transition: 0.2s; }
-        .back-home:hover { color: var(--accent); }
-        header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
-        .icon-header { font-size: 2.5rem; color: var(--accent); }
-        
-        /* GRIGLIE */
+        .back-home { color: #38bdf8; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-block; margin-bottom: 20px; }
+        header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 30px; }
         h2 { font-size: 1.3rem; color: var(--accent); margin: 35px 0 15px; display: flex; align-items: center; gap: 10px; border-left: 4px solid var(--accent); padding-left: 10px; }
         .grid { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-        
-        /* SCHEDE */
         .card { background: var(--card); border-radius: var(--radius); padding: 20px; border: 1px solid var(--border); display: flex; flex-direction: column; transition: 0.3s; height: 100%; }
-        .card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); }
         .card h3 { font-size: 1.1rem; margin-bottom: 10px; color: #fff; }
         .card p { font-size: 0.85rem; color: #9ca3af; margin-bottom: 20px; line-height: 1.4; flex-grow: 1; }
-        
-        /* BOTTONI ARANCIONI */
-        .btn-orange { 
-            display: block; width: 100%; padding: 12px; 
-            background: #fca311; color: #000; text-decoration: none; 
-            font-weight: bold; border-radius: 12px; text-align: center; 
-            font-size: 0.9rem; transition: 0.2s; 
-        }
-        .btn-orange:hover { background: #ffb703; transform: scale(1.02); }
-
-        footer { margin-top: 50px; text-align: center; color: #4b5563; font-size: 0.8rem; padding: 30px; }
+        .btn-orange { display: block; width: 100%; padding: 12px; background: #fca311; color: #000; text-decoration: none; font-weight: bold; border-radius: 12px; text-align: center; font-size: 0.9rem; }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> TORNA ALLA HOME</a>
-        
+        <a href="index.html" class="back-home">⬅ TORNA ALLA HOME</a>
         <header>
-            <i class="fas fa-toolbox icon-header"></i>
-            <div>
-                <h1>AI Toolkit Maestro Franco</h1>
-                <p style="color:#9ca3af">17 Strumenti selezionati per il 2026</p>
-            </div>
+            <h1>🛠️ Hub Creativo Maestro Franco</h1>
+            <p style="color:#9ca3af">La tua collezione completa di 17 strumenti AI</p>
         </header>
 
-        <h2><i class="fas fa-palette"></i> Immagini Pixar & Art</h2>
+        <h2>🖼️ Immagini & Arte</h2>
         <div class="grid">
-            <div class="card"><h3>FLUX.1</h3><p>Il miglior modello IA per testi e dettagli incredibili.</p><a href="https://fal.ai/models/fal-ai/flux/dev" target="_blank" class="btn-orange">APRI FLUX</a></div>
-            <div class="card"><h3>Leonardo.ai</h3><p>Perfetto per creare avatar Pixar e personaggi 3D.</p><a href="https://leonardo.ai/" target="_blank" class="btn-orange">APRI LEONARDO</a></div>
-            <div class="card"><h3>Bing Create</h3><p>Veloce e gratuito, ideale per idee rapide.</p><a href="https://www.bing.com/images/create" target="_blank" class="btn-orange">APRI BING</a></div>
-            <div class="card"><h3>SeaArt AI</h3><p>Una miniera di modelli per ogni stile artistico.</p><a href="https://www.seaart.ai/" target="_blank" class="btn-orange">APRI SEAART</a></div>
-            <div
+            <div class="card"><h3>FLUX.1</h3><p>Qualità fotorealistica e testi perfetti.</p><a href="https://fal.ai/models/fal-ai/flux/dev" target="_blank" class="btn-orange">APRI FLUX</a></div>
+            <div class="card"><h3>Leonardo.ai</h3><p>Il top per lo stile Pixar e 3D.</p><a href="https://leonardo.ai/" target="_blank" class="btn-orange">APRI LEONARDO</a></div>
+            <div class="card"><h3>Bing Create</h3><p>Veloce, gratuito e sempre affidabile.</p><a href="https://www.bing.com/images/create" target="_blank" class="btn-orange">APRI BING</a></div>
+            <div class="card"><h3>SeaArt AI</h3><p>Migliaia di stili e modelli pronti.</p><a href="https://www.seaart.ai/" target="_blank" class="btn-orange">APRI SEAART</a></div>
+            <div class="card"><h3>Pony Diffusion</h3><p>Disegni colorati e stile cartoon divertente.</p><a href="https://huggingface.co/spaces/amused/pony-diffusion-v6" target="_blank" class="btn-orange">APRI PONY</a></div>
+        </div>
+
+        <h2>🎥 Video & Musica</h2>
+        <div class="grid">
+            <div class="card"><h3>Luma Dream</h3><p>Anima le tue foto Pixar in alta qualità.</p><a href="https://lumalabs.ai/dream-machine" target="_blank" class="btn-orange">APRI LUMA</a></div>
+            <div class="card"><h3>Kling AI</h3><p>Video lunghi e spettacolari da testo.</p><a href="https://klingai.com/" target="_blank" class="btn-orange">APRI KLING</a></div>
+            <div class="card"><h3>Suno AI</h3><p>Crea canzoni e sigle per i tuoi video.</p><a href="https://suno.com/" target="_blank" class="btn-orange">APRI SUNO</a></div>
+            <div class="card"><h3>Runway Gen-3</h3><p>Effetti speciali di livello cinematografico.</p><a href="https://runwayml.com/" target="_blank" class="btn-orange">APRI RUNWAY</a></div>
+        </div>
+
+        <h2>✨ Magia sui Volti</h2>
+        <div class="grid">
+            <div class="card"><h3>HeyGen</h3><p>Fai parlare le tue foto con la tua voce.</p><a href="https://www.heygen.com/" target="_blank" class="btn-orange">APRI HEYGEN</a></div>
+            <div class="card"><h3>CodeFormer</h3><p>Migliora e pulisce i volti sfocati.</p><a href="https://huggingface.co/spaces/sczhou/CodeFormer" target="_blank" class="btn-orange">APRI CODEFORMER</a></div>
+            <div class="card"><h3>GFPGAN</h3><p>Restauro rapido dei lineamenti del viso.</p><a href="https://huggingface.co/spaces/TencentARC/GFPGAN" target="_blank" class="btn-orange">APRI GFPGAN</a></div>
+            <div class="card"><h3>Toony Diffusion</h3><p>Trasforma i volti in personaggi animati.</p><a href="https://huggingface.co/spaces/PygmalionAI/toony-diffusion" target="_blank" class="btn-orange">APRI TOONY</a></div>
+        </div>
+
+        <h2>📚 Scuola & Utility</h2>
+        <div class="grid">
+            <div class="card"><h3>Remove.bg</h3><p>Togli lo sfondo alle foto in un clic.</p><a href="https://www.remove.bg/it" target="_blank" class="btn-orange">APRI REMOVE.BG</a></div>
+            <div class="card"><h3>Handwriting</h3><p>Trasforma il testo in bella grafia a mano.</p><a href="https://huggingface.co/spaces/lmg-anon/handwriting" target="_blank" class="btn-orange">APRI SCRITTURA</a></div>
+            <div class="card"><h3>AI Diagram</h3><p>Crea mappe concettuali automatiche.</p><a href="https://huggingface.co/spaces/yuntiandeng/AI-Diagram" target="_blank" class="btn-orange">APRI DIAGRAM</a></div>
+            <div class="card"><h3>Canva Magic</h3><p>Grafica facile per le tue lezioni.</p><a href="https://www.canva.com/" target="_blank" class="btn-orange">APRI CANVA</a></div>
+        </div>
+
+        <footer style="margin-top:50px; text-align:center; opacity:0.5;">Maestro Franco Studios · 2026</footer>
+    </div>
+</body>
+</html>
