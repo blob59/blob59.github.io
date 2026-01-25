@@ -3,89 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maestro Franco - Hub Studios 2026</title>
+    <title>Maestro Franco - Hub Studios</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg: #050816; --card: #111827; --accent: #fbbf24; --accent2: #38bdf8; --text: #f9fafb; --muted: #9ca3af; --border: #1f2937; --radius-xl: 18px; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: system-ui,-apple-system,sans-serif; background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%); color: var(--text); padding: 20px; text-align: center; }
-        .wrapper { max-width: 1120px; margin: 0 auto; }
-        .profile-section { padding: 30px 20px; border-bottom: 1px solid var(--border); }
-        .profile-img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--accent2); object-fit: cover; }
-        #clock-container { position: relative; display: inline-block; margin: 15px 0; cursor: pointer; }
-        #clock { font-size: 1.8em; color: var(--accent2); font-weight: bold; font-family: monospace; background: rgba(30, 41, 59, 0.8); padding: 8px 20px; border-radius: 12px; border: 1px solid var(--accent2); }
-        #luma-bubble { position: absolute; top: -65px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 10px 18px; border-radius: 20px; font-size: 0.9em; font-weight: bold; display: none; white-space: nowrap; z-index: 100; border: 2px solid white; }
-        .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: 40px; }
-        .card { background: var(--card); border-radius: var(--radius-xl); padding: 16px; border: 1px solid var(--border); text-align: left; transition: 0.2s; display: flex; flex-direction: column; justify-content: space-between; }
-        .card:hover { border-color: var(--accent); transform: translateY(-3px); }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background: #000; margin-bottom: 10px; }
+        :root { --bg: #050816; --card: #111827; --accent2: #38bdf8; --text: #f9fafb; --border: #1f2937; }
+        body { font-family: system-ui, sans-serif; background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%); color: var(--text); padding: 20px; text-align: center; }
+        .wrapper { max-width: 1000px; margin: 0 auto; }
+        .profile-img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--accent2); margin-bottom: 10px; }
+        #clock { font-size: 1.8em; color: var(--accent2); font-weight: bold; background: rgba(30, 41, 59, 0.8); padding: 8px 20px; border-radius: 12px; border: 1px solid var(--accent2); display: inline-block; cursor: pointer; }
+        
+        /* BOTTONE TOOLKIT LUMINOSO */
+        .btn-toolkit-main { display: block; max-width: 300px; margin: 30px auto; padding: 20px; background: linear-gradient(135deg, #fbbf24, #fb923c); color: #000; text-decoration: none; font-weight: bold; border-radius: 50px; font-size: 1.2rem; box-shadow: 0 0 20px rgba(251, 191, 36, 0.5); transition: 0.3s; }
+        .btn-toolkit-main:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(251, 191, 36, 0.8); }
+
+        .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 30px; }
+        .video-card { background: var(--card); padding: 15px; border-radius: 18px; border: 1px solid var(--border); }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .section-title { font-size: 1.4rem; color: var(--accent); margin: 40px 0 10px; text-transform: uppercase; }
-        a.btn-tool { display: inline-flex; align-items: center; justify-content: center; padding: 10px; border-radius: 999px; font-size: .85rem; text-decoration: none; color: #000; background: linear-gradient(135deg,#fde68a,#fb923c); font-weight: bold; margin-top: 12px; }
         .weather-box { background: var(--card); padding: 10px; border-radius: 15px; border: 1px solid var(--border); margin: 5px; display: inline-block; }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <header class="profile-section">
-            <img src="franco-luma.jpg" alt="Franco e Luma" class="profile-img">
-            <h1>Maestro Franco Ficara</h1>
-            <div id="clock-container" onclick="showLumaBubble()">
-                <div id="luma-bubble">Sito Aggiornato!</div>
-                <div id="clock">00:00:00</div>
-            </div>
-            <div>
-                <div class="weather-box">📍 Brancaleone: <a href="https://www.ilmeteo.it/meteo/Brancaleone" target="_blank" style="color:var(--accent2)">Meteo</a></div>
-                <div class="weather-box">📍 Galbiate: <a href="https://www.ilmeteo.it/meteo/Galbiate" target="_blank" style="color:var(--accent2)">Meteo</a></div>
-            </div>
-        </header>
-
-        <h2 class="section-title">🎬 Sora AI Reels & Musica</h2>
-        <div class="grid">
-            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/be_-J-ed150" allowfullscreen></iframe></div><p>Ho messo via...</p></div>
-            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/f_e9ob22nP0" allowfullscreen></iframe></div><p>Sora Reel #1</p></div>
-            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/SguOvfrbRQw" allowfullscreen></iframe></div><p>Sora Reel #2</p></div>
-            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/8g-mibCg7Ls" allowfullscreen></iframe></div><p>Sora Reel #3</p></div>
+        <img src="franco-luma.jpg" class="profile-img">
+        <h1>Maestro Franco Ficara</h1>
+        <div id="clock" onclick="parlaLuma()">00:00:00</div>
+        
+        <div>
+            <div class="weather-box">📍 Brancaleone: <a href="https://www.ilmeteo.it/meteo/Brancaleone" target="_blank" style="color:var(--accent2)">Meteo</a></div>
+            <div class="weather-box">📍 Galbiate: <a href="https://www.ilmeteo.it/meteo/Galbiate" target="_blank" style="color:var(--accent2)">Meteo</a></div>
         </div>
 
-        <h2 class="section-title">🖼️ Immagini (Link Testati)</h2>
-        <div class="grid">
-            <div class="card"><p><strong>FLUX.1 [dev]</strong></p><p style="font-size:0.8rem">Il migliore per i poster Pixar.</p><a class="btn-tool" href="https://huggingface.co/spaces/black-forest-labs/FLUX.1-dev" target="_blank">Apri FLUX</a></div>
-            <div class="card"><p><strong>Bing Create</strong></p><p style="font-size:0.8rem">Sempre attivo e velocissimo.</p><a class="btn-tool" href="https://www.bing.com/images/create" target="_blank">Apri Bing</a></div>
-            <div class="card"><p><strong>Leonardo.ai</strong></p><p style="font-size:0.8rem">Qualità professionale eccelsa.</p><a class="btn-tool" href="https://leonardo.ai/" target="_blank">Apri Leonardo</a></div>
-            <div class="card"><p><strong>ChatGPT (DALL-E)</strong></p><p style="font-size:0.8rem">Ideale per testi nelle immagini.</p><a class="btn-tool" href="https://chatgpt.com/" target="_blank">Apri ChatGPT</a></div>
-        </div>
+        <a href="toolkit.html" class="btn-toolkit-main">🛠️ APRI AI TOOLKIT</a>
 
-        <h2 class="section-title">🎥 Video & Animazione</h2>
+        <h2>🎬 Sora AI Reels</h2>
         <div class="grid">
-            <div class="card"><p><strong>Luma Dream Machine</strong></p><p style="font-size:0.8rem">Video realistici di alta qualità.</p><a class="btn-tool" href="https://lumalabs.ai/dream-machine" target="_blank">Apri Luma Labs</a></div>
-            <div class="card"><p><strong>Runway Gen-2/3</strong></p><p style="font-size:0.8rem">Il top per il cinema IA.</p><a class="btn-tool" href="https://runwayml.com/" target="_blank">Apri Runway</a></div>
-            <div class="card"><p><strong>HeyGen</strong></p><p style="font-size:0.8rem">Avatar che parlano davvero.</p><a class="btn-tool" href="https://www.heygen.com/" target="_blank">Apri HeyGen</a></div>
-            <div class="card"><p><strong>Suno AI</strong></p><p style="font-size:0.8rem">Crea canzoni complete.</p><a class="btn-tool" href="https://suno.com/" target="_blank">Apri Suno</a></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/be_-J-ed150"></iframe></div><p>Ho messo via...</p></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/f_e9ob22nP0"></iframe></div><p>Reel #1</p></div>
         </div>
-
-        <h2 class="section-title">📚 Utility & Scuola</h2>
-        <div class="grid">
-            <div class="card"><p><strong>Remove.bg</strong></p><p style="font-size:0.8rem">Togli sfondi in un secondo.</p><a class="btn-tool" href="https://www.remove.bg/it" target="_blank">Apri RemoveBG</a></div>
-            <div class="card"><p><strong>Canva AI</strong></p><p style="font-size:0.8rem">Tutto per la grafica scolastica.</p><a class="btn-tool" href="https://www.canva.com/" target="_blank">Apri Canva</a></div>
-            <div class="card"><p><strong>I Love PDF</strong></p><p style="font-size:0.8rem">Modifica ogni file per la classe.</p><a class="btn-tool" href="https://www.ilovepdf.com/it" target="_blank">Apri PDF Tool</a></div>
-        </div>
-
-        <footer style="padding: 40px; border-top: 1px dashed var(--muted); margin-top: 40px; color: var(--muted);">
-            <p>Franco e Luma Studios &copy; 2026</p>
-        </footer>
     </div>
-
     <script>
-        function updateClock() { document.getElementById('clock').textContent = new Date().toLocaleTimeString('it-IT'); }
-        setInterval(updateClock, 1000); updateClock();
-        const lumaQuotes = ["Ho sistemato i link, Franco! 🛠️", "Ora tutto funziona a meraviglia!", "Sora, Luma e Suno... che potenza!", "Maestro, la tua plancia è pronta!", "Niente più pagine di errore! 🐰"];
-        function parlaLuma(t) { const m = new SpeechSynthesisUtterance(t); m.lang='it-IT'; m.pitch=1.8; window.speechSynthesis.speak(m); }
-        function showLumaBubble() {
-            const b = document.getElementById('luma-bubble');
-            const q = lumaQuotes[Math.floor(Math.random()*lumaQuotes.length)];
-            b.textContent = q; b.style.display = 'block'; parlaLuma(q);
-            setTimeout(() => b.style.display='none', 4000);
+        setInterval(() => { document.getElementById('clock').textContent = new Date().toLocaleTimeString('it-IT'); }, 1000);
+        function parlaLuma() { 
+            const m = new SpeechSynthesisUtterance("Franco, clicca il bottone giallo per i tuoi strumenti!"); 
+            m.lang='it-IT'; m.pitch=1.8; window.speechSynthesis.speak(m); 
         }
     </script>
 </body>
