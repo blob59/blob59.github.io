@@ -2,73 +2,68 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Maestro Franco AI Toolkit – Pixar Edition</title>
+    <title>Maestro Franco AI Toolkit · Pixar Edition</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --bg: #050816; --card: #111827; --accent: #fbbf24;
-            --accent2: #38bdf8; --text: #f9fafb; --muted: #9ca3af;
-            --border: #1f2937; --radius-xl: 18px;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
-            color: var(--text); min-height: 100vh; padding: 24px;
-        }
-        .wrapper { max-width: 1120px; margin: 0 auto; }
+        :root { --bg: #050816; --card: #111827; --accent: #fbbf24; --text: #f9fafb; --muted: #9ca3af; --border: #1f2937; --radius: 18px; }
+        body { font-family: system-ui, sans-serif; background: #050816; color: var(--text); padding: 20px; }
+        .wrapper { max-width: 1100px; margin: 0 auto; }
         
-        /* HEADER */
-        header { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
-        .back-link { color: var(--accent2); text-decoration: none; font-size: 0.9rem; margin-bottom: 15px; display: inline-block; }
-        .title-row { display: flex; align-items: center; gap: 12px; }
-        .icon-pill { width: 46px; height: 46px; border-radius: 999px; background: linear-gradient(135deg, #fde68a, #f97316); display: flex; align-items: center; justify-content: center; font-size: 26px; }
-        
-        /* GRID & CARDS */
-        section { margin-top: 30px; }
-        .section-title { font-size: 1.2rem; color: var(--accent); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-        
-        .card {
-            background: var(--card); border-radius: var(--radius-xl); padding: 16px;
-            border: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px;
-            transition: 0.2s;
-        }
-        .card:hover { border-color: var(--accent); transform: translateY(-3px); }
-        .pill { font-size: .7rem; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--muted); color: var(--muted); float: right; }
-        
-        .btn-tool {
-            display: inline-flex; align-items: center; justify-content: center; padding: 10px;
-            border-radius: 999px; font-size: .85rem; text-decoration: none;
-            color: #000; background: linear-gradient(135deg,#fde68a,#fb923c);
-            font-weight: bold; margin-top: auto;
-        }
+        .header { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
+        .back-home { color: #38bdf8; text-decoration: none; font-size: 0.9rem; display: block; margin-bottom: 10px; }
+        .icon-main { font-size: 40px; background: linear-gradient(135deg, #fbbf24, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        footer { margin-top: 40px; padding: 20px; border-top: 1px dashed var(--muted); color: var(--muted); font-size: 0.8rem; text-align: center; }
+        .nav-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
+        .pill-btn { padding: 6px 15px; border-radius: 20px; border: 1px solid var(--border); background: var(--card); color: var(--muted); font-size: 0.8rem; text-decoration: none; }
+        
+        h2 { font-size: 1.2rem; color: var(--accent); margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
+        .grid { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        
+        .card { background: var(--card); border-radius: var(--radius); padding: 18px; border: 1px solid var(--border); position: relative; }
+        .tag { position: absolute; top: 15px; right: 15px; font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; border: 1px solid var(--muted); color: var(--muted); }
+        .card h3 { font-size: 1rem; margin-bottom: 10px; }
+        .card p { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; line-height: 1.4; }
+        
+        .btn-orange { display: block; width: fit-content; padding: 8px 20px; background: #fca311; color: #000; text-decoration: none; font-weight: bold; border-radius: 10px; font-size: 0.85rem; }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <a href="index.html" class="back-link">⬅ Torna alla Home</a>
-        <header>
-            <div class="title-row">
-                <div class="icon-pill">🎬</div>
-                <h1>Maestro Franco AI Toolkit</h1>
+        <a href="index.html" class="back-home">⬅ Torna alla Home</a>
+        
+        <div class="header">
+            <div class="icon-main"><i class="fas fa-clapperboard"></i></div>
+            <div>
+                <h1>Maestro Franco AI Toolkit · Pixar Edition</h1>
+                <p style="color:var(--muted)">La tua plancia di comando per immagini, video, cartoon e scuola.</p>
             </div>
-            <p style="color: var(--muted)">La tua plancia di comando completa per la creatività digitale.</p>
-        </header>
+        </div>
 
-        <section>
-            <h2 class="section-title">🖼️ Generazione Immagini</h2>
-            <div class="grid">
-                <div class="card"><div><span class="pill">8K</span><p><strong>FLUX.1 Dev</strong></p></div><p style="font-size:0.8rem; color:var(--muted)">Poster epici e ritratti cinematici.</p><a href="https://huggingface.co/spaces/black-forest-labs/FLUX.1-dev" target="_blank" class="btn-tool">Apri FLUX</a></div>
-                <div class="card"><div><span class="pill">Fast</span><p><strong>Stable Diffusion XL</strong></p></div><p style="font-size:0.8rem; color:var(--muted)">Sfondi e storyboard veloci.</p><a href="https://huggingface.co/spaces/stabilityai/stable-diffusion-xl" target="_blank" class="btn-tool">Apri SDXL</a></div>
-                <div class="card"><div><span class="pill">Foto</span><p><strong>RealVisXL</strong></p></div><p style="font-size:0.8rem; color:var(--muted)">Iper-realismo fotografico.</p><a href="https://huggingface.co/spaces/SG161222/RealVisXL" target="_blank" class="btn-tool">Apri RealVis</a></div>
-                <div class="card"><div><span class="pill">Fun</span><p><strong>Pony Diffusion</strong></p></div><p style="font-size:0.8rem; color:var(--muted)">Stile Cartoon e Anime.</p><a href="https://huggingface.co/spaces/lambdalabs/pony-diffusion" target="_blank" class="btn-tool">Apri Pony</a></div>
-            </div>
-        </section>
+        <div class="nav-pills">
+            <a href="#" class="pill-btn">Immagini</a>
+            <a href="#" class="pill-btn">Video</a>
+            <a href="#" class="pill-btn">Cartoon & Pixar</a>
+            <a href="#" class="pill-btn">Scuola</a>
+            <a href="#" class="pill-btn">Luma & Maestro Franco</a>
+        </div>
 
-        <section>
-            <h2 class="section-title">🎥 Video & Animazione</h2>
-            <div class="grid">
-                <div class="card"><div><span class="pill">Anima</span><p><strong>Stable Video Diff.</strong></p></div><p style="font-size:0.8rem; color:var(--muted)">Anima le tue immagini statiche.</p><a href="https://huggingface.co/spaces/multimodalart/stable-video-diffusion" target="_blank" class="btn-tool">Apri SVD</a></div>
+        <h2>🖼️ Generazione Immagini</h2>
+        <div class="grid">
+            <div class="card"><span class="tag">Cinematico</span><h3>FLUX.1 Dev</h3><p>Modello estremamente creativo. Perfetto per poster epici e ritratti 8K.</p><a href="https://huggingface.co/spaces/black-forest-labs/FLUX.1-dev" target="_blank" class="btn-orange">Apri FLUX.1</a></div>
+            <div class="card"><span class="tag">Versatile</span><h3>Stable Diffusion XL</h3><p>Il cavallo di battaglia. Buono per quasi tutto: sfondi e storyboard.</p><a href="https://huggingface.co/spaces/stabilityai/stable-diffusion-xl" target="_blank" class="btn-orange">Apri SDXL</a></div>
+            <div class="card"><span class="tag">Iper-realismo</span><h3>RealVisXL</h3><p>Per un Maestro Franco quasi fotografico e molto realistico.</p><a href="https://huggingface.co/spaces/SG161222/RealVisXL" target="_blank" class="btn-orange">Apri RealVisXL</a></div>
+            <div class="card"><span class="tag">Cartoon</span><h3>Pony Diffusion</h3><p>Stile anime/cartoon. Ottimo per versioni super giocose di te e Luma.</p><a href="https://huggingface.co/spaces/lambdalabs/pony-diffusion" target="_blank" class="btn-orange">Apri Pony</a></div>
+        </div>
+
+        <h2>🎥 Video da Immagine / Testo</h2>
+        <div class="grid">
+            <div class="card"><span class="tag">Img -> Video</span><h3>Stable Video Diffusion</h3><p>Anima un'immagine statica in un breve video Pixar-style.</p><a href="https://huggingface.co/spaces/multimodalart/stable-video-diffusion" target="_blank" class="btn-orange">Apri SVD</a></div>
+            <div class="card"><span class="tag">Img -> Video</span><h3>OVI</h3><p>Genera video fluidi a partire da un'immagine. Scene morbide.</p><a href="https://huggingface.co/spaces/akhaliq/Ovi" target="_blank" class="btn-orange">Apri OVI</a></div>
+            <div class="card"><span class="tag">Testo -> Video</span><h3>ZeroScope V2</h3><p>Genera brevi clip direttamente da un prompt testuale.</p><a href="https://huggingface.co/spaces/PAIR/zeroscope-v2" target="_blank" class="btn-orange">Apri ZeroScope</a></div>
+            <div class="card"><span class="tag">Sperimentale</span><h3>VEO3 Free</h3><p>Modello tipo "mini-Sora". Potente per i test più spinti.</p><a href="https://huggingface.co/spaces/ginigen/VEO3-Free" target="_blank" class="btn-orange">Apri VEO3</a></div>
+        </div>
+
+        </div>
+</body>
+</html>
