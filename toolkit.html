@@ -7,63 +7,74 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --bg: #050816; --card: #111827; --accent: #fbbf24; --text: #f9fafb; --muted: #9ca3af; --border: #1f2937; --radius: 18px; }
-        body { font-family: system-ui, sans-serif; background: #050816; color: var(--text); padding: 20px; }
+        body { font-family: system-ui, sans-serif; background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%); color: var(--text); padding: 20px; min-height: 100vh; }
         .wrapper { max-width: 1100px; margin: 0 auto; }
-        
-        .header { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
-        .back-home { color: #38bdf8; text-decoration: none; font-size: 0.9rem; display: block; margin-bottom: 10px; }
+        .back-home { color: #38bdf8; text-decoration: none; font-size: 0.9rem; display: inline-block; margin-bottom: 20px; }
+        header { display: flex; align-items: center; gap: 20px; margin-bottom: 30px; }
         .icon-main { font-size: 40px; background: linear-gradient(135deg, #fbbf24, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        .nav-pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px; }
-        .pill-btn { padding: 6px 15px; border-radius: 20px; border: 1px solid var(--border); background: var(--card); color: var(--muted); font-size: 0.8rem; text-decoration: none; }
         
-        h2 { font-size: 1.2rem; color: var(--accent); margin: 30px 0 15px; display: flex; align-items: center; gap: 10px; }
-        .grid { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        h2 { font-size: 1.2rem; color: var(--accent); margin: 35px 0 15px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        .grid { display: grid; gap: 15px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
         
-        .card { background: var(--card); border-radius: var(--radius); padding: 18px; border: 1px solid var(--border); position: relative; }
+        .card { background: var(--card); border-radius: var(--radius); padding: 18px; border: 1px solid var(--border); position: relative; display: flex; flex-direction: column; transition: 0.3s; }
+        .card:hover { border-color: var(--accent); transform: translateY(-3px); }
         .tag { position: absolute; top: 15px; right: 15px; font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; border: 1px solid var(--muted); color: var(--muted); }
-        .card h3 { font-size: 1rem; margin-bottom: 10px; }
-        .card p { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; line-height: 1.4; }
+        .card h3 { font-size: 1rem; margin-bottom: 8px; padding-right: 60px; }
+        .card p { font-size: 0.8rem; color: var(--muted); margin-bottom: 15px; line-height: 1.4; flex-grow: 1; }
         
-        .btn-orange { display: block; width: fit-content; padding: 8px 20px; background: #fca311; color: #000; text-decoration: none; font-weight: bold; border-radius: 10px; font-size: 0.85rem; }
+        .btn-orange { display: inline-block; width: fit-content; padding: 8px 18px; background: linear-gradient(135deg,#fde68a,#fb923c); color: #000; text-decoration: none; font-weight: bold; border-radius: 10px; font-size: 0.8rem; }
+        footer { margin-top: 50px; text-align: center; color: var(--muted); font-size: 0.8rem; padding: 20px; border-top: 1px dashed var(--border); }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <a href="index.html" class="back-home">⬅ Torna alla Home</a>
+        <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Torna alla Home</a>
         
-        <div class="header">
-            <div class="icon-main"><i class="fas fa-clapperboard"></i></div>
+        <header>
+            <div class="icon-main"><i class="fas fa-magic"></i></div>
             <div>
                 <h1>Maestro Franco AI Toolkit · Pixar Edition</h1>
-                <p style="color:var(--muted)">La tua plancia di comando per immagini, video, cartoon e scuola.</p>
+                <p style="color:var(--muted)">17 Strumenti selezionati per il tuo studio creativo.</p>
             </div>
-        </div>
+        </header>
 
-        <div class="nav-pills">
-            <a href="#" class="pill-btn">Immagini</a>
-            <a href="#" class="pill-btn">Video</a>
-            <a href="#" class="pill-btn">Cartoon & Pixar</a>
-            <a href="#" class="pill-btn">Scuola</a>
-            <a href="#" class="pill-btn">Luma & Maestro Franco</a>
-        </div>
-
-        <h2>🖼️ Generazione Immagini</h2>
+        <h2><i class="fas fa-image"></i> Generazione Immagini</h2>
         <div class="grid">
-            <div class="card"><span class="tag">Cinematico</span><h3>FLUX.1 Dev</h3><p>Modello estremamente creativo. Perfetto per poster epici e ritratti 8K.</p><a href="https://huggingface.co/spaces/black-forest-labs/FLUX.1-dev" target="_blank" class="btn-orange">Apri FLUX.1</a></div>
-            <div class="card"><span class="tag">Versatile</span><h3>Stable Diffusion XL</h3><p>Il cavallo di battaglia. Buono per quasi tutto: sfondi e storyboard.</p><a href="https://huggingface.co/spaces/stabilityai/stable-diffusion-xl" target="_blank" class="btn-orange">Apri SDXL</a></div>
-            <div class="card"><span class="tag">Iper-realismo</span><h3>RealVisXL</h3><p>Per un Maestro Franco quasi fotografico e molto realistico.</p><a href="https://huggingface.co/spaces/SG161222/RealVisXL" target="_blank" class="btn-orange">Apri RealVisXL</a></div>
-            <div class="card"><span class="tag">Cartoon</span><h3>Pony Diffusion</h3><p>Stile anime/cartoon. Ottimo per versioni super giocose di te e Luma.</p><a href="https://huggingface.co/spaces/lambdalabs/pony-diffusion" target="_blank" class="btn-orange">Apri Pony</a></div>
+            <div class="card"><span class="tag">Cinematico</span><h3>FLUX.1 Dev</h3><p>Il top per poster Pixar e ritratti epici in 8K.</p><a href="https://huggingface.co/spaces/black-forest-labs/FLUX.1-dev" target="_blank" class="btn-orange">Apri FLUX.1</a></div>
+            <div class="card"><span class="tag">Versatile</span><h3>Stable Diffusion XL</h3><p>Ottimo per sfondi, oggetti e storyboard rapidi.</p><a href="https://huggingface.co/spaces/stabilityai/stable-diffusion-xl" target="_blank" class="btn-orange">Apri SDXL</a></div>
+            <div class="card"><span class="tag">Iper-realismo</span><h3>RealVisXL</h3><p>Per foto del Maestro Franco estremamente realistiche.</p><a href="https://huggingface.co/spaces/SG161222/RealVisXL" target="_blank" class="btn-orange">Apri RealVisXL</a></div>
+            <div class="card"><span class="tag">Cartoon</span><h3>Pony Diffusion</h3><p>Stile anime e cartoon giocoso per te e Luma.</p><a href="https://huggingface.co/spaces/lambdalabs/pony-diffusion" target="_blank" class="btn-orange">Apri Pony</a></div>
         </div>
 
-        <h2>🎥 Video da Immagine / Testo</h2>
+        <h2><i class="fas fa-video"></i> Video & Animazione</h2>
         <div class="grid">
-            <div class="card"><span class="tag">Img -> Video</span><h3>Stable Video Diffusion</h3><p>Anima un'immagine statica in un breve video Pixar-style.</p><a href="https://huggingface.co/spaces/multimodalart/stable-video-diffusion" target="_blank" class="btn-orange">Apri SVD</a></div>
-            <div class="card"><span class="tag">Img -> Video</span><h3>OVI</h3><p>Genera video fluidi a partire da un'immagine. Scene morbide.</p><a href="https://huggingface.co/spaces/akhaliq/Ovi" target="_blank" class="btn-orange">Apri OVI</a></div>
-            <div class="card"><span class="tag">Testo -> Video</span><h3>ZeroScope V2</h3><p>Genera brevi clip direttamente da un prompt testuale.</p><a href="https://huggingface.co/spaces/PAIR/zeroscope-v2" target="_blank" class="btn-orange">Apri ZeroScope</a></div>
-            <div class="card"><span class="tag">Sperimentale</span><h3>VEO3 Free</h3><p>Modello tipo "mini-Sora". Potente per i test più spinti.</p><a href="https://huggingface.co/spaces/ginigen/VEO3-Free" target="_blank" class="btn-orange">Apri VEO3</a></div>
+            <div class="card"><span class="tag">Img -> Video</span><h3>SVD</h3><p>Anima le tue illustrazioni Pixar in brevi clip video.</p><a href="https://huggingface.co/spaces/multimodalart/stable-video-diffusion" target="_blank" class="btn-orange">Apri SVD</a></div>
+            <div class="card"><span class="tag">Fluido</span><h3>OVI</h3><p>Video morbidi e atmosferici partendo da un'immagine.</p><a href="https://huggingface.co/spaces/akhaliq/Ovi" target="_blank" class="btn-orange">Apri OVI</a></div>
+            <div class="card"><span class="tag">Testo -> Video</span><h3>ZeroScope V2</h3><p>Genera piccoli concept video direttamente da testo.</p><a href="https://huggingface.co/spaces/PAIR/zeroscope-v2" target="_blank" class="btn-orange">Apri ZeroScope</a></div>
+            <div class="card"><span class="tag">Sora-like</span><h3>VEO3 Free</h3><p>Modello sperimentale per video di alta qualità.</p><a href="https://huggingface.co/spaces/ginigen/VEO3-Free" target="_blank" class="btn-orange">Apri VEO3</a></div>
         </div>
 
+        <h2><i class="fas fa-face-smile"></i> Cartoon & Modifica Foto</h2>
+        <div class="grid">
+            <div class="card"><span class="tag">Morbido</span><h3>Toony Diffusion</h3><p>Il vero look da cartone animato per i tuoi alunni.</p><a href="https://huggingface.co/spaces/Fictiverse/toony-diffusion" target="_blank" class="btn-orange">Apri Toony</a></div>
+            <div class="card"><span class="tag">Magico</span><h3>DreamShaper</h3><p>Un mix perfetto tra realtà e fiaba digitale.</p><a href="https://huggingface.co/spaces/Lykon/dreamshaper" target="_blank" class="btn-orange">Apri DreamShaper</a></div>
+            <div class="card"><span class="tag">Angoli</span><h3>Qwen Image Edit</h3><p>Cambia prospettiva e inquadratura alle tue foto.</p><a href="https://huggingface.co/spaces/linoyts/Qwen-Image-Edit-Angles" target="_blank" class="btn-orange">Apri Qwen</a></div>
+            <div class="card"><span class="tag">Restore</span><h3>CodeFormer</h3><p>Migliora e pulisce i volti sgranati o vecchi.</p><a href="https://huggingface.co/spaces/sczhou/CodeFormer" target="_blank" class="btn-orange">Apri CodeFormer</a></div>
+            <div class="card"><span class="tag">Flash</span><h3>GFPGAN</h3><p>Correzione rapida e restauro dei ritratti.</p><a href="https://huggingface.co/spaces/TencentARC/GFPGAN" target="_blank" class="btn-orange">Apri GFPGAN</a></div>
         </div>
+
+        <h2><i class="fas fa-graduation-cap"></i> Scuola & Extra</h2>
+        <div class="grid">
+            <div class="card"><span class="tag">Mappe</span><h3>AI Diagram</h3><p>Crea mappe concettuali e schemi in un clic.</p><a href="https://huggingface.co/spaces/yuntiandeng/AI-Diagram" target="_blank" class="btn-orange">Apri AI Diagram</a></div>
+            <div class="card"><span class="tag">Scrittura</span><h3>Handwriting AI</h3><p>Trasforma il testo digitale in bella grafia umana.</p><a href="https://huggingface.co/spaces/lmg-anon/handwriting" target="_blank" class="btn-orange">Apri Handwriting</a></div>
+            <div class="card"><span class="tag">Overlay</span><h3>Remove BG</h3><p>Rimuovi lo sfondo per usare la tua figura in Filmora.</p><a href="https://huggingface.co/spaces/Xenova/remove-background" target="_blank" class="btn-orange">Apri Remove BG</a></div>
+            <div class="card"><span class="tag">Studio</span><h3>Leonardo AI</h3><p>Potente set di modelli artistici e creativi.</p><a href="https://leonardo.ai" target="_blank" class="btn-orange">Apri Leonardo</a></div>
+            <div class="card"><span class="tag">Avatar</span><h3>HeyGen</h3><p>Crea video dove la tua foto parla davvero.</p><a href="https://www.heygen.com" target="_blank" class="btn-orange">Apri HeyGen</a></div>
+        </div>
+
+        <footer>
+            <p>Maestro Franco AI Hub · Pixar Edition · 2026</p>
+        </footer>
+    </div>
 </body>
 </html>
