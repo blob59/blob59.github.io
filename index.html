@@ -3,80 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maestro Franco - Hub Creativo & AI Toolkit</title>
+    <title>Maestro Franco - Hub Completo Pixar Edition</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --bg: #050816;
-            --card: #111827;
-            --accent: #fbbf24;
-            --accent2: #38bdf8;
-            --text: #f9fafb;
-            --muted: #9ca3af;
-            --border: #1f2937;
-            --radius-xl: 18px;
-            --shadow-soft: 0 20px 40px rgba(0,0,0,0.45);
-            --transition-fast: 0.18s ease-out;
+            --bg: #050816; --card: #111827; --accent: #fbbf24;
+            --accent2: #38bdf8; --text: #f9fafb; --muted: #9ca3af;
+            --border: #1f2937; --radius-xl: 18px;
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        
         body {
-            font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+            font-family: system-ui,-apple-system,sans-serif;
             background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%);
-            color: var(--text);
-            min-height: 100vh;
-            padding: 20px;
-            text-align: center;
+            color: var(--text); padding: 20px; text-align: center;
         }
-
         .wrapper { max-width: 1120px; margin: 0 auto; }
-
-        /* HEADER & PROFILO */
-        .profile-section { padding: 40px 20px; margin-bottom: 30px; border-bottom: 1px solid var(--border); position: relative; }
-        .profile-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--accent2); object-fit: cover; margin-bottom: 10px; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
-        h1 { font-size: 2.2rem; margin: 10px 0; color: #fff; }
+        
+        /* PROFILO */
+        .profile-section { padding: 30px 20px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+        .profile-img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--accent2); object-fit: cover; }
         
         #clock-container { position: relative; display: inline-block; margin: 15px 0; cursor: pointer; }
-        #clock { font-size: 1.8em; color: var(--accent2); font-weight: bold; font-family: 'Courier New', monospace; background: rgba(30, 41, 59, 0.8); padding: 8px 20px; border-radius: 12px; border: 1px solid var(--accent2); }
-        #luma-bubble { position: absolute; top: -65px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 10px 18px; border-radius: 20px; font-size: 0.95em; font-weight: bold; display: none; white-space: nowrap; box-shadow: 0 5px 15px rgba(0,0,0,0.4); z-index: 100; border: 2px solid white; }
-        #luma-bubble::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 10px solid var(--accent); }
+        #clock { font-size: 1.8em; color: var(--accent2); font-weight: bold; font-family: monospace; background: rgba(30, 41, 59, 0.8); padding: 8px 20px; border-radius: 12px; border: 1px solid var(--accent2); }
+        #luma-bubble { position: absolute; top: -65px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #000; padding: 10px 18px; border-radius: 20px; font-size: 0.9em; font-weight: bold; display: none; white-space: nowrap; z-index: 100; border: 2px solid white; }
 
-        /* METEO */
-        .weather-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-        .weather-box { background: var(--card); padding: 15px; border-radius: var(--radius-xl); border: 1px solid var(--border); transition: 0.3s; }
-        .weather-link { color: var(--accent2); text-decoration: none; font-size: 0.9em; font-weight: bold; }
-
-        /* GRIGLIE VIDEO */
-        .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); margin-top: 20px; }
+        /* GRIGLIE */
+        .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin-bottom: 40px; }
         .card {
-            background: radial-gradient(circle at top left, rgba(251,191,36,.05), transparent 55%), var(--card);
-            border-radius: var(--radius-xl);
-            padding: 15px;
-            border: 1px solid var(--border);
-            box-shadow: var(--shadow-soft);
-            text-align: left;
-            transition: transform 0.2s;
+            background: var(--card); border-radius: var(--radius-xl); padding: 16px;
+            border: 1px solid var(--border); text-align: left; transition: 0.2s;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background: #000; }
+        .card:hover { border-color: var(--accent); transform: translateY(-3px); }
+        
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; background: #000; margin-bottom: 10px; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-        /* TOOLKIT STYLING */
-        .section-title { font-size: 1.3rem; margin: 40px 0 15px 0; display: flex; align-items: center; justify-content: center; gap: 10px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
-        .pill { font-size: .7rem; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--muted); color: var(--muted); float: right; }
-        .card-body { font-size: .85rem; color: #e5e7eb; margin: 10px 0; line-height: 1.4; }
+        /* TITOLI SEZIONI TOOLKIT */
+        .section-title { font-size: 1.4rem; color: var(--accent); margin: 40px 0 10px; display: flex; align-items: center; justify-content: center; gap: 10px; text-transform: uppercase; }
+        .section-caption { color: var(--muted); font-size: 0.9rem; margin-bottom: 20px; }
+        .pill { font-size: .65rem; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--muted); color: var(--muted); float: right; }
         
         a.btn-tool {
-            display: inline-flex; align-items: center; gap: 6px; padding: 8px 15px;
+            display: inline-flex; align-items: center; justify-content: center; padding: 8px;
             border-radius: 999px; font-size: .8rem; text-decoration: none;
-            color: #020617; background: linear-gradient(135deg,#fde68a,#fb923c);
-            font-weight: 600; margin-top: 10px;
+            color: #000; background: linear-gradient(135deg,#fde68a,#fb923c);
+            font-weight: bold; margin-top: 12px;
         }
 
-        footer { margin-top: 60px; padding: 40px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9em; }
-
-        @media(max-width:640px){ .grid { grid-template-columns: 1fr; } }
+        .weather-box { background: var(--card); padding: 10px; border-radius: 15px; border: 1px solid var(--border); margin: 10px; display: inline-block; min-width: 200px; }
     </style>
 </head>
 <body>
@@ -89,123 +64,72 @@
                 <div id="luma-bubble">Ciao Franco!</div>
                 <div id="clock">00:00:00</div>
             </div>
-            <p style="color: var(--muted); margin-top: 10px;">Studios Creativi · Musica · IA · Scuola</p>
+            <div>
+                <div class="weather-box">📍 Brancaleone: <a href="https://www.meteo.it/meteo/brancaleone-80014" target="_blank" style="color:var(--accent2)">Meteo</a></div>
+                <div class="weather-box">📍 Galbiate: <a href="https://www.meteo.it/meteo/galbiate-97036" target="_blank" style="color:var(--accent2)">Meteo</a></div>
+            </div>
         </header>
 
-        <div class="weather-row">
-            <div class="weather-box">
-                <p>📍 Brancaleone (RC)</p>
-                <a href="https://www.meteo.it/meteo/brancaleone-80014" target="_blank" class="weather-link">Meteo <i class="fas fa-external-link-alt"></i></a>
-            </div>
-            <div class="weather-box">
-                <p>📍 Galbiate (LC)</p>
-                <a href="https://www.meteo.it/meteo/galbiate-97036" target="_blank" class="weather-link">Meteo <i class="fas fa-external-link-alt"></i></a>
-            </div>
-        </div>
-
-        <h2 class="section-title">🎥 In Primo Piano</h2>
-        <div class="card" style="max-width: 800px; margin: 0 auto 40px auto; text-align: center;">
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/be_-J-ed150" allowfullscreen></iframe>
-            </div>
-            <p style="margin-top: 10px; font-weight: bold;">Ho messo via..... (Musica & Storia)</p>
-        </div>
-
-        <h2 class="section-title">✨ Sora AI Reels</h2>
+        <h2 class="section-title">🎬 I Miei Reel Sora AI</h2>
         <div class="grid">
-            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/f_e9ob22nP0" allowfullscreen></iframe></div><p style="margin-top:8px;">Reel #1</p></div>
-            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/SguOvfrbRQw" allowfullscreen></iframe></div><p style="margin-top:8px;">Reel #2</p></div>
-            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/8g-mibCg7Ls" allowfullscreen></iframe></div><p style="margin-top:8px;">Reel #3</p></div>
-            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/D0aNgp0Umuw" allowfullscreen></iframe></div><p style="margin-top:8px;">Reel #4</p></div>
-            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/YTBAQLQpmWU" allowfullscreen></iframe></div><p style="margin-top:8px;">Reel #5</p></div>
+            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/be_-J-ed150" allowfullscreen></iframe></div><p>Ho messo via...</p></div>
+            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/f_e9ob22nP0" allowfullscreen></iframe></div><p>Reel #1</p></div>
+            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/SguOvfrbRQw" allowfullscreen></iframe></div><p>Reel #2</p></div>
+            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/8g-mibCg7Ls" allowfullscreen></iframe></div><p>Reel #3</p></div>
+            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/D0aNgp0Umuw" allowfullscreen></iframe></div><p>Reel #4</p></div>
+            <div class="card"><div class="video-container"><iframe src="https://www.youtube.com/embed/YTBAQLQpmWU" allowfullscreen></iframe></div><p>Reel #5</p></div>
         </div>
 
-        <h2 class="section-title">🛠️ Maestro Franco AI Toolkit</h2>
-        
-        <h3 style="text-align: left; color: var(--accent2); margin-top: 20px;">🖼️ Immagini</h3>
+        <h2 class="section-title">🖼️ Generazione Immagini</h2>
         <div class="grid">
-            <article class="card">
-                <span class="pill">Cinematico</span>
-                <p><strong>FLUX.1 Dev</strong></p>
-                <p class="card-body">Modello estremamente creativo per poster epici e ritratti 8K.</p>
-                <a class="btn-tool" href="https://huggingface.co/spaces/black-forest-labs/FLUX.1-dev" target="_blank">Apri FLUX.1</a>
-            </article>
-            <article class="card">
-                <span class="pill">Versatile</span>
-                <p><strong>Stable Diffusion XL</strong></p>
-                <p class="card-body">Il cavallo di battaglia per sfondi, oggetti e storyboard.</p>
-                <a class="btn-tool" href="https://huggingface.co/spaces/stabilityai/stable-diffusion-xl" target="_blank">Apri SDXL</a>
-            </article>
+            <div class="card"><span class="pill">Cinematico</span><p><strong>FLUX.1 Dev</strong></p><p style="font-size:0.8rem">Per poster epici e ritratti 8K.</p><a class="btn-tool" href="https://huggingface.co/spaces/black-forest-labs/FLUX.1-dev" target="_blank">Apri</a></div>
+            <div class="card"><span class="pill">Versatile</span><p><strong>SDXL</strong></p><p style="font-size:0.8rem">Il cavallo di battaglia per tutto.</p><a class="btn-tool" href="https://huggingface.co/spaces/stabilityai/stable-diffusion-xl" target="_blank">Apri</a></div>
+            <div class="card"><span class="pill">Iper-realismo</span><p><strong>RealVisXL</strong></p><p style="font-size:0.8rem">Per foto quasi vere del Maestro.</p><a class="btn-tool" href="https://huggingface.co/spaces/SG161222/RealVisXL" target="_blank">Apri</a></div>
+            <div class="card"><span class="pill">Cartoon</span><p><strong>Pony Diffusion</strong></p><p style="font-size:0.8rem">Stile anime/cartoon per stickers.</p><a class="btn-tool" href="https://huggingface.co/spaces/lambdalabs/pony-diffusion" target="_blank">Apri</a></div>
         </div>
 
-        <h3 style="text-align: left; color: var(--accent2); margin-top: 30px;">🎥 Video & Cartoon</h3>
+        <h2 class="section-title">🎥 Video da Immagine</h2>
         <div class="grid">
-            <article class="card">
-                <span class="pill">Img → Video</span>
-                <p><strong>Stable Video Diffusion</strong></p>
-                <p class="card-body">Anima illustrazioni Pixar-style in pochi secondi.</p>
-                <a class="btn-tool" href="https://huggingface.co/spaces/multimodalart/stable-video-diffusion" target="_blank">Apri SVD</a>
-            </article>
-            <article class="card">
-                <span class="pill">Cartoon</span>
-                <p><strong>Toony Diffusion</strong></p>
-                <p class="card-body">Look da cartone animato perfetto per materiale scolastico.</p>
-                <a class="btn-tool" href="https://huggingface.co/spaces/Fictiverse/toony-diffusion" target="_blank">Apri Toony</a>
-            </article>
+            <div class="card"><span class="pill">SVD</span><p><strong>Stable Video Diffusion</strong></p><p style="font-size:0.8rem">Anima immagini statiche.</p><a class="btn-tool" href="https://huggingface.co/spaces/multimodalart/stable-video-diffusion" target="_blank">Apri</a></div>
+            <div class="card"><span class="pill">OVI</span><p><strong>OVI</strong></p><p style="font-size:0.8rem">Video fluidi e atmosferici.</p><a class="btn-tool" href="https://huggingface.co/spaces/akhaliq/Ovi" target="_blank">Apri</a></div>
+            <div class="card"><span class="pill">Testo->Video</span><p><strong>ZeroScope V2</strong></p><p style="font-size:0.8rem">Clip rapide da testo.</p><a class="btn-tool" href="https://huggingface.co/spaces/PAIR/zeroscope-v2" target="_blank">Apri</a></div>
+            <div class="card"><span class="pill">Sperimentale</span><p><strong>VEO3 Free</strong></p><p style="font-size:0.8rem">Il mini-Sora per test spinti.</p><a class="btn-tool" href="https://huggingface.co/spaces/ginigen/VEO3-Free" target="_blank">Apri</a></div>
         </div>
 
-        <h3 style="text-align: left; color: var(--accent2); margin-top: 30px;">📚 Scuola & Extra</h3>
+        <h2 class="section-title">✨ Cartoon & Modifica</h2>
         <div class="grid">
-            <article class="card">
-                <span class="pill">Mappe</span>
-                <p><strong>AI Diagram</strong></p>
-                <p class="card-body">Crea mappe concettuali a partire da testi per la classe.</p>
-                <a class="btn-tool" href="https://huggingface.co/spaces/yuntiandeng/AI-Diagram" target="_blank">Apri AI Diagram</a>
-            </article>
-            <article class="card">
-                <span class="pill">Studio</span>
-                <p><strong>Leonardo AI</strong></p>
-                <p class="card-body">Piattaforma ricca di modelli artistici per progetti complessi.</p>
-                <a class="btn-tool" href="https://leonardo.ai" target="_blank">Apri Leonardo</a>
-            </article>
+            <div class="card"><p><strong>Toony Diffusion</strong></p><a class="btn-tool" href="https://huggingface.co/spaces/Fictiverse/toony-diffusion" target="_blank">Apri Toony</a></div>
+            <div class="card"><p><strong>DreamShaper</strong></p><a class="btn-tool" href="https://huggingface.co/spaces/Lykon/dreamshaper" target="_blank">Apri Dream</a></div>
+            <div class="card"><p><strong>CodeFormer</strong></p><a class="btn-tool" href="https://huggingface.co/spaces/sczhou/CodeFormer" target="_blank">Restore Volti</a></div>
+            <div class="card"><p><strong>GFPGAN</strong></p><a class="btn-tool" href="https://huggingface.co/spaces/TencentARC/GFPGAN" target="_blank">Pulizia Flash</a></div>
         </div>
 
-        <footer>
-            <p>Maestro Franco Hub · Pixar Edition · 2026</p>
-            <p style="font-size: 0.8em; margin-top: 10px;">Tutti i tuoi strumenti creativi in un unico posto online.</p>
+        <h2 class="section-title">📚 Scuola & Extra</h2>
+        <div class="grid">
+            <div class="card"><p><strong>AI Diagram</strong></p><a class="btn-tool" href="https://huggingface.co/spaces/yuntiandeng/AI-Diagram" target="_blank">Mappe</a></div>
+            <div class="card"><p><strong>Handwriting</strong></p><a class="btn-tool" href="https://huggingface.co/spaces/lmg-anon/handwriting" target="_blank">Scrittura Umana</a></div>
+            <div class="card"><p><strong>Remove BG</strong></p><a class="btn-tool" href="https://huggingface.co/spaces/Xenova/remove-background" target="_blank">Togli Sfondo</a></div>
+            <div class="card"><p><strong>Leonardo AI</strong></p><a class="btn-tool" href="https://leonardo.ai" target="_blank">Leonardo</a></div>
+            <div class="card"><p><strong>HeyGen</strong></p><a class="btn-tool" href="https://www.heygen.com" target="_blank">Avatar Parlanti</a></div>
+            <div class="card"><p><strong>Bing Create</strong></p><a class="btn-tool" href="https://www.bing.com/create" target="_blank">Bing Image</a></div>
+        </div>
+
+        <footer style="padding: 40px; border-top: 1px dashed var(--muted); margin-top: 40px; color: var(--muted);">
+            <p>Maestro Franco Studios &copy; 2026 - Il tuo Hub Creativo Completo</p>
         </footer>
     </div>
 
     <script>
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('clock').textContent = now.toLocaleTimeString('it-IT');
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        const lumaQuotes = [
-            "Franco, il tuo Toolkit Pixar è online! 🎬",
-            "Che strumenti potenti che abbiamo! 🚀",
-            "Sora e Flux... siamo imbattibili! ✨",
-            "Maestro, oggi creiamo un capolavoro?",
-            "Luma approva questa plancia di comando! 🐰",
-            "Controllato il meteo a Brancaleone? 🌤️"
-        ];
-
-        function parlaLuma(testo) {
-            const msg = new SpeechSynthesisUtterance(testo);
-            msg.lang = 'it-IT'; msg.pitch = 1.8; msg.rate = 1.1;
-            window.speechSynthesis.speak(msg);
-        }
-
+        function updateClock() { document.getElementById('clock').textContent = new Date().toLocaleTimeString('it-IT'); }
+        setInterval(updateClock, 1000); updateClock();
+        
+        const lumaQuotes = ["Tutto il Toolkit è pronto, Franco! 🛠️", "17 strumenti a tua disposizione!", "Sora, Flux, Leonardo... che squadra!", "Maestro, iniziamo a creare?", "Luma Studios è al gran completo! 🐰"];
+        function parlaLuma(t) { const m = new SpeechSynthesisUtterance(t); m.lang='it-IT'; m.pitch=1.8; window.speechSynthesis.speak(m); }
         function showLumaBubble() {
-            const bubble = document.getElementById('luma-bubble');
-            const quote = lumaQuotes[Math.floor(Math.random() * lumaQuotes.length)];
-            bubble.textContent = quote;
-            bubble.style.display = 'block';
-            parlaLuma(quote);
-            setTimeout(() => { bubble.style.display = 'none'; }, 4000);
+            const b = document.getElementById('luma-bubble');
+            const q = lumaQuotes[Math.floor(Math.random()*lumaQuotes.length)];
+            b.textContent = q; b.style.display = 'block'; parlaLuma(q);
+            setTimeout(() => b.style.display='none', 4000);
         }
     </script>
 </body>
