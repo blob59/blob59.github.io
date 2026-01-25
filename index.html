@@ -9,17 +9,15 @@
         :root { --bg: #050816; --card: #111827; --accent: #fbbf24; --accent2: #38bdf8; --text: #f9fafb; --border: #1f2937; }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: system-ui, sans-serif; background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%); color: var(--text); padding: 20px; text-align: center; }
-        .wrapper { max-width: 1000px; margin: 0 auto; }
+        .wrapper { max-width: 1100px; margin: 0 auto; }
         
         /* HEADER PROFILO */
         .profile-section { padding: 30px 20px; }
         .profile-img { width: 150px; height: 150px; border-radius: 50%; border: 3px solid var(--accent2); object-fit: cover; margin-bottom: 15px; box-shadow: 0 0 20px rgba(56, 189, 248, 0.3); }
-        
         #clock { font-size: 1.8em; color: var(--accent2); font-weight: bold; font-family: monospace; background: rgba(30, 41, 59, 0.8); padding: 10px 25px; border-radius: 15px; border: 1px solid var(--accent2); display: inline-block; margin: 15px 0; }
-
         .weather-box { background: var(--card); padding: 10px 20px; border-radius: 15px; border: 1px solid var(--border); margin: 5px; display: inline-block; font-size: 0.9rem; }
         
-        /* BOTTONE PER ANDARE AL TOOLKIT */
+        /* BOTTONE TOOLKIT */
         .btn-toolkit-link { 
             display: inline-flex; align-items: center; gap: 12px;
             padding: 20px 45px; background: linear-gradient(135deg, #fbbf24, #fb923c); 
@@ -31,12 +29,14 @@
 
         /* GRIGLIA VIDEO REELS */
         h2 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin: 40px 0 20px; }
-        .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-        .video-card { background: var(--card); padding: 15px; border-radius: 18px; border: 1px solid var(--border); text-align: left; }
+        .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .video-card { background: var(--card); padding: 15px; border-radius: 18px; border: 1px solid var(--border); text-align: left; transition: 0.3s; }
+        .video-card:hover { border-color: var(--accent2); }
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         footer { margin-top: 60px; padding: 40px; border-top: 1px solid var(--border); color: #64748b; }
+        .stats-box { margin-top: 20px; background: #050816; padding: 15px; border-radius: 15px; display: inline-block; border: 1px solid var(--accent); }
     </style>
 </head>
 <body>
@@ -57,39 +57,44 @@
             <i class="fas fa-tools"></i> APRI IL MIO AI TOOLKIT
         </a>
 
-        <h2>🎬 SORA AI REELS</h2>
+        <h2>🎬 SORA AI REELS & CREATIONS</h2>
         <div class="grid">
             <div class="video-card">
                 <div class="video-container"><iframe src="https://www.youtube.com/embed/be_-J-ed150" allowfullscreen></iframe></div>
-                <p style="margin-top:10px;">Ho messo via...</p>
+                <p style="margin-top:10px; font-weight: bold; color: var(--accent2);">Ho messo via...</p>
             </div>
             <div class="video-card">
                 <div class="video-container"><iframe src="https://www.youtube.com/embed/f_e9ob22nP0" allowfullscreen></iframe></div>
-                <p style="margin-top:10px;">Reel #1</p>
+                <p style="margin-top:10px; font-weight: bold; color: var(--accent2);">Sora Reel #1</p>
+            </div>
+            <div class="video-card">
+                <div class="video-container"><iframe src="https://www.youtube.com/embed/oxWN9TXGmEY" allowfullscreen></iframe></div>
+                <p style="margin-top:10px; font-weight: bold; color: var(--accent2);">Milano Duomo AI</p>
             </div>
             <div class="video-card">
                 <div class="video-container"><iframe src="https://www.youtube.com/embed/SguOvfrbRQw" allowfullscreen></iframe></div>
-                <p style="margin-top:10px;">Reel #2</p>
+                <p style="margin-top:10px; font-weight: bold; color: var(--accent2);">Sora Reel #2</p>
+            </div>
+            <div class="video-card">
+                <div class="video-container"><iframe src="https://www.youtube.com/embed/xuGUBj-pUnQ" allowfullscreen></iframe></div>
+                <p style="margin-top:10px; font-weight: bold; color: var(--accent2);">Moon Walk Studio</p>
             </div>
             <div class="video-card">
                 <div class="video-container"><iframe src="https://www.youtube.com/embed/8g-mibCg7Ls" allowfullscreen></iframe></div>
-                <p style="margin-top:10px;">Reel #3</p>
+                <p style="margin-top:10px; font-weight: bold; color: var(--accent2);">Sora Reel #3</p>
             </div>
         </div>
 
-  <footer style="margin-top: 60px; padding: 40px; border-top: 1px solid #1f2937; color: #64748b; text-align: center;">
-    <p>Franco e Luma Studios &copy; 2026</p>
-    
-    <div style="margin-top: 20px; background: #050816; padding: 15px; border-radius: 15px; display: inline-block; border: 1px solid #fbbf24;">
-        <p style="font-size: 0.8rem; color: #fbbf24; margin-bottom: 10px; font-weight: bold; text-transform: uppercase;">
-            <i class="fas fa-chart-line"></i> TRAFFICO STUDIOS
-        </p>
-        
-        <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://franco-studios.github.io&count_bg=%23FBBF24&title_bg=%23050816&icon=eye.svg&icon_color=%23E7E7E7&title=VISITE&edge_flat=false" alt="Visite">
+        <footer>
+            <p>Franco e Luma Studios &copy; 2026</p>
+            <div class="stats-box">
+                <p style="font-size: 0.8rem; color: #fbbf24; margin-bottom: 10px; font-weight: bold; text-transform: uppercase;">
+                    <i class="fas fa-chart-line"></i> TRAFFICO STUDIOS
+                </p>
+                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://franco-studios.github.io&count_bg=%23FBBF24&title_bg=%23050816&icon=eye.svg&icon_color=%23E7E7E7&title=VISITE&edge_flat=false" alt="Visite">
+            </div>
+        </footer>
     </div>
-</footer>
-    <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Ffranco-studios.github.io&count_bg=%23FBBF24&title_bg=%23050816&icon=eye.svg&icon_color=%23E7E7E7&title=VISITE&edge_flat=false" alt="Visite">
-</div>
 
     <script>
         function updateClock() { document.getElementById('clock').textContent = new Date().toLocaleTimeString('it-IT'); }
@@ -97,6 +102,3 @@
     </script>
 </body>
 </html>
-
-
-
