@@ -10,40 +10,24 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: system-ui, sans-serif; background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%); color: var(--text); padding: 20px; text-align: center; }
         .wrapper { max-width: 1100px; margin: 0 auto; }
-        
-        /* COPERTINA STUDIOS */
         .cover-img { width: 100%; max-width: 850px; border-radius: 25px; margin-bottom: 25px; border: 3px solid var(--accent); box-shadow: 0 0 40px rgba(251, 191, 36, 0.3); }
-
-        /* PULSANTI PRINCIPALI */
         .button-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 30px 0; }
-        
-        .btn-main { 
-            display: inline-flex; align-items: center; gap: 12px;
-            padding: 18px 35px; background: linear-gradient(135deg, #fbbf24, #fb923c); 
-            color: #000; text-decoration: none; font-weight: bold; 
-            border-radius: 50px; font-size: 1.1rem; transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3);
-        }
+        .btn-main { display: inline-flex; align-items: center; gap: 12px; padding: 18px 35px; background: linear-gradient(135deg, #fbbf24, #fb923c); color: #000; text-decoration: none; font-weight: bold; border-radius: 50px; font-size: 1.1rem; transition: 0.3s; box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3); }
         .btn-main:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(251, 191, 36, 0.5); }
-        .btn-wix { background: linear-gradient(135deg, #38bdf8, #0ea5e9); } /* Colore azzurro per distinguere Wix */
-
-        /* GRIGLIA VIDEO */
+        .btn-wix { background: linear-gradient(135deg, #38bdf8, #0ea5e9); }
         .grid { display: grid; gap: 25px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); margin-top: 40px; }
-        .video-card { background: var(--card); padding: 15px; border-radius: 20px; border: 1px solid var(--border); text-align: left; transition: 0.3s; }
-        .video-card:hover { border-color: var(--accent2); }
+        .video-card { background: var(--card); padding: 15px; border-radius: 20px; border: 1px solid var(--border); text-align: left; }
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        
         h2 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
         footer { margin-top: 60px; padding: 40px; border-top: 1px solid var(--border); }
         .stats-box { background: #050816; padding: 15px; border-radius: 15px; display: inline-block; border: 1px solid var(--accent); }
     </style>
 </head>
 <body>
-
     <div class="wrapper">
         <header>
-            <img src="copertina.jpg" alt="Franco & Luma Studios" class="cover-img">
+            <img src="franco-luma-studios.jpg" alt="Franco & Luma Studios" class="cover-img">
             <h1>Franco e Luma Studios</h1>
             <p style="color: var(--accent2); margin-top: 10px;">Benvenuti nel futuro della creazione AI</p>
         </header>
@@ -52,7 +36,6 @@
             <a href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank" class="btn-main btn-wix">
                 <i class="fas fa-globe"></i> SITO UFFICIALE WIX
             </a>
-
             <a href="toolkit.html" class="btn-main">
                 <i class="fas fa-tools"></i> AI TOOLKIT
             </a>
@@ -60,40 +43,21 @@
 
         <h2>🎬 SORA AI REELS</h2>
         <div class="grid">
-            <div class="video-card">
-                <div class="video-container"><iframe src="https://www.youtube.com/embed/be_-J-ed150" allowfullscreen></iframe></div>
-                <p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Ho messo via...</p>
-            </div>
-            <div class="video-card">
-                <div class="video-container"><iframe src="https://www.youtube.com/embed/f_e9ob22nP0" allowfullscreen></iframe></div>
-                <p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Sora Reel #1</p>
-            </div>
-            <div class="video-card">
-                <div class="video-container"><iframe src="https://www.youtube.com/embed/oxWN9TXGmEY" allowfullscreen></iframe></div>
-                <p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Milano Duomo AI</p>
-            </div>
-            <div class="video-card">
-                <div class="video-container"><iframe src="https://www.youtube.com/embed/SguOvfrbRQw" allowfullscreen></iframe></div>
-                <p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Sora Reel #2</p>
-            </div>
-            <div class="video-card">
-                <div class="video-container"><iframe src="https://www.youtube.com/embed/xuGUBj-pUnQ" allowfullscreen></iframe></div>
-                <p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Moon Walk Studio</p>
-            </div>
-            <div class="video-card">
-                <div class="video-container"><iframe src="https://www.youtube.com/embed/8g-mibCg7Ls" allowfullscreen></iframe></div>
-                <p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Sora Reel #3</p>
-            </div>
+            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/be_-J-ed150" allowfullscreen></iframe></div><p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Ho messo via...</p></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/f_e9ob22nP0" allowfullscreen></iframe></div><p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Sora Reel #1</p></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/oxWN9TXGmEY" allowfullscreen></iframe></div><p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Milano Duomo AI</p></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/SguOvfrbRQw" allowfullscreen></iframe></div><p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Sora Reel #2</p></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/xuGUBj-pUnQ" allowfullscreen></iframe></div><p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Moon Walk Studio</p></div>
+            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/8g-mibCg7Ls" allowfullscreen></iframe></div><p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Sora Reel #3</p></div>
         </div>
 
         <footer>
             <p>Franco e Luma Studios &copy; 2026</p>
-            <div class="stats-box" style="margin-top: 20px;">
+            <div class="stats-box">
                 <p style="font-size: 0.7rem; color: #fbbf24; margin-bottom: 8px;">VISITE LIVE</p>
                 <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://franco-studios.github.io&count_bg=%23FBBF24&title_bg=%23050816&icon=eye.svg&icon_color=%23E7E7E7&title=VISITE&edge_flat=false" alt="Visite">
             </div>
         </footer>
     </div>
-
 </body>
 </html>
