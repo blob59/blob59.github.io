@@ -1,4 +1,4 @@
-// === CONFIG: incolla qui i tuoi dati Supabase ===
+alert("app.js caricato ✅");
 const SUPABASE_URL = "https://cxwewkcbjsudkcrnlue.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_zOvY78Myap9F84iDD6Vqeg_hAW1b74D";
 
