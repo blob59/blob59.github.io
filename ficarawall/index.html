@@ -5,46 +5,126 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>FicaraWall</title>
   <style>
+    :root{
+      --bg:#0b0f1a; --card:rgba(255,255,255,.06); --border:rgba(255,255,255,.12);
+      --text:#e8eefc; --muted:#a9b5d4; --accent:#7c5cff;
+      --shadow:0 10px 25px rgba(0,0,0,.35); --r:16px;
+    }
+    *{box-sizing:border-box}
     body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      background:#0b0f1a;
-      color:#e8eefc;
-      display:flex;
-      min-height:100vh;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background: radial-gradient(1200px 700px at 20% 10%, #1a2550 0%, var(--bg) 55%, #070a12 100%);
+      color:var(--text);
     }
-    .card{
-      max-width:720px;
-      width:100%;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.12);
+    header{
+      position:sticky; top:0; z-index:5;
+      display:flex; justify-content:space-between; align-items:center; gap:12px;
+      padding:14px 16px;
+      background: rgba(10,14,25,.75);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .brand{font-weight:900; letter-spacing:.4px}
+    .brand::before{content:"🧷 "; filter: drop-shadow(0 4px 10px rgba(124,92,255,.35))}
+    .wrap{max-width:1100px; margin:0 auto; padding:16px}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:var(--r); box-shadow:var(--shadow); padding:14px}
+    input{
+      width:100%; padding:12px; border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      color:var(--text); outline:none;
+      margin:8px 0;
+    }
+    input:focus{border-color: rgba(124,92,255,.65)}
+    button{
+      padding:12px 12px; border-radius:12px; border:0; cursor:pointer; font-weight:800;
+      color:white; background: linear-gradient(135deg, var(--accent), #4bd0ff);
+      box-shadow:0 10px 20px rgba(124,92,255,.18);
+    }
+    button.ghost{background:transparent; border:1px solid rgba(255,255,255,.14); box-shadow:none; color:var(--text)}
+    .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+    @media(max-width:820px){.grid2{grid-template-columns:1fr}}
+    .muted{color:var(--muted)}
+    .posts{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:12px}
+    @media(max-width:980px){.posts{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.posts{grid-template-columns:1fr}}
+    .post{
       border-radius:16px;
-      padding:20px;
-      box-shadow:0 10px 25px rgba(0,0,0,.35);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:var(--shadow);
+      padding:12px;
     }
-    h1{margin:0 0 8px}
-    p{margin:0 0 10px; color:#a9b5d4; line-height:1.4}
-    .badge{
-      display:inline-block;
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(124,92,255,.18);
-      border:1px solid rgba(124,92,255,.35);
-      margin-top:10px;
-      font-size:12px;
+    .top{display:flex; justify-content:space-between; gap:10px; align-items:flex-start}
+    .x{
+      width:36px; height:36px; border-radius:12px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--text); cursor:pointer;
     }
+    .date{font-size:12px; color:var(--muted)}
+    .text{white-space:pre-wrap; line-height:1.35; margin:8px 0 10px}
+    a{color:#8fe8ff; text-decoration:none; border-bottom:1px dashed rgba(143,232,255,.5)}
+    .tags{display:flex; flex-wrap:wrap; gap:6px}
+    .tag{font-size:12px; padding:4px 10px; border-radius:999px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.10); color:var(--muted)}
+    .mini{font-size:12px}
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>FicaraWall 🧷</h1>
-    <p>Installazione base riuscita.</p>
-    <p>Prossimo step: login + muro personale + salvataggio online.</p>
-    <div class="badge">francoficara.com/ficarawall</div>
-  </div>
+  <header>
+    <div class="brand">FicaraWall</div>
+    <div class="row">
+      <span id="who" class="mini muted"></span>
+      <button id="logoutBtn" class="ghost" style="display:none;">Esci</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="authBox" class="card">
+      <h1 style="margin:0 0 6px;">Entra nel tuo muro</h1>
+      <p class="muted" style="margin:0 0 10px;">Registrazione libera: email + password, poi ognuno vede solo il suo muro.</p>
+
+      <div class="grid2">
+        <div class="card">
+          <h2 style="margin:0 0 6px;">Registrati</h2>
+          <input id="regEmail" placeholder="Email" />
+          <input id="regPass" placeholder="Password (min 6)" type="password" />
+          <button id="regBtn">Crea account</button>
+          <p class="muted mini">Se la conferma email è attiva su Supabase, ti arriva una mail.</p>
+        </div>
+
+        <div class="card">
+          <h2 style="margin:0 0 6px;">Accedi</h2>
+          <input id="logEmail" placeholder="Email" />
+          <input id="logPass" placeholder="Password" type="password" />
+          <button id="logBtn">Accedi</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="wallBox" style="display:none;">
+      <div class="card">
+        <h1 style="margin:0 0 6px;">Il tuo muro</h1>
+        <p class="muted" style="margin:0 0 10px;">Incolla link, appunti, tag. Tutto resta online.</p>
+
+        <div class="row">
+          <input id="text" placeholder="Nota (facoltativa)" />
+          <input id="url" placeholder="Link (https://…)" />
+          <input id="tags" placeholder="Tag separati da virgola (es: storia,scienze)" />
+          <button id="addBtn">Pubblica</button>
+        </div>
+
+        <div class="row" style="margin-top:10px;">
+          <input id="search" placeholder="Cerca nel tuo muro…" />
+        </div>
+      </div>
+
+      <div id="posts" class="posts"></div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./app.js"></script>
 </body>
 </html>
-
