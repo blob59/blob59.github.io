@@ -1,12 +1,26 @@
+// ✅ TEST: se vedi questo, app.js sta girando davvero
 alert("app.js caricato ✅");
+
+// === CONFIG: incolla qui i tuoi dati Supabase ===
+// 1) Project URL: https://xxxx.supabase.co
+// 2) Chiave pubblicabile: sb_publishable_....
 const SUPABASE_URL = "https://cxwewkcbjsudkcrnlue.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_zOvY78Myap9F84iDD6Vqeg_hAW1b74D";
 
+// Debug: verifica che la libreria Supabase sia stata caricata
+console.log("window.supabase =", window.supabase);
+
+if (!window.supabase) {
+  alert("ERRORE: Supabase non caricato. Controlla la riga <script supabase-js> in index.html o AdBlock.");
+  throw new Error("Supabase library not loaded (window.supabase undefined)");
+}
 
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+console.log("client ok ✅", supabase);
 
 const $ = (id) => document.getElementById(id);
 
+// --- Elementi UI ---
 const authBox = $("authBox");
 const wallBox = $("wallBox");
 const who = $("who");
@@ -28,18 +42,47 @@ const addBtn = $("addBtn");
 const search = $("search");
 const posts = $("posts");
 
+// Controllo elementi (se qualcosa è null, la pagina non corrisponde)
+const required = [
+  ["authBox", authBox], ["wallBox", wallBox], ["who", who], ["logoutBtn", logoutBtn],
+  ["regEmail", regEmail], ["regPass", regPass], ["regBtn", regBtn],
+  ["logEmail", logEmail], ["logPass", logPass], ["logBtn", logBtn],
+  ["text", text], ["url", url], ["tags", tags], ["addBtn", addBtn],
+  ["search", search], ["posts", posts]
+];
+
+for (const [name, el] of required) {
+  if (!el) {
+    alert(`ERRORE: elemento mancante #${name} in index.html. Hai incollato la versione giusta di index?`);
+    throw new Error(`Missing element #${name}`);
+  }
+}
+
+// --- Eventi ---
 logoutBtn.onclick = () => supabase.auth.signOut();
-regBtn.onclick = signUp;
-logBtn.onclick = signIn;
-addBtn.onclick = addPost;
-search.oninput = refresh;
+
+regBtn.onclick = () => {
+  console.log("CLICK signup");
+  signUp();
+};
+
+logBtn.onclick = () => {
+  console.log("CLICK login");
+  signIn();
+};
+
+addBtn.onclick = () => addPost();
+search.oninput = () => refresh();
 
 let currentUser = null;
 
 init();
 
+// --- Init ---
 async function init() {
-  const { data } = await supabase.auth.getSession();
+  const { data, error } = await supabase.auth.getSession();
+  if (error) console.log("getSession error:", error);
+
   currentUser = data.session?.user ?? null;
   renderAuthState();
 
@@ -65,26 +108,50 @@ function renderAuthState() {
   refresh();
 }
 
+// --- Auth ---
 async function signUp() {
   const email = regEmail.value.trim();
   const password = regPass.value;
 
-  if (!email || password.length < 6) return alert("Email e password (min 6).");
-  const { error } = await supabase.auth.signUp({ email, password });
-  if (error) return alert(error.message);
+  console.log("SIGNUP input", { email, len: password.length });
 
-  alert("Account creato! Se ti richiede conferma email, controlla la posta.");
+  if (!email || password.length < 6) {
+    alert("Email e password (min 6).");
+    return;
+  }
+
+  const { data, error } = await supabase.auth.signUp({ email, password });
+  console.log("SIGNUP result", { data, error });
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
+
+  alert("Account creato! Se la conferma email è attiva, controlla la posta.");
 }
 
 async function signIn() {
   const email = logEmail.value.trim();
   const password = logPass.value;
-  if (!email || !password) return alert("Inserisci email e password.");
 
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) return alert(error.message);
+  console.log("LOGIN input", { email, len: password.length });
+
+  if (!email || !password) {
+    alert("Inserisci email e password.");
+    return;
+  }
+
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  console.log("LOGIN result", { data, error });
+
+  if (error) {
+    alert(error.message);
+    return;
+  }
 }
 
+// --- Posts ---
 function normalizeTags(s) {
   return s
     .split(",")
@@ -98,7 +165,9 @@ function isValidUrl(u) {
   try {
     const x = new URL(u);
     return x.protocol === "http:" || x.protocol === "https:";
-  } catch { return false; }
+  } catch {
+    return false;
+  }
 }
 
 async function addPost() {
@@ -154,7 +223,9 @@ async function refresh() {
       ? `<a href="${escapeHtml(p.url)}" target="_blank" rel="noopener">${escapeHtml(p.url)}</a>`
       : "";
 
-    const tagsHtml = (p.tags || []).map(t => `<span class="tag">#${escapeHtml(t)}</span>`).join("");
+    const tagsHtml = (p.tags || [])
+      .map(t => `<span class="tag">#${escapeHtml(t)}</span>`)
+      .join("");
 
     el.innerHTML = `
       <div class="top">
@@ -176,11 +247,11 @@ async function refresh() {
   }
 }
 
-function escapeHtml(s){
+function escapeHtml(s) {
   return String(s)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
