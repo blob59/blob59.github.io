@@ -4,10 +4,9 @@
 const SUPABASE_URL = "https://cxcwewkcbjsudkcrnlue.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_zOvY78Myap9F84iDD6Vqeg_hAW1b74D";
 
-window.FICARAWALL_SB = window.FICARAWALL_SB || window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
-);
+window.FICARAWALL_SB =
+  window.FICARAWALL_SB ||
+  window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // non usare "const supabase" (se il file gira 2 volte esplode)
 const sb = window.FICARAWALL_SB;
@@ -26,12 +25,12 @@ const who = $("who");
 const logoutBtn = $("logoutBtn");
 
 const regEmail = $("regEmail");
-const regPass  = $("regPass");
-const regBtn   = $("regBtn");
+const regPass = $("regPass");
+const regBtn = $("regBtn");
 
 const logEmail = $("logEmail");
-const logPass  = $("logPass");
-const logBtn   = $("logBtn");
+const logPass = $("logPass");
+const logBtn = $("logBtn");
 
 const text = $("text");
 const url = $("url");
@@ -81,6 +80,7 @@ async function signOut() {
 // ===============================
 async function addPost() {
   if (!currentUser) return alert("Devi fare login.");
+
   const link = url.value.trim();
   if (!link) return alert("Inserisci un link.");
 
@@ -88,7 +88,7 @@ async function addPost() {
     user_id: currentUser.id,
     text: text.value.trim() || null,
     url: link,
-    tags: tags.value.trim() || null
+    tags: tags.value.trim() || null,
   };
 
   const { error } = await sb.from("posts").insert(payload);
@@ -106,6 +106,7 @@ function renderPosts(list) {
     posts.innerHTML = `<div class="muted">Nessun post ancora.</div>`;
     return;
   }
+
   for (const p of list) {
     const el = document.createElement("div");
     el.className = "post";
@@ -130,12 +131,17 @@ function escapeHtml(str) {
     .replaceAll("'", "&#039;");
 }
 
+/**
+ * REFRESH: carica i post.
+ * - Utenti normali: vedono solo i loro (RLS in Supabase)
+ * - Admin (role=admin in profiles): vede tutti (RLS + policy aggiornata)
+ */
 async function refresh() {
   if (!currentUser) return;
+
   const { data, error } = await sb
     .from("posts")
     .select("*")
-    .eq("user_id", currentUser.id)
     .order("created_at", { ascending: false });
 
   if (error) return alert(error.message);
@@ -148,7 +154,7 @@ function applySearch() {
   const q = (search.value || "").trim().toLowerCase();
   if (!q) return renderPosts(allPosts);
 
-  const filtered = allPosts.filter(p => {
+  const filtered = allPosts.filter((p) => {
     const blob = `${p.url || ""} ${p.text || ""} ${p.tags || ""}`.toLowerCase();
     return blob.includes(q);
   });
@@ -163,11 +169,14 @@ function renderAuthState() {
   if (currentUser) {
     authBox.style.display = "none";
     wallBox.style.display = "block";
-    who.textContent = currentUser.email;
+    who.textContent = currentUser.email || "";
+    logoutBtn.style.display = "inline-block";
     refresh();
   } else {
     authBox.style.display = "block";
     wallBox.style.display = "none";
+    who.textContent = "";
+    logoutBtn.style.display = "none";
   }
 }
 
