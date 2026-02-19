@@ -7,7 +7,7 @@ const SUPABASE_ANON_KEY = "sb_publishable_zOvY78Myap9F84iDD6Vqeg_hAW1b74D";
 
 window._supabaseClient = window._supabaseClient || window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const supabase = window._supabaseClient;
-);
+
 
 // ==========================
 // UTILITY
