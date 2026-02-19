@@ -1,23 +1,24 @@
-// ==========================
+// ===============================
 // CONFIG SUPABASE
-// ==========================
+// ===============================
 
 const SUPABASE_URL = "https://cxwewkcbjsudkcrnlue.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_zOvY78Myap9F84iDD6Vqeg_hAW1b74D";
 
-window._supabaseClient = window._supabaseClient || window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-const supabase = window._supabaseClient;
+const supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
 
-
-// ==========================
+// ===============================
 // UTILITY
-// ==========================
+// ===============================
 
 const $ = (id) => document.getElementById(id);
 
-// ==========================
-// ELEMENTI
-// ==========================
+// ===============================
+// ELEMENTI UI
+// ===============================
 
 const regEmail = $("regEmail");
 const regPass = $("regPass");
@@ -33,16 +34,22 @@ const authBox = $("authBox");
 const wallBox = $("wallBox");
 const who = $("who");
 
-// ==========================
+// ===============================
+// STATO
+// ===============================
+
+let currentUser = null;
+
+// ===============================
 // REGISTRAZIONE
-// ==========================
+// ===============================
 
 async function signUp() {
   const email = regEmail.value.trim();
   const password = regPass.value;
 
   if (!email || password.length < 6) {
-    alert("Email e password minimo 6 caratteri");
+    alert("Email e password minimo 6 caratteri.");
     return;
   }
 
@@ -59,9 +66,9 @@ async function signUp() {
   alert("Account creato! Controlla la mail.");
 }
 
-// ==========================
+// ===============================
 // LOGIN
-// ==========================
+// ===============================
 
 async function signIn() {
   const email = logEmail.value.trim();
@@ -74,52 +81,53 @@ async function signIn() {
 
   if (error) {
     alert(error.message);
-    return;
   }
 }
 
-// ==========================
+// ===============================
 // LOGOUT
-// ==========================
+// ===============================
 
-async function logout() {
+async function signOut() {
   await supabase.auth.signOut();
 }
 
-// ==========================
-// UI
-// ==========================
+// ===============================
+// RENDER UI
+// ===============================
 
-function renderUser(user) {
-  if (user) {
+function render() {
+  if (currentUser) {
     authBox.style.display = "none";
     wallBox.style.display = "block";
-    who.textContent = user.email;
+    who.textContent = currentUser.email;
   } else {
     authBox.style.display = "block";
     wallBox.style.display = "none";
   }
 }
 
-// ==========================
+// ===============================
 // INIT
-// ==========================
+// ===============================
 
 async function init() {
   const { data } = await supabase.auth.getSession();
-  renderUser(data.session?.user ?? null);
+  currentUser = data.session?.user ?? null;
+  render();
 
-  supabase.auth.onAuthStateChange((_event, session) => {
-    renderUser(session?.user ?? null);
+  supabase.auth.onAuthStateChange((event, session) => {
+    currentUser = session?.user ?? null;
+    render();
   });
 }
 
-// ==========================
+// ===============================
 // EVENTI
-// ==========================
+// ===============================
 
 regBtn.onclick = signUp;
 logBtn.onclick = signIn;
-logoutBtn.onclick = logout;
+logoutBtn.onclick = signOut;
 
 init();
