@@ -1,7 +1,7 @@
 // ===============================
 // CONFIG SUPABASE
 // ===============================
-const SUPABASE_URL = "https://cxwewkcbjsudkcrnlue.supabase.co";
+const SUPABASE_URL = "https://cxcwewkcbjsudkcrnlue.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_zOvY78Myap9F84iDD6Vqeg_hAW1b74D";
 
 window.FICARAWALL_SB = window.FICARAWALL_SB || window.supabase.createClient(
