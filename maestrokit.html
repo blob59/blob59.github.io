@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MaestroKit Primaria | Franco Ficara</title>
-  <meta name="description" content="MaestroKit Primaria - Generatore didattico per tutte le classi della scuola primaria." />
+  <title>MaestroKit AI | Franco Ficara</title>
+  <meta name="description" content="MaestroKit AI - Generatore didattico con supporto AI per tutte le classi della scuola primaria." />
   <style>
     :root{
       --bg-1:#03060f;
@@ -21,10 +21,11 @@
       --green:#2fd16b;
       --green-2:#1eaf57;
       --line:rgba(255,255,255,0.08);
+      --danger:#ff7171;
       --shadow:0 20px 60px rgba(0,0,0,0.35);
       --radius:28px;
       --radius-sm:18px;
-      --max:1240px;
+      --max:1280px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0;}
@@ -98,7 +99,7 @@
     }
 
     .hero{
-      padding:58px 0 44px;
+      padding:54px 0 34px;
     }
 
     .hero-grid{
@@ -122,7 +123,7 @@
     }
 
     h1{
-      font-size:clamp(2.5rem, 5vw, 5rem);
+      font-size:clamp(2.4rem, 5vw, 4.8rem);
       line-height:0.96;
       letter-spacing:-0.04em;
       margin-bottom:18px;
@@ -132,8 +133,8 @@
     .hero-copy p{
       color:var(--muted);
       line-height:1.8;
-      font-size:1.08rem;
-      max-width:740px;
+      font-size:1.06rem;
+      max-width:760px;
       margin-bottom:26px;
     }
 
@@ -153,6 +154,7 @@
       font-weight:700;
       transition:0.25s ease;
       border:1px solid transparent;
+      cursor:pointer;
     }
 
     .btn:hover{transform:translateY(-2px);}
@@ -206,7 +208,7 @@
     }
 
     .section{
-      padding:26px 0 82px;
+      padding:22px 0 76px;
     }
 
     .section-head{
@@ -238,7 +240,7 @@
 
     .workspace{
       display:grid;
-      grid-template-columns:0.98fr 1.02fr;
+      grid-template-columns:0.95fr 1.05fr;
       gap:24px;
       align-items:start;
     }
@@ -251,9 +253,7 @@
       overflow:hidden;
     }
 
-    .panel-inner{
-      padding:28px;
-    }
+    .panel-inner{padding:28px;}
 
     .panel h3{
       font-size:1.7rem;
@@ -267,18 +267,33 @@
       margin-bottom:24px;
     }
 
+    .status-bar{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .status-pill{
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      color:var(--muted);
+      font-size:0.9rem;
+    }
+
+    .status-pill.ok{color:#95f0b5;border-color:rgba(47,209,107,0.18);background:rgba(47,209,107,0.10);}
+    .status-pill.warn{color:#ffd98a;border-color:rgba(242,193,92,0.22);background:rgba(242,193,92,0.10);}
+
     .form-grid{
       display:grid;
       grid-template-columns:repeat(2,1fr);
       gap:16px;
     }
 
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-
+    .field{display:flex;flex-direction:column;gap:8px;}
     .field.full{grid-column:1 / -1;}
 
     label{
@@ -338,10 +353,7 @@
       margin-top:22px;
     }
 
-    .actions .btn{
-      min-width:auto;
-      padding:14px 20px;
-    }
+    .actions .btn{min-width:auto;padding:14px 20px;}
 
     .btn-outline{
       background:transparent;
@@ -352,29 +364,13 @@
     .result-header{
       display:flex;
       justify-content:space-between;
-      align-items:center;
+      align-items:flex-start;
       gap:14px;
       flex-wrap:wrap;
       margin-bottom:18px;
     }
 
-    .result-box{
-      border-radius:22px;
-      background:rgba(255,255,255,0.04);
-      border:1px solid rgba(255,255,255,0.06);
-      padding:22px;
-      min-height:560px;
-      white-space:pre-wrap;
-      line-height:1.75;
-      color:#eef2ff;
-      font-size:1rem;
-    }
-
-    .result-tools{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
+    .result-tools{display:flex;gap:10px;flex-wrap:wrap;}
 
     .small-btn{
       padding:11px 15px;
@@ -386,8 +382,164 @@
       font-weight:700;
     }
 
-    .small-btn:hover{
-      background:rgba(255,255,255,0.09);
+    .small-btn:hover{background:rgba(255,255,255,0.09);}
+
+    .small-btn[disabled], .btn[disabled]{opacity:0.55;cursor:not-allowed;transform:none;}
+
+    .result-box{
+      border-radius:22px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      padding:22px;
+      min-height:320px;
+      line-height:1.75;
+      color:#eef2ff;
+      font-size:1rem;
+    }
+
+    .result-meta{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-bottom:20px;
+    }
+
+    .meta-card{
+      padding:14px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--muted);
+      font-size:0.94rem;
+      line-height:1.55;
+    }
+
+    .worksheet{
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .worksheet-head{
+      padding-bottom:12px;
+      border-bottom:1px solid rgba(255,255,255,0.08);
+    }
+
+    .worksheet-head h4{
+      font-size:1.9rem;
+      letter-spacing:-0.03em;
+      margin-bottom:6px;
+    }
+
+    .worksheet-sub{
+      color:var(--muted);
+      font-size:0.98rem;
+      line-height:1.65;
+    }
+
+    .teacher-note, .solutions-box{
+      padding:16px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .teacher-note h5, .solutions-box h5{
+      font-size:1rem;
+      text-transform:uppercase;
+      letter-spacing:0.08em;
+      color:var(--gold);
+      margin-bottom:10px;
+    }
+
+    .question-card{
+      padding:18px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .question-top{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+      margin-bottom:10px;
+      flex-wrap:wrap;
+    }
+
+    .question-number{
+      font-weight:800;
+      color:#fff;
+      font-size:1.05rem;
+    }
+
+    .question-type{
+      font-size:0.78rem;
+      text-transform:uppercase;
+      letter-spacing:0.1em;
+      color:var(--blue);
+      background:rgba(122,176,255,0.10);
+      border:1px solid rgba(122,176,255,0.18);
+      padding:7px 10px;
+      border-radius:999px;
+    }
+
+    .question-text{
+      color:#f8faff;
+      font-size:1rem;
+      line-height:1.7;
+      margin-bottom:12px;
+    }
+
+    .options-list{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-bottom:10px;
+    }
+
+    .option-item{
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.03);
+      color:var(--muted);
+    }
+
+    .answer-space{
+      min-height:56px;
+      border:1px dashed rgba(255,255,255,0.22);
+      border-radius:14px;
+      background:rgba(255,255,255,0.02);
+      margin-top:12px;
+    }
+
+    .answer-lines{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:12px;
+    }
+
+    .answer-line{
+      height:22px;
+      border-bottom:1px solid rgba(255,255,255,0.18);
+    }
+
+    .match-list{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px 18px;
+      margin-top:12px;
+    }
+
+    .match-item{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.03);
+      color:var(--muted);
     }
 
     .library{
@@ -411,17 +563,18 @@
       margin-bottom:12px;
     }
 
-    .class-card ul{
-      list-style:none;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
+    .class-card ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+    .class-card li{color:var(--muted);font-size:0.93rem;line-height:1.5;}
 
-    .class-card li{
-      color:var(--muted);
-      font-size:0.93rem;
-      line-height:1.5;
+    .warning-box{
+      margin-top:20px;
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(242,193,92,0.18);
+      background:rgba(242,193,92,0.08);
+      color:#ffe9b7;
+      line-height:1.7;
+      font-size:0.95rem;
     }
 
     footer{
@@ -437,6 +590,20 @@
       line-height:1.7;
     }
 
+    @media print {
+      body{background:#fff;color:#000;}
+      header, .hero, .section-head, .warning-box, #classi, footer, .result-tools, .status-bar{display:none !important;}
+      .workspace{display:block;}
+      .panel{border:none;box-shadow:none;background:#fff;}
+      .panel-inner{padding:0;}
+      #configPanel{display:none;}
+      .result-box, .question-card, .meta-card, .teacher-note, .solutions-box{background:#fff;border:1px solid #ccc;color:#000;}
+      .question-type{border:1px solid #999;color:#000;background:#fff;}
+      .worksheet-head h4, .question-number{color:#000;}
+      .worksheet-sub, .option-item, .meta-card{color:#222;}
+      .answer-space{border-color:#888;}
+    }
+
     @media (max-width: 1120px){
       .workspace,
       .hero-grid,
@@ -446,31 +613,15 @@
     }
 
     @media (max-width: 760px){
-      .nav{
-        flex-direction:column;
-        align-items:flex-start;
-        padding:12px 0;
-      }
-
-      .form-grid{
-        grid-template-columns:1fr;
-      }
-
-      .badge-list{
-        grid-template-columns:1fr;
-      }
-
-      .hero{
-        padding:40px 0 30px;
-      }
-
-      .panel-inner{
-        padding:22px 18px;
-      }
-
-      .btn{
-        width:100%;
-      }
+      .nav{flex-direction:column;align-items:flex-start;padding:12px 0;}
+      .form-grid{grid-template-columns:1fr;}
+      .badge-list{grid-template-columns:1fr;}
+      .hero{padding:40px 0 30px;}
+      .panel-inner{padding:22px 18px;}
+      .btn{width:100%;}
+      .hero-actions{flex-direction:column;}
+      .result-meta{grid-template-columns:1fr;}
+      .match-list{grid-template-columns:1fr;}
     }
   </style>
 </head>
@@ -478,8 +629,8 @@
   <header>
     <div class="container nav">
       <div>
-        <div class="brand-title">MaestroKit Primaria</div>
-        <div class="brand-sub">Generatore didattico per tutte le classi della scuola primaria</div>
+        <div class="brand-title">MaestroKit AI</div>
+        <div class="brand-sub">Generatore didattico con struttura pronta per AI e schede stampabili</div>
       </div>
 
       <nav class="nav-links">
@@ -495,11 +646,11 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">Franco Ficara • Scuola primaria</div>
-          <h1>Uno strumento solo.<br>Tutte le classi.<br>Tutto più ordinato.</h1>
+          <h1>Domande, schede<br>e soluzioni.<br>Finalmente sul serio.</h1>
           <p>
-            MaestroKit Primaria nasce per creare verifiche, lezioni, esercizi e testi semplificati
-            dalla classe 1ª alla 5ª. È la base giusta per un portale didattico serio: chiaro,
-            utile e costruito per essere ampliato bene, senza confusione.
+            Questa versione lavora come un vero costruttore di schede: genera esercizi stampabili,
+            spazi per risposte, scelta multipla, vero/falso, abbinamenti e soluzioni docenti.
+            È pronta anche per collegarsi a un backend AI vero, senza esporre chiavi nel browser.
           </p>
 
           <div class="hero-actions">
@@ -509,16 +660,17 @@
         </div>
 
         <aside class="hero-side">
-          <h2>Cosa fa questa prima versione</h2>
+          <h2>Come funziona adesso</h2>
           <p>
-            Questa è una base già forte: copre tutta la primaria e imposta il metodo giusto.
-            Oggi genera contenuti modello e ti prepara il terreno per una versione ancora più ricca.
+            Se il backend AI non è ancora collegato, MaestroKit usa un generatore locale intelligente
+            per creare una scheda credibile e stampabile. Quando collegherai l'API, la stessa pagina
+            userà l'AI vera senza cambiare faccia.
           </p>
           <div class="badge-list">
             <div class="mini-badge"><strong>Classi:</strong> 1ª, 2ª, 3ª, 4ª, 5ª</div>
-            <div class="mini-badge"><strong>Funzioni:</strong> verifica, lezione, esercizi, semplificazione</div>
-            <div class="mini-badge"><strong>Materie:</strong> italiano, matematica, scienze, storia, geografia, tecnologia, inglese, arte</div>
-            <div class="mini-badge"><strong>Uso:</strong> copia, modifica, stampa, adattamento facilitato</div>
+            <div class="mini-badge"><strong>Modalità:</strong> verifica, lezione, esercizi, semplificazione</div>
+            <div class="mini-badge"><strong>Tipi:</strong> risposta aperta, scelta multipla, vero/falso, abbinamenti</div>
+            <div class="mini-badge"><strong>Output:</strong> scheda alunno + soluzioni docente</div>
           </div>
         </aside>
       </div>
@@ -527,21 +679,26 @@
     <section class="section" id="generatore">
       <div class="container">
         <div class="section-head">
-          <div class="section-kicker">Versione 1</div>
-          <h2>Generatore didattico</h2>
+          <div class="section-kicker">Versione 2</div>
+          <h2>Generatore di schede</h2>
           <p>
-            Scegli classe, materia e funzione. Il risultato qui sotto è una base pronta da copiare,
-            adattare e portare in classe. È il primo mattone: semplice fuori, robusto dentro.
+            Imposti classe, materia, argomento, tipo di esercizio e numero di domande.
+            Il risultato è una scheda vera, non una brodaglia di testo lunga mezzo chilometro.
           </p>
         </div>
 
         <div class="workspace">
-          <section class="panel">
+          <section class="panel" id="configPanel">
             <div class="panel-inner">
-              <h3>Imposta la richiesta</h3>
+              <div class="status-bar">
+                <div class="status-pill ok">Frontend pronto</div>
+                <div class="status-pill warn" id="aiStatus">AI non collegata: uso generatore locale</div>
+              </div>
+
+              <h3>Configura la richiesta</h3>
               <p class="panel-intro">
-                Seleziona la struttura di lavoro. Ogni scelta modifica gli argomenti disponibili
-                e prepara un contenuto coerente con la classe indicata.
+                Scegli i parametri didattici. Se il backend AI sarà collegato, questa stessa schermata
+                manderà la richiesta al server. Fino ad allora, non resti fermo: la scheda la genera lo stesso.
               </p>
 
               <div class="form-grid">
@@ -579,24 +736,53 @@
                   <select id="argomento"></select>
                 </div>
 
+                <div class="field">
+                  <label for="tipoEsercizio">Tipo di esercizio</label>
+                  <select id="tipoEsercizio">
+                    <option value="misto" selected>Misto</option>
+                    <option value="risposta_aperta">Risposta aperta</option>
+                    <option value="scelta_multipla">Scelta multipla</option>
+                    <option value="vero_falso">Vero / Falso</option>
+                    <option value="abbinamento">Abbinamento</option>
+                    <option value="completamento">Completamento</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="numDomande">Numero domande</label>
+                  <select id="numDomande">
+                    <option value="3">3</option>
+                    <option value="5" selected>5</option>
+                    <option value="8">8</option>
+                    <option value="10">10</option>
+                  </select>
+                </div>
+
                 <div class="field full">
                   <label>Opzioni</label>
                   <div class="check-row">
                     <label class="chip"><input type="checkbox" id="facilitata"> Versione facilitata / BES</label>
                     <label class="chip"><input type="checkbox" id="soluzioni" checked> Includi soluzioni</label>
-                    <label class="chip"><input type="checkbox" id="stampa"> Formato pronto da stampare</label>
+                    <label class="chip"><input type="checkbox" id="stampa" checked> Formato pronto da stampare</label>
                   </div>
                 </div>
 
                 <div class="field full">
                   <label for="nota">Indicazioni aggiuntive</label>
-                  <textarea id="nota" placeholder="Esempio: inserisci domande a scelta multipla, lessico semplice, durata 45 minuti, testo breve..."></textarea>
+                  <textarea id="nota" placeholder="Esempio: lessico semplice, esercizi brevi, inserire un'attività finale, usare scelta multipla con 3 opzioni..."></textarea>
                 </div>
               </div>
 
               <div class="actions">
-                <button class="btn btn-primary" id="generaBtn" type="button">Genera contenuto</button>
+                <button class="btn btn-primary" id="generaBtn" type="button">Genera scheda</button>
+                <button class="btn btn-secondary" id="generaAiBtn" type="button">Genera con AI</button>
                 <button class="btn btn-outline" id="resetBtn" type="button">Reimposta</button>
+              </div>
+
+              <div class="warning-box">
+                Il pulsante <strong>Genera con AI</strong> è già pronto per dialogare con un backend.
+                Finché il server non c’è, usa il generatore locale come rete di sicurezza. Così lavori subito,
+                senza lasciare il programma mezzo morto in attesa del paradiso tecnico.
               </div>
             </div>
           </section>
@@ -605,8 +791,8 @@
             <div class="panel-inner">
               <div class="result-header">
                 <div>
-                  <h3>Risultato</h3>
-                  <p class="panel-intro" style="margin-bottom:0;">Qui compare il contenuto generato dalla configurazione scelta.</p>
+                  <h3>Scheda generata</h3>
+                  <p class="panel-intro" style="margin-bottom:0;">Scheda per alunni, struttura stampabile e soluzioni per il docente.</p>
                 </div>
                 <div class="result-tools">
                   <button class="small-btn" id="copyBtn" type="button">Copia testo</button>
@@ -614,9 +800,12 @@
                 </div>
               </div>
 
-              <div class="result-box" id="resultBox">Seleziona le opzioni a sinistra e premi “Genera contenuto”.
-
-Qui vedrai una bozza strutturata pronta da usare come base per verifiche, lezioni, esercizi o semplificazioni.</div>
+              <div class="result-box" id="resultBox">
+                <div class="worksheet-head">
+                  <h4>Pronto a generare</h4>
+                  <div class="worksheet-sub">Scegli i parametri a sinistra e crea una scheda vera, con domande, spazi di risposta e soluzioni.</div>
+                </div>
+              </div>
             </div>
           </section>
         </div>
@@ -629,8 +818,8 @@ Qui vedrai una bozza strutturata pronta da usare come base per verifiche, lezion
           <div class="section-kicker">Copertura primaria</div>
           <h2>Tutte le classi, ordinate bene</h2>
           <p>
-            Ogni classe ha la sua voce, i suoi ritmi e i suoi argomenti. Qui sotto c’è la mappa iniziale
-            su cui costruire il portale in modo serio, senza mischiare tutto nello stesso pentolone.
+            Ogni classe ha il suo passo. Qui sotto c’è la mappa iniziale degli argomenti, su cui poi l’AI vera
+            potrà costruire schede ancora più ricche e precise.
           </p>
         </div>
 
@@ -641,12 +830,14 @@ Qui vedrai una bozza strutturata pronta da usare come base per verifiche, lezion
 
   <footer>
     <div class="container footer-inner">
-      MaestroKit Primaria • Franco Ficara © 2026<br>
-      Prima base operativa del portale didattico per la scuola primaria.
+      MaestroKit AI • Franco Ficara © 2026<br>
+      Generatore di schede stampabili con struttura pronta per backend AI.
     </div>
   </footer>
 
   <script>
+    const AI_ENDPOINT = ''; // Inserire qui l'endpoint del backend, es. https://tuo-backend.up.railway.app/api/generate
+
     const data = {
       "1ª": {
         "Italiano": ["Vocali", "Sillabe", "Parole e frasi semplici", "Comprensione di immagini"],
@@ -705,12 +896,26 @@ Qui vedrai una bozza strutturata pronta da usare come base per verifiche, lezion
     const funzioneEl = document.getElementById('funzione');
     const argomentoEl = document.getElementById('argomento');
     const livelloEl = document.getElementById('livello');
+    const tipoEsercizioEl = document.getElementById('tipoEsercizio');
+    const numDomandeEl = document.getElementById('numDomande');
     const notaEl = document.getElementById('nota');
     const facilitataEl = document.getElementById('facilitata');
     const soluzioniEl = document.getElementById('soluzioni');
     const stampaEl = document.getElementById('stampa');
     const resultBox = document.getElementById('resultBox');
     const classLibrary = document.getElementById('classLibrary');
+    const aiStatus = document.getElementById('aiStatus');
+    const generaBtn = document.getElementById('generaBtn');
+    const generaAiBtn = document.getElementById('generaAiBtn');
+
+    const questionTypeLabels = {
+      misto: 'Misto',
+      risposta_aperta: 'Risposta aperta',
+      scelta_multipla: 'Scelta multipla',
+      vero_falso: 'Vero/Falso',
+      abbinamento: 'Abbinamento',
+      completamento: 'Completamento'
+    };
 
     function populateClasses(){
       classeEl.innerHTML = '';
@@ -753,133 +958,268 @@ Qui vedrai una bozza strutturata pronta da usare come base per verifiche, lezion
         card.className = 'class-card';
         const listItems = Object.entries(materie)
           .slice(0,4)
-          .map(([materia, topics]) => `<li><strong>${materia}:</strong> ${topics[0]}, ${topics[1] || ''}</li>`)
+          .map(([materia, topics]) => `<li><strong>${materia}:</strong> ${topics.slice(0,2).join(', ')}</li>`)
           .join('');
         card.innerHTML = `<h4>Classe ${classe}</h4><ul>${listItems}</ul>`;
         classLibrary.appendChild(card);
       });
     }
 
-    function buildContent(){
-      const classe = classeEl.value;
-      const materia = materiaEl.value;
-      const funzione = funzioneEl.value;
-      const argomento = argomentoEl.value;
-      const livello = livelloEl.value;
-      const facilitata = facilitataEl.checked ? 'Sì' : 'No';
-      const soluzioni = soluzioniEl.checked ? 'Sì' : 'No';
-      const stampa = stampaEl.checked ? 'Sì' : 'No';
-      const nota = notaEl.value.trim();
-
-      let text = `MAESTROKIT PRIMARIA\n`;
-      text += `Classe: ${classe}\n`;
-      text += `Materia: ${materia}\n`;
-      text += `Funzione: ${funzioneEl.options[funzioneEl.selectedIndex].text}\n`;
-      text += `Argomento: ${argomento}\n`;
-      text += `Livello: ${livello}\n`;
-      text += `Versione facilitata/BES: ${facilitata}\n`;
-      text += `Includi soluzioni: ${soluzioni}\n`;
-      text += `Pronto da stampare: ${stampa}\n`;
-      if(nota) text += `Note aggiuntive: ${nota}\n`;
-
-      text += `\n----------------------------------------\n\n`;
-
-      if(funzione === 'verifica'){
-        text += `VERIFICA - ${materia.toUpperCase()}\n\n`;
-        text += `Obiettivo: verificare le competenze della classe ${classe} sull'argomento “${argomento}”.\n\n`;
-        text += `PARTE A - DOMANDE GUIDATE\n`;
-        text += `1. Scrivi una breve risposta corretta sull'argomento trattato.\n`;
-        text += `2. Completa due esercizi mirati con difficoltà ${livello}.\n`;
-        text += `3. Svolgi un'attività finale di consolidamento.\n\n`;
-        text += `PARTE B - ESERCIZI\n`;
-        text += `- Esercizio 1 coerente con la classe ${classe}\n`;
-        text += `- Esercizio 2 graduato\n`;
-        text += `- Esercizio 3 di verifica finale\n\n`;
-        if(soluzioniEl.checked){
-          text += `SOLUZIONI\n`;
-          text += `- Inserire qui le risposte corrette e i criteri essenziali di valutazione.\n\n`;
-        }
-      }
-
-      if(funzione === 'lezione'){
-        text += `LEZIONE - ${materia.toUpperCase()}\n\n`;
-        text += `Titolo: ${argomento}\n\n`;
-        text += `1. Spiegazione iniziale semplice e adatta alla classe ${classe}.\n`;
-        text += `2. Parole chiave da evidenziare alla lavagna.\n`;
-        text += `3. Esempio pratico o attività guidata.\n`;
-        text += `4. Domande finali per controllare la comprensione.\n\n`;
-        text += `ATTIVITÀ CONCLUSIVA\n`;
-        text += `Piccolo esercizio individuale o di coppia sul tema “${argomento}”.\n\n`;
-      }
-
-      if(funzione === 'esercizi'){
-        text += `ESERCIZI - ${materia.toUpperCase()}\n\n`;
-        text += `Serie di esercizi per la classe ${classe} sull'argomento “${argomento}”.\n\n`;
-        text += `1. Esercizio base\n`;
-        text += `2. Esercizio intermedio\n`;
-        text += `3. Esercizio finale di consolidamento\n`;
-        text += `4. Attività facoltativa di rinforzo\n\n`;
-        if(soluzioniEl.checked){
-          text += `SOLUZIONI\n`;
-          text += `- Inserire qui le soluzioni sintetiche degli esercizi proposti.\n\n`;
-        }
-      }
-
-      if(funzione === 'semplifica'){
-        text += `SEMPLIFICAZIONE TESTO - ${materia.toUpperCase()}\n\n`;
-        text += `Obiettivo: trasformare un contenuto sull'argomento “${argomento}” in una versione più chiara per la classe ${classe}.\n\n`;
-        text += `STRUTTURA CONSIGLIATA\n`;
-        text += `- Frasi brevi\n`;
-        text += `- Lessico controllato\n`;
-        text += `- Parole difficili spiegate\n`;
-        text += `- Esempio finale vicino all'esperienza dei bambini\n\n`;
-        text += `TESTO SEMPLIFICATO MODELLO\n`;
-        text += `Qui va inserita una spiegazione breve, lineare e adatta all'età, con poche informazioni alla volta.\n\n`;
-      }
-
-      if(facilitataEl.checked){
-        text += `VERSIONE FACILITATA / BES\n`;
-        text += `- Ridurre il numero delle richieste per pagina\n`;
-        text += `- Usare consegne molto brevi\n`;
-        text += `- Inserire esempi visivi o guidati\n\n`;
-      }
-
-      if(stampaEl.checked){
-        text += `NOTA STAMPA\n`;
-        text += `Impostare impaginazione ampia, spazi per le risposte e titolo ben visibile.\n`;
-      }
-
-      return text;
+    function getConfig(){
+      return {
+        classe: classeEl.value,
+        materia: materiaEl.value,
+        funzione: funzioneEl.value,
+        funzioneLabel: funzioneEl.options[funzioneEl.selectedIndex].text,
+        argomento: argomentoEl.value,
+        livello: livelloEl.value,
+        tipoEsercizio: tipoEsercizioEl.value,
+        tipoEsercizioLabel: questionTypeLabels[tipoEsercizioEl.value],
+        numDomande: Number(numDomandeEl.value),
+        facilitata: facilitataEl.checked,
+        soluzioni: soluzioniEl.checked,
+        stampa: stampaEl.checked,
+        nota: notaEl.value.trim()
+      };
     }
 
-    document.getElementById('generaBtn').addEventListener('click', () => {
-      resultBox.textContent = buildContent();
-    });
+    function escapeHtml(str){
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function randomPick(arr, index){
+      return arr[index % arr.length];
+    }
+
+    function buildQuestion(config, i){
+      const index = i + 1;
+      const type = config.tipoEsercizio === 'misto'
+        ? randomPick(['risposta_aperta','scelta_multipla','vero_falso','completamento','abbinamento'], i)
+        : config.tipoEsercizio;
+
+      const base = `${config.argomento} - ${config.materia} - classe ${config.classe}`;
+
+      if(type === 'risposta_aperta'){
+        return {
+          type,
+          question: `Spiega con parole semplici un aspetto importante di “${config.argomento}”.`,
+          solution: `Risposta attesa essenziale, coerente con la classe ${config.classe}, usando lessico ${config.facilitata ? 'molto semplice' : 'adeguato all’età'}.`,
+          render: () => `
+            <div class="answer-lines">
+              <div class="answer-line"></div>
+              <div class="answer-line"></div>
+              <div class="answer-line"></div>
+            </div>`
+        };
+      }
+
+      if(type === 'scelta_multipla'){
+        const options = [
+          `Risposta corretta su ${config.argomento}`,
+          `Risposta parzialmente sbagliata`,
+          `Risposta chiaramente non corretta`
+        ];
+        return {
+          type,
+          question: `Scegli la risposta corretta su “${config.argomento}”.`,
+          options,
+          solution: `Corretta: ${options[0]}.`,
+          render: () => `<div class="options-list">${options.map((opt, idx) => `<div class="option-item">${String.fromCharCode(65+idx)}. ${escapeHtml(opt)}</div>`).join('')}</div>`
+        };
+      }
+
+      if(type === 'vero_falso'){
+        const statement = `L'affermazione riguarda un fatto o una regola collegata a “${config.argomento}”.`;
+        return {
+          type,
+          question: statement,
+          solution: `Indicare se l'affermazione è vera o falsa e motivare brevemente.`,
+          render: () => `
+            <div class="options-list">
+              <div class="option-item">☐ Vero</div>
+              <div class="option-item">☐ Falso</div>
+            </div>
+            <div class="answer-space"></div>`
+        };
+      }
+
+      if(type === 'abbinamento'){
+        const left = [`Elemento A`, `Elemento B`, `Elemento C`];
+        const right = [`Definizione 1`, `Definizione 2`, `Definizione 3`];
+        return {
+          type,
+          question: `Abbina correttamente gli elementi relativi a “${config.argomento}”.`,
+          solution: `A-1, B-2, C-3 (adattare in modo coerente all'argomento).`,
+          render: () => `
+            <div class="match-list">
+              <div class="match-item">A. ${escapeHtml(left[0])}</div>
+              <div class="match-item">1. ${escapeHtml(right[0])}</div>
+              <div class="match-item">B. ${escapeHtml(left[1])}</div>
+              <div class="match-item">2. ${escapeHtml(right[1])}</div>
+              <div class="match-item">C. ${escapeHtml(left[2])}</div>
+              <div class="match-item">3. ${escapeHtml(right[2])}</div>
+            </div>`
+        };
+      }
+
+      return {
+        type: 'completamento',
+        question: `Completa correttamente la frase sull’argomento “${config.argomento}”.`,
+        solution: `Inserire la parola o l'informazione attesa in modo coerente con il livello ${config.livello}.`,
+        render: () => `
+          <div class="option-item">${escapeHtml(base)}: ____________</div>
+          <div class="option-item">${escapeHtml(config.argomento)} è importante perché ____________</div>`
+      };
+    }
+
+    function buildLocalWorksheet(config){
+      const questions = Array.from({ length: config.numDomande }, (_, i) => buildQuestion(config, i));
+      const meta = [
+        `Classe: <strong>${escapeHtml(config.classe)}</strong>`,
+        `Materia: <strong>${escapeHtml(config.materia)}</strong>`,
+        `Argomento: <strong>${escapeHtml(config.argomento)}</strong>`,
+        `Livello: <strong>${escapeHtml(config.livello)}</strong>`,
+        `Funzione: <strong>${escapeHtml(config.funzioneLabel)}</strong>`,
+        `Tipo: <strong>${escapeHtml(config.tipoEsercizioLabel)}</strong>`
+      ];
+
+      const teacherNote = config.nota
+        ? `<div class="teacher-note"><h5>Indicazioni aggiuntive</h5><div>${escapeHtml(config.nota)}</div></div>`
+        : '';
+
+      const facilitation = config.facilitata
+        ? `<div class="teacher-note"><h5>Versione facilitata / BES</h5><div>Consegne brevi, linguaggio controllato, richieste ridotte e struttura visiva più guidata.</div></div>`
+        : '';
+
+      const solutionBox = config.soluzioni
+        ? `<div class="solutions-box"><h5>Soluzioni docente</h5>${questions.map((q, i) => `<div><strong>${i+1}.</strong> ${escapeHtml(q.solution)}</div>`).join('<br>')}</div>`
+        : '';
+
+      const titleMap = {
+        verifica: 'Verifica',
+        lezione: 'Scheda lezione',
+        esercizi: 'Scheda esercizi',
+        semplifica: 'Scheda semplificata'
+      };
+
+      return `
+        <div class="worksheet">
+          <div class="worksheet-head">
+            <h4>${escapeHtml(titleMap[config.funzione])} • ${escapeHtml(config.materia)}</h4>
+            <div class="worksheet-sub">Argomento: ${escapeHtml(config.argomento)} • Classe ${escapeHtml(config.classe)} • Generazione locale intelligente</div>
+          </div>
+
+          <div class="result-meta">
+            ${meta.map(item => `<div class="meta-card">${item}</div>`).join('')}
+          </div>
+
+          ${teacherNote}
+          ${facilitation}
+
+          ${questions.map((q, i) => `
+            <div class="question-card">
+              <div class="question-top">
+                <div class="question-number">Domanda ${i+1}</div>
+                <div class="question-type">${escapeHtml(questionTypeLabels[q.type] || q.type)}</div>
+              </div>
+              <div class="question-text">${escapeHtml(q.question)}</div>
+              ${q.render()}
+            </div>
+          `).join('')}
+
+          ${solutionBox}
+        </div>
+      `;
+    }
+
+    async function generateWithAI(config){
+      if(!AI_ENDPOINT){
+        throw new Error('Endpoint AI non configurato');
+      }
+
+      const response = await fetch(AI_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(config)
+      });
+
+      if(!response.ok){
+        throw new Error('Risposta backend non valida');
+      }
+
+      const data = await response.json();
+      if(!data || !data.html){
+        throw new Error('Formato risposta AI non valido');
+      }
+      return data.html;
+    }
+
+    function setBusy(isBusy){
+      generaBtn.disabled = isBusy;
+      generaAiBtn.disabled = isBusy;
+      generaBtn.textContent = isBusy ? 'Attendi...' : 'Genera scheda';
+      generaAiBtn.textContent = isBusy ? 'Attendi...' : 'Genera con AI';
+    }
+
+    function renderLocal(){
+      const config = getConfig();
+      resultBox.innerHTML = buildLocalWorksheet(config);
+    }
+
+    async function renderAI(){
+      const config = getConfig();
+      setBusy(true);
+      try {
+        const html = await generateWithAI(config);
+        resultBox.innerHTML = html;
+        aiStatus.textContent = 'AI collegata: scheda generata dal backend';
+        aiStatus.className = 'status-pill ok';
+      } catch (error) {
+        resultBox.innerHTML = buildLocalWorksheet(config);
+        aiStatus.textContent = 'AI non disponibile: usata generazione locale';
+        aiStatus.className = 'status-pill warn';
+      } finally {
+        setBusy(false);
+      }
+    }
+
+    document.getElementById('generaBtn').addEventListener('click', renderLocal);
+    document.getElementById('generaAiBtn').addEventListener('click', renderAI);
 
     document.getElementById('resetBtn').addEventListener('click', () => {
       livelloEl.value = 'medio';
       funzioneEl.value = 'verifica';
+      tipoEsercizioEl.value = 'misto';
+      numDomandeEl.value = '5';
       facilitataEl.checked = false;
       soluzioniEl.checked = true;
-      stampaEl.checked = false;
+      stampaEl.checked = true;
       notaEl.value = '';
       classeEl.selectedIndex = 0;
       populateSubjects();
-      resultBox.textContent = 'Seleziona le opzioni a sinistra e premi “Genera contenuto”.\n\nQui vedrai una bozza strutturata pronta da usare come base per verifiche, lezioni, esercizi o semplificazioni.';
+      resultBox.innerHTML = `
+        <div class="worksheet-head">
+          <h4>Pronto a generare</h4>
+          <div class="worksheet-sub">Scegli i parametri a sinistra e crea una scheda vera, con domande, spazi di risposta e soluzioni.</div>
+        </div>`;
     });
 
     document.getElementById('copyBtn').addEventListener('click', async () => {
+      const text = resultBox.innerText;
       try{
-        await navigator.clipboard.writeText(resultBox.textContent);
-        alert('Testo copiato negli appunti.');
+        await navigator.clipboard.writeText(text);
+        alert('Scheda copiata negli appunti.');
       }catch(e){
         alert('Copia non riuscita.');
       }
     });
 
-    document.getElementById('printBtn').addEventListener('click', () => {
-      window.print();
-    });
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
 
     classeEl.addEventListener('change', populateSubjects);
     materiaEl.addEventListener('change', populateTopics);
@@ -887,6 +1227,10 @@ Qui vedrai una bozza strutturata pronta da usare come base per verifiche, lezion
     populateClasses();
     populateSubjects();
     renderLibrary();
+    if(AI_ENDPOINT){
+      aiStatus.textContent = 'AI collegata: endpoint configurato';
+      aiStatus.className = 'status-pill ok';
+    }
   </script>
 </body>
 </html>
