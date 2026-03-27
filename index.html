@@ -4,27 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Franco Ficara</title>
-  <meta name="description" content="Franco Ficara - AntiTruffa, AI Tools e spazio creativo." />
+  <meta name="description" content="Franco Ficara - AntiTruffa, AI Tools, MaestroKit Primaria e spazio creativo." />
   <style>
     :root{
       --bg-1:#02050d;
       --bg-2:#071120;
       --bg-3:#0d1b30;
-      --panel:rgba(15,25,45,0.72);
-      --panel-strong:rgba(13,22,40,0.92);
       --text:#f5f7ff;
       --muted:#c9d3ea;
       --muted-2:#95a4c8;
       --gold:#f4c15d;
       --gold-soft:rgba(244,193,93,0.18);
-      --blue:#72a8ff;
-      --blue-soft:rgba(114,168,255,0.20);
+      --line:rgba(255,255,255,0.08);
       --green:#31d26b;
       --green-2:#1fb457;
-      --line:rgba(255,255,255,0.08);
       --shadow:0 20px 60px rgba(0,0,0,0.38);
       --radius:28px;
-      --radius-sm:18px;
       --max:1200px;
     }
 
@@ -54,16 +49,6 @@
       text-decoration:none;
     }
 
-    img{
-      max-width:100%;
-      display:block;
-    }
-
-    .container{
-      width:min(var(--max), 92%);
-      margin:0 auto;
-    }
-
     .glow{
       position:fixed;
       inset:0;
@@ -73,6 +58,11 @@
         radial-gradient(circle at 20% 10%, rgba(244,193,93,0.06), transparent 20%),
         radial-gradient(circle at 80% 15%, rgba(114,168,255,0.09), transparent 20%),
         radial-gradient(circle at 50% 100%, rgba(255,255,255,0.04), transparent 30%);
+    }
+
+    .container{
+      width:min(var(--max), 92%);
+      margin:0 auto;
     }
 
     header{
@@ -286,6 +276,7 @@
       aspect-ratio:4/5;
       object-fit:cover;
       background:#101826;
+      display:block;
     }
 
     .portrait-badge{
@@ -490,7 +481,7 @@
 
     .tools-grid{
       display:grid;
-      grid-template-columns:repeat(2, 1fr);
+      grid-template-columns:repeat(3, 1fr);
       gap:24px;
       margin-top:8px;
     }
@@ -579,10 +570,15 @@
       font-size:0.95rem;
     }
 
+    @media (max-width: 1200px){
+      .tools-grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 1050px){
       .hero-grid,
-      .featured,
-      .tools-grid{
+      .featured{
         grid-template-columns:1fr;
       }
 
@@ -604,6 +600,10 @@
       }
 
       .feature-list{
+        grid-template-columns:1fr;
+      }
+
+      .tools-grid{
         grid-template-columns:1fr;
       }
     }
@@ -660,7 +660,7 @@
     <div class="container nav">
       <div class="brand">
         <div class="brand-title">Franco Ficara</div>
-        <div class="brand-sub">Digital hub • AntiTruffa • Tools • Wix</div>
+        <div class="brand-sub">Digital hub • AntiTruffa • Tools • MaestroKit • Wix</div>
       </div>
 
       <nav class="nav-links">
@@ -677,16 +677,16 @@
       <div class="container hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">Franco Ficara • Essenziale, elegante, utile</div>
-          <h1>Didattica digitale,<br>strumenti AI<br>e sicurezza online</h1>
+          <h1>Didattica digitale,<br>strumenti IA<br>e sicurezza online</h1>
           <p>
-            Una casa digitale più pulita, più forte, più chiara: qui trovi AntiTruffa,
-            l’accesso rapido ai tuoi strumenti e il collegamento al tuo spazio creativo.
-            Niente rumore di fondo. Solo ciò che serve davvero.
+            Una casa digitale più pulita e più chiara: qui trovi AntiTruffa,
+            accesso rapido ai tuoi strumenti, MaestroKit Primaria e il collegamento
+            al tuo spazio creativo. Solo ciò che serve davvero.
           </p>
 
           <div class="hero-actions">
             <a class="btn btn-primary" href="https://web-production-ea5bc.up.railway.app/" target="_blank">Apri AntiTruffa</a>
-            <a class="btn btn-secondary" href="#strumenti">Vai agli strumenti</a>
+            <a class="btn btn-secondary" href="#strumenti">Apri gli strumenti</a>
           </div>
 
           <div class="hero-note">
@@ -700,7 +700,7 @@
             <img src="franco-grande.jpg" alt="Franco Ficara">
             <div class="portrait-badge">
               <strong>Franco Ficara</strong>
-              <span>Didattica digitale • AI tools • Sicurezza online</span>
+              <span>Didattica digitale • IA tools • Sicurezza online</span>
             </div>
           </div>
         </div>
@@ -788,8 +788,8 @@
           <div class="section-kicker">Accessi principali</div>
           <h2>Strumenti e spazio creativo</h2>
           <div class="section-desc">
-            Due ingressi puliti e ordinati: uno per i tuoi strumenti, uno per il tuo spazio Wix.
-            Senza dispersioni, senza scaffali pieni di roba vecchia che nessuno apre più.
+            Tre ingressi puliti e ordinati: strumenti, portale didattico e spazio creativo.
+            Senza dispersioni e senza scaffali pieni di roba vecchia che nessuno apre più.
           </div>
         </div>
 
@@ -805,6 +805,20 @@
                 che usi per creare, insegnare, sperimentare e lavorare con l’intelligenza artificiale.
               </p>
               <a class="btn btn-secondary" href="toolkit.html">Apri i tools</a>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-card-inner">
+              <div class="tool-top">
+                <h3>MaestroKit Primaria</h3>
+                <div class="pill">Scuola primaria</div>
+              </div>
+              <p>
+                Il tuo generatore didattico per tutte le classi della primaria:
+                verifiche, lezioni, esercizi e testi semplificati in un’unica pagina ordinata e pronta da usare.
+              </p>
+              <a class="btn btn-secondary" href="maestrokit.html">Apri MaestroKit</a>
             </div>
           </div>
 
@@ -830,7 +844,7 @@
     <div class="container footer-inner">
       <strong>Franco Ficara © 2026</strong>
       <p>
-        AntiTruffa, strumenti AI e spazio creativo in una home più essenziale,
+        AntiTruffa, strumenti IA, MaestroKit Primaria e spazio creativo in una home più essenziale,
         più elegante e più coerente.
       </p>
     </div>
