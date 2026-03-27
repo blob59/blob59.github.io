@@ -1,89 +1,839 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Franco e Luma Studios - 2026</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root { --bg: #050816; --card: #111827; --accent: #fbbf24; --accent2: #38bdf8; --text: #f9fafb; --border: #1f2937; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: system-ui, sans-serif; background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #000 100%); color: var(--text); padding: 20px; text-align: center; }
-        .wrapper { max-width: 1100px; margin: 0 auto; }
-        .cover-img { width: 100%; max-width: 850px; border-radius: 25px; margin-bottom: 25px; border: 3px solid var(--accent); box-shadow: 0 0 40px rgba(251, 191, 36, 0.3); }
-        .button-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; margin: 30px 0; }
-        .btn-main { display: inline-flex; align-items: center; gap: 12px; padding: 18px 35px; background: linear-gradient(135deg, #fbbf24, #fb923c); color: #000; text-decoration: none; font-weight: bold; border-radius: 50px; font-size: 1.1rem; transition: 0.3s; box-shadow: 0 5px 15px rgba(251, 191, 36, 0.3); }
-        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(251, 191, 36, 0.5); }
-        .btn-wix { background: linear-gradient(135deg, #38bdf8, #0ea5e9); }
-        .grid { display: grid; gap: 25px; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); margin-top: 40px; }
-        .video-card { background: var(--card); padding: 15px; border-radius: 20px; border: 1px solid var(--border); text-align: left; }
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        h2 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; }
-        footer { margin-top: 60px; padding: 40px; border-top: 1px solid var(--border); }
-        .stats-box { background: #050816; padding: 15px; border-radius: 15px; display: inline-block; border: 1px solid var(--accent); }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Franco Ficara</title>
+  <meta name="description" content="Franco Ficara - AntiTruffa, AI Tools e spazio creativo." />
+  <style>
+    :root{
+      --bg-1:#02050d;
+      --bg-2:#071120;
+      --bg-3:#0d1b30;
+      --panel:rgba(15,25,45,0.72);
+      --panel-strong:rgba(13,22,40,0.92);
+      --text:#f5f7ff;
+      --muted:#c9d3ea;
+      --muted-2:#95a4c8;
+      --gold:#f4c15d;
+      --gold-soft:rgba(244,193,93,0.18);
+      --blue:#72a8ff;
+      --blue-soft:rgba(114,168,255,0.20);
+      --green:#31d26b;
+      --green-2:#1fb457;
+      --line:rgba(255,255,255,0.08);
+      --shadow:0 20px 60px rgba(0,0,0,0.38);
+      --radius:28px;
+      --radius-sm:18px;
+      --max:1200px;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(244,193,93,0.10), transparent 22%),
+        radial-gradient(circle at 85% 20%, rgba(114,168,255,0.12), transparent 24%),
+        radial-gradient(circle at 50% 90%, rgba(255,255,255,0.03), transparent 28%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
+      overflow-x:hidden;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    .container{
+      width:min(var(--max), 92%);
+      margin:0 auto;
+    }
+
+    .glow{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(244,193,93,0.06), transparent 20%),
+        radial-gradient(circle at 80% 15%, rgba(114,168,255,0.09), transparent 20%),
+        radial-gradient(circle at 50% 100%, rgba(255,255,255,0.04), transparent 30%);
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter:blur(12px);
+      background:rgba(2,5,13,0.45);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+    }
+
+    .brand-title{
+      font-size:1.05rem;
+      font-weight:800;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:#ffffff;
+    }
+
+    .brand-sub{
+      font-size:0.85rem;
+      color:var(--muted-2);
+      letter-spacing:0.05em;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid transparent;
+      color:var(--muted);
+      transition:0.25s ease;
+      font-size:0.95rem;
+    }
+
+    .nav-links a:hover{
+      color:#fff;
+      background:rgba(255,255,255,0.05);
+      border-color:rgba(255,255,255,0.06);
+    }
+
+    .nav-cta{
+      background:linear-gradient(135deg, var(--green), var(--green-2));
+      color:#08130b !important;
+      font-weight:700;
+      box-shadow:0 12px 30px rgba(49,210,107,0.28);
+    }
+
+    .nav-cta:hover{
+      transform:translateY(-1px);
+      box-shadow:0 16px 34px rgba(49,210,107,0.36);
+    }
+
+    main{
+      position:relative;
+      z-index:1;
+    }
+
+    .hero{
+      min-height:calc(100vh - 74px);
+      display:flex;
+      align-items:center;
+      padding:60px 0 70px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.08fr 0.92fr;
+      align-items:center;
+      gap:48px;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 16px;
+      border-radius:999px;
+      border:1px solid rgba(244,193,93,0.18);
+      background:rgba(244,193,93,0.07);
+      color:var(--gold);
+      font-size:0.88rem;
+      letter-spacing:0.14em;
+      text-transform:uppercase;
+      margin-bottom:22px;
+    }
+
+    .hero h1{
+      font-size:clamp(2.8rem, 5vw, 5.6rem);
+      line-height:0.95;
+      letter-spacing:-0.04em;
+      margin-bottom:22px;
+      text-shadow:0 0 30px rgba(244,193,93,0.08);
+    }
+
+    .hero p{
+      max-width:700px;
+      color:var(--muted);
+      font-size:clamp(1.05rem, 1.7vw, 1.22rem);
+      line-height:1.8;
+      margin-bottom:34px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:26px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-width:185px;
+      padding:15px 24px;
+      border-radius:999px;
+      font-size:1rem;
+      font-weight:700;
+      transition:0.25s ease;
+      border:1px solid transparent;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--green), var(--green-2));
+      color:#07120a;
+      box-shadow:0 12px 30px rgba(49,210,107,0.28);
+    }
+
+    .btn-primary:hover{
+      box-shadow:0 16px 36px rgba(49,210,107,0.36);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,0.05);
+      border-color:rgba(255,255,255,0.08);
+      color:#fff;
+      box-shadow:0 10px 28px rgba(0,0,0,0.22);
+    }
+
+    .btn-secondary:hover{
+      background:rgba(255,255,255,0.09);
+    }
+
+    .hero-note{
+      color:var(--muted-2);
+      font-size:0.96rem;
+      line-height:1.7;
+    }
+
+    .portrait-wrap{
+      position:relative;
+      display:flex;
+      justify-content:center;
+    }
+
+    .portrait-wrap::before{
+      content:"";
+      position:absolute;
+      width:420px;
+      height:420px;
+      max-width:100%;
+      background:radial-gradient(circle, rgba(244,193,93,0.22), transparent 62%);
+      filter:blur(16px);
+      z-index:0;
+    }
+
+    .portrait-card{
+      position:relative;
+      z-index:1;
+      width:min(100%, 470px);
+      border-radius:34px;
+      padding:14px;
+      background:
+        linear-gradient(145deg, rgba(244,193,93,0.28), rgba(114,168,255,0.16)),
+        rgba(255,255,255,0.04);
+      box-shadow:
+        0 25px 70px rgba(0,0,0,0.45),
+        inset 0 0 0 1px rgba(255,255,255,0.07);
+      overflow:hidden;
+    }
+
+    .portrait-card img{
+      border-radius:24px;
+      width:100%;
+      aspect-ratio:4/5;
+      object-fit:cover;
+      background:#101826;
+    }
+
+    .portrait-badge{
+      position:absolute;
+      left:22px;
+      bottom:22px;
+      z-index:2;
+      padding:12px 16px;
+      border-radius:16px;
+      background:rgba(8,12,20,0.65);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 10px 25px rgba(0,0,0,0.28);
+    }
+
+    .portrait-badge strong{
+      display:block;
+      font-size:1rem;
+      margin-bottom:4px;
+    }
+
+    .portrait-badge span{
+      color:var(--muted-2);
+      font-size:0.88rem;
+    }
+
+    .section{
+      padding:30px 0 90px;
+    }
+
+    .section-head{
+      text-align:center;
+      margin-bottom:42px;
+    }
+
+    .section-kicker{
+      color:var(--gold);
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      font-size:0.84rem;
+      margin-bottom:12px;
+    }
+
+    .section h2{
+      font-size:clamp(2rem, 3.5vw, 3.3rem);
+      margin-bottom:14px;
+      letter-spacing:-0.03em;
+    }
+
+    .section-desc{
+      max-width:780px;
+      margin:0 auto;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:1.05rem;
+    }
+
+    .featured{
+      display:grid;
+      grid-template-columns:1.18fr 0.82fr;
+      gap:24px;
+      align-items:stretch;
+      margin-top:10px;
+    }
+
+    .panel{
+      position:relative;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(17,27,49,0.82), rgba(11,19,35,0.94));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0)),
+        radial-gradient(circle at top right, rgba(244,193,93,0.08), transparent 30%);
+      pointer-events:none;
+    }
+
+    .antitruffa-main{
+      padding:34px 34px 30px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height:100%;
+    }
+
+    .tag{
+      display:inline-flex;
+      width:max-content;
+      align-items:center;
+      gap:8px;
+      padding:9px 14px;
+      border-radius:999px;
+      background:rgba(49,210,107,0.10);
+      border:1px solid rgba(49,210,107,0.18);
+      color:#89efad;
+      font-size:0.86rem;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      margin-bottom:20px;
+    }
+
+    .antitruffa-main h3{
+      font-size:clamp(2rem, 3vw, 3.2rem);
+      line-height:1.02;
+      letter-spacing:-0.04em;
+      margin-bottom:18px;
+    }
+
+    .antitruffa-main p{
+      color:var(--muted);
+      line-height:1.85;
+      font-size:1.06rem;
+      max-width:760px;
+      margin-bottom:26px;
+    }
+
+    .feature-list{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:14px;
+      margin:18px 0 30px;
+    }
+
+    .feature-item{
+      padding:16px 16px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    .feature-item strong{
+      display:block;
+      color:#fff;
+      margin-bottom:6px;
+      font-size:0.98rem;
+    }
+
+    .feature-item span{
+      display:block;
+      color:var(--muted-2);
+      line-height:1.55;
+      font-size:0.92rem;
+    }
+
+    .mini-side{
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      justify-content:center;
+    }
+
+    .mini-card{
+      border-radius:22px;
+      padding:22px 20px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      transition:0.25s ease;
+    }
+
+    .mini-card:hover{
+      transform:translateY(-4px);
+      background:rgba(255,255,255,0.06);
+      border-color:rgba(244,193,93,0.18);
+    }
+
+    .mini-card .mini-label{
+      color:#8eb8ff;
+      text-transform:uppercase;
+      letter-spacing:0.13em;
+      font-size:0.78rem;
+      margin-bottom:10px;
+      display:block;
+    }
+
+    .mini-card h4{
+      font-size:1.5rem;
+      margin-bottom:10px;
+    }
+
+    .mini-card p{
+      color:var(--muted);
+      line-height:1.7;
+      font-size:0.98rem;
+      margin-bottom:18px;
+    }
+
+    .mini-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:var(--gold);
+      font-weight:700;
+    }
+
+    .tools-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:24px;
+      margin-top:8px;
+    }
+
+    .tool-card{
+      position:relative;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(17,27,49,0.82), rgba(11,19,35,0.94));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      transition:0.28s ease;
+    }
+
+    .tool-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(244,193,93,0.20);
+      box-shadow:0 24px 70px rgba(0,0,0,0.42);
+    }
+
+    .tool-card-inner{
+      padding:30px 28px;
+    }
+
+    .tool-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:20px;
+      margin-bottom:16px;
+    }
+
+    .tool-top h3{
+      font-size:2rem;
+      letter-spacing:-0.03em;
+    }
+
+    .pill{
+      white-space:nowrap;
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:0.78rem;
+      text-transform:uppercase;
+      letter-spacing:0.11em;
+      border:1px solid rgba(255,255,255,0.08);
+      color:var(--muted-2);
+      background:rgba(255,255,255,0.04);
+    }
+
+    .tool-card p{
+      color:var(--muted);
+      line-height:1.8;
+      font-size:1rem;
+      margin-bottom:22px;
+    }
+
+    .tool-card .btn{
+      min-width:auto;
+      padding:13px 20px;
+    }
+
+    footer{
+      position:relative;
+      z-index:1;
+      margin-top:10px;
+      border-top:1px solid rgba(255,255,255,0.06);
+      background:rgba(0,0,0,0.14);
+    }
+
+    .footer-inner{
+      padding:28px 0 40px;
+      text-align:center;
+    }
+
+    .footer-inner strong{
+      display:block;
+      font-size:1rem;
+      margin-bottom:8px;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
+
+    .footer-inner p{
+      color:var(--muted-2);
+      line-height:1.7;
+      font-size:0.95rem;
+    }
+
+    @media (max-width: 1050px){
+      .hero-grid,
+      .featured,
+      .tools-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        min-height:auto;
+      }
+
+      .hero-copy{
+        text-align:center;
+      }
+
+      .hero p{
+        margin-left:auto;
+        margin-right:auto;
+      }
+
+      .hero-actions{
+        justify-content:center;
+      }
+
+      .feature-list{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 760px){
+      .nav{
+        padding:12px 0;
+        align-items:flex-start;
+        flex-direction:column;
+      }
+
+      .nav-links{
+        width:100%;
+      }
+
+      .nav-links a{
+        text-align:center;
+        flex:1 1 auto;
+      }
+
+      .hero{
+        padding:38px 0 58px;
+      }
+
+      .section{
+        padding:20px 0 74px;
+      }
+
+      .antitruffa-main,
+      .mini-side,
+      .tool-card-inner{
+        padding:24px 20px;
+      }
+
+      .tool-top{
+        flex-direction:column;
+        gap:10px;
+      }
+
+      .btn{
+        width:100%;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="wrapper">
-        <header>
-            <img src="franco-luma-studios.jpg" alt="Franco & Luma Studios" class="cover-img">
-            <h1>Franco e Luma Studios</h1>
-            <p style="color: var(--accent2); margin-top: 10px;">Benvenuti nel futuro della creazione AI</p>
-        </header>
+  <div class="glow"></div>
 
-        <div class="button-container">
-            <a href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank" class="btn-main btn-wix">
-                <i class="fas fa-globe"></i> SITO UFFICIALE WIX
-            </a>
-            <a href="toolkit.html" class="btn-main">
-                <i class="fas fa-tools"></i> AI TOOLKIT
-            </a>
-        </div>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-title">Franco Ficara</div>
+        <div class="brand-sub">Digital hub • AntiTruffa • Tools • Wix</div>
+      </div>
 
-        <h2>🎬 SORA AI REELS</h2>
-        <div class="grid">
-            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/be_-J-ed150" allowfullscreen></iframe></div><p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Ho messo via...</p></div>
-            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/f_e9ob22nP0" allowfullscreen></iframe></div><p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Sora Reel #1</p></div>
-            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/oxWN9TXGmEY" allowfullscreen></iframe></div><p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Milano Duomo AI</p></div>
-            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/SguOvfrbRQw" allowfullscreen></iframe></div><p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Sora Reel #2</p></div>
-            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/xuGUBj-pUnQ" allowfullscreen></iframe></div><p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Moon Walk Studio</p></div>
-            <div class="video-card"><div class="video-container"><iframe src="https://www.youtube.com/embed/8g-mibCg7Ls" allowfullscreen></iframe></div><p style="margin-top:12px; font-weight: bold; color: var(--accent2);">Sora Reel #3</p></div>
-        </div>
-        <section style="max-width:1000px;margin:50px auto;padding:35px 25px;border-radius:22px;background:linear-gradient(135deg,#0f172a,#1e293b);color:white;text-align:center;box-shadow:0 12px 35px rgba(0,0,0,0.25);">
-  <h2 style="font-size:2.2rem;margin-bottom:15px;font-family:Arial,sans-serif;">
-    AntiTruffa by Franco Ficara
-  </h2>
-
-  <p style="font-size:1.15rem;line-height:1.7;max-width:760px;margin:0 auto 25px;font-family:Arial,sans-serif;">
-    Controlla link, SMS, email e messaggi sospetti in pochi secondi.
-    Uno strumento semplice, chiaro e immediato per aiutare famiglie, studenti e cittadini
-    a riconoscere possibili truffe online.
-  </p>
-
-  <a href="https://web-production-ea5bc.up.railway.app/" target="_blank"
-     style="display:inline-block;padding:16px 30px;background:#22c55e;color:#081018;
-     text-decoration:none;border-radius:14px;font-weight:bold;font-size:1.05rem;
-     font-family:Arial,sans-serif;box-shadow:0 6px 18px rgba(34,197,94,0.35);">
-    APRI ANTITRUFFA
-  </a>
-</section>
-
-<footer>
-  <p>Franco e Luma Studios &copy; 2026</p>
-  ...
-</footer>
-</div>
-</body>
-</html>
-        <footer>
-           
-            <p>Franco e Luma Studios &copy; 2026</p>
-            <div class="stats-box">
-                <p style="font-size: 0.7rem; color: #fbbf24; margin-bottom: 8px;">VISITE LIVE</p>
-                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://franco-studios.github.io&count_bg=%23FBBF24&title_bg=%23050816&icon=eye.svg&icon_color=%23E7E7E7&title=VISITE&edge_flat=false" alt="Visite">
-            </div>
-        </footer>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#antitruffa">AntiTruffa</a>
+        <a href="#strumenti">Strumenti</a>
+        <a href="https://web-production-ea5bc.up.railway.app/" target="_blank" class="nav-cta">Apri AntiTruffa</a>
+      </nav>
     </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Franco Ficara • Essenziale, elegante, utile</div>
+          <h1>Didattica digitale,<br>strumenti AI<br>e sicurezza online</h1>
+          <p>
+            Una casa digitale più pulita, più forte, più chiara: qui trovi AntiTruffa,
+            l’accesso rapido ai tuoi strumenti e il collegamento al tuo spazio creativo.
+            Niente rumore di fondo. Solo ciò che serve davvero.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://web-production-ea5bc.up.railway.app/" target="_blank">Apri AntiTruffa</a>
+            <a class="btn btn-secondary" href="#strumenti">Vai agli strumenti</a>
+          </div>
+
+          <div class="hero-note">
+            Un ingresso semplice e cinematografico, costruito per dare ordine ai contenuti
+            e mettere in primo piano le cose giuste.
+          </div>
+        </div>
+
+        <div class="portrait-wrap">
+          <div class="portrait-card">
+            <img src="franco-grande.jpg" alt="Franco Ficara">
+            <div class="portrait-badge">
+              <strong>Franco Ficara</strong>
+              <span>Didattica digitale • AI tools • Sicurezza online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="antitruffa">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Progetto in evidenza</div>
+          <h2>AntiTruffa</h2>
+          <div class="section-desc">
+            Uno strumento pratico per controllare messaggi, link, SMS ed email sospette.
+            Pensato per essere semplice da usare, rapido da capire e utile nella vita reale.
+          </div>
+        </div>
+
+        <div class="featured">
+          <div class="panel antitruffa-main">
+            <div>
+              <div class="tag">Protezione digitale</div>
+              <h3>Controlla i segnali prima di cliccare.</h3>
+              <p>
+                AntiTruffa aiuta a leggere con più lucidità quello che spesso arriva di corsa:
+                messaggi ambigui, link sospetti, richieste strane, urgenze costruite ad arte.
+                Non fa magie, ma mette un faro dove di solito i truffatori sperano nel buio.
+              </p>
+
+              <div class="feature-list">
+                <div class="feature-item">
+                  <strong>Link sospetti</strong>
+                  <span>Verifica testi e indirizzi che sembrano affidabili solo in apparenza.</span>
+                </div>
+                <div class="feature-item">
+                  <strong>SMS e messaggi</strong>
+                  <span>Controlla comunicazioni dubbie, allarmistiche o troppo insistenti.</span>
+                </div>
+                <div class="feature-item">
+                  <strong>Email phishing</strong>
+                  <span>Individua segnali tipici di truffa, urgenza finta e richieste manipolative.</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <a class="btn btn-primary" href="https://web-production-ea5bc.up.railway.app/" target="_blank">Apri AntiTruffa ora</a>
+            </div>
+          </div>
+
+          <div class="panel mini-side">
+            <div class="mini-card">
+              <span class="mini-label">Perché conta</span>
+              <h4>Chiaro e immediato</h4>
+              <p>
+                Uno strumento utile deve parlare semplice. Qui il punto non è impressionare,
+                ma aiutare davvero chi ha un dubbio.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <span class="mini-label">A chi serve</span>
+              <h4>Famiglie e scuola</h4>
+              <p>
+                Pensato per cittadini, genitori, studenti e docenti: gente vera,
+                problemi veri, niente fumo scenico.
+              </p>
+            </div>
+
+            <div class="mini-card">
+              <span class="mini-label">Accesso rapido</span>
+              <h4>Un clic, senza giri</h4>
+              <p>
+                Il collegamento è diretto, pulito e visibile. Poche porte, ma quelle giuste.
+              </p>
+              <a class="mini-link" href="https://web-production-ea5bc.up.railway.app/" target="_blank">Vai ad AntiTruffa →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="strumenti">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Accessi principali</div>
+          <h2>Strumenti e spazio creativo</h2>
+          <div class="section-desc">
+            Due ingressi puliti e ordinati: uno per i tuoi strumenti, uno per il tuo spazio Wix.
+            Senza dispersioni, senza scaffali pieni di roba vecchia che nessuno apre più.
+          </div>
+        </div>
+
+        <div class="tools-grid">
+          <div class="tool-card">
+            <div class="tool-card-inner">
+              <div class="tool-top">
+                <h3>AI Tools</h3>
+                <div class="pill">Strumenti digitali</div>
+              </div>
+              <p>
+                Accesso rapido al tuo toolkit: una porta d’ingresso semplice verso le risorse
+                che usi per creare, insegnare, sperimentare e lavorare con l’intelligenza artificiale.
+              </p>
+              <a class="btn btn-secondary" href="toolkit.html">Apri i tools</a>
+            </div>
+          </div>
+
+          <div class="tool-card">
+            <div class="tool-card-inner">
+              <div class="tool-top">
+                <h3>Wix</h3>
+                <div class="pill">Spazio creativo</div>
+              </div>
+              <p>
+                Il tuo ambiente creativo online: una vetrina laterale, più libera e narrativa,
+                da usare come estensione del tuo mondo digitale.
+              </p>
+              <a class="btn btn-secondary" href="https://francoficara1.wixsite.com/franco-e-luma-sudios" target="_blank">Apri Wix</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <strong>Franco Ficara © 2026</strong>
+      <p>
+        AntiTruffa, strumenti AI e spazio creativo in una home più essenziale,
+        più elegante e più coerente.
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
