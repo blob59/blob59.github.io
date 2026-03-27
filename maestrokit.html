@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MaestroKit Primaria | Franco Ficara</title>
+  <meta name="description" content="MaestroKit Primaria - Generatore didattico per tutte le classi della scuola primaria." />
+  <style>
+    :root{
+      --bg-1:#03060f;
+      --bg-2:#0a1424;
+      --bg-3:#10203a;
+      --panel:rgba(16,26,46,0.88);
+      --panel-soft:rgba(255,255,255,0.04);
+      --text:#f5f7ff;
+      --muted:#c8d3ea;
+      --muted-2:#93a5c9;
+      --gold:#f2c15c;
+      --gold-soft:rgba(242,193,92,0.16);
+      --blue:#7ab0ff;
+      --green:#2fd16b;
+      --green-2:#1eaf57;
+      --line:rgba(255,255,255,0.08);
+      --shadow:0 20px 60px rgba(0,0,0,0.35);
+      --radius:28px;
+      --radius-sm:18px;
+      --max:1240px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(242,193,92,0.08), transparent 22%),
+        radial-gradient(circle at 88% 14%, rgba(122,176,255,0.12), transparent 24%),
+        linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 52%, var(--bg-3) 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    a{text-decoration:none;color:inherit;}
+    .container{width:min(var(--max),92%);margin:0 auto;}
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:40;
+      backdrop-filter:blur(12px);
+      background:rgba(3,6,15,0.55);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav{
+      min-height:74px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand-title{
+      font-size:1.05rem;
+      font-weight:800;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
+
+    .brand-sub{
+      color:var(--muted-2);
+      font-size:0.86rem;
+      margin-top:4px;
+    }
+
+    .nav-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+    }
+
+    .nav-links a{
+      padding:10px 16px;
+      border-radius:999px;
+      color:var(--muted);
+      transition:0.25s ease;
+    }
+
+    .nav-links a:hover{
+      color:#fff;
+      background:rgba(255,255,255,0.06);
+    }
+
+    .nav-back{
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero{
+      padding:58px 0 44px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.1fr 0.9fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:999px;
+      background:var(--gold-soft);
+      border:1px solid rgba(242,193,92,0.18);
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:0.15em;
+      font-size:0.82rem;
+      margin-bottom:18px;
+    }
+
+    h1{
+      font-size:clamp(2.5rem, 5vw, 5rem);
+      line-height:0.96;
+      letter-spacing:-0.04em;
+      margin-bottom:18px;
+      text-shadow:0 0 28px rgba(242,193,92,0.08);
+    }
+
+    .hero-copy p{
+      color:var(--muted);
+      line-height:1.8;
+      font-size:1.08rem;
+      max-width:740px;
+      margin-bottom:26px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:180px;
+      padding:15px 24px;
+      border-radius:999px;
+      font-weight:700;
+      transition:0.25s ease;
+      border:1px solid transparent;
+    }
+
+    .btn:hover{transform:translateY(-2px);}
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--green), var(--green-2));
+      color:#061109;
+      box-shadow:0 12px 28px rgba(47,209,107,0.28);
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,0.05);
+      border-color:rgba(255,255,255,0.08);
+      color:#fff;
+    }
+
+    .hero-side{
+      padding:24px;
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(17,27,49,0.84), rgba(11,19,35,0.94));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+    }
+
+    .hero-side h2{
+      font-size:1.3rem;
+      margin-bottom:12px;
+      color:#fff;
+    }
+
+    .hero-side p{
+      color:var(--muted);
+      line-height:1.7;
+      margin-bottom:18px;
+    }
+
+    .badge-list{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+
+    .mini-badge{
+      padding:14px 14px;
+      border-radius:16px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      color:var(--muted);
+      font-size:0.95rem;
+      line-height:1.5;
+    }
+
+    .section{
+      padding:26px 0 82px;
+    }
+
+    .section-head{
+      text-align:center;
+      margin-bottom:28px;
+    }
+
+    .section-kicker{
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:0.14em;
+      font-size:0.82rem;
+      margin-bottom:10px;
+    }
+
+    .section-head h2{
+      font-size:clamp(2rem, 3.8vw, 3.2rem);
+      letter-spacing:-0.03em;
+      margin-bottom:12px;
+    }
+
+    .section-head p{
+      max-width:760px;
+      margin:0 auto;
+      color:var(--muted);
+      line-height:1.8;
+      font-size:1.03rem;
+    }
+
+    .workspace{
+      display:grid;
+      grid-template-columns:0.98fr 1.02fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .panel{
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(17,27,49,0.86), rgba(11,19,35,0.95));
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel-inner{
+      padding:28px;
+    }
+
+    .panel h3{
+      font-size:1.7rem;
+      margin-bottom:10px;
+      letter-spacing:-0.03em;
+    }
+
+    .panel-intro{
+      color:var(--muted);
+      line-height:1.75;
+      margin-bottom:24px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:16px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .field.full{grid-column:1 / -1;}
+
+    label{
+      font-size:0.92rem;
+      color:var(--muted);
+      font-weight:700;
+    }
+
+    select, textarea, input{
+      width:100%;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      color:#fff;
+      border-radius:16px;
+      padding:14px 15px;
+      font-size:0.98rem;
+      outline:none;
+      transition:0.2s ease;
+    }
+
+    select:focus, textarea:focus, input:focus{
+      border-color:rgba(242,193,92,0.34);
+      box-shadow:0 0 0 3px rgba(242,193,92,0.08);
+    }
+
+    textarea{
+      resize:vertical;
+      min-height:110px;
+      line-height:1.6;
+    }
+
+    .check-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:2px;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      color:var(--muted);
+      font-size:0.92rem;
+      cursor:pointer;
+      user-select:none;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:22px;
+    }
+
+    .actions .btn{
+      min-width:auto;
+      padding:14px 20px;
+    }
+
+    .btn-outline{
+      background:transparent;
+      border-color:rgba(255,255,255,0.12);
+      color:#fff;
+    }
+
+    .result-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .result-box{
+      border-radius:22px;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.06);
+      padding:22px;
+      min-height:560px;
+      white-space:pre-wrap;
+      line-height:1.75;
+      color:#eef2ff;
+      font-size:1rem;
+    }
+
+    .result-tools{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .small-btn{
+      padding:11px 15px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.05);
+      color:#fff;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    .small-btn:hover{
+      background:rgba(255,255,255,0.09);
+    }
+
+    .library{
+      margin-top:28px;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:16px;
+    }
+
+    .class-card{
+      padding:18px 16px;
+      border-radius:22px;
+      background:linear-gradient(180deg, rgba(17,27,49,0.82), rgba(11,19,35,0.92));
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:var(--shadow);
+    }
+
+    .class-card h4{
+      color:var(--gold);
+      font-size:1.1rem;
+      margin-bottom:12px;
+    }
+
+    .class-card ul{
+      list-style:none;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .class-card li{
+      color:var(--muted);
+      font-size:0.93rem;
+      line-height:1.5;
+    }
+
+    footer{
+      margin-top:18px;
+      border-top:1px solid rgba(255,255,255,0.06);
+      background:rgba(0,0,0,0.16);
+    }
+
+    .footer-inner{
+      text-align:center;
+      padding:28px 0 38px;
+      color:var(--muted-2);
+      line-height:1.7;
+    }
+
+    @media (max-width: 1120px){
+      .workspace,
+      .hero-grid,
+      .library{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 760px){
+      .nav{
+        flex-direction:column;
+        align-items:flex-start;
+        padding:12px 0;
+      }
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .badge-list{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        padding:40px 0 30px;
+      }
+
+      .panel-inner{
+        padding:22px 18px;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div>
+        <div class="brand-title">MaestroKit Primaria</div>
+        <div class="brand-sub">Generatore didattico per tutte le classi della scuola primaria</div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-back">← Torna al sito</a>
+        <a href="#generatore">Generatore</a>
+        <a href="#classi">Classi</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Franco Ficara • Scuola primaria</div>
+          <h1>Uno strumento solo.<br>Tutte le classi.<br>Tutto più ordinato.</h1>
+          <p>
+            MaestroKit Primaria nasce per creare verifiche, lezioni, esercizi e testi semplificati
+            dalla classe 1ª alla 5ª. È la base giusta per un portale didattico serio: chiaro,
+            utile e costruito per essere ampliato bene, senza confusione.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#generatore">Apri il generatore</a>
+            <a class="btn btn-secondary" href="#classi">Vedi classi e materie</a>
+          </div>
+        </div>
+
+        <aside class="hero-side">
+          <h2>Cosa fa questa prima versione</h2>
+          <p>
+            Questa è una base già forte: copre tutta la primaria e imposta il metodo giusto.
+            Oggi genera contenuti modello e ti prepara il terreno per una versione ancora più ricca.
+          </p>
+          <div class="badge-list">
+            <div class="mini-badge"><strong>Classi:</strong> 1ª, 2ª, 3ª, 4ª, 5ª</div>
+            <div class="mini-badge"><strong>Funzioni:</strong> verifica, lezione, esercizi, semplificazione</div>
+            <div class="mini-badge"><strong>Materie:</strong> italiano, matematica, scienze, storia, geografia, tecnologia, inglese, arte</div>
+            <div class="mini-badge"><strong>Uso:</strong> copia, modifica, stampa, adattamento facilitato</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="generatore">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Versione 1</div>
+          <h2>Generatore didattico</h2>
+          <p>
+            Scegli classe, materia e funzione. Il risultato qui sotto è una base pronta da copiare,
+            adattare e portare in classe. È il primo mattone: semplice fuori, robusto dentro.
+          </p>
+        </div>
+
+        <div class="workspace">
+          <section class="panel">
+            <div class="panel-inner">
+              <h3>Imposta la richiesta</h3>
+              <p class="panel-intro">
+                Seleziona la struttura di lavoro. Ogni scelta modifica gli argomenti disponibili
+                e prepara un contenuto coerente con la classe indicata.
+              </p>
+
+              <div class="form-grid">
+                <div class="field">
+                  <label for="classe">Classe</label>
+                  <select id="classe"></select>
+                </div>
+
+                <div class="field">
+                  <label for="materia">Materia</label>
+                  <select id="materia"></select>
+                </div>
+
+                <div class="field">
+                  <label for="funzione">Funzione</label>
+                  <select id="funzione">
+                    <option value="verifica">Crea verifica</option>
+                    <option value="lezione">Crea lezione</option>
+                    <option value="esercizi">Genera esercizi</option>
+                    <option value="semplifica">Semplifica testo</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label for="livello">Livello</label>
+                  <select id="livello">
+                    <option value="facile">Facile</option>
+                    <option value="medio" selected>Medio</option>
+                    <option value="avanzato">Avanzato</option>
+                  </select>
+                </div>
+
+                <div class="field full">
+                  <label for="argomento">Argomento</label>
+                  <select id="argomento"></select>
+                </div>
+
+                <div class="field full">
+                  <label>Opzioni</label>
+                  <div class="check-row">
+                    <label class="chip"><input type="checkbox" id="facilitata"> Versione facilitata / BES</label>
+                    <label class="chip"><input type="checkbox" id="soluzioni" checked> Includi soluzioni</label>
+                    <label class="chip"><input type="checkbox" id="stampa"> Formato pronto da stampare</label>
+                  </div>
+                </div>
+
+                <div class="field full">
+                  <label for="nota">Indicazioni aggiuntive</label>
+                  <textarea id="nota" placeholder="Esempio: inserisci domande a scelta multipla, lessico semplice, durata 45 minuti, testo breve..."></textarea>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button class="btn btn-primary" id="generaBtn" type="button">Genera contenuto</button>
+                <button class="btn btn-outline" id="resetBtn" type="button">Reimposta</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-inner">
+              <div class="result-header">
+                <div>
+                  <h3>Risultato</h3>
+                  <p class="panel-intro" style="margin-bottom:0;">Qui compare il contenuto generato dalla configurazione scelta.</p>
+                </div>
+                <div class="result-tools">
+                  <button class="small-btn" id="copyBtn" type="button">Copia testo</button>
+                  <button class="small-btn" id="printBtn" type="button">Stampa</button>
+                </div>
+              </div>
+
+              <div class="result-box" id="resultBox">Seleziona le opzioni a sinistra e premi “Genera contenuto”.
+
+Qui vedrai una bozza strutturata pronta da usare come base per verifiche, lezioni, esercizi o semplificazioni.</div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="classi">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Copertura primaria</div>
+          <h2>Tutte le classi, ordinate bene</h2>
+          <p>
+            Ogni classe ha la sua voce, i suoi ritmi e i suoi argomenti. Qui sotto c’è la mappa iniziale
+            su cui costruire il portale in modo serio, senza mischiare tutto nello stesso pentolone.
+          </p>
+        </div>
+
+        <div class="library" id="classLibrary"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      MaestroKit Primaria • Franco Ficara © 2026<br>
+      Prima base operativa del portale didattico per la scuola primaria.
+    </div>
+  </footer>
+
+  <script>
+    const data = {
+      "1ª": {
+        "Italiano": ["Vocali", "Sillabe", "Parole e frasi semplici", "Comprensione di immagini"],
+        "Matematica": ["Numeri entro 20", "Addizioni semplici", "Sottrazioni semplici", "Confronti maggiore/minore"],
+        "Scienze": ["I cinque sensi", "Viventi e non viventi", "Le stagioni", "Parti del corpo"],
+        "Storia": ["Prima e dopo", "La successione delle azioni", "Giorni e mesi"],
+        "Geografia": ["Spazi della scuola", "Destra e sinistra", "Vicino e lontano"],
+        "Tecnologia": ["Oggetti e materiali", "Uso corretto degli strumenti", "Sicurezza di base"],
+        "Inglese": ["Colori", "Numeri fino a 10", "Saluti", "Oggetti scolastici"],
+        "Arte": ["Colori primari", "Forme semplici", "Disegno guidato"]
+      },
+      "2ª": {
+        "Italiano": ["Ortografia di base", "Frasi e punteggiatura", "Comprensione breve", "Nomi e articoli"],
+        "Matematica": ["Numeri entro 100", "Addizioni e sottrazioni", "Prime moltiplicazioni", "Problemi semplici"],
+        "Scienze": ["Animali e ambienti", "Piante", "Acqua", "Materiali"],
+        "Storia": ["La giornata", "Settimana, mesi e stagioni", "La linea del tempo"],
+        "Geografia": ["Punti di riferimento", "Percorsi", "Ambienti vicini"],
+        "Tecnologia": ["Materiali naturali e artificiali", "Oggetti d'uso comune", "Regole digitali di base"],
+        "Inglese": ["Famiglia", "Parti del corpo", "Cibi", "Animali"],
+        "Arte": ["Colori caldi e freddi", "Collage", "Osservazione e riproduzione"]
+      },
+      "3ª": {
+        "Italiano": ["Testo narrativo", "Aggettivi", "Verbi", "Comprensione del testo"],
+        "Matematica": ["Moltiplicazioni", "Divisioni", "Problemi", "Frazioni semplici"],
+        "Scienze": ["Gli stati della materia", "Ciclo dell'acqua", "Alimentazione", "Gli animali"],
+        "Storia": ["Fonti storiche", "Preistoria", "Misura del tempo"],
+        "Geografia": ["La pianta e la mappa", "Paesaggi", "Elementi naturali e antropici"],
+        "Tecnologia": ["Macchine semplici", "Materiali e trasformazioni", "Uso consapevole del digitale"],
+        "Inglese": ["Casa", "Routine quotidiana", "Abbigliamento", "Numeri fino a 100"],
+        "Arte": ["Tecniche miste", "Paesaggi", "Simmetria visiva"]
+      },
+      "4ª": {
+        "Italiano": ["Riassunto", "Testo descrittivo", "Analisi grammaticale", "Comprensione approfondita"],
+        "Matematica": ["Numeri grandi", "Operazioni", "Frazioni", "Perimetro e area"],
+        "Scienze": ["Ecosistemi", "Catene alimentari", "Il suolo", "Energia"],
+        "Storia": ["Civiltà antiche", "Mesopotamia", "Egizi", "Fenici"],
+        "Geografia": ["Carte geografiche", "Regioni climatiche", "Paesaggi italiani"],
+        "Tecnologia": ["Email", "Presentazioni", "Sicurezza online", "Materiali e costruzioni"],
+        "Inglese": ["Daily routine", "School subjects", "Simple present", "Descrizioni"],
+        "Arte": ["Prospettiva intuitiva", "Tecniche decorative", "Lettura dell'immagine"]
+      },
+      "5ª": {
+        "Italiano": ["Testo regolativo", "Analisi logica", "Riassunto avanzato", "Produzione scritta"],
+        "Matematica": ["Equivalenze", "Percentuali", "Problemi complessi", "Solidi e volume"],
+        "Scienze": ["Sistema solare", "Corpo umano", "Energia e centrali", "Forze e movimento"],
+        "Storia": ["Greci", "Romani", "Quadri di civiltà", "Cause ed effetti storici"],
+        "Geografia": ["Italia fisica e politica", "Europa", "Settori economici", "Orientamento"],
+        "Tecnologia": ["Sicurezza digitale", "Presentazioni efficaci", "Ricerca online", "Algoritmi e coding"],
+        "Inglese": ["Past simple base", "Hobbies", "Luoghi della città", "Reading comprehension"],
+        "Arte": ["Composizione", "Manifesto", "Disegno tecnico semplice", "Osservazione guidata"]
+      }
+    };
+
+    const classeEl = document.getElementById('classe');
+    const materiaEl = document.getElementById('materia');
+    const funzioneEl = document.getElementById('funzione');
+    const argomentoEl = document.getElementById('argomento');
+    const livelloEl = document.getElementById('livello');
+    const notaEl = document.getElementById('nota');
+    const facilitataEl = document.getElementById('facilitata');
+    const soluzioniEl = document.getElementById('soluzioni');
+    const stampaEl = document.getElementById('stampa');
+    const resultBox = document.getElementById('resultBox');
+    const classLibrary = document.getElementById('classLibrary');
+
+    function populateClasses(){
+      classeEl.innerHTML = '';
+      Object.keys(data).forEach(cl => {
+        const opt = document.createElement('option');
+        opt.value = cl;
+        opt.textContent = cl;
+        classeEl.appendChild(opt);
+      });
+    }
+
+    function populateSubjects(){
+      const classe = classeEl.value;
+      materiaEl.innerHTML = '';
+      Object.keys(data[classe]).forEach(materia => {
+        const opt = document.createElement('option');
+        opt.value = materia;
+        opt.textContent = materia;
+        materiaEl.appendChild(opt);
+      });
+      populateTopics();
+    }
+
+    function populateTopics(){
+      const classe = classeEl.value;
+      const materia = materiaEl.value;
+      argomentoEl.innerHTML = '';
+      data[classe][materia].forEach(arg => {
+        const opt = document.createElement('option');
+        opt.value = arg;
+        opt.textContent = arg;
+        argomentoEl.appendChild(opt);
+      });
+    }
+
+    function renderLibrary(){
+      classLibrary.innerHTML = '';
+      Object.entries(data).forEach(([classe, materie]) => {
+        const card = document.createElement('div');
+        card.className = 'class-card';
+        const listItems = Object.entries(materie)
+          .slice(0,4)
+          .map(([materia, topics]) => `<li><strong>${materia}:</strong> ${topics[0]}, ${topics[1] || ''}</li>`)
+          .join('');
+        card.innerHTML = `<h4>Classe ${classe}</h4><ul>${listItems}</ul>`;
+        classLibrary.appendChild(card);
+      });
+    }
+
+    function buildContent(){
+      const classe = classeEl.value;
+      const materia = materiaEl.value;
+      const funzione = funzioneEl.value;
+      const argomento = argomentoEl.value;
+      const livello = livelloEl.value;
+      const facilitata = facilitataEl.checked ? 'Sì' : 'No';
+      const soluzioni = soluzioniEl.checked ? 'Sì' : 'No';
+      const stampa = stampaEl.checked ? 'Sì' : 'No';
+      const nota = notaEl.value.trim();
+
+      let text = `MAESTROKIT PRIMARIA\n`;
+      text += `Classe: ${classe}\n`;
+      text += `Materia: ${materia}\n`;
+      text += `Funzione: ${funzioneEl.options[funzioneEl.selectedIndex].text}\n`;
+      text += `Argomento: ${argomento}\n`;
+      text += `Livello: ${livello}\n`;
+      text += `Versione facilitata/BES: ${facilitata}\n`;
+      text += `Includi soluzioni: ${soluzioni}\n`;
+      text += `Pronto da stampare: ${stampa}\n`;
+      if(nota) text += `Note aggiuntive: ${nota}\n`;
+
+      text += `\n----------------------------------------\n\n`;
+
+      if(funzione === 'verifica'){
+        text += `VERIFICA - ${materia.toUpperCase()}\n\n`;
+        text += `Obiettivo: verificare le competenze della classe ${classe} sull'argomento “${argomento}”.\n\n`;
+        text += `PARTE A - DOMANDE GUIDATE\n`;
+        text += `1. Scrivi una breve risposta corretta sull'argomento trattato.\n`;
+        text += `2. Completa due esercizi mirati con difficoltà ${livello}.\n`;
+        text += `3. Svolgi un'attività finale di consolidamento.\n\n`;
+        text += `PARTE B - ESERCIZI\n`;
+        text += `- Esercizio 1 coerente con la classe ${classe}\n`;
+        text += `- Esercizio 2 graduato\n`;
+        text += `- Esercizio 3 di verifica finale\n\n`;
+        if(soluzioniEl.checked){
+          text += `SOLUZIONI\n`;
+          text += `- Inserire qui le risposte corrette e i criteri essenziali di valutazione.\n\n`;
+        }
+      }
+
+      if(funzione === 'lezione'){
+        text += `LEZIONE - ${materia.toUpperCase()}\n\n`;
+        text += `Titolo: ${argomento}\n\n`;
+        text += `1. Spiegazione iniziale semplice e adatta alla classe ${classe}.\n`;
+        text += `2. Parole chiave da evidenziare alla lavagna.\n`;
+        text += `3. Esempio pratico o attività guidata.\n`;
+        text += `4. Domande finali per controllare la comprensione.\n\n`;
+        text += `ATTIVITÀ CONCLUSIVA\n`;
+        text += `Piccolo esercizio individuale o di coppia sul tema “${argomento}”.\n\n`;
+      }
+
+      if(funzione === 'esercizi'){
+        text += `ESERCIZI - ${materia.toUpperCase()}\n\n`;
+        text += `Serie di esercizi per la classe ${classe} sull'argomento “${argomento}”.\n\n`;
+        text += `1. Esercizio base\n`;
+        text += `2. Esercizio intermedio\n`;
+        text += `3. Esercizio finale di consolidamento\n`;
+        text += `4. Attività facoltativa di rinforzo\n\n`;
+        if(soluzioniEl.checked){
+          text += `SOLUZIONI\n`;
+          text += `- Inserire qui le soluzioni sintetiche degli esercizi proposti.\n\n`;
+        }
+      }
+
+      if(funzione === 'semplifica'){
+        text += `SEMPLIFICAZIONE TESTO - ${materia.toUpperCase()}\n\n`;
+        text += `Obiettivo: trasformare un contenuto sull'argomento “${argomento}” in una versione più chiara per la classe ${classe}.\n\n`;
+        text += `STRUTTURA CONSIGLIATA\n`;
+        text += `- Frasi brevi\n`;
+        text += `- Lessico controllato\n`;
+        text += `- Parole difficili spiegate\n`;
+        text += `- Esempio finale vicino all'esperienza dei bambini\n\n`;
+        text += `TESTO SEMPLIFICATO MODELLO\n`;
+        text += `Qui va inserita una spiegazione breve, lineare e adatta all'età, con poche informazioni alla volta.\n\n`;
+      }
+
+      if(facilitataEl.checked){
+        text += `VERSIONE FACILITATA / BES\n`;
+        text += `- Ridurre il numero delle richieste per pagina\n`;
+        text += `- Usare consegne molto brevi\n`;
+        text += `- Inserire esempi visivi o guidati\n\n`;
+      }
+
+      if(stampaEl.checked){
+        text += `NOTA STAMPA\n`;
+        text += `Impostare impaginazione ampia, spazi per le risposte e titolo ben visibile.\n`;
+      }
+
+      return text;
+    }
+
+    document.getElementById('generaBtn').addEventListener('click', () => {
+      resultBox.textContent = buildContent();
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      livelloEl.value = 'medio';
+      funzioneEl.value = 'verifica';
+      facilitataEl.checked = false;
+      soluzioniEl.checked = true;
+      stampaEl.checked = false;
+      notaEl.value = '';
+      classeEl.selectedIndex = 0;
+      populateSubjects();
+      resultBox.textContent = 'Seleziona le opzioni a sinistra e premi “Genera contenuto”.\n\nQui vedrai una bozza strutturata pronta da usare come base per verifiche, lezioni, esercizi o semplificazioni.';
+    });
+
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(resultBox.textContent);
+        alert('Testo copiato negli appunti.');
+      }catch(e){
+        alert('Copia non riuscita.');
+      }
+    });
+
+    document.getElementById('printBtn').addEventListener('click', () => {
+      window.print();
+    });
+
+    classeEl.addEventListener('change', populateSubjects);
+    materiaEl.addEventListener('change', populateTopics);
+
+    populateClasses();
+    populateSubjects();
+    renderLibrary();
+  </script>
+</body>
+</html>
