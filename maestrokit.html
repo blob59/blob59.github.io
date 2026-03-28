@@ -592,7 +592,7 @@
 
     @media print {
       body{background:#fff;color:#000;}
-      header, .hero, .section-head, .warning-box, #classi, footer, .result-tools, .status-bar{display:none !important;}
+      header, .hero, .section-head, .warning-box, #classi, footer, .result-tools, .status-bar, #mkAiGate{display:none !important;}
       .workspace{display:block;}
       .panel{border:none;box-shadow:none;background:#fff;}
       .panel-inner{padding:0;}
@@ -836,7 +836,10 @@
   </footer>
 
   <script>
-    const AI_ENDPOINT = 'https://maestrokit-ai-backend.onrender.com/api/generate'
+    const AI_ENDPOINT = 'https://maestrokit-ai-backend.onrender.com/api/generate';
+    const AI_PASSWORD = 'MAESTRO2026'; // CAMBIA QUI LA PASSWORD
+    const WHATSAPP_NUMBER = '393331234567'; // CAMBIA QUI CON IL TUO NUMERO
+    const MK_STORAGE_KEY = 'maestrokit_ai_unlocked';
 
     const data = {
       "1ª": {
@@ -907,6 +910,7 @@
     const aiStatus = document.getElementById('aiStatus');
     const generaBtn = document.getElementById('generaBtn');
     const generaAiBtn = document.getElementById('generaAiBtn');
+    const resetBtn = document.getElementById('resetBtn');
 
     const questionTypeLabels = {
       misto: 'Misto',
@@ -917,7 +921,106 @@
       completamento: 'Completamento'
     };
 
-    function populateClasses(){
+    function isAiUnlocked() {
+      return localStorage.getItem(MK_STORAGE_KEY) === 'yes';
+    }
+
+    function setAiGateMessage(text, color = '#cfe9d7') {
+      const msg = document.getElementById('mkAiMsg');
+      if (msg) {
+        msg.textContent = text;
+        msg.style.color = color;
+      }
+    }
+
+    function updateAiButtonState(forceBusy = false) {
+      generaAiBtn.disabled = forceBusy || !isAiUnlocked();
+      generaAiBtn.style.opacity = generaAiBtn.disabled ? '0.55' : '1';
+      generaAiBtn.style.cursor = generaAiBtn.disabled ? 'not-allowed' : 'pointer';
+      generaAiBtn.title = isAiUnlocked() ? '' : 'Accesso riservato: serve password';
+    }
+
+    function createAiGate() {
+      if (document.getElementById('mkAiGate')) return;
+
+      const warningBox = document.querySelector('#configPanel .warning-box');
+      if (!warningBox) return;
+
+      const gate = document.createElement('div');
+      gate.id = 'mkAiGate';
+      gate.style.marginTop = '16px';
+      gate.style.padding = '16px';
+      gate.style.borderRadius = '18px';
+      gate.style.border = '1px solid rgba(47,209,107,0.18)';
+      gate.style.background = 'rgba(47,209,107,0.08)';
+      gate.style.color = '#e8fff0';
+      gate.style.lineHeight = '1.7';
+      gate.style.fontSize = '0.95rem';
+
+      gate.innerHTML = `
+        <div style="font-weight:800; margin-bottom:8px;">Accesso a MaestroKit AI su contributo</div>
+        <div style="margin-bottom:12px;">
+          MaestroKit AI utilizza servizi a consumo con credito API.<br>
+          Per mantenere attivo il generatore è richiesto un piccolo contributo.<br>
+          Dopo il contributo riceverai la password di accesso.
+        </div>
+
+        <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:10px;">
+          <input
+            id="mkAiPassword"
+            type="password"
+            placeholder="Inserisci la password di accesso"
+            style="flex:1 1 260px; min-width:220px; padding:12px 14px; border:1px solid rgba(255,255,255,0.12); border-radius:12px; background:rgba(255,255,255,0.06); color:#fff;"
+          />
+          <button
+            id="mkAiUnlockBtn"
+            type="button"
+            style="padding:12px 16px; border:none; border-radius:999px; background:linear-gradient(135deg, #2fd16b, #1eaf57); color:#07150c; font-weight:700; cursor:pointer;"
+          >
+            Sblocca AI
+          </button>
+          <a
+            href="https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Ciao Franco, vorrei attivare l’accesso a MaestroKit AI.")}"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="display:inline-flex; align-items:center; justify-content:center; padding:12px 16px; border-radius:999px; background:#25D366; color:#fff; font-weight:700;"
+          >
+            Richiedi accesso su WhatsApp
+          </a>
+        </div>
+
+        <div id="mkAiMsg" style="color:#cfe9d7;">
+          Il pulsante “Genera con AI” è bloccato finché non inserisci la password corretta.
+        </div>
+      `;
+
+      warningBox.insertAdjacentElement('afterend', gate);
+
+      const input = document.getElementById('mkAiPassword');
+      const unlockBtn = document.getElementById('mkAiUnlockBtn');
+
+      unlockBtn.addEventListener('click', () => {
+        const typed = input.value.trim();
+        if (typed === AI_PASSWORD) {
+          localStorage.setItem(MK_STORAGE_KEY, 'yes');
+          updateAiButtonState(false);
+          setAiGateMessage('Accesso AI sbloccato. Ora puoi usare “Genera con AI”.', '#95f0b5');
+          input.value = '';
+        } else {
+          setAiGateMessage('Password non corretta.', '#ffb3b3');
+        }
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') unlockBtn.click();
+      });
+
+      if (isAiUnlocked()) {
+        setAiGateMessage('Accesso AI già sbloccato su questo dispositivo.', '#95f0b5');
+      }
+    }
+
+    function populateClasses() {
       classeEl.innerHTML = '';
       Object.keys(data).forEach(cl => {
         const opt = document.createElement('option');
@@ -927,7 +1030,7 @@
       });
     }
 
-    function populateSubjects(){
+    function populateSubjects() {
       const classe = classeEl.value;
       materiaEl.innerHTML = '';
       Object.keys(data[classe]).forEach(materia => {
@@ -939,7 +1042,7 @@
       populateTopics();
     }
 
-    function populateTopics(){
+    function populateTopics() {
       const classe = classeEl.value;
       const materia = materiaEl.value;
       argomentoEl.innerHTML = '';
@@ -951,21 +1054,21 @@
       });
     }
 
-    function renderLibrary(){
+    function renderLibrary() {
       classLibrary.innerHTML = '';
       Object.entries(data).forEach(([classe, materie]) => {
         const card = document.createElement('div');
         card.className = 'class-card';
         const listItems = Object.entries(materie)
-          .slice(0,4)
-          .map(([materia, topics]) => `<li><strong>${materia}:</strong> ${topics.slice(0,2).join(', ')}</li>`)
+          .slice(0, 4)
+          .map(([materia, topics]) => `<li><strong>${materia}:</strong> ${topics.slice(0, 2).join(', ')}</li>`)
           .join('');
         card.innerHTML = `<h4>Classe ${classe}</h4><ul>${listItems}</ul>`;
         classLibrary.appendChild(card);
       });
     }
 
-    function getConfig(){
+    function getConfig() {
       return {
         classe: classeEl.value,
         materia: materiaEl.value,
@@ -983,7 +1086,7 @@
       };
     }
 
-    function escapeHtml(str){
+    function escapeHtml(str) {
       return String(str)
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
@@ -992,19 +1095,18 @@
         .replace(/'/g, '&#039;');
     }
 
-    function randomPick(arr, index){
+    function randomPick(arr, index) {
       return arr[index % arr.length];
     }
 
-    function buildQuestion(config, i){
-      const index = i + 1;
+    function buildQuestion(config, i) {
       const type = config.tipoEsercizio === 'misto'
-        ? randomPick(['risposta_aperta','scelta_multipla','vero_falso','completamento','abbinamento'], i)
+        ? randomPick(['risposta_aperta', 'scelta_multipla', 'vero_falso', 'completamento', 'abbinamento'], i)
         : config.tipoEsercizio;
 
       const base = `${config.argomento} - ${config.materia} - classe ${config.classe}`;
 
-      if(type === 'risposta_aperta'){
+      if (type === 'risposta_aperta') {
         return {
           type,
           question: `Spiega con parole semplici un aspetto importante di “${config.argomento}”.`,
@@ -1018,7 +1120,7 @@
         };
       }
 
-      if(type === 'scelta_multipla'){
+      if (type === 'scelta_multipla') {
         const options = [
           `Risposta corretta su ${config.argomento}`,
           `Risposta parzialmente sbagliata`,
@@ -1029,11 +1131,11 @@
           question: `Scegli la risposta corretta su “${config.argomento}”.`,
           options,
           solution: `Corretta: ${options[0]}.`,
-          render: () => `<div class="options-list">${options.map((opt, idx) => `<div class="option-item">${String.fromCharCode(65+idx)}. ${escapeHtml(opt)}</div>`).join('')}</div>`
+          render: () => `<div class="options-list">${options.map((opt, idx) => `<div class="option-item">${String.fromCharCode(65 + idx)}. ${escapeHtml(opt)}</div>`).join('')}</div>`
         };
       }
 
-      if(type === 'vero_falso'){
+      if (type === 'vero_falso') {
         const statement = `L'affermazione riguarda un fatto o una regola collegata a “${config.argomento}”.`;
         return {
           type,
@@ -1048,9 +1150,9 @@
         };
       }
 
-      if(type === 'abbinamento'){
-        const left = [`Elemento A`, `Elemento B`, `Elemento C`];
-        const right = [`Definizione 1`, `Definizione 2`, `Definizione 3`];
+      if (type === 'abbinamento') {
+        const left = ['Elemento A', 'Elemento B', 'Elemento C'];
+        const right = ['Definizione 1', 'Definizione 2', 'Definizione 3'];
         return {
           type,
           question: `Abbina correttamente gli elementi relativi a “${config.argomento}”.`,
@@ -1077,7 +1179,7 @@
       };
     }
 
-    function buildLocalWorksheet(config){
+    function buildLocalWorksheet(config) {
       const questions = Array.from({ length: config.numDomande }, (_, i) => buildQuestion(config, i));
       const meta = [
         `Classe: <strong>${escapeHtml(config.classe)}</strong>`,
@@ -1097,7 +1199,7 @@
         : '';
 
       const solutionBox = config.soluzioni
-        ? `<div class="solutions-box"><h5>Soluzioni docente</h5>${questions.map((q, i) => `<div><strong>${i+1}.</strong> ${escapeHtml(q.solution)}</div>`).join('<br>')}</div>`
+        ? `<div class="solutions-box"><h5>Soluzioni docente</h5>${questions.map((q, i) => `<div><strong>${i + 1}.</strong> ${escapeHtml(q.solution)}</div>`).join('<br>')}</div>`
         : '';
 
       const titleMap = {
@@ -1124,7 +1226,7 @@
           ${questions.map((q, i) => `
             <div class="question-card">
               <div class="question-top">
-                <div class="question-number">Domanda ${i+1}</div>
+                <div class="question-number">Domanda ${i + 1}</div>
                 <div class="question-type">${escapeHtml(questionTypeLabels[q.type] || q.type)}</div>
               </div>
               <div class="question-text">${escapeHtml(q.question)}</div>
@@ -1137,8 +1239,8 @@
       `;
     }
 
-    async function generateWithAI(config){
-      if(!AI_ENDPOINT){
+    async function generateWithAI(config) {
+      if (!AI_ENDPOINT) {
         throw new Error('Endpoint AI non configurato');
       }
 
@@ -1148,32 +1250,38 @@
         body: JSON.stringify(config)
       });
 
-      if(!response.ok){
+      if (!response.ok) {
         throw new Error('Risposta backend non valida');
       }
 
-      const data = await response.json();
-      if(!data || !data.html){
+      const payload = await response.json();
+      if (!payload || !payload.html) {
         throw new Error('Formato risposta AI non valido');
       }
-      return data.html;
+      return payload.html;
     }
 
-    function setBusy(isBusy){
+    function setBusy(isBusy) {
       generaBtn.disabled = isBusy;
-      generaAiBtn.disabled = isBusy;
       generaBtn.textContent = isBusy ? 'Attendi...' : 'Genera scheda';
       generaAiBtn.textContent = isBusy ? 'Attendi...' : 'Genera con AI';
+      updateAiButtonState(isBusy);
     }
 
-    function renderLocal(){
+    function renderLocal() {
       const config = getConfig();
       resultBox.innerHTML = buildLocalWorksheet(config);
     }
 
-    async function renderAI(){
+    async function renderAI() {
+      if (!isAiUnlocked()) {
+        setAiGateMessage('Per usare l’AI devi prima inserire la password di accesso.', '#ffb3b3');
+        return;
+      }
+
       const config = getConfig();
       setBusy(true);
+
       try {
         const html = await generateWithAI(config);
         resultBox.innerHTML = html;
@@ -1188,10 +1296,10 @@
       }
     }
 
-    document.getElementById('generaBtn').addEventListener('click', renderLocal);
-    document.getElementById('generaAiBtn').addEventListener('click', renderAI);
+    generaBtn.addEventListener('click', renderLocal);
+    generaAiBtn.addEventListener('click', renderAI);
 
-    document.getElementById('resetBtn').addEventListener('click', () => {
+    resetBtn.addEventListener('click', () => {
       livelloEl.value = 'medio';
       funzioneEl.value = 'verifica';
       tipoEsercizioEl.value = 'misto';
@@ -1211,10 +1319,10 @@
 
     document.getElementById('copyBtn').addEventListener('click', async () => {
       const text = resultBox.innerText;
-      try{
+      try {
         await navigator.clipboard.writeText(text);
         alert('Scheda copiata negli appunti.');
-      }catch(e){
+      } catch (e) {
         alert('Copia non riuscita.');
       }
     });
@@ -1227,10 +1335,14 @@
     populateClasses();
     populateSubjects();
     renderLibrary();
-    if(AI_ENDPOINT){
+    createAiGate();
+
+    if (AI_ENDPOINT) {
       aiStatus.textContent = 'AI collegata: endpoint configurato';
       aiStatus.className = 'status-pill ok';
     }
+
+    updateAiButtonState(false);
   </script>
 </body>
 </html>
